@@ -1,0 +1,30 @@
+/**
+ * API Client using Connect-RPC v2 with BSR-generated types
+ */
+
+import { AuthService } from '@buf/echo-tracker_echo.bufbuild_es/echo/v1/auth_pb';
+import { ConnectError, createClient, type Client } from '@connectrpc/connect';
+import { createConnectTransport } from '@connectrpc/connect-web';
+import { getAccessToken } from '../storage/token-storage';
+import { API_CONFIG } from './config';
+
+// Create the Connect transport
+const transport = createConnectTransport({
+    baseUrl: API_CONFIG.baseUrl,
+    // Add auth header interceptor
+    interceptors: [
+        (next) => async (req) => {
+            const token = await getAccessToken();
+            if (token) {
+                req.header.set('Authorization', `Bearer ${token}`);
+            }
+            return next(req);
+        },
+    ],
+});
+
+// Create typed auth client
+export const authClient: Client<typeof AuthService> = createClient(AuthService, transport);
+
+// Re-export Connect error for catch blocks
+export { ConnectError };
