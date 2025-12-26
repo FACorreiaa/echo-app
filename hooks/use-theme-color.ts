@@ -3,16 +3,13 @@
  * https://docs.expo.dev/guides/color-schemes/
  */
 
-import { useTheme } from '@react-navigation/native';
+import { useTheme } from "@react-navigation/native";
 
-import { Colors, type ColorName } from '@/constants/theme';
+import { Colors, type ColorName } from "@/constants/theme";
 
-export function useThemeColor(
-  props: { light?: string; dark?: string },
-  colorName: ColorName
-) {
+export function useThemeColor(props: { light?: string; dark?: string }, colorName: ColorName) {
   const { dark } = useTheme();
-  const resolvedTheme = dark ? 'dark' : 'light';
+  const resolvedTheme = dark ? "dark" : "light";
   const colorFromProps = props[resolvedTheme];
 
   if (colorFromProps) {
@@ -27,7 +24,7 @@ export function useThemeColor(
  */
 export function useColor(colorName: ColorName): string {
   const { dark } = useTheme();
-  const resolvedTheme = dark ? 'dark' : 'light';
+  const resolvedTheme = dark ? "dark" : "light";
   return Colors[resolvedTheme][colorName];
 }
 
@@ -36,6 +33,6 @@ export function useColor(colorName: ColorName): string {
  */
 export function useColors() {
   const { dark } = useTheme();
-  const resolvedTheme = dark ? 'dark' : 'light';
+  const resolvedTheme = dark ? "dark" : "light";
   return Colors[resolvedTheme];
 }

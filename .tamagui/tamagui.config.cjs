@@ -30,8 +30,7 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 // tamagui.config.ts
 var tamagui_config_exports = {};
 __export(tamagui_config_exports, {
-  default: () => tamagui_config_default,
-  tamaguiConfig: () => tamaguiConfig
+  default: () => tamagui_config_default
 });
 module.exports = __toCommonJS(tamagui_config_exports);
 
@@ -599,7 +598,7 @@ function createAnimations(animations) {
         getValue() {
           return val;
         },
-        setValue(next, config, onFinish2) {
+        setValue(next, config2, onFinish2) {
           setVal(next), setOnFinish(onFinish2);
         },
         stop() {
@@ -826,10 +825,10 @@ var defaultConfig = {
 // node_modules/tamagui/dist/esm/createTamagui.mjs
 var import_core2 = require("@tamagui/core");
 var createTamagui = process.env.NODE_ENV !== "development" ? import_core2.createTamagui : (conf) => {
-  const sizeTokenKeys = ["$true"], hasKeys = /* @__PURE__ */ __name((expectedKeys, obj) => expectedKeys.every((k) => typeof obj[k] < "u"), "hasKeys"), tamaguiConfig2 = (0, import_core2.createTamagui)(conf);
+  const sizeTokenKeys = ["$true"], hasKeys = /* @__PURE__ */ __name((expectedKeys, obj) => expectedKeys.every((k) => typeof obj[k] < "u"), "hasKeys"), tamaguiConfig = (0, import_core2.createTamagui)(conf);
   for (const name of ["size", "space"]) {
-    const tokenSet = tamaguiConfig2.tokensParsed[name];
-    if (!tokenSet) throw new Error(`Expected tokens for "${name}" in ${Object.keys(tamaguiConfig2.tokensParsed).join(", ")}`);
+    const tokenSet = tamaguiConfig.tokensParsed[name];
+    if (!tokenSet) throw new Error(`Expected tokens for "${name}" in ${Object.keys(tamaguiConfig.tokensParsed).join(", ")}`);
     if (!hasKeys(sizeTokenKeys, tokenSet)) throw new Error(`
 createTamagui() missing expected tokens.${name}:
 
@@ -851,9 +850,9 @@ size: {
 
 `);
   }
-  const expected = Object.keys(tamaguiConfig2.tokensParsed.size);
+  const expected = Object.keys(tamaguiConfig.tokensParsed.size);
   for (const name of ["radius", "zIndex"]) {
-    const tokenSet = tamaguiConfig2.tokensParsed[name], received = Object.keys(tokenSet);
+    const tokenSet = tamaguiConfig.tokensParsed[name], received = Object.keys(tokenSet);
     if (!received.some((rk) => expected.includes(rk))) throw new Error(`
 createTamagui() invalid tokens.${name}:
 
@@ -863,13 +862,87 @@ Expected a subset of: ${expected.join(", ")}
 
 `);
   }
-  return tamaguiConfig2;
+  return tamaguiConfig;
 };
 
 // tamagui.config.ts
-var tamaguiConfig = createTamagui(defaultConfig);
-var tamagui_config_default = tamaguiConfig;
-// Annotate the CommonJS export names for ESM import in node:
-0 && (module.exports = {
-  tamaguiConfig
+var config = createTamagui({
+  ...defaultConfig,
+  tokens: {
+    ...defaultConfig.tokens,
+    color: {
+      ...defaultConfig.tokens.color,
+      // Custom Palette
+      deepBlue: "#0b0f19",
+      electricBlue: "#2da6fa",
+      glassWhite: "rgba(255, 255, 255, 0.1)",
+      glassBorder: "rgba(255, 255, 255, 0.08)",
+      // Light mode specifics
+      cleanWhite: "#ffffff",
+      slateText: "#1B1D2A",
+      softGray: "#f2f2f2",
+      // Aliases that will be used in themes
+      textPrimaryDark: "#ffffff",
+      textSecondaryDark: "#a0a0a0",
+      textPrimaryLight: "#000000",
+      textSecondaryLight: "#666666"
+    }
+  },
+  themes: {
+    ...defaultConfig.themes,
+    light: {
+      ...defaultConfig.themes.light,
+      background: "#ffffff",
+      backgroundHover: "#f5f5f5",
+      backgroundPress: "#e0e0e0",
+      backgroundFocus: "#ffffff",
+      color: "#000000",
+      colorHover: "#333333",
+      colorPress: "#000000",
+      colorFocus: "#000000",
+      borderColor: "#e5e5e5",
+      shadowColor: "rgba(0,0,0,0.1)",
+      // Custom tokens mapped to semantic names if needed
+      glassBorder: "#e5e5e5"
+      // Fallback for glass in light mode
+    },
+    dark: {
+      ...defaultConfig.themes.dark,
+      background: "#0b0f19",
+      // deepBlue
+      backgroundHover: "#131929",
+      backgroundPress: "#05080e",
+      backgroundFocus: "#0b0f19",
+      color: "#ffffff",
+      colorHover: "#e0e0e0",
+      colorPress: "#ffffff",
+      colorFocus: "#ffffff",
+      borderColor: "rgba(255, 255, 255, 0.08)",
+      shadowColor: "rgba(0,0,0,0.5)",
+      glassBorder: "rgba(255, 255, 255, 0.08)"
+    }
+  },
+  media: {
+    ...defaultConfig.media,
+    xs: { maxWidth: 660 },
+    sm: { maxWidth: 800 },
+    md: { maxWidth: 1020 },
+    lg: { maxWidth: 1280 },
+    xl: { maxWidth: 1420 },
+    xxl: { maxWidth: 1600 },
+    gtXs: { minWidth: 660 + 1 },
+    gtSm: { minWidth: 800 + 1 },
+    gtMd: { minWidth: 1020 + 1 },
+    gtLg: { minWidth: 1280 + 1 },
+    short: { maxHeight: 820 },
+    tall: { minHeight: 820 },
+    hoverNone: { hover: "none" },
+    pointerCoarse: { pointer: "coarse" }
+  },
+  fonts: {
+    ...defaultConfig.fonts,
+    heading: defaultConfig.fonts.heading,
+    body: defaultConfig.fonts.body
+  }
 });
+var tamagui_config_default = config;
