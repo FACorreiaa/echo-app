@@ -10,7 +10,8 @@ import {
 } from '@/lib/storage/token-storage';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { create } from 'zustand';
-import { createJSONStorage, persist } from 'zustand/middleware';
+// Use CJS to avoid bundling import.meta in the web build.
+const { createJSONStorage, persist } = require('zustand/middleware');
 
 // User type
 export interface User {

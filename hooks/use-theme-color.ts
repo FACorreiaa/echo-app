@@ -3,14 +3,16 @@
  * https://docs.expo.dev/guides/color-schemes/
  */
 
+import { useTheme } from '@react-navigation/native';
+
 import { Colors, type ColorName } from '@/constants/theme';
-import { useTheme } from '@/contexts/ThemeContext';
 
 export function useThemeColor(
   props: { light?: string; dark?: string },
   colorName: ColorName
 ) {
-  const { resolvedTheme } = useTheme();
+  const { dark } = useTheme();
+  const resolvedTheme = dark ? 'dark' : 'light';
   const colorFromProps = props[resolvedTheme];
 
   if (colorFromProps) {
@@ -24,7 +26,8 @@ export function useThemeColor(
  * Get a specific color from the current theme
  */
 export function useColor(colorName: ColorName): string {
-  const { resolvedTheme } = useTheme();
+  const { dark } = useTheme();
+  const resolvedTheme = dark ? 'dark' : 'light';
   return Colors[resolvedTheme][colorName];
 }
 
@@ -32,6 +35,7 @@ export function useColor(colorName: ColorName): string {
  * Get all theme colors for the current mode
  */
 export function useColors() {
-  const { resolvedTheme } = useTheme();
+  const { dark } = useTheme();
+  const resolvedTheme = dark ? 'dark' : 'light';
   return Colors[resolvedTheme];
 }

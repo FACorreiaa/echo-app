@@ -1,14 +1,14 @@
+import { useTheme } from '@react-navigation/native';
 import { Tabs } from 'expo-router';
 import React from 'react';
 
 import { HapticTab } from '@/components/haptic-tab';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { Colors } from '@/constants/theme';
-import { useTheme } from '@/contexts/ThemeContext';
 
 export default function TabLayout() {
-  const { resolvedTheme } = useTheme();
-  const colors = Colors[resolvedTheme];
+  const { dark } = useTheme();
+  const colors = Colors[dark ? 'dark' : 'light'];
 
   return (
     <Tabs
