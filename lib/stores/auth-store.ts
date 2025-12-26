@@ -94,9 +94,18 @@ export const useAuthStore = create<AuthState>()(
                 user: state.user,
                 isAuthenticated: state.isAuthenticated,
             }),
-            onRehydrateStorage: () => (state) => {
-                // Mark as hydrated after rehydration
-                state?.setHydrated(true);
+            onRehydrateStorage: () => (state, error) => {
+                // Mark as hydrated after rehydration completes
+                // Note: state can be undefined on first run (no stored data)
+                if (state) {
+                    state.setHydrated(true);
+                } else {
+                    // First run or hydration error - still need to mark as hydrated
+                    useAuthStore.getState().setHydrated(true);
+                }
+                if (error) {
+                    console.warn('Auth store hydration error:', error);
+                }
             },
         }
     )
