@@ -54,17 +54,29 @@ export function useImportTransactions() {
       accountId,
       dateFormat,
       timezone,
+      mapping,
+      headerRows,
     }: {
       csvBytes: Uint8Array;
       accountId?: string;
       dateFormat?: string;
       timezone?: string;
+      mapping?: {
+        dateColumn: string;
+        descriptionColumn: string;
+        amountColumn: string;
+        debitColumn: string;
+        creditColumn: string;
+      };
+      headerRows?: number;
     }) => {
       const response = await financeClient.importTransactionsCsv({
         csvBytes,
         accountId,
         dateFormat: dateFormat ?? "",
         timezone: timezone ?? "",
+        mapping: mapping ?? undefined,
+        headerRows: headerRows ?? 0,
       });
       return response;
     },

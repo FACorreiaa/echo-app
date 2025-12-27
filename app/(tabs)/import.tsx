@@ -95,13 +95,20 @@ export default function ImportScreen() {
       const response = await importMutation.mutateAsync({
         csvBytes: fileBytes,
         dateFormat: userMapping.dateFormat,
-        // We would ideally pass column indices here too
+        headerRows: analysis?.skipLines ?? 0,
+        mapping: {
+          dateColumn: String(userMapping.dateCol),
+          descriptionColumn: String(userMapping.descCol),
+          amountColumn: userMapping.amountCol !== undefined ? String(userMapping.amountCol) : "",
+          debitColumn: userMapping.debitCol !== undefined ? String(userMapping.debitCol) : "",
+          creditColumn: userMapping.creditCol !== undefined ? String(userMapping.creditCol) : "",
+        },
       });
 
       setImportStats({
-        total: response.importedCount, // Ideally response has total
+        total: response.importedCount,
         imported: response.importedCount,
-        failed: 0, // Ideally response has failed count
+        failed: 0,
         error: "",
       });
       setStep("result");
