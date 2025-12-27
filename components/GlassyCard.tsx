@@ -7,9 +7,11 @@ import { useTheme } from "@/contexts/ThemeContext";
 const CardFrame = styled(YStack, {
   borderRadius: 24,
   borderWidth: 1,
-  borderColor: "$glassBorder", // Uses our custom token
+  borderColor: "$glassBorder",
   padding: 24,
   overflow: "hidden",
+  // In light mode, we want a slight wash to ensure contrast against gradient.
+  // In dark mode, the glassWhite token handles it.
   backgroundColor: "$glassWhite",
 });
 
@@ -20,11 +22,14 @@ export type GlassyCardProps = GetProps<typeof CardFrame> & {
 export const GlassyCard = (props: GlassyCardProps) => {
   const { isDark } = useTheme();
 
-  // We wrap the content in a BlurView for the native glass effect
   return (
-    <CardFrame {...props} position="relative">
+    <CardFrame
+      {...props}
+      position="relative"
+      backgroundColor={isDark ? "$glassWhite" : "rgba(255,255,255,0.7)"}
+    >
       <BlurView
-        intensity={props.intensity ?? 20}
+        intensity={props.intensity ?? (isDark ? 30 : 50)} // Higher intensity in light mode for better text bg
         style={StyleSheet.absoluteFill}
         tint={isDark ? "dark" : "light"}
       />

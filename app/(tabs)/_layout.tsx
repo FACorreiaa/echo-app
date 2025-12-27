@@ -1,23 +1,29 @@
-import { useTheme } from "@react-navigation/native";
+import { ArrowDownUp, Home, Lightbulb, Settings, Target } from "@tamagui/lucide-icons";
 import { Tabs } from "expo-router";
 import React from "react";
+import { useTheme } from "tamagui";
 
 import { HapticTab } from "@/components/haptic-tab";
-import { IconSymbol } from "@/components/ui/icon-symbol";
-import { Colors } from "@/constants/theme";
 
 export default function TabLayout() {
-  const { dark } = useTheme();
-  const colors = Colors[dark ? "dark" : "light"];
+  const theme = useTheme();
 
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: colors.tint,
-        tabBarInactiveTintColor: colors.tabIconDefault,
+        tabBarActiveTintColor: theme.accentGradientStart?.val || "#2da6fa",
+        tabBarInactiveTintColor: theme.secondaryText?.val || "#9ca3af",
         tabBarStyle: {
-          backgroundColor: colors.card,
-          borderTopColor: colors.border,
+          backgroundColor: theme.background?.val || "#0b0f19",
+          borderTopColor: theme.borderColor?.val || "rgba(255,255,255,0.15)",
+          borderTopWidth: 1,
+          paddingTop: 8,
+          height: 85,
+        },
+        tabBarLabelStyle: {
+          fontFamily: "Outfit_500Medium",
+          fontSize: 11,
+          marginTop: 4,
         },
         headerShown: false,
         tabBarButton: HapticTab,
@@ -27,14 +33,35 @@ export default function TabLayout() {
         name="index"
         options={{
           title: "Home",
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          tabBarIcon: ({ color }) => <Home size={24} color={color} />,
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="spend"
         options={{
-          title: "Explore",
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          title: "Spend",
+          tabBarIcon: ({ color }) => <ArrowDownUp size={24} color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="goals"
+        options={{
+          title: "Goals",
+          tabBarIcon: ({ color }) => <Target size={24} color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="insights"
+        options={{
+          title: "Insights",
+          tabBarIcon: ({ color }) => <Lightbulb size={24} color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="settings"
+        options={{
+          title: "Settings",
+          tabBarIcon: ({ color }) => <Settings size={24} color={color} />,
         }}
       />
     </Tabs>

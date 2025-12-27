@@ -1,229 +1,182 @@
-import { ConnectError } from "@connectrpc/connect";
-import { Link } from "expo-router";
+import { Link, useRouter } from "expo-router";
 import { useState } from "react";
-import {
-  ActivityIndicator,
-  KeyboardAvoidingView,
-  Platform,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { KeyboardAvoidingView, Platform } from "react-native";
+import { ScrollView, styled, Text, XStack, YStack } from "tamagui";
 
-import { Radius, Spacing } from "@/constants/theme";
-import { useColors } from "@/hooks/use-theme-color";
+import { GlassyButton } from "@/components/GlassyButton";
+import { GlassyCard } from "@/components/GlassyCard";
+import { Input } from "@/components/Input";
+import { LoginSuccessAnimation } from "@/components/LoginTransition";
 import { useLogin } from "@/lib/hooks/use-auth";
+import { getFriendlyErrorMessage } from "@/lib/utils/error-messages";
+
+const Title = styled(Text, {
+  color: "$color",
+  fontSize: 32,
+  fontFamily: "Outfit_700Bold",
+  textAlign: "center",
+  marginBottom: 8,
+});
+
+const Subtitle = styled(Text, {
+  color: "$color",
+  opacity: 0.6,
+  fontSize: 16,
+  fontFamily: "Outfit_400Regular",
+  textAlign: "center",
+  marginBottom: 32,
+});
+
+const Label = styled(Text, {
+  color: "$color",
+  fontSize: 14,
+  fontFamily: "Outfit_500Medium",
+  marginBottom: 6,
+  marginLeft: 4,
+});
+
+const ErrorBanner = styled(YStack, {
+  backgroundColor: "rgba(239, 68, 68, 0.1)",
+  borderRadius: 12,
+  padding: 16,
+  borderWidth: 1,
+  borderColor: "rgba(239, 68, 68, 0.3)",
+  marginBottom: 16,
+});
+
+const ErrorText = styled(Text, {
+  color: "#ef4444",
+  fontSize: 14,
+  textAlign: "center",
+  fontFamily: "Outfit_500Medium",
+});
 
 export default function LoginScreen() {
-  const colors = useColors();
+  const router = useRouter();
   const loginMutation = useLogin();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [showSuccessAnimation, setShowSuccessAnimation] = useState(false);
+  const [hasSubmitted, setHasSubmitted] = useState(false);
+
+  // Field-level validation
+  const emailError = hasSubmitted && !email.trim();
+  const passwordError = hasSubmitted && !password;
 
   const handleLogin = async () => {
     setError("");
+    setHasSubmitted(true);
 
     if (!email.trim() || !password) {
-      setError("Please enter email and password");
+      setError("Please fill in all required fields");
       return;
     }
 
     loginMutation.mutate(
       { email: email.trim(), password },
       {
+        onSuccess: () => {
+          setShowSuccessAnimation(true);
+        },
         onError: (err) => {
-          if (err instanceof ConnectError) {
-            setError(err.message);
-          } else if (err instanceof Error) {
-            setError(err.message);
-          } else {
-            setError("An error occurred. Please try again.");
-          }
+          // Use friendly error messages
+          const friendlyMessage = getFriendlyErrorMessage(err);
+          setError(friendlyMessage);
         },
       },
     );
   };
 
-  const styles = createStyles(colors);
+  const handleAnimationComplete = () => {
+    router.replace("/(tabs)");
+  };
+
   const isLoading = loginMutation.isPending;
 
   return (
-    <SafeAreaView style={styles.container}>
+    <>
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
-        style={styles.keyboardView}
+        style={{ flex: 1 }}
       >
-        <View style={styles.content}>
-          {/* Header */}
-          <View style={styles.header}>
-            <Text style={styles.logo}>Echo</Text>
-            <Text style={styles.title}>Welcome back</Text>
-            <Text style={styles.subtitle}>Sign in to your account</Text>
-          </View>
+        <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: "center", padding: 20 }}>
+          <YStack maxWidth={500} width="100%" alignSelf="center" space="$4">
+            <YStack marginBottom={20}>
+              <Title>Welcome Back</Title>
+              <Subtitle>Sign in to your Echo account</Subtitle>
+            </YStack>
 
-          {/* Form */}
-          <View style={styles.form}>
-            {error ? (
-              <View style={styles.errorContainer}>
-                <Text style={styles.errorText}>{error}</Text>
-              </View>
-            ) : null}
+            <GlassyCard>
+              {error ? (
+                <ErrorBanner>
+                  <ErrorText>{error}</ErrorText>
+                </ErrorBanner>
+              ) : null}
 
-            <View style={styles.inputContainer}>
-              <Text style={styles.label}>Email</Text>
-              <TextInput
-                style={styles.input}
-                placeholder="you@example.com"
-                placeholderTextColor={colors.mutedForeground}
-                value={email}
-                onChangeText={setEmail}
-                autoCapitalize="none"
-                autoComplete="email"
-                keyboardType="email-address"
-                editable={!isLoading}
-              />
-            </View>
+              <YStack space="$4">
+                <YStack>
+                  <Label>Email</Label>
+                  <Input
+                    placeholder="you@example.com"
+                    value={email}
+                    onChangeText={(text) => {
+                      setEmail(text);
+                      if (error) setError("");
+                    }}
+                    autoCapitalize="none"
+                    keyboardType="email-address"
+                    editable={!isLoading}
+                    error={emailError}
+                  />
+                </YStack>
 
-            <View style={styles.inputContainer}>
-              <Text style={styles.label}>Password</Text>
-              <TextInput
-                style={styles.input}
-                placeholder="••••••••"
-                placeholderTextColor={colors.mutedForeground}
-                value={password}
-                onChangeText={setPassword}
-                secureTextEntry
-                autoComplete="password"
-                editable={!isLoading}
-              />
-            </View>
+                <YStack>
+                  <Label>Password</Label>
+                  <Input
+                    placeholder="••••••••"
+                    value={password}
+                    onChangeText={(text) => {
+                      setPassword(text);
+                      if (error) setError("");
+                    }}
+                    secureTextEntry
+                    editable={!isLoading}
+                    error={passwordError}
+                  />
+                </YStack>
 
-            <TouchableOpacity
-              style={[styles.button, isLoading && styles.buttonDisabled]}
-              onPress={handleLogin}
-              disabled={isLoading}
-            >
-              {isLoading ? (
-                <ActivityIndicator color={colors.primaryForeground} />
-              ) : (
-                <Text style={styles.buttonText}>Sign in</Text>
-              )}
-            </TouchableOpacity>
-          </View>
+                <YStack marginTop={10}>
+                  <GlassyButton
+                    onPress={handleLogin}
+                    disabled={isLoading}
+                    opacity={isLoading ? 0.7 : 1}
+                  >
+                    {isLoading ? "Signing in..." : "Sign In"}
+                  </GlassyButton>
+                </YStack>
+              </YStack>
+            </GlassyCard>
 
-          {/* Footer */}
-          <View style={styles.footer}>
-            <Text style={styles.footerText}>Don&apos;t have an account? </Text>
-            <Link href={"/register" as any} asChild>
-              <TouchableOpacity>
-                <Text style={styles.link}>Sign up</Text>
-              </TouchableOpacity>
-            </Link>
-          </View>
-        </View>
+            <XStack justifyContent="center" marginTop={20}>
+              <Text color="$color" opacity={0.6} fontSize={14} fontFamily="Outfit_400Regular">
+                Don&apos;t have an account?{" "}
+              </Text>
+              <Link href="/register" asChild>
+                <Text color="$electricBlue" fontSize={14} fontFamily="Outfit_500Medium">
+                  Sign Up
+                </Text>
+              </Link>
+            </XStack>
+          </YStack>
+        </ScrollView>
       </KeyboardAvoidingView>
-    </SafeAreaView>
+
+      <LoginSuccessAnimation
+        isAnimating={showSuccessAnimation}
+        onAnimationComplete={handleAnimationComplete}
+      />
+    </>
   );
 }
-
-const createStyles = (colors: ReturnType<typeof useColors>) =>
-  StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: colors.background,
-    },
-    keyboardView: {
-      flex: 1,
-    },
-    content: {
-      flex: 1,
-      justifyContent: "center",
-      paddingHorizontal: Spacing.lg,
-    },
-    header: {
-      alignItems: "center",
-      marginBottom: Spacing.xl,
-    },
-    logo: {
-      fontSize: 32,
-      fontWeight: "700",
-      color: colors.primary,
-      marginBottom: Spacing.md,
-    },
-    title: {
-      fontSize: 28,
-      fontWeight: "600",
-      color: colors.text,
-      marginBottom: Spacing.xs,
-    },
-    subtitle: {
-      fontSize: 16,
-      color: colors.mutedForeground,
-    },
-    form: {
-      gap: Spacing.md,
-    },
-    inputContainer: {
-      gap: Spacing.xs,
-    },
-    label: {
-      fontSize: 14,
-      fontWeight: "500",
-      color: colors.text,
-    },
-    input: {
-      height: 48,
-      borderWidth: 1,
-      borderColor: colors.border,
-      borderRadius: Radius.md,
-      paddingHorizontal: Spacing.md,
-      fontSize: 16,
-      color: colors.text,
-      backgroundColor: colors.card,
-    },
-    button: {
-      height: 48,
-      backgroundColor: colors.primary,
-      borderRadius: Radius.md,
-      alignItems: "center",
-      justifyContent: "center",
-      marginTop: Spacing.sm,
-    },
-    buttonDisabled: {
-      opacity: 0.7,
-    },
-    buttonText: {
-      fontSize: 16,
-      fontWeight: "600",
-      color: colors.primaryForeground,
-    },
-    footer: {
-      flexDirection: "row",
-      justifyContent: "center",
-      marginTop: Spacing.xl,
-    },
-    footerText: {
-      fontSize: 14,
-      color: colors.mutedForeground,
-    },
-    link: {
-      fontSize: 14,
-      fontWeight: "600",
-      color: colors.primary,
-    },
-    errorContainer: {
-      backgroundColor: colors.destructive + "20",
-      borderRadius: Radius.sm,
-      padding: Spacing.md,
-    },
-    errorText: {
-      color: colors.destructive,
-      fontSize: 14,
-      textAlign: "center",
-    },
-  });

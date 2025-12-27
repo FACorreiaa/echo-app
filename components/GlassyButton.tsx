@@ -1,6 +1,6 @@
 import { LinearGradient } from "expo-linear-gradient";
 import { StyleSheet } from "react-native";
-import { Button, styled, Text } from "tamagui";
+import { Button, styled, Text, useTheme } from "tamagui";
 
 const BaseButton = styled(Button, {
   height: 54,
@@ -12,10 +12,11 @@ const BaseButton = styled(Button, {
 });
 
 const ButtonText = styled(Text, {
-  color: "white",
   fontWeight: "600",
   fontSize: 17,
   fontFamily: "Outfit_500Medium",
+  // Ensure text is always visible
+  zIndex: 1,
 });
 
 export const GlassyButton = ({
@@ -26,29 +27,31 @@ export const GlassyButton = ({
   children: string;
   variant?: "primary" | "outline";
 } & React.ComponentProps<typeof BaseButton>) => {
+  const theme = useTheme();
+  const isDark = theme.background?.val === "#0b0f19";
+
   if (variant === "primary") {
     return (
       <BaseButton {...props} backgroundColor="transparent">
         <LinearGradient
-          colors={["#2da6fa", "#355dfa"]} // Revolut-ish blue gradient
+          colors={["#2da6fa", "#355dfa"]}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 0 }}
           style={StyleSheet.absoluteFill}
         />
-        <ButtonText>{children}</ButtonText>
+        <ButtonText color="white">{children}</ButtonText>
       </BaseButton>
     );
   }
 
-  // Outline / Ghost variant
+  // Outline / Ghost variant - adjust text color based on theme
+  const textColor = isDark ? "white" : "#0f172a";
+  const borderColor = isDark ? "rgba(255,255,255,0.2)" : "rgba(0,0,0,0.15)";
+  const bgColor = isDark ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.03)";
+
   return (
-    <BaseButton
-      {...props}
-      backgroundColor="rgba(255,255,255,0.05)"
-      borderWidth={1}
-      borderColor="rgba(255,255,255,0.2)"
-    >
-      <ButtonText>{children}</ButtonText>
+    <BaseButton {...props} backgroundColor={bgColor} borderWidth={1} borderColor={borderColor}>
+      <ButtonText color={textColor}>{children}</ButtonText>
     </BaseButton>
   );
 };

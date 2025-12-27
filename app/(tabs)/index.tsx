@@ -1,99 +1,164 @@
-import { Image } from "expo-image";
-import { Platform, StyleSheet } from "react-native";
+import {
+  ArrowLeftRight,
+  ChevronRight,
+  CreditCard,
+  MoreHorizontal,
+  Plus,
+} from "@tamagui/lucide-icons";
+import { useRouter } from "expo-router";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { ScrollView, styled, Text, XStack, YStack } from "tamagui";
 
-import { HelloWave } from "@/components/hello-wave";
-import ParallaxScrollView from "@/components/parallax-scroll-view";
-import { ThemedText } from "@/components/themed-text";
-import { ThemedView } from "@/components/themed-view";
-import { Link } from "expo-router";
+import { Avatar } from "@/components/Avatar";
+import { GradientBackground } from "@/components/GradientBackground";
+import { ListItem } from "@/components/ListItem";
+import { PromoCard } from "@/components/PromoCard";
+import { QuickActionButton } from "@/components/QuickActionButton";
 
-export default function HomeScreen() {
-  return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: "#A1CEDC", dark: "#1D3D47" }}
-      headerImage={
-        <Image
-          source={require("@/assets/images/partial-react-logo.png")}
-          style={styles.reactLogo}
-        />
-      }
-    >
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{" "}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: "cmd + d",
-              android: "cmd + m",
-              web: "F12",
-            })}
-          </ThemedText>{" "}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <Link href="/modal">
-          <Link.Trigger>
-            <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-          </Link.Trigger>
-          <Link.Preview />
-          <Link.Menu>
-            <Link.MenuAction title="Action" icon="cube" onPress={() => alert("Action pressed")} />
-            <Link.MenuAction
-              title="Share"
-              icon="square.and.arrow.up"
-              onPress={() => alert("Share pressed")}
-            />
-            <Link.Menu title="More" icon="ellipsis">
-              <Link.MenuAction
-                title="Delete"
-                icon="trash"
-                destructive
-                onPress={() => alert("Delete pressed")}
-              />
-            </Link.Menu>
-          </Link.Menu>
-        </Link>
+const BalanceLabel = styled(Text, {
+  color: "$secondaryText",
+  fontSize: 14,
+  fontFamily: "Outfit_400Regular",
+  textAlign: "center",
+});
 
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{" "}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{" "}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{" "}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
-  );
-}
+const BalanceAmount = styled(Text, {
+  color: "$color",
+  fontSize: 48,
+  fontFamily: "Outfit_700Bold",
+  textAlign: "center",
+  marginVertical: 8,
+});
 
-const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: "absolute",
+const AccountPill = styled(XStack, {
+  backgroundColor: "$listItemBackground",
+  paddingHorizontal: 16,
+  paddingVertical: 8,
+  borderRadius: 20,
+  alignSelf: "center",
+  alignItems: "center",
+  gap: 6,
+  pressStyle: {
+    opacity: 0.8,
   },
 });
+
+const SectionTitle = styled(Text, {
+  color: "$color",
+  fontSize: 18,
+  fontFamily: "Outfit_700Bold",
+  marginBottom: 12,
+});
+
+const SeeAllText = styled(Text, {
+  color: "$accentGradientStart",
+  fontSize: 14,
+  fontFamily: "Outfit_500Medium",
+});
+
+// Mock data
+const recentTransactions = [
+  { id: "1", name: "Netflix", description: "Subscription", amount: "-€12.99", date: "Today" },
+  { id: "2", name: "Spotify", description: "Subscription", amount: "-€9.99", date: "Yesterday" },
+  {
+    id: "3",
+    name: "Grocery Store",
+    description: "Food & Drinks",
+    amount: "-€45.23",
+    date: "Dec 25",
+  },
+];
+
+export default function DashboardScreen() {
+  const router = useRouter();
+
+  return (
+    <GradientBackground>
+      <SafeAreaView style={{ flex: 1 }} edges={["top"]}>
+        <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom: 100 }}>
+          <YStack paddingHorizontal={20} paddingTop={40} gap={24}>
+            {/* Balance Section */}
+            <YStack alignItems="center" gap={8}>
+              <BalanceLabel>Personal · EUR</BalanceLabel>
+              <BalanceAmount>€7,293.40</BalanceAmount>
+              <AccountPill>
+                <Text color="$color" fontSize={14} fontFamily="Outfit_500Medium">
+                  Accounts
+                </Text>
+                <ChevronRight size={16} color="$secondaryText" />
+              </AccountPill>
+            </YStack>
+
+            {/* Quick Actions */}
+            <XStack justifyContent="center" gap={16} marginTop={20}>
+              <QuickActionButton
+                icon={<Plus size={24} color="$color" />}
+                label="Add Money"
+                onPress={() => {}}
+              />
+              <QuickActionButton
+                icon={<ArrowLeftRight size={24} color="$color" />}
+                label="Move"
+                onPress={() => {}}
+              />
+              <QuickActionButton
+                icon={<CreditCard size={24} color="$color" />}
+                label="Details"
+                onPress={() => {}}
+              />
+              <QuickActionButton
+                icon={<MoreHorizontal size={24} color="$color" />}
+                label="More"
+                onPress={() => {}}
+              />
+            </XStack>
+
+            {/* Promo Card */}
+            <PromoCard
+              title="Your Wrapped is Ready!"
+              subtitle="See your December spending story"
+              gradient
+              onPress={() => router.push("/(tabs)/insights")}
+            />
+
+            {/* Recent Transactions */}
+            <YStack gap={8}>
+              <XStack justifyContent="space-between" alignItems="center">
+                <SectionTitle>Recent Transactions</SectionTitle>
+                <SeeAllText onPress={() => router.push("/(tabs)/spend")}>See All</SeeAllText>
+              </XStack>
+
+              <YStack
+                backgroundColor="$cardBackground"
+                borderRadius={16}
+                borderWidth={1}
+                borderColor="$borderColor"
+                overflow="hidden"
+              >
+                {recentTransactions.map((tx) => (
+                  <ListItem
+                    key={tx.id}
+                    title={tx.name}
+                    subtitle={tx.description}
+                    left={<Avatar name={tx.name} size="md" />}
+                    right={
+                      <YStack alignItems="flex-end">
+                        <Text color="$color" fontSize={16} fontFamily="Outfit_500Medium">
+                          {tx.amount}
+                        </Text>
+                        <Text color="$secondaryText" fontSize={12}>
+                          {tx.date}
+                        </Text>
+                      </YStack>
+                    }
+                    onPress={() => {}}
+                  />
+                ))}
+              </YStack>
+            </YStack>
+          </YStack>
+        </ScrollView>
+      </SafeAreaView>
+    </GradientBackground>
+  );
+}

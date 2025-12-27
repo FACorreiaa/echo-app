@@ -1,36 +1,38 @@
 import { useRouter } from "expo-router";
-import { useEffect, useRef } from "react";
-import { Animated } from "react-native";
 import { ScrollView, styled, Text, YStack } from "tamagui";
 
 import { GlassyButton } from "@/components/GlassyButton";
 import { GlassyCard } from "@/components/GlassyCard";
 
-// Use $color which adapts to theme
 const Title = styled(Text, {
   color: "$color",
-  fontSize: 48,
+  fontSize: 64,
   fontFamily: "Outfit_700Bold",
   textAlign: "center",
-  marginBottom: 8,
+  marginBottom: 16,
+  lineHeight: 72,
+  $sm: { fontSize: 48, lineHeight: 56 },
 });
 
 const Subtitle = styled(Text, {
-  color: "$color",
-  opacity: 0.6,
-  fontSize: 18,
+  color: "$color", // Rely on opacity less, or use a specific secondary color
+  opacity: 0.85, // Increased from 0.7 for better legibility
+  fontSize: 20,
   fontFamily: "Outfit_400Regular",
   textAlign: "center",
-  marginBottom: 40,
+  marginBottom: 48,
+  maxWidth: 600,
+  alignSelf: "center",
+  lineHeight: 30,
 });
 
 const SectionTitle = styled(Text, {
   color: "$color",
-  fontSize: 32,
+  fontSize: 36,
   fontFamily: "Outfit_700Bold",
   textAlign: "center",
-  marginBottom: 40,
-  marginTop: 80,
+  marginBottom: 50,
+  marginTop: 100,
 });
 
 const CardTitle = styled(Text, {
@@ -42,38 +44,24 @@ const CardTitle = styled(Text, {
 
 const CardText = styled(Text, {
   color: "$color",
-  opacity: 0.8,
+  opacity: 0.9, // Increased from 0.8 for better contrast
   fontSize: 16,
   fontFamily: "Outfit_400Regular",
   lineHeight: 24,
 });
 
+const FadeInStack = styled(YStack, {
+  animation: "medium",
+  enterStyle: {
+    opacity: 0,
+    y: 20,
+  },
+  opacity: 1,
+  y: 0,
+});
+
 const FadeInView = (props: React.ComponentProps<typeof YStack> & { delay?: number }) => {
-  const fadeAnim = useRef(new Animated.Value(0)).current;
-  const translateY = useRef(new Animated.Value(20)).current;
-
-  useEffect(() => {
-    Animated.parallel([
-      Animated.timing(fadeAnim, {
-        toValue: 1,
-        duration: 800,
-        useNativeDriver: true,
-        delay: props.delay || 0,
-      }),
-      Animated.timing(translateY, {
-        toValue: 0,
-        duration: 800,
-        useNativeDriver: true,
-        delay: props.delay || 0,
-      }),
-    ]).start();
-  }, [fadeAnim, translateY, props.delay]);
-
-  return (
-    <Animated.View style={{ opacity: fadeAnim, transform: [{ translateY }], flex: 1 }}>
-      <YStack {...props} />
-    </Animated.View>
-  );
+  return <FadeInStack {...props} />;
 };
 
 export default function LandingScreen() {
@@ -84,35 +72,51 @@ export default function LandingScreen() {
       <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom: 100 }}>
         <YStack
           paddingHorizontal={20}
-          paddingTop={100}
+          paddingTop={120}
           flex={1}
           maxWidth={1200}
           width="100%"
           alignSelf="center"
         >
           {/* HERO SECTION */}
-          <FadeInView delay={0}>
+          <FadeInView>
             <Title>Echo</Title>
-            <Subtitle>Alive Money OS</Subtitle>
+            <Subtitle>
+              The Alive Money OS that turns your transaction data into clear next actions.
+            </Subtitle>
 
-            <YStack space="$4" alignItems="center" width="100%" marginTop={20}>
-              <YStack width="100%" $gtMd={{ width: 400 }} space="$4">
-                <GlassyButton
-                  onPress={() => {
-                    /* Start Trial */
-                  }}
-                >
-                  Start 14 day free trial
-                </GlassyButton>
-                <GlassyButton variant="outline" onPress={() => router.push("/(auth)/login")}>
-                  Login
-                </GlassyButton>
+            <YStack space="$4" alignItems="center" width="100%" marginTop={10}>
+              <YStack
+                width="100%"
+                space="$4"
+                alignItems="center"
+                $gtSm={{ flexDirection: "row", justifyContent: "center", width: "auto" }}
+              >
+                <YStack width="100%" $gtSm={{ width: 220 }}>
+                  <GlassyButton
+                    onPress={() => {
+                      /* Start Trial */
+                    }}
+                  >
+                    Start Free Trial
+                  </GlassyButton>
+                </YStack>
+
+                <YStack width="100%" $gtSm={{ width: 140 }}>
+                  <GlassyButton variant="outline" onPress={() => router.push("/(auth)/login")}>
+                    Login
+                  </GlassyButton>
+                </YStack>
               </YStack>
+
+              <Text color="$color" opacity={0.6} fontSize={12} marginTop={10}>
+                No credit card required. 14-day free trial.
+              </Text>
             </YStack>
           </FadeInView>
 
           {/* PILLARS SECTION */}
-          <FadeInView delay={500}>
+          <FadeInView marginTop={20}>
             <SectionTitle>The 6 Pillars</SectionTitle>
 
             <YStack
@@ -129,7 +133,7 @@ export default function LandingScreen() {
                   <CardTitle>Your Money Wrapped</CardTitle>
                   <CardText>
                     Personalized monthly and yearly recaps with fun, useful stats. See your story
-                    unfold.
+                    unfold every single month.
                   </CardText>
                 </GlassyCard>
               </YStack>
@@ -139,7 +143,7 @@ export default function LandingScreen() {
                   <CardTitle>Yearly Audit</CardTitle>
                   <CardText>
                     Spot trends and anomalies instantly. Ask &quot;why is this 40% higher?&quot; and
-                    get answers.
+                    get answers in plain English.
                   </CardText>
                 </GlassyCard>
               </YStack>
@@ -149,7 +153,8 @@ export default function LandingScreen() {
                 <GlassyCard>
                   <CardTitle>Financial Foundation</CardTitle>
                   <CardText>
-                    Your net worth, runway, and emergency fund health in one clear view.
+                    Your net worth, runway, and emergency fund health in one clear view. Know
+                    exactly where you stand.
                   </CardText>
                 </GlassyCard>
               </YStack>
@@ -158,7 +163,8 @@ export default function LandingScreen() {
                 <GlassyCard>
                   <CardTitle>Free Money</CardTitle>
                   <CardText>
-                    We hunt for subscriptions, hidden fees, and interest optimization opportunities.
+                    We hunt for subscriptions, hidden fees, and interest optimization opportunities
+                    you might be missing.
                   </CardText>
                 </GlassyCard>
               </YStack>
@@ -169,7 +175,7 @@ export default function LandingScreen() {
                   <CardTitle>Clear Goals</CardTitle>
                   <CardText>
                     Track buckets and timelines with real pacing alerts. Know if you are ahead or
-                    behind plan.
+                    behind plan before it&apos;s too late.
                   </CardText>
                 </GlassyCard>
               </YStack>

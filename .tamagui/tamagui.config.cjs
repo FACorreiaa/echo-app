@@ -875,17 +875,22 @@ var config = createTamagui({
       // Custom Palette
       deepBlue: "#0b0f19",
       electricBlue: "#2da6fa",
-      glassWhite: "rgba(255, 255, 255, 0.1)",
-      glassBorder: "rgba(255, 255, 255, 0.08)",
+      // Increased opacity for better contrast/visibility
+      glassWhite: "rgba(255, 255, 255, 0.15)",
+      glassBorder: "rgba(255, 255, 255, 0.15)",
       // Light mode specifics
       cleanWhite: "#ffffff",
-      slateText: "#1B1D2A",
-      softGray: "#f2f2f2",
+      slateText: "#111827",
+      // Darker slate for better contrast
+      softGray: "#f3f4f6",
       // Aliases that will be used in themes
       textPrimaryDark: "#ffffff",
-      textSecondaryDark: "#a0a0a0",
-      textPrimaryLight: "#000000",
-      textSecondaryLight: "#666666"
+      textSecondaryDark: "#d1d5db",
+      // Lighter grey for better dark mode contrast
+      textPrimaryLight: "#0f172a",
+      // Almost black
+      textSecondaryLight: "#4b5563"
+      // Darker grey for better light mode contrast
     }
   },
   themes: {
@@ -893,33 +898,42 @@ var config = createTamagui({
     light: {
       ...defaultConfig.themes.light,
       background: "#ffffff",
-      backgroundHover: "#f5f5f5",
-      backgroundPress: "#e0e0e0",
+      backgroundHover: "#f9fafb",
+      backgroundPress: "#f3f4f6",
       backgroundFocus: "#ffffff",
-      color: "#000000",
-      colorHover: "#333333",
-      colorPress: "#000000",
-      colorFocus: "#000000",
-      borderColor: "#e5e5e5",
+      color: "#0f172a",
+      colorHover: "#374151",
+      colorPress: "#0f172a",
+      colorFocus: "#0f172a",
+      borderColor: "#e5e7eb",
       shadowColor: "rgba(0,0,0,0.1)",
-      // Custom tokens mapped to semantic names if needed
-      glassBorder: "#e5e5e5"
-      // Fallback for glass in light mode
+      glassBorder: "#e5e7eb",
+      // New semantic tokens
+      cardBackground: "#ffffff",
+      listItemBackground: "#f9fafb",
+      accentGradientStart: "#6366f1",
+      accentGradientEnd: "#8b5cf6",
+      secondaryText: "#6b7280"
     },
     dark: {
       ...defaultConfig.themes.dark,
       background: "#0b0f19",
-      // deepBlue
-      backgroundHover: "#131929",
-      backgroundPress: "#05080e",
+      backgroundHover: "#111827",
+      backgroundPress: "#1f2937",
       backgroundFocus: "#0b0f19",
       color: "#ffffff",
-      colorHover: "#e0e0e0",
+      colorHover: "#e5e7eb",
       colorPress: "#ffffff",
       colorFocus: "#ffffff",
-      borderColor: "rgba(255, 255, 255, 0.08)",
+      borderColor: "rgba(255, 255, 255, 0.15)",
       shadowColor: "rgba(0,0,0,0.5)",
-      glassBorder: "rgba(255, 255, 255, 0.08)"
+      glassBorder: "rgba(255, 255, 255, 0.15)",
+      // New semantic tokens
+      cardBackground: "rgba(255, 255, 255, 0.08)",
+      listItemBackground: "rgba(255, 255, 255, 0.05)",
+      accentGradientStart: "#2da6fa",
+      accentGradientEnd: "#6366f1",
+      secondaryText: "#9ca3af"
     }
   },
   media: {
