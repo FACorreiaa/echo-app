@@ -21,7 +21,7 @@ export default function TabLayout() {
           height: 85,
         },
         tabBarLabelStyle: {
-          fontFamily: "Outfit_500Medium",
+          fontFamily: "$body",
           fontSize: 11,
           marginTop: 4,
         },
@@ -33,35 +33,35 @@ export default function TabLayout() {
         name="index"
         options={{
           title: "Home",
-          tabBarIcon: ({ color }) => <Home size={24} color={color} />,
+          tabBarIcon: ({ color }) => <Home size={24} color={color as any} />,
         }}
       />
       <Tabs.Screen
         name="spend"
         options={{
           title: "Spend",
-          tabBarIcon: ({ color }) => <ArrowDownUp size={24} color={color} />,
+          tabBarIcon: ({ color }) => <ArrowDownUp size={24} color={color as any} />,
         }}
       />
       <Tabs.Screen
         name="goals"
         options={{
           title: "Goals",
-          tabBarIcon: ({ color }) => <Target size={24} color={color} />,
+          tabBarIcon: ({ color }) => <Target size={24} color={color as any} />,
         }}
       />
       <Tabs.Screen
         name="insights"
         options={{
           title: "Insights",
-          tabBarIcon: ({ color }) => <Lightbulb size={24} color={color} />,
+          tabBarIcon: ({ color }) => <Lightbulb size={24} color={color as any} />,
         }}
       />
       <Tabs.Screen
         name="settings"
         options={{
           title: "Settings",
-          tabBarIcon: ({ color }) => <Settings size={24} color={color} />,
+          tabBarIcon: ({ color }) => <Settings size={24} color={color as any} />,
         }}
       />
     </Tabs>

@@ -1,32 +1,78 @@
 import { defaultConfig } from "@tamagui/config/v4";
-import { createTamagui } from "tamagui";
+import { createFont, createTamagui } from "tamagui";
+
+// Define Outfit font with all weights
+const outfitFont = createFont({
+  family: "Outfit_400Regular",
+  size: {
+    1: 11,
+    2: 12,
+    3: 13,
+    4: 14,
+    true: 14,
+    5: 16,
+    6: 18,
+    7: 20,
+    8: 23,
+    9: 30,
+    10: 46,
+    11: 55,
+    12: 62,
+    13: 72,
+    14: 92,
+    15: 114,
+    16: 134,
+  },
+  lineHeight: {
+    1: 15,
+    2: 16,
+    3: 18,
+    4: 20,
+    true: 20,
+    5: 22,
+    6: 24,
+    7: 28,
+    8: 30,
+    9: 38,
+    10: 54,
+  },
+  weight: {
+    4: "400",
+    5: "500",
+    7: "700",
+  },
+  letterSpacing: {
+    4: 0,
+    5: -0.5,
+    7: -0.5,
+  },
+  face: {
+    400: { normal: "Outfit_400Regular" },
+    500: { normal: "Outfit_500Medium" },
+    700: { normal: "Outfit_700Bold" },
+  },
+});
+
+// Heading font (bold)
+const headingFont = createFont({
+  ...outfitFont,
+  family: "Outfit_700Bold",
+  face: {
+    400: { normal: "Outfit_700Bold" },
+    500: { normal: "Outfit_700Bold" },
+    700: { normal: "Outfit_700Bold" },
+  },
+});
 
 const config = createTamagui({
   ...defaultConfig,
+  settings: {
+    ...defaultConfig.settings,
+    onlyAllowShorthands: false,
+  },
+  // In Tamagui v4, tokens don't have a color property - colors are in themes
   tokens: {
     ...defaultConfig.tokens,
-    color: {
-      ...defaultConfig.tokens.color,
-      // Custom Palette
-      deepBlue: "#0b0f19",
-      electricBlue: "#2da6fa",
-
-      // Increased opacity for better contrast/visibility
-      glassWhite: "rgba(255, 255, 255, 0.15)",
-      glassBorder: "rgba(255, 255, 255, 0.15)",
-
-      // Light mode specifics
-      cleanWhite: "#ffffff",
-      slateText: "#111827", // Darker slate for better contrast
-      softGray: "#f3f4f6",
-
-      // Aliases that will be used in themes
-      textPrimaryDark: "#ffffff",
-      textSecondaryDark: "#d1d5db", // Lighter grey for better dark mode contrast
-
-      textPrimaryLight: "#0f172a", // Almost black
-      textSecondaryLight: "#4b5563", // Darker grey for better light mode contrast
-    },
   },
   themes: {
     ...defaultConfig.themes,
@@ -42,13 +88,18 @@ const config = createTamagui({
       colorFocus: "#0f172a",
       borderColor: "#e5e7eb",
       shadowColor: "rgba(0,0,0,0.1)",
+      // Custom semantic tokens
       glassBorder: "#e5e7eb",
-      // New semantic tokens
+      glassWhite: "rgba(255, 255, 255, 0.9)",
       cardBackground: "#ffffff",
       listItemBackground: "#f9fafb",
       accentGradientStart: "#6366f1",
       accentGradientEnd: "#8b5cf6",
+      accentColor: "#6366f1",
       secondaryText: "#6b7280",
+      // Additional color tokens
+      deepBlue: "#0b0f19",
+      electricBlue: "#2da6fa",
     },
     dark: {
       ...defaultConfig.themes.dark,
@@ -62,13 +113,18 @@ const config = createTamagui({
       colorFocus: "#ffffff",
       borderColor: "rgba(255, 255, 255, 0.15)",
       shadowColor: "rgba(0,0,0,0.5)",
+      // Custom semantic tokens
       glassBorder: "rgba(255, 255, 255, 0.15)",
-      // New semantic tokens
+      glassWhite: "rgba(255, 255, 255, 0.15)",
       cardBackground: "rgba(255, 255, 255, 0.08)",
       listItemBackground: "rgba(255, 255, 255, 0.05)",
       accentGradientStart: "#2da6fa",
       accentGradientEnd: "#6366f1",
+      accentColor: "#2da6fa",
       secondaryText: "#9ca3af",
+      // Additional color tokens
+      deepBlue: "#0b0f19",
+      electricBlue: "#2da6fa",
     },
   },
   media: {
@@ -90,8 +146,9 @@ const config = createTamagui({
   },
   fonts: {
     ...defaultConfig.fonts,
-    heading: defaultConfig.fonts.heading,
-    body: defaultConfig.fonts.body,
+    // Register Outfit fonts as tokens
+    heading: headingFont,
+    body: outfitFont,
   },
 });
 

@@ -26,7 +26,7 @@ const IconCircle = styled(YStack, {
 const ButtonLabel = styled(Text, {
   color: "$color",
   fontSize: 12,
-  fontFamily: "Outfit_500Medium",
+  fontFamily: "$body",
   textAlign: "center",
 });
 

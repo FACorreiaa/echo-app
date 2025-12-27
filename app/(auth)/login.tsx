@@ -13,7 +13,7 @@ import { getFriendlyErrorMessage } from "@/lib/utils/error-messages";
 const Title = styled(Text, {
   color: "$color",
   fontSize: 32,
-  fontFamily: "Outfit_700Bold",
+  fontFamily: "$heading",
   textAlign: "center",
   marginBottom: 8,
 });
@@ -22,7 +22,7 @@ const Subtitle = styled(Text, {
   color: "$color",
   opacity: 0.6,
   fontSize: 16,
-  fontFamily: "Outfit_400Regular",
+  fontFamily: "$body",
   textAlign: "center",
   marginBottom: 32,
 });
@@ -30,7 +30,7 @@ const Subtitle = styled(Text, {
 const Label = styled(Text, {
   color: "$color",
   fontSize: 14,
-  fontFamily: "Outfit_500Medium",
+  fontFamily: "$body",
   marginBottom: 6,
   marginLeft: 4,
 });
@@ -48,7 +48,7 @@ const ErrorText = styled(Text, {
   color: "#ef4444",
   fontSize: 14,
   textAlign: "center",
-  fontFamily: "Outfit_500Medium",
+  fontFamily: "$body",
 });
 
 export default function LoginScreen() {
@@ -160,11 +160,11 @@ export default function LoginScreen() {
             </GlassyCard>
 
             <XStack justifyContent="center" marginTop={20}>
-              <Text color="$color" opacity={0.6} fontSize={14} fontFamily="Outfit_400Regular">
+              <Text color="$color" opacity={0.6} fontSize={14} fontFamily="$body">
                 Don&apos;t have an account?{" "}
               </Text>
               <Link href="/register" asChild>
-                <Text color="$electricBlue" fontSize={14} fontFamily="Outfit_500Medium">
+                <Text color="$electricBlue" fontSize={14} fontFamily="$body">
                   Sign Up
                 </Text>
               </Link>

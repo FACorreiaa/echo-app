@@ -77,13 +77,13 @@ export const LoginSuccessAnimation = ({
             alignItems="center"
             justifyContent="center"
           >
-            <Text color="white" fontSize={40} fontFamily="Outfit_700Bold">
+            <Text color="white" fontSize={40} fontFamily="$heading">
               ✓
             </Text>
           </YStack>
         </Animated.View>
 
-        <Text color="white" fontSize={24} fontFamily="Outfit_700Bold">
+        <Text color="white" fontSize={24} fontFamily="$heading">
           Welcome to Echo
         </Text>
 

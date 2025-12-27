@@ -27,7 +27,7 @@ import { useAuthStore } from "@/lib/stores/auth-store";
 const UserName = styled(Text, {
   color: "$color",
   fontSize: 24,
-  fontFamily: "Outfit_700Bold",
+  fontFamily: "$heading",
   textAlign: "center",
   marginTop: 12,
 });
@@ -35,7 +35,7 @@ const UserName = styled(Text, {
 const UserHandle = styled(Text, {
   color: "$secondaryText",
   fontSize: 14,
-  fontFamily: "Outfit_400Regular",
+  fontFamily: "$body",
   textAlign: "center",
 });
 
@@ -89,7 +89,7 @@ export default function SettingsScreen() {
               <UserName>Fernando Correia</UserName>
               <UserHandle>@fernando_echo</UserHandle>
               <UpgradeBadge marginTop={8}>
-                <Text color="$accentGradientStart" fontSize={14} fontFamily="Outfit_700Bold">
+                <Text color="$accentGradientStart" fontSize={14} fontFamily="$heading">
                   ◇ Upgrade
                 </Text>
               </UpgradeBadge>
@@ -99,7 +99,7 @@ export default function SettingsScreen() {
             <XStack gap={12}>
               <GlassyCard flex={1}>
                 <YStack gap={4}>
-                  <Text color="$color" fontSize={16} fontFamily="Outfit_700Bold">
+                  <Text color="$color" fontSize={16} fontFamily="$heading">
                     Standard
                   </Text>
                   <Text color="$secondaryText" fontSize={12}>
@@ -109,7 +109,7 @@ export default function SettingsScreen() {
               </GlassyCard>
               <GlassyCard flex={1}>
                 <YStack gap={4}>
-                  <Text color="$color" fontSize={16} fontFamily="Outfit_700Bold">
+                  <Text color="$color" fontSize={16} fontFamily="$heading">
                     Invite Friends
                   </Text>
                   <Text color="$secondaryText" fontSize={12}>
@@ -140,7 +140,7 @@ export default function SettingsScreen() {
                         paddingVertical={2}
                         borderRadius={10}
                       >
-                        <Text color="white" fontSize={12} fontFamily="Outfit_700Bold">
+                        <Text color="white" fontSize={12} fontFamily="$heading">
                           {item.badge}
                         </Text>
                       </XStack>
@@ -205,7 +205,7 @@ export default function SettingsScreen() {
             <Text
               color="$secondaryText"
               fontSize={12}
-              fontFamily="Outfit_400Regular"
+              fontFamily="$body"
               textAlign="center"
               marginTop={8}
             >

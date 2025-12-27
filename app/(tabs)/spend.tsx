@@ -11,7 +11,7 @@ import { ListItem } from "@/components/ListItem";
 const PageTitle = styled(Text, {
   color: "$color",
   fontSize: 28,
-  fontFamily: "Outfit_700Bold",
+  fontFamily: "$heading",
 });
 
 const PeriodPill = styled(XStack, {
@@ -28,27 +28,27 @@ const PeriodPill = styled(XStack, {
 const CategoryLabel = styled(Text, {
   color: "$color",
   fontSize: 14,
-  fontFamily: "Outfit_500Medium",
+  fontFamily: "$body",
   flex: 1,
 });
 
 const CategoryAmount = styled(Text, {
   color: "$color",
   fontSize: 14,
-  fontFamily: "Outfit_700Bold",
+  fontFamily: "$heading",
 });
 
 const SectionTitle = styled(Text, {
   color: "$color",
   fontSize: 18,
-  fontFamily: "Outfit_700Bold",
+  fontFamily: "$heading",
   marginBottom: 12,
 });
 
 const DateHeader = styled(Text, {
   color: "$secondaryText",
   fontSize: 13,
-  fontFamily: "Outfit_500Medium",
+  fontFamily: "$body",
   paddingHorizontal: 16,
   paddingTop: 16,
   paddingBottom: 8,
@@ -126,7 +126,7 @@ export default function SpendScreen() {
               <PageTitle>Spend</PageTitle>
               <XStack gap={12}>
                 <PeriodPill>
-                  <Text color="$color" fontSize={14} fontFamily="Outfit_500Medium">
+                  <Text color="$color" fontSize={14} fontFamily="$body">
                     December
                   </Text>
                 </PeriodPill>
@@ -175,7 +175,7 @@ export default function SpendScreen() {
                         subtitle={tx.category}
                         left={<Avatar name={tx.name} size="md" />}
                         right={
-                          <Text color="$color" fontSize={16} fontFamily="Outfit_500Medium">
+                          <Text color="$color" fontSize={16} fontFamily="$body">
                             {tx.amount}
                           </Text>
                         }

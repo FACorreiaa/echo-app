@@ -13,7 +13,7 @@ const BaseInput = styled(TamaguiInput, {
     borderWidth: 1,
   },
   placeholderTextColor: "$colorHover",
-  fontFamily: "Outfit_400Regular",
+  fontFamily: "$body",
 
   variants: {
     hasError: {
@@ -39,13 +39,7 @@ export const Input = ({ error, errorMessage, ...props }: InputProps) => {
     <YStack>
       <BaseInput hasError={error} {...props} />
       {error && errorMessage && (
-        <Text
-          color="#ef4444"
-          fontSize={12}
-          marginTop={4}
-          marginLeft={4}
-          fontFamily="Outfit_400Regular"
-        >
+        <Text color="#ef4444" fontSize={12} marginTop={4} marginLeft={4} fontFamily="$body">
           {errorMessage}
         </Text>
       )}

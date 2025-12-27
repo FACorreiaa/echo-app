@@ -4,7 +4,7 @@
 
 import * as authApi from "@/lib/api/auth";
 import { queryKeys } from "@/lib/query/query-client";
-import { getRefreshToken } from "@/lib/storage/token-storage";
+import { clearTokens, getRefreshToken } from "@/lib/storage/token-storage";
 import { useAuthStore, type AuthTokens, type User } from "@/lib/stores/auth-store";
 import { timestampDate } from "@bufbuild/protobuf/wkt";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
@@ -45,6 +45,9 @@ export function useLogin() {
 
   return useMutation({
     mutationFn: async ({ email, password }: { email: string; password: string }) => {
+      // Clear any existing tokens to avoid sending stale auth headers
+      await clearTokens();
+
       const response = await authApi.login(email, password);
       const user = extractUser(response);
       const tokens = extractTokens(response);
@@ -83,6 +86,9 @@ export function useRegister() {
       password: string;
       username?: string;
     }) => {
+      // Clear any existing tokens to avoid sending stale auth headers
+      await clearTokens();
+
       const response = await authApi.register(email, password, username);
       const user = extractUser(response);
       const tokens = extractTokens(response);

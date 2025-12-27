@@ -21,22 +21,22 @@ const ContentStack = styled(YStack, {
 const TitleText = styled(Text, {
   color: "$color",
   fontSize: 16,
-  fontFamily: "Outfit_500Medium",
+  fontFamily: "$body",
 });
 
 const SubtitleText = styled(Text, {
   color: "$secondaryText",
   fontSize: 14,
-  fontFamily: "Outfit_400Regular",
+  fontFamily: "$body",
 });
 
 const RightText = styled(Text, {
   color: "$secondaryText",
   fontSize: 14,
-  fontFamily: "Outfit_400Regular",
+  fontFamily: "$body",
 });
 
-export type ListItemProps = GetProps<typeof ItemFrame> & {
+export type ListItemProps = Omit<GetProps<typeof ItemFrame>, "left" | "right"> & {
   title: string;
   subtitle?: string;
   left?: React.ReactNode;

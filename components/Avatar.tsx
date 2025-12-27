@@ -20,7 +20,7 @@ const AvatarFrame = styled(XStack, {
 
 const InitialsText = styled(Text, {
   color: "white",
-  fontFamily: "Outfit_700Bold",
+  fontFamily: "$heading",
   variants: {
     size: {
       sm: { fontSize: 12 },
@@ -71,7 +71,7 @@ export const Avatar = ({ name, imageUrl, size = "md", ...props }: AvatarProps) =
 
   // TODO: Add Image support when needed
   return (
-    <AvatarFrame size={size} backgroundColor={bgColor} {...props}>
+    <AvatarFrame size={size} backgroundColor={bgColor as any} {...props}>
       <InitialsText size={size}>{initials}</InitialsText>
     </AvatarFrame>
   );

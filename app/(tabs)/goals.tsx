@@ -9,31 +9,31 @@ import { GradientBackground } from "@/components/GradientBackground";
 const PageTitle = styled(Text, {
   color: "$color",
   fontSize: 28,
-  fontFamily: "Outfit_700Bold",
+  fontFamily: "$heading",
 });
 
 const GoalTitle = styled(Text, {
   color: "$color",
   fontSize: 18,
-  fontFamily: "Outfit_700Bold",
+  fontFamily: "$heading",
 });
 
 const GoalSubtitle = styled(Text, {
   color: "$secondaryText",
   fontSize: 14,
-  fontFamily: "Outfit_400Regular",
+  fontFamily: "$body",
 });
 
 const ProgressLabel = styled(Text, {
   color: "$color",
   fontSize: 24,
-  fontFamily: "Outfit_700Bold",
+  fontFamily: "$heading",
 });
 
 const TargetLabel = styled(Text, {
   color: "$secondaryText",
   fontSize: 14,
-  fontFamily: "Outfit_400Regular",
+  fontFamily: "$body",
 });
 
 const PacingBadge = styled(XStack, {
@@ -113,15 +113,15 @@ export default function GoalsScreen() {
                         </YStack>
                         <PacingBadge status={goal.status}>
                           {goal.status === "ahead" && (
-                            <TrendingUp size={14} color={statusColors.ahead} />
+                            <TrendingUp size={14} color={statusColors.ahead as any} />
                           )}
                           {goal.status === "behind" && (
-                            <TrendingDown size={14} color={statusColors.behind} />
+                            <TrendingDown size={14} color={statusColors.behind as any} />
                           )}
                           <Text
-                            color={statusColors[goal.status]}
+                            color={statusColors[goal.status] as any}
                             fontSize={12}
-                            fontFamily="Outfit_500Medium"
+                            fontFamily="$body"
                           >
                             {goal.pacingText}
                           </Text>
@@ -142,7 +142,7 @@ export default function GoalsScreen() {
                           <YStack
                             height="100%"
                             width={`${Math.min(progress, 100)}%`}
-                            backgroundColor={statusColors[goal.status]}
+                            backgroundColor={statusColors[goal.status] as any}
                             borderRadius={4}
                           />
                         </YStack>

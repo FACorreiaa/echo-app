@@ -6,8 +6,11 @@
 import { clearTokens, getAccessToken, storeTokens } from "@/lib/storage/token-storage";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { create } from "zustand";
+import type { StateCreator } from "zustand";
+import type { PersistOptions } from "zustand/middleware";
 // Use CJS to avoid bundling import.meta in the web build.
-const { createJSONStorage, persist } = require("zustand/middleware");
+const { createJSONStorage, persist } =
+  require("zustand/middleware") as typeof import("zustand/middleware");
 
 // User type
 export interface User {
@@ -43,66 +46,67 @@ interface AuthState {
   checkAuth: () => Promise<boolean>;
 }
 
-export const useAuthStore = create<AuthState>()(
-  persist(
-    (set, _) => ({
-      // Initial state
-      user: null,
-      isAuthenticated: false,
-      isHydrated: false,
+type AuthStoreCreator = StateCreator<AuthState, [["zustand/persist", unknown]]>;
 
-      // Setters
-      setUser: (user) => set({ user }),
-      setAuthenticated: (value) => set({ isAuthenticated: value }),
-      setHydrated: (value) => set({ isHydrated: value }),
+const createAuthStore: AuthStoreCreator = (set) => ({
+  // Initial state
+  user: null,
+  isAuthenticated: false,
+  isHydrated: false,
 
-      // Login success - store user and tokens
-      loginSuccess: async (user, tokens) => {
-        await storeTokens(tokens.accessToken, tokens.refreshToken, tokens.expiresAt);
-        set({ user, isAuthenticated: true });
-      },
+  // Setters
+  setUser: (user) => set({ user }),
+  setAuthenticated: (value) => set({ isAuthenticated: value }),
+  setHydrated: (value) => set({ isHydrated: value }),
 
-      // Logout - clear everything
-      logout: async () => {
-        await clearTokens();
-        set({ user: null, isAuthenticated: false });
-      },
+  // Login success - store user and tokens
+  loginSuccess: async (user, tokens) => {
+    await storeTokens(tokens.accessToken, tokens.refreshToken, tokens.expiresAt);
+    set({ user, isAuthenticated: true });
+  },
 
-      // Check if user is authenticated (on app start)
-      checkAuth: async () => {
-        const token = await getAccessToken();
-        if (token) {
-          set({ isAuthenticated: true });
-          return true;
-        }
-        set({ isAuthenticated: false });
-        return false;
-      },
-    }),
-    {
-      name: "echo-auth-storage",
-      storage: createJSONStorage(() => AsyncStorage),
-      // Only persist user data, not tokens (they go to SecureStore)
-      partialize: (state) => ({
-        user: state.user,
-        isAuthenticated: state.isAuthenticated,
-      }),
-      onRehydrateStorage: () => (state, error) => {
-        // Mark as hydrated after rehydration completes
-        // Note: state can be undefined on first run (no stored data)
-        if (state) {
-          state.setHydrated(true);
-        } else {
-          // First run or hydration error - still need to mark as hydrated
-          useAuthStore.getState().setHydrated(true);
-        }
-        if (error) {
-          console.warn("Auth store hydration error:", error);
-        }
-      },
-    },
-  ),
-);
+  // Logout - clear everything
+  logout: async () => {
+    await clearTokens();
+    set({ user: null, isAuthenticated: false });
+  },
+
+  // Check if user is authenticated (on app start)
+  checkAuth: async () => {
+    const token = await getAccessToken();
+    if (token) {
+      set({ isAuthenticated: true });
+      return true;
+    }
+    set({ isAuthenticated: false });
+    return false;
+  },
+});
+
+const persistOptions: PersistOptions<AuthState, Pick<AuthState, "user" | "isAuthenticated">> = {
+  name: "echo-auth-storage",
+  storage: createJSONStorage(() => AsyncStorage),
+  // Only persist user data, not tokens (they go to SecureStore)
+  partialize: (state) => ({
+    user: state.user,
+    isAuthenticated: state.isAuthenticated,
+  }),
+  onRehydrateStorage: () => (state, error) => {
+    // Mark as hydrated after rehydration completes
+    // Note: state can be undefined on first run (no stored data)
+    if (state) {
+      state.setHydrated(true);
+    } else {
+      // First run or hydration error - still need to mark as hydrated
+      useAuthStore.getState().setHydrated(true);
+    }
+    if (error) {
+      console.warn("Auth store hydration error:", error);
+    }
+  },
+};
+
+export const useAuthStore = create<AuthState>()(persist(createAuthStore, persistOptions));
 
 // Selector hooks for common use cases
 export const useUser = () => useAuthStore((state) => state.user);

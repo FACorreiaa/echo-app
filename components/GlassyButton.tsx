@@ -14,19 +14,21 @@ const BaseButton = styled(Button, {
 const ButtonText = styled(Text, {
   fontWeight: "600",
   fontSize: 17,
-  fontFamily: "Outfit_500Medium",
+  fontFamily: "$body",
   // Ensure text is always visible
   zIndex: 1,
 });
+
+type BaseButtonProps = Omit<React.ComponentProps<typeof BaseButton>, "variant">;
 
 export const GlassyButton = ({
   children,
   variant = "primary",
   ...props
 }: {
-  children: string;
+  children: React.ReactNode;
   variant?: "primary" | "outline";
-} & React.ComponentProps<typeof BaseButton>) => {
+} & BaseButtonProps) => {
   const theme = useTheme();
   const isDark = theme.background?.val === "#0b0f19";
 

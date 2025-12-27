@@ -7,7 +7,7 @@ import { GlassyCard } from "@/components/GlassyCard";
 const Title = styled(Text, {
   color: "$color",
   fontSize: 64,
-  fontFamily: "Outfit_700Bold",
+  fontFamily: "$heading",
   textAlign: "center",
   marginBottom: 16,
   lineHeight: 72,
@@ -18,7 +18,7 @@ const Subtitle = styled(Text, {
   color: "$color", // Rely on opacity less, or use a specific secondary color
   opacity: 0.85, // Increased from 0.7 for better legibility
   fontSize: 20,
-  fontFamily: "Outfit_400Regular",
+  fontFamily: "$body",
   textAlign: "center",
   marginBottom: 48,
   maxWidth: 600,
@@ -29,7 +29,7 @@ const Subtitle = styled(Text, {
 const SectionTitle = styled(Text, {
   color: "$color",
   fontSize: 36,
-  fontFamily: "Outfit_700Bold",
+  fontFamily: "$heading",
   textAlign: "center",
   marginBottom: 50,
   marginTop: 100,
@@ -38,7 +38,7 @@ const SectionTitle = styled(Text, {
 const CardTitle = styled(Text, {
   color: "$color",
   fontSize: 20,
-  fontFamily: "Outfit_700Bold",
+  fontFamily: "$heading",
   marginBottom: 8,
 });
 
@@ -46,7 +46,7 @@ const CardText = styled(Text, {
   color: "$color",
   opacity: 0.9, // Increased from 0.8 for better contrast
   fontSize: 16,
-  fontFamily: "Outfit_400Regular",
+  fontFamily: "$body",
   lineHeight: 24,
 });
 

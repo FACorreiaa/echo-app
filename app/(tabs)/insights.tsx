@@ -10,40 +10,40 @@ import { PromoCard } from "@/components/PromoCard";
 const PageTitle = styled(Text, {
   color: "$color",
   fontSize: 28,
-  fontFamily: "Outfit_700Bold",
+  fontFamily: "$heading",
 });
 
 const SectionTitle = styled(Text, {
   color: "$color",
   fontSize: 18,
-  fontFamily: "Outfit_700Bold",
+  fontFamily: "$heading",
   marginBottom: 12,
 });
 
 const InsightTitle = styled(Text, {
   color: "$color",
   fontSize: 16,
-  fontFamily: "Outfit_700Bold",
+  fontFamily: "$heading",
   marginBottom: 4,
 });
 
 const InsightText = styled(Text, {
   color: "$secondaryText",
   fontSize: 14,
-  fontFamily: "Outfit_400Regular",
+  fontFamily: "$body",
   lineHeight: 22,
 });
 
 const StatValue = styled(Text, {
   color: "$color",
   fontSize: 32,
-  fontFamily: "Outfit_700Bold",
+  fontFamily: "$heading",
 });
 
 const StatLabel = styled(Text, {
   color: "$secondaryText",
   fontSize: 14,
-  fontFamily: "Outfit_400Regular",
+  fontFamily: "$body",
 });
 
 // Mock insights

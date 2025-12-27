@@ -2,6 +2,7 @@ import { GradientBackground } from "@/components/GradientBackground";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { Menu, X } from "@tamagui/lucide-icons";
 import { Link, Slot, usePathname } from "expo-router";
+import type { Route } from "expo-router";
 import { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Button, styled, Text, XStack, YStack } from "tamagui";
@@ -9,7 +10,7 @@ import { Button, styled, Text, XStack, YStack } from "tamagui";
 const NavLinkText = styled(Text, {
   color: "$colorHover",
   fontSize: 16,
-  fontFamily: "Outfit_500Medium",
+  fontFamily: "$body",
   hoverStyle: {
     color: "$color",
     cursor: "pointer",
@@ -22,11 +23,11 @@ const NavLinkText = styled(Text, {
 const MobileNavLinkText = styled(Text, {
   color: "$color",
   fontSize: 24,
-  fontFamily: "Outfit_700Bold",
+  fontFamily: "$heading",
   paddingVertical: 10,
 });
 
-const NavLink = ({ href, children }: { href: string; children: React.ReactNode }) => {
+const NavLink = ({ href, children }: { href: Route; children: React.ReactNode }) => {
   const pathname = usePathname();
   const isActive = pathname === href || (href === "/(public)" && pathname === "/");
 
@@ -42,7 +43,7 @@ const MobileNavLink = ({
   children,
   onPress,
 }: {
-  href: string;
+  href: Route;
   children: React.ReactNode;
   onPress: () => void;
 }) => {
@@ -73,7 +74,7 @@ export default function PublicLayout() {
             {/* Left: Logo */}
             <XStack alignItems="center" space="$4">
               <Link href="/(public)" asChild>
-                <Text color="$color" fontSize={24} fontFamily="Outfit_700Bold" cursor="pointer">
+                <Text color="$color" fontSize={24} fontFamily="$heading" cursor="pointer">
                   Echo
                 </Text>
               </Link>
@@ -94,7 +95,6 @@ export default function PublicLayout() {
               <Link href="/(auth)/login" asChild>
                 <Button
                   size="$3"
-                  theme="active"
                   backgroundColor="rgba(255,255,255,0.1)"
                   color="$color"
                   borderColor="$borderColor"
@@ -159,11 +159,10 @@ export default function PublicLayout() {
               <Link href="/(auth)/login" asChild onPress={() => setIsMenuOpen(false)}>
                 <Button
                   size="$4"
-                  theme="active"
                   width="100%"
                   backgroundColor="$color"
                   color="$background"
-                  fontFamily="Outfit_700Bold"
+                  fontFamily="$heading"
                 >
                   Login to Echo
                 </Button>

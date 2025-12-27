@@ -5,7 +5,7 @@ import { ScrollView, styled, Text, YStack } from "tamagui";
 const Title = styled(Text, {
   color: "$color",
   fontSize: 40,
-  fontFamily: "Outfit_700Bold",
+  fontFamily: "$heading",
   textAlign: "center",
   marginBottom: 10,
 });
@@ -14,7 +14,7 @@ const Subtitle = styled(Text, {
   color: "$color",
   opacity: 0.7,
   fontSize: 18,
-  fontFamily: "Outfit_400Regular",
+  fontFamily: "$body",
   textAlign: "center",
   marginBottom: 40,
 });
@@ -22,7 +22,7 @@ const Subtitle = styled(Text, {
 const FeatureTitle = styled(Text, {
   color: "$color",
   fontSize: 24,
-  fontFamily: "Outfit_700Bold",
+  fontFamily: "$heading",
   marginBottom: 10,
 });
 
@@ -30,7 +30,7 @@ const FeatureText = styled(Text, {
   color: "$color",
   opacity: 0.8,
   fontSize: 16,
-  fontFamily: "Outfit_400Regular",
+  fontFamily: "$body",
   lineHeight: 26,
 });
 

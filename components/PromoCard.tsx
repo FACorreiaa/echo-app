@@ -25,13 +25,13 @@ const ContentStack = styled(YStack, {
 const TitleText = styled(Text, {
   color: "$color",
   fontSize: 18,
-  fontFamily: "Outfit_700Bold",
+  fontFamily: "$heading",
 });
 
 const SubtitleText = styled(Text, {
   color: "$secondaryText",
   fontSize: 14,
-  fontFamily: "Outfit_400Regular",
+  fontFamily: "$body",
   lineHeight: 20,
 });
 

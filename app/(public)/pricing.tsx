@@ -7,7 +7,7 @@ import { ScrollView, styled, Text, XStack, YStack } from "tamagui";
 const Title = styled(Text, {
   color: "$color",
   fontSize: 40,
-  fontFamily: "Outfit_700Bold",
+  fontFamily: "$heading",
   textAlign: "center",
   marginBottom: 10,
 });
@@ -16,7 +16,7 @@ const Subtitle = styled(Text, {
   color: "$color",
   opacity: 0.7,
   fontSize: 18,
-  fontFamily: "Outfit_400Regular",
+  fontFamily: "$body",
   textAlign: "center",
   marginBottom: 40,
 });
@@ -24,7 +24,7 @@ const Subtitle = styled(Text, {
 const PriceAmount = styled(Text, {
   color: "$color",
   fontSize: 36,
-  fontFamily: "Outfit_700Bold",
+  fontFamily: "$heading",
   textAlign: "center",
   marginBottom: 4,
 });
@@ -33,7 +33,7 @@ const PricePeriod = styled(Text, {
   color: "$color",
   opacity: 0.6,
   fontSize: 14,
-  fontFamily: "Outfit_400Regular",
+  fontFamily: "$body",
   textAlign: "center",
   marginBottom: 20,
 });
@@ -41,7 +41,7 @@ const PricePeriod = styled(Text, {
 const FeatureItem = ({ text }: { text: string }) => (
   <XStack space="$3" alignItems="center">
     <Check size={18} color="$electricBlue" />
-    <Text color="$color" fontSize={16} fontFamily="Outfit_400Regular" opacity={0.9}>
+    <Text color="$color" fontSize={16} fontFamily="$body" opacity={0.9}>
       {text}
     </Text>
   </XStack>
@@ -63,7 +63,7 @@ export default function PricingScreen() {
             <YStack flex={1} maxWidth={400} width="100%">
               <GlassyCard height="100%">
                 <YStack space="$4" flex={1}>
-                  <Text color="$color" fontSize={22} fontFamily="Outfit_700Bold" textAlign="center">
+                  <Text color="$color" fontSize={22} fontFamily="$heading" textAlign="center">
                     Standard
                   </Text>
                   <PriceAmount>Free</PriceAmount>
@@ -90,7 +90,7 @@ export default function PricingScreen() {
                   <Text
                     color="$electricBlue"
                     fontSize={22}
-                    fontFamily="Outfit_700Bold"
+                    fontFamily="$heading"
                     textAlign="center"
                   >
                     Echo Pro
