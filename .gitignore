@@ -42,3 +42,7 @@ app-example
 # generated native folders
 /ios
 /android
+.tamagui/
+.DS_Store
+.vscode/
+.idea/
