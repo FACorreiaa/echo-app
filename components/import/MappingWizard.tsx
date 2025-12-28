@@ -52,8 +52,12 @@ export const MappingWizard = ({
   const [creditCol, setCreditCol] = useState<string>(
     analysis.suggestions.creditCol >= 0 ? String(analysis.suggestions.creditCol) : "",
   );
-  const [isEuropeanFormat, setIsEuropeanFormat] = useState(true);
-  const [dateFormat, setDateFormat] = useState("DD-MM-YYYY");
+  const [isEuropeanFormat, setIsEuropeanFormat] = useState(
+    analysis.probedDialect?.isEuropeanFormat ?? true,
+  );
+  const [dateFormat, setDateFormat] = useState(analysis.probedDialect?.dateFormat ?? "DD-MM-YYYY");
+  // Show contextual confirmation only if confidence is low
+  const showDialectConfirm = (analysis.probedDialect?.confidence ?? 1) < 0.7;
 
   const handleSubmit = () => {
     const mapping: ColumnMapping = {
@@ -210,30 +214,63 @@ export const MappingWizard = ({
 
         <Separator my="$2" />
 
-        {/* Regional Settings */}
+        {/* Regional Settings - Auto-detected with optional confirmation */}
         <Text fontSize={12} fontWeight="bold" color="$secondaryText" textTransform="uppercase">
           Regional Settings
         </Text>
 
-        <XStack alignItems="center" gap="$3">
-          <Checkbox
-            size="$4"
-            checked={isEuropeanFormat}
-            onCheckedChange={(checked) => setIsEuropeanFormat(checked === true)}
-          >
-            <Checkbox.Indicator>
-              <Check size={16} />
-            </Checkbox.Indicator>
-          </Checkbox>
-          <YStack>
-            <Label fontSize={14} color="$color">
-              European number format
-            </Label>
-            <Text fontSize={12} color="$secondaryText">
-              Uses comma as decimal (e.g., 1.234,56)
-            </Text>
-          </YStack>
-        </XStack>
+        {showDialectConfirm ? (
+          /* Contextual confirmation when confidence is low */
+          <GlassyCard>
+            <YStack gap="$3" p="$3">
+              <Text fontWeight="bold" color="$color" fontSize={14}>
+                Quick Check
+              </Text>
+              <Text color="$secondaryText" fontSize={13}>
+                Is "1.234,56" displayed as €1,234.56 in your bank statement?
+              </Text>
+              <XStack gap="$3">
+                <Button
+                  flex={1}
+                  size="$3"
+                  backgroundColor={isEuropeanFormat ? "$accentColor" : "$background"}
+                  onPress={() => setIsEuropeanFormat(true)}
+                >
+                  <Text color={isEuropeanFormat ? "white" : "$color"}>Yes (European)</Text>
+                </Button>
+                <Button
+                  flex={1}
+                  size="$3"
+                  backgroundColor={!isEuropeanFormat ? "$accentColor" : "$background"}
+                  onPress={() => setIsEuropeanFormat(false)}
+                >
+                  <Text color={!isEuropeanFormat ? "white" : "$color"}>No (US)</Text>
+                </Button>
+              </XStack>
+            </YStack>
+          </GlassyCard>
+        ) : (
+          /* Auto-detected - just show the detected format */
+          <XStack alignItems="center" gap="$3">
+            <Checkbox
+              size="$4"
+              checked={isEuropeanFormat}
+              onCheckedChange={(checked) => setIsEuropeanFormat(checked === true)}
+            >
+              <Checkbox.Indicator>
+                <Check size={16} />
+              </Checkbox.Indicator>
+            </Checkbox>
+            <YStack>
+              <Label fontSize={14} color="$color">
+                European number format
+              </Label>
+              <Text fontSize={12} color="$secondaryText">
+                Uses comma as decimal (e.g., 1.234,56)
+              </Text>
+            </YStack>
+          </XStack>
+        )}
 
         <MappingSelector
           label="Date Format"

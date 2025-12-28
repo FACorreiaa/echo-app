@@ -1,7 +1,7 @@
 import { FileSpreadsheet, Upload } from "@tamagui/lucide-icons";
 import * as DocumentPicker from "expo-document-picker";
-import { useRouter } from "expo-router";
-import React, { useState } from "react";
+import { useFocusEffect, useRouter } from "expo-router";
+import React, { useCallback, useState } from "react";
 import { ScrollView } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Button, H2, Text, XStack, YStack } from "tamagui";
@@ -12,6 +12,7 @@ import { ImportProgress } from "@/components/import/ImportProgress";
 import { MappingWizard } from "@/components/import/MappingWizard";
 import {
   analyzeFileLocally,
+  useAnalyzeCsvFile,
   useImportTransactions,
   type ColumnMapping,
   type FileAnalysis,
@@ -31,10 +32,28 @@ const uriToBytes = async (uri: string): Promise<Uint8Array> => {
   });
 };
 
+/**
+ * Decode bytes to text with encoding fallback.
+ * Tries UTF-8 first, then falls back to Windows-1252 (Latin-1 superset)
+ * for Portuguese/European bank CSVs that use special characters.
+ */
+const decodeTextWithFallback = (bytes: Uint8Array): string => {
+  // Try UTF-8 first with fatal mode to detect encoding errors
+  try {
+    const utf8Decoder = new TextDecoder("utf-8", { fatal: true });
+    return utf8Decoder.decode(bytes);
+  } catch {
+    // Fallback to Windows-1252 (common for Portuguese bank exports)
+    const latin1Decoder = new TextDecoder("windows-1252");
+    return latin1Decoder.decode(bytes);
+  }
+};
+
 export default function ImportScreen() {
   const router = useRouter();
   const insets = useSafeAreaInsets();
   const importMutation = useImportTransactions();
+  const analyzeMutation = useAnalyzeCsvFile();
 
   // State
   const [step, setStep] = useState<"upload" | "mapping" | "importing" | "result">("upload");
@@ -47,6 +66,18 @@ export default function ImportScreen() {
     failed: 0,
     error: "",
   });
+
+  // Reset state when screen is focused (returning to this screen)
+  useFocusEffect(
+    useCallback(() => {
+      // Reset on focus
+      setStep("upload");
+      setAnalysis(null);
+      setFileBytes(null);
+      setMapping(null);
+      setImportStats({ total: 0, imported: 0, failed: 0, error: "" });
+    }, []),
+  );
 
   const handleSelectFile = async () => {
     try {
@@ -61,14 +92,20 @@ export default function ImportScreen() {
       setStep("upload"); // Show uploading state if we had one
 
       // Read file content for analysis
-      // Note: For large files, we might want to read chunks
       const bytes = await uriToBytes(file.uri);
-      const text = new TextDecoder("utf-8").decode(bytes);
-
       setFileBytes(bytes);
 
-      // Analyze locally
-      const resultAnalysis = analyzeFileLocally(text);
+      // Try backend analysis first, fallback to local
+      let resultAnalysis: FileAnalysis;
+      try {
+        resultAnalysis = await analyzeMutation.mutateAsync(bytes);
+        console.log("Using backend CSV analysis");
+      } catch (backendError) {
+        console.log("Backend analysis failed, using local fallback:", backendError);
+        const text = decodeTextWithFallback(bytes);
+        resultAnalysis = analyzeFileLocally(text);
+      }
+
       setAnalysis(resultAnalysis);
       setStep("mapping");
     } catch (err) {
@@ -102,6 +139,7 @@ export default function ImportScreen() {
           amountColumn: userMapping.amountCol !== undefined ? String(userMapping.amountCol) : "",
           debitColumn: userMapping.debitCol !== undefined ? String(userMapping.debitCol) : "",
           creditColumn: userMapping.creditCol !== undefined ? String(userMapping.creditCol) : "",
+          isEuropeanFormat: userMapping.isEuropeanFormat,
         },
       });
 
@@ -133,7 +171,7 @@ export default function ImportScreen() {
   };
 
   const handleDone = () => {
-    router.replace("/(tabs)");
+    router.replace("/(tabs)/transactions");
   };
 
   return (

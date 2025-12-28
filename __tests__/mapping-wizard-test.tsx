@@ -25,6 +25,11 @@ const mockAnalysis: FileAnalysis = {
     categoryCol: 3,
     isDoubleEntry: false,
   },
+  probedDialect: {
+    isEuropeanFormat: false,
+    dateFormat: "YYYY-MM-DD",
+    confidence: 0.9,
+  },
   mappingFound: false,
   canAutoImport: false,
 };

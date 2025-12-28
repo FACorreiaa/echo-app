@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@buf/echo-tracker_echo.bufbuild_es':
-        specifier: 2.10.2-20251227203949-4a4a34167426.1
-        version: 2.10.2-20251227203949-4a4a34167426.1(@bufbuild/protobuf@2.10.2)
+        specifier: 2.10.2-20251228143156-d248b8f3fa34.1
+        version: 2.10.2-20251228143156-d248b8f3fa34.1(@bufbuild/protobuf@2.10.2)
       '@bufbuild/protobuf':
         specifier: ^2.10.2
         version: 2.10.2
@@ -62,6 +62,9 @@ importers:
       '@typescript/native-preview':
         specifier: 7.0.0-dev.20251227.1
         version: 7.0.0-dev.20251227.1
+      echo-tracker_echo.bufbuild_es:latest:
+        specifier: link:@buf/echo-tracker_echo.bufbuild_es:latest
+        version: link:@buf/echo-tracker_echo.bufbuild_es:latest
       expo:
         specifier: ~54.0.30
         version: 54.0.30(@babel/core@7.28.5)(@expo/metro-runtime@6.1.2)(expo-router@6.0.21)(react-native@0.81.5(@babel/core@7.28.5)(@types/react@19.1.17)(react@19.1.0))(react@19.1.0)
@@ -715,8 +718,8 @@ packages:
     peerDependencies:
       '@bufbuild/protobuf': ^2.10.2
 
-  '@buf/echo-tracker_echo.bufbuild_es@2.10.2-20251227203949-4a4a34167426.1':
-    resolution: {tarball: https://buf.build/gen/npm/v1/@buf/echo-tracker_echo.bufbuild_es/-/echo-tracker_echo.bufbuild_es-2.10.2-20251227203949-4a4a34167426.1.tgz}
+  '@buf/echo-tracker_echo.bufbuild_es@2.10.2-20251228143156-d248b8f3fa34.1':
+    resolution: {tarball: https://buf.build/gen/npm/v1/@buf/echo-tracker_echo.bufbuild_es/-/echo-tracker_echo.bufbuild_es-2.10.2-20251228143156-d248b8f3fa34.1.tgz}
     peerDependencies:
       '@bufbuild/protobuf': ^2.10.2
 
@@ -7602,7 +7605,7 @@ snapshots:
     dependencies:
       '@bufbuild/protobuf': 2.10.2
 
-  '@buf/echo-tracker_echo.bufbuild_es@2.10.2-20251227203949-4a4a34167426.1(@bufbuild/protobuf@2.10.2)':
+  '@buf/echo-tracker_echo.bufbuild_es@2.10.2-20251228143156-d248b8f3fa34.1(@bufbuild/protobuf@2.10.2)':
     dependencies:
       '@buf/bufbuild_protovalidate.bufbuild_es': 2.10.2-20251209175733-2a1774d88802.1(@bufbuild/protobuf@2.10.2)
       '@buf/protocolbuffers_wellknowntypes.bufbuild_es': 2.10.2-20230331140314-f17e05fe4a76.1(@bufbuild/protobuf@2.10.2)

@@ -1,4 +1,12 @@
-import { ArrowDownUp, Home, Lightbulb, Settings, Target } from "@tamagui/lucide-icons";
+import {
+  ArrowDownUp,
+  FileSpreadsheet,
+  Home,
+  Lightbulb,
+  List,
+  Settings,
+  Target,
+} from "@tamagui/lucide-icons";
 import { Tabs } from "expo-router";
 import React from "react";
 import { useTheme } from "tamagui";
@@ -37,6 +45,13 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
+        name="transactions"
+        options={{
+          title: "Transactions",
+          tabBarIcon: ({ color }) => <List size={24} color={color as any} />,
+        }}
+      />
+      <Tabs.Screen
         name="spend"
         options={{
           title: "Spend",
@@ -58,10 +73,24 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
+        name="import"
+        options={{
+          title: "Import",
+          tabBarIcon: ({ color }) => <FileSpreadsheet size={24} color={color as any} />,
+        }}
+      />
+      <Tabs.Screen
         name="settings"
         options={{
           title: "Settings",
           tabBarIcon: ({ color }) => <Settings size={24} color={color as any} />,
+        }}
+      />
+      {/* Hide explore from tab bar but keep it accessible */}
+      <Tabs.Screen
+        name="explore"
+        options={{
+          href: null,
         }}
       />
     </Tabs>

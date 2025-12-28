@@ -3,7 +3,7 @@
  */
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { financeClient } from "../api/client";
+import { financeClient, importClient } from "../api/client";
 
 /**
  * Column mapping configuration for CSV import
@@ -38,6 +38,11 @@ export interface FileAnalysis {
     categoryCol: number;
     isDoubleEntry: boolean;
   };
+  probedDialect: {
+    isEuropeanFormat: boolean;
+    dateFormat: string;
+    confidence: number;
+  };
   mappingFound: boolean;
   canAutoImport: boolean;
 }
@@ -67,6 +72,7 @@ export function useImportTransactions() {
         amountColumn: string;
         debitColumn: string;
         creditColumn: string;
+        isEuropeanFormat?: boolean;
       };
       headerRows?: number;
     }) => {
@@ -96,6 +102,44 @@ export async function fileToBytes(file: File): Promise<Uint8Array> {
 }
 
 /**
+ * Hook for analyzing CSV files using backend (unified detection)
+ */
+export function useAnalyzeCsvFile() {
+  return useMutation({
+    mutationFn: async (csvBytes: Uint8Array): Promise<FileAnalysis> => {
+      const response = await importClient.analyzeCsvFile({ csvBytes });
+
+      // Convert sample rows from proto format
+      const sampleRows: string[][] = (response.sampleRows ?? []).map((row) => row.cells ?? []);
+
+      return {
+        headers: response.headers ?? [],
+        sampleRows,
+        delimiter: response.delimiter ?? ",",
+        skipLines: response.skipLines ?? 0,
+        fingerprint: response.fingerprint ?? "",
+        suggestions: {
+          dateCol: response.suggestions?.dateCol ?? -1,
+          descCol: response.suggestions?.descCol ?? -1,
+          amountCol: response.suggestions?.amountCol ?? -1,
+          debitCol: response.suggestions?.debitCol ?? -1,
+          creditCol: response.suggestions?.creditCol ?? -1,
+          categoryCol: response.suggestions?.categoryCol ?? -1,
+          isDoubleEntry: response.suggestions?.isDoubleEntry ?? false,
+        },
+        probedDialect: {
+          isEuropeanFormat: response.probedDialect?.isEuropeanFormat ?? false,
+          dateFormat: response.probedDialect?.dateFormat ?? "DD/MM/YYYY",
+          confidence: response.probedDialect?.confidence ?? 0.5,
+        },
+        mappingFound: response.mappingFound ?? false,
+        canAutoImport: response.canAutoImport ?? false,
+      };
+    },
+  });
+}
+
+/**
  * Client-side file analyzer (basic preview without backend call)
  * For a complete analysis, you'd call a backend endpoint
  */
@@ -115,9 +159,9 @@ export function analyzeFileLocally(content: string): FileAnalysis {
     }
   }
 
-  // Find header row (look for known keywords)
+  // Find header row (look for known keywords, prefer lines with MORE columns)
   const headerKeywords = [
-    "data",
+    "data mov", // More specific than "data" to avoid matching metadata
     "date",
     "descrição",
     "description",
@@ -130,12 +174,31 @@ export function analyzeFileLocally(content: string): FileAnalysis {
   ];
 
   let headerIndex = 0;
+  let bestColumnCount = 0;
+
   for (let i = 0; i < Math.min(20, lines.length); i++) {
     const lineLower = lines[i].toLowerCase();
     const hasKeyword = headerKeywords.some((kw) => lineLower.includes(kw));
+
     if (hasKeyword) {
-      headerIndex = i;
-      break;
+      // Count columns in this line
+      const columnCount = lines[i].split(delimiter).length;
+      // Prefer lines with MORE columns (real headers have many columns)
+      if (columnCount > bestColumnCount) {
+        headerIndex = i;
+        bestColumnCount = columnCount;
+      }
+    }
+  }
+
+  // If no keyword match found, fall back to line with most columns
+  if (bestColumnCount === 0) {
+    for (let i = 0; i < Math.min(20, lines.length); i++) {
+      const columnCount = lines[i].split(delimiter).length;
+      if (columnCount > bestColumnCount) {
+        headerIndex = i;
+        bestColumnCount = columnCount;
+      }
     }
   }
 
@@ -154,6 +217,9 @@ export function analyzeFileLocally(content: string): FileAnalysis {
   // Auto-suggest columns
   const suggestions = suggestColumns(headers);
 
+  // Probe regional dialect from sample data
+  const probedDialect = probeDialect(sampleRows, suggestions, delimiter);
+
   // Generate a simple fingerprint
   const fingerprint = headers.join("|").toLowerCase();
 
@@ -164,6 +230,7 @@ export function analyzeFileLocally(content: string): FileAnalysis {
     skipLines: headerIndex,
     fingerprint,
     suggestions,
+    probedDialect,
     mappingFound: false,
     canAutoImport: false,
   };
@@ -248,4 +315,127 @@ function suggestColumns(headers: string[]): FileAnalysis["suggestions"] {
   suggestions.isDoubleEntry = suggestions.debitCol !== -1 && suggestions.creditCol !== -1;
 
   return suggestions;
+}
+
+/**
+ * Probe regional dialect (European vs US format) from sample data
+ */
+function probeDialect(
+  sampleRows: string[][],
+  suggestions: FileAnalysis["suggestions"],
+  delimiter: string,
+): FileAnalysis["probedDialect"] {
+  let europeanHints = 0;
+  let usHints = 0;
+  let dateIsDDFirst = false;
+
+  // Determine which column to check for amounts
+  const amountCol = suggestions.isDoubleEntry ? suggestions.debitCol : suggestions.amountCol;
+
+  for (const row of sampleRows) {
+    // Analyze amount column for decimal separator
+    if (amountCol >= 0 && amountCol < row.length) {
+      const val = row[amountCol];
+      const hint = analyzeAmountFormat(val);
+      if (hint > 0) europeanHints++;
+      else if (hint < 0) usHints++;
+    }
+
+    // Analyze date column for DD/MM vs MM/DD
+    if (suggestions.dateCol >= 0 && suggestions.dateCol < row.length) {
+      const dateVal = row[suggestions.dateCol];
+      if (isDateDDFirst(dateVal)) {
+        dateIsDDFirst = true;
+      }
+    }
+
+    // Check for currency symbols
+    for (const cell of row) {
+      if (cell.includes("€") || cell.includes("EUR")) {
+        europeanHints++;
+      } else if (cell.includes("R$") || cell.includes("BRL")) {
+        europeanHints++; // Brazil uses European format
+      } else if (cell.includes("$") && !cell.includes("R$")) {
+        usHints++;
+      }
+    }
+  }
+
+  // Also consider delimiter as a hint
+  if (delimiter === ";") {
+    europeanHints += 2; // Semicolon is very common in European CSVs
+  }
+
+  const isEuropeanFormat = europeanHints > usHints;
+  const totalHints = europeanHints + usHints;
+  const confidence = totalHints > 0 ? Math.max(europeanHints, usHints) / totalHints : 0.5;
+
+  // Determine date format
+  let dateFormat = "DD-MM-YYYY";
+  if (dateIsDDFirst || isEuropeanFormat) {
+    dateFormat = "DD-MM-YYYY";
+  } else if (!dateIsDDFirst && !isEuropeanFormat) {
+    dateFormat = "MM/DD/YYYY";
+  }
+
+  return {
+    isEuropeanFormat,
+    dateFormat,
+    confidence,
+  };
+}
+
+/**
+ * Analyze amount string to determine format: >0 European, <0 US, 0 ambiguous
+ */
+function analyzeAmountFormat(val: string): number {
+  // Clean the value - keep only digits, comma, period, minus
+  const cleaned = val.replace(/[^\d,.-]/g, "").replace(/^-/, "");
+
+  if (!cleaned) return 0;
+
+  const hasComma = cleaned.includes(",");
+  const hasDot = cleaned.includes(".");
+
+  if (hasComma && hasDot) {
+    // Both present: last one is decimal separator
+    if (cleaned.lastIndexOf(",") > cleaned.lastIndexOf(".")) {
+      return 1; // European: 1.234,56
+    }
+    return -1; // US: 1,234.56
+  }
+
+  if (hasComma && !hasDot) {
+    // Only comma: check if it looks like a decimal (max 2 digits after)
+    const afterComma = cleaned.split(",").pop() || "";
+    if (afterComma.length <= 2) {
+      return 1; // Likely European decimal
+    }
+    return 0; // Could be US thousands separator
+  }
+
+  if (hasDot && !hasComma) {
+    // Only dot: check if it looks like a decimal
+    const afterDot = cleaned.split(".").pop() || "";
+    if (afterDot.length <= 2) {
+      return -1; // Likely US decimal
+    }
+    return 0; // Could be European thousands separator
+  }
+
+  return 0;
+}
+
+/**
+ * Check if date is definitely DD-first (day > 12)
+ */
+function isDateDDFirst(dateVal: string): boolean {
+  const parts = dateVal.split(/[/\-.]/); // Split by /, -, or .
+  if (parts.length >= 2) {
+    const first = parseInt(parts[0], 10);
+    if (first > 12 && first <= 31) {
+      return true;
+    }
+  }
+  return false;
 }
