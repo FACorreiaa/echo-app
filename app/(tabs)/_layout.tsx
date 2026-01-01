@@ -1,20 +1,24 @@
-import {
-  ArrowDownUp,
-  FileSpreadsheet,
-  Home,
-  Lightbulb,
-  List,
-  Settings,
-  Target,
-} from "@tamagui/lucide-icons";
-import { Tabs } from "expo-router";
+import { ClipboardList, FileSpreadsheet, Home, Lightbulb, Sparkles } from "@tamagui/lucide-icons";
+import { Redirect, Tabs } from "expo-router";
 import React from "react";
 import { useTheme } from "tamagui";
 
 import { HapticTab } from "@/components/haptic-tab";
+import { useAuthStore } from "@/lib/stores/auth-store";
 
 export default function TabLayout() {
   const theme = useTheme();
+  const { isAuthenticated, isHydrated } = useAuthStore();
+
+  // Wait for hydration before making auth decision
+  if (!isHydrated) {
+    return null; // Or a loading spinner
+  }
+
+  // Redirect to login if not authenticated
+  if (!isAuthenticated) {
+    return <Redirect href="/login" />;
+  }
 
   return (
     <Tabs
@@ -37,32 +41,12 @@ export default function TabLayout() {
         tabBarButton: HapticTab,
       }}
     >
+      {/* Main 5 tabs */}
       <Tabs.Screen
         name="index"
         options={{
           title: "Home",
           tabBarIcon: ({ color }) => <Home size={24} color={color as any} />,
-        }}
-      />
-      <Tabs.Screen
-        name="transactions"
-        options={{
-          title: "Transactions",
-          tabBarIcon: ({ color }) => <List size={24} color={color as any} />,
-        }}
-      />
-      <Tabs.Screen
-        name="spend"
-        options={{
-          title: "Spend",
-          tabBarIcon: ({ color }) => <ArrowDownUp size={24} color={color as any} />,
-        }}
-      />
-      <Tabs.Screen
-        name="goals"
-        options={{
-          title: "Goals",
-          tabBarIcon: ({ color }) => <Target size={24} color={color as any} />,
         }}
       />
       <Tabs.Screen
@@ -73,20 +57,52 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
+        name="wrapped"
+        options={{
+          title: "Wrapped",
+          tabBarIcon: ({ color }) => <Sparkles size={24} color={color as any} />,
+        }}
+      />
+      <Tabs.Screen
+        name="planning"
+        options={{
+          title: "Planning",
+          tabBarIcon: ({ color }) => <ClipboardList size={24} color={color as any} />,
+        }}
+      />
+      <Tabs.Screen
         name="import"
         options={{
           title: "Import",
           tabBarIcon: ({ color }) => <FileSpreadsheet size={24} color={color as any} />,
         }}
       />
+
+      {/* Hidden tabs - accessible via navigation but not in tab bar */}
+      <Tabs.Screen
+        name="transactions"
+        options={{
+          href: null,
+        }}
+      />
       <Tabs.Screen
         name="settings"
         options={{
-          title: "Settings",
-          tabBarIcon: ({ color }) => <Settings size={24} color={color as any} />,
+          href: null,
         }}
       />
-      {/* Hide explore from tab bar but keep it accessible */}
+      <Tabs.Screen
+        name="spend"
+        options={{
+          href: null,
+        }}
+      />
+      <Tabs.Screen
+        name="goals"
+        options={{
+          href: null,
+        }}
+      />
       <Tabs.Screen
         name="explore"
         options={{

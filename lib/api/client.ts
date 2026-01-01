@@ -3,13 +3,14 @@
  */
 
 import { AuthService } from "@buf/echo-tracker_echo.bufbuild_es/echo/v1/auth_pb";
+import { BalanceService } from "@buf/echo-tracker_echo.bufbuild_es/echo/v1/balance_pb";
 import { FinanceService } from "@buf/echo-tracker_echo.bufbuild_es/echo/v1/finance_pb";
 import { ImportService } from "@buf/echo-tracker_echo.bufbuild_es/echo/v1/imports_pb";
+import { InsightsService } from "@buf/echo-tracker_echo.bufbuild_es/echo/v1/insights_pb";
 import { ConnectError, createClient, type Client } from "@connectrpc/connect";
 import { createConnectTransport } from "@connectrpc/connect-web";
 import { getAccessToken } from "../storage/token-storage";
 import { API_CONFIG } from "./config";
-
 // Create the Connect transport
 const transport = createConnectTransport({
   baseUrl: API_CONFIG.baseUrl,
@@ -29,6 +30,11 @@ const transport = createConnectTransport({
 export const authClient: Client<typeof AuthService> = createClient(AuthService, transport);
 export const financeClient: Client<typeof FinanceService> = createClient(FinanceService, transport);
 export const importClient: Client<typeof ImportService> = createClient(ImportService, transport);
+export const insightsClient: Client<typeof InsightsService> = createClient(
+  InsightsService,
+  transport,
+);
+export const balanceClient: Client<typeof BalanceService> = createClient(BalanceService, transport);
 
 // Re-export Connect error for catch blocks
 export { ConnectError };

@@ -4,7 +4,7 @@ import { useFocusEffect, useRouter } from "expo-router";
 import React, { useCallback, useState } from "react";
 import { ScrollView } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { Button, H2, Text, XStack, YStack } from "tamagui";
+import { Button, H2, Input, Text, XStack, YStack } from "tamagui";
 
 import { GlassyButton } from "@/components/GlassyButton";
 import { GlassyCard } from "@/components/GlassyCard";
@@ -24,10 +24,20 @@ const uriToBytes = async (uri: string): Promise<Uint8Array> => {
   const blob = await response.blob();
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
-    reader.onload = () => {
-      resolve(new Uint8Array(reader.result as ArrayBuffer));
-    };
-    reader.onerror = reject;
+    reader.addEventListener(
+      "load",
+      () => {
+        resolve(new Uint8Array(reader.result as ArrayBuffer));
+      },
+      { once: true },
+    );
+    reader.addEventListener(
+      "error",
+      () => {
+        reject(reader.error ?? new Error("Failed to read file"));
+      },
+      { once: true },
+    );
     reader.readAsArrayBuffer(blob);
   });
 };
@@ -60,11 +70,14 @@ export default function ImportScreen() {
   const [analysis, setAnalysis] = useState<FileAnalysis | null>(null);
   const [fileBytes, setFileBytes] = useState<Uint8Array | null>(null);
   const [_mapping, setMapping] = useState<ColumnMapping | null>(null);
+  const [bankName, setBankName] = useState("");
   const [importStats, setImportStats] = useState({
     total: 0,
     imported: 0,
+    duplicates: 0,
     failed: 0,
     error: "",
+    importJobId: "",
   });
 
   // Reset state when screen is focused (returning to this screen)
@@ -75,7 +88,15 @@ export default function ImportScreen() {
       setAnalysis(null);
       setFileBytes(null);
       setMapping(null);
-      setImportStats({ total: 0, imported: 0, failed: 0, error: "" });
+      setBankName("");
+      setImportStats({
+        total: 0,
+        imported: 0,
+        duplicates: 0,
+        failed: 0,
+        error: "",
+        importJobId: "",
+      });
     }, []),
   );
 
@@ -133,6 +154,7 @@ export default function ImportScreen() {
         csvBytes: fileBytes,
         dateFormat: userMapping.dateFormat,
         headerRows: analysis?.skipLines ?? 0,
+        institutionName: bankName,
         mapping: {
           dateColumn: String(userMapping.dateCol),
           descriptionColumn: String(userMapping.descCol),
@@ -140,14 +162,18 @@ export default function ImportScreen() {
           debitColumn: userMapping.debitCol !== undefined ? String(userMapping.debitCol) : "",
           creditColumn: userMapping.creditCol !== undefined ? String(userMapping.creditCol) : "",
           isEuropeanFormat: userMapping.isEuropeanFormat,
+          delimiter: analysis?.delimiter ?? ",",
+          skipLines: analysis?.skipLines ?? 0,
         },
       });
 
       setImportStats({
-        total: response.importedCount,
+        total: response.importedCount + (response.duplicateCount ?? 0),
         imported: response.importedCount,
+        duplicates: response.duplicateCount ?? 0,
         failed: 0,
         error: "",
+        importJobId: response.importJobId ?? "",
       });
       setStep("result");
     } catch (err) {
@@ -155,8 +181,10 @@ export default function ImportScreen() {
       setImportStats({
         total: 0,
         imported: 0,
+        duplicates: 0,
         failed: 0,
         error: err instanceof Error ? err.message : "Failed to import transactions",
+        importJobId: "",
       });
       setStep("result"); // Result will show error state
     }
@@ -171,7 +199,12 @@ export default function ImportScreen() {
   };
 
   const handleDone = () => {
-    router.replace("/(tabs)/transactions");
+    // Navigate to staging view with import job ID if available
+    if (importStats.importJobId) {
+      router.replace(`/(tabs)/transactions?importJobId=${importStats.importJobId}`);
+    } else {
+      router.replace("/(tabs)/transactions");
+    }
   };
 
   return (
@@ -256,12 +289,56 @@ export default function ImportScreen() {
           )}
 
           {step === "mapping" && analysis && (
-            <MappingWizard
-              analysis={analysis}
-              onComplete={handleMappingComplete}
-              onCancel={handleCancel}
-              isLoading={importMutation.isPending}
-            />
+            <YStack gap="$4">
+              {/* Bank name selection */}
+              <GlassyCard>
+                <YStack gap="$2">
+                  <Text color="$color" fontWeight="bold">
+                    Bank / Institution
+                  </Text>
+                  <Text color="$secondaryText" fontSize={12}>
+                    Select or enter the bank name for this import
+                  </Text>
+                  <XStack flexWrap="wrap" gap="$2" marginTop="$2">
+                    {[
+                      "Revolut",
+                      "CGD",
+                      "Santander",
+                      "Millennium",
+                      "ActivoBank",
+                      "Moey",
+                      "Other",
+                    ].map((bank) => (
+                      <Button
+                        key={bank}
+                        size="$2"
+                        backgroundColor={bankName === bank ? "$accentColor" : "$backgroundHover"}
+                        color={bankName === bank ? "white" : "$secondaryText"}
+                        onPress={() => setBankName(bank === "Other" ? "" : bank)}
+                        borderRadius="$4"
+                      >
+                        {bank}
+                      </Button>
+                    ))}
+                  </XStack>
+                  {bankName === "" && (
+                    <Input
+                      placeholder="Enter bank name..."
+                      value={bankName}
+                      onChangeText={setBankName}
+                      marginTop="$2"
+                    />
+                  )}
+                </YStack>
+              </GlassyCard>
+
+              <MappingWizard
+                analysis={analysis}
+                onComplete={handleMappingComplete}
+                onCancel={handleCancel}
+                isLoading={importMutation.isPending}
+              />
+            </YStack>
           )}
 
           {/* Combined Importing / Result view */}

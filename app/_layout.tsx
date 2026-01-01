@@ -17,9 +17,9 @@ import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 import { TamaguiProvider } from "tamagui";
 
+import { ThemeProvider as AppThemeProvider, useTheme } from "@/contexts/ThemeContext";
 import { persistOptions, queryClient } from "@/lib/query/query-client";
 import tamaguiConfig from "../tamagui.config";
-import { ThemeProvider as AppThemeProvider, useTheme } from "@/contexts/ThemeContext";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -32,6 +32,7 @@ function RootLayoutContent() {
       <NavigationThemeProvider value={resolvedTheme === "dark" ? DarkTheme : DefaultTheme}>
         <Stack>
           <Stack.Screen name="(public)" options={{ headerShown: false }} />
+          <Stack.Screen name="(auth)" options={{ headerShown: false }} />
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
           <Stack.Screen name="modal" options={{ presentation: "modal" }} />
         </Stack>

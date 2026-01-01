@@ -3,13 +3,16 @@
 This document outlines the technical feasibility and strategy for expanding the Echo application to platforms beyond iOS and the Web, leveraging our existing Expo + Tamagui codebase.
 
 ## 1. Android (Phone & Tablet)
+
 **Status: ✅ Native Support**
 
 Expo builds standard Android apps by default. Our current codebase works out-of-the-box on Android.
+
 - **Action**: No changes required. Continue building features.
 - **Testing**: Can run `npm run android` to test on an emulator or device.
 
 ## 2. Apple TV (tvOS) & Android TV
+
 **Status: ⚠️ Possible (via Forks)**
 
 React Native and Expo can target TV platforms, but it requires using a specific fork called **React Native TVOS**.
@@ -20,6 +23,7 @@ React Native and Expo can target TV platforms, but it requires using a specific 
   - **UI Differences**: TV apps require focus-based navigation (D-pad) instead of touch events. We would need to handle `onFocus` states on our `GlassyCard` and `GlassyButton` components.
 
 ## 3. macOS
+
 **Status: ⚠️ Possible (via `react-native-macos`)**
 
 Similar to TVOS, Microsoft maintains a fork called `react-native-macos` that allows React Native to target macOS desktop.
@@ -30,6 +34,7 @@ Similar to TVOS, Microsoft maintains a fork called `react-native-macos` that all
   - **Tamagui Advantage**: Tamagui puts us in a strong position here because its styling engine supports mouse/hover interactions (`$platform-web`) which translate well to desktop apps.
 
 ## 4. watchOS (Apple Watch)
+
 **Status: ❌ Native Code Required (No React Native)**
 
 React Native **does not** run on the Apple Watch due to hardware constraints preventing the full JavaScript engine from running efficiently.
@@ -42,9 +47,9 @@ React Native **does not** run on the Apple Watch due to hardware constraints pre
 
 ## Summary Matrix
 
-| Platform | Difficulty | Method |
-| :--- | :--- | :--- |
-| **Android** | Very Easy | Built-in |
-| **Apple TV** | Medium | Config Plugin + RN Fork |
-| **macOS** | Medium | Config Plugin + RN Fork |
-| **watchOS** | Hard | **Native Swift Required** (Extension) |
+| Platform     | Difficulty | Method                                |
+| :----------- | :--------- | :------------------------------------ |
+| **Android**  | Very Easy  | Built-in                              |
+| **Apple TV** | Medium     | Config Plugin + RN Fork               |
+| **macOS**    | Medium     | Config Plugin + RN Fork               |
+| **watchOS**  | Hard       | **Native Swift Required** (Extension) |

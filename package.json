@@ -3,18 +3,6 @@
   "version": "1.0.0",
   "private": true,
   "main": "expo-router/entry",
-  "jest": {
-    "preset": "jest-expo",
-    "setupFilesAfterEnv": [
-      "./jest.setup.ts"
-    ],
-    "transformIgnorePatterns": [
-      "node_modules/(?!((jest-)?react-native|@react-native(-community)?)|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|react-native-svg|tamagui|@tamagui/.*|@buf/.*|@bufbuild/.*|@connectrpc/.*)"
-    ],
-    "moduleNameMapper": {
-      "^@/(.*)$": "<rootDir>/$1"
-    }
-  },
   "scripts": {
     "start": "expo start",
     "reset-project": "node ./scripts/reset-project.js",
@@ -29,34 +17,35 @@
     "buf-update": "pnpm remove @buf/echo-tracker_echo.bufbuild_es && pnpm add @buf/echo-tracker_echo.bufbuild_es:latest"
   },
   "dependencies": {
-    "@buf/echo-tracker_echo.bufbuild_es": "2.10.2-20251228143156-d248b8f3fa34.1",
     "@bufbuild/protobuf": "^2.10.2",
     "@connectrpc/connect": "^2.1.1",
     "@connectrpc/connect-web": "^2.1.1",
     "@expo-google-fonts/outfit": "^0.4.3",
     "@expo/vector-icons": "^15.0.3",
     "@react-native-async-storage/async-storage": "^2.2.0",
-    "@react-navigation/bottom-tabs": "^7.4.0",
-    "@react-navigation/elements": "^2.6.3",
-    "@react-navigation/native": "^7.1.8",
-    "@tamagui/babel-plugin": "^1.141.5",
-    "@tamagui/config": "^1.141.5",
-    "@tamagui/lucide-icons": "^1.141.5",
-    "@tamagui/metro-plugin": "^1.141.5",
-    "@tanstack/query-async-storage-persister": "^5.90.14",
-    "@tanstack/react-query": "^5.90.12",
-    "@tanstack/react-query-persist-client": "^5.90.14",
+    "@react-navigation/bottom-tabs": "^7.9.0",
+    "@react-navigation/elements": "^2.9.3",
+    "@react-navigation/native": "^7.1.26",
+    "@tamagui/babel-plugin": "^1.142.0",
+    "@tamagui/config": "^1.142.0",
+    "@tamagui/lucide-icons": "^1.142.0",
+    "@tamagui/metro-plugin": "^1.142.0",
+    "@tanstack/query-async-storage-persister": "^5.90.18",
+    "@tanstack/react-query": "^5.90.16",
+    "@tanstack/react-query-persist-client": "^5.90.18",
     "@typescript/native-preview": "7.0.0-dev.20251227.1",
-    "echo-tracker_echo.bufbuild_es:latest": "link:@buf/echo-tracker_echo.bufbuild_es:latest",
+    "@buf/echo-tracker_echo.bufbuild_es": "latest",
     "expo": "~54.0.30",
     "expo-blur": "~15.0.8",
     "expo-constants": "~18.0.12",
+    "expo-device": "^8.0.10",
     "expo-document-picker": "~14.0.8",
     "expo-font": "~14.0.10",
     "expo-haptics": "~15.0.8",
     "expo-image": "~3.0.11",
     "expo-linear-gradient": "~15.0.8",
     "expo-linking": "~8.0.11",
+    "expo-notifications": "^0.32.15",
     "expo-router": "~6.0.21",
     "expo-secure-store": "^15.0.8",
     "expo-splash-screen": "~31.0.13",
@@ -67,36 +56,49 @@
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-native": "0.81.5",
+    "react-native-chart-kit": "^6.12.0",
     "react-native-gesture-handler": "~2.28.0",
     "react-native-reanimated": "~4.1.6",
-    "react-native-safe-area-context": "~5.6.0",
+    "react-native-safe-area-context": "~5.6.2",
     "react-native-screens": "~4.16.0",
     "react-native-svg": "^15.15.1",
-    "react-native-web": "~0.21.0",
+    "react-native-web": "~0.21.2",
     "react-native-worklets": "0.5.1",
-    "tamagui": "^1.141.5",
+    "tamagui": "^1.142.0",
     "zustand": "^5.0.9"
   },
   "devDependencies": {
-    "@bufbuild/buf": "^1.61.0",
-    "@tamagui/cli": "^1.141.5",
+    "@bufbuild/buf": "^1.62.1",
+    "@tamagui/cli": "^1.142.0",
     "@testing-library/react-native": "^13.3.3",
     "@types/jest": "29.5.14",
-    "@types/react": "~19.1.0",
-    "eslint": "^9.25.0",
+    "@types/react": "~19.1.17",
+    "eslint": "^9.39.2",
     "eslint-config-expo": "~10.0.0",
     "husky": "^9.1.7",
     "jest": "~29.7.0",
     "jest-expo": "~54.0.16",
     "lint-staged": "^16.2.7",
     "oxfmt": "^0.20.0",
-    "oxlint": "^1.35.0",
-    "typescript": "~5.9.2"
+    "oxlint": "^1.36.0",
+    "typescript": "~5.9.3"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "oxlint",
       "oxfmt"
+    ]
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "^@/(.*)$": "<rootDir>/$1"
+    },
+    "preset": "jest-expo",
+    "setupFilesAfterEnv": [
+      "./jest.setup.ts"
+    ],
+    "transformIgnorePatterns": [
+      "node_modules/(?!((jest-)?react-native|@react-native(-community)?)|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|react-native-svg|tamagui|@tamagui/.*|@buf/.*|@bufbuild/.*|@connectrpc/.*)"
     ]
   }
 }

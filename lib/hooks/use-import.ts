@@ -61,6 +61,7 @@ export function useImportTransactions() {
       timezone,
       mapping,
       headerRows,
+      institutionName,
     }: {
       csvBytes: Uint8Array;
       accountId?: string;
@@ -73,8 +74,11 @@ export function useImportTransactions() {
         debitColumn: string;
         creditColumn: string;
         isEuropeanFormat?: boolean;
+        delimiter?: string;
+        skipLines?: number;
       };
       headerRows?: number;
+      institutionName?: string;
     }) => {
       const response = await financeClient.importTransactionsCsv({
         csvBytes,
@@ -83,6 +87,7 @@ export function useImportTransactions() {
         timezone: timezone ?? "",
         mapping: mapping ?? undefined,
         headerRows: headerRows ?? 0,
+        institutionName: institutionName ?? "",
       });
       return response;
     },
@@ -110,7 +115,9 @@ export function useAnalyzeCsvFile() {
       const response = await importClient.analyzeCsvFile({ csvBytes });
 
       // Convert sample rows from proto format
-      const sampleRows: string[][] = (response.sampleRows ?? []).map((row) => row.cells ?? []);
+      const sampleRows: string[][] = (response.sampleRows ?? []).map(
+        (row: { cells?: string[] }) => row.cells ?? [],
+      );
 
       return {
         headers: response.headers ?? [],

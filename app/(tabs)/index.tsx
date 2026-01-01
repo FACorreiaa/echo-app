@@ -1,164 +1,338 @@
 import {
-  ArrowLeftRight,
-  ChevronRight,
   CreditCard,
-  MoreHorizontal,
   Plus,
+  Send,
+  Settings,
+  Sparkles,
+  TrendingDown,
+  TrendingUp,
 } from "@tamagui/lucide-icons";
 import { useRouter } from "expo-router";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { ScrollView, styled, Text, XStack, YStack } from "tamagui";
+import React from "react";
+import { ActivityIndicator, ScrollView } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { Button, Text, XStack, YStack } from "tamagui";
 
+import { AlertBell } from "@/components/AlertBell";
 import { Avatar } from "@/components/Avatar";
-import { GradientBackground } from "@/components/GradientBackground";
-import { ListItem } from "@/components/ListItem";
-import { PromoCard } from "@/components/PromoCard";
-import { QuickActionButton } from "@/components/QuickActionButton";
+import { GlassyCard } from "@/components/GlassyCard";
+import { useAccounts } from "@/lib/hooks/use-accounts";
+import { useDashboardBlocks, useSpendingPulse } from "@/lib/hooks/use-insights";
+import { useRecentTransactions } from "@/lib/hooks/use-transactions";
+import { useAuthStore } from "@/lib/stores/auth-store";
 
-const BalanceLabel = styled(Text, {
-  color: "$secondaryText",
-  fontSize: 14,
-  fontFamily: "$body",
-  textAlign: "center",
-});
+// Format currency (moved outside component to avoid recreation)
+const formatCurrency = (amount: number) => {
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "EUR",
+  }).format(amount);
+};
 
-const BalanceAmount = styled(Text, {
-  color: "$color",
-  fontSize: 48,
-  fontFamily: "$heading",
-  textAlign: "center",
-  marginVertical: 8,
-});
+// Get greeting based on time of day (moved outside component)
+const getGreeting = () => {
+  const hour = new Date().getHours();
+  if (hour < 12) return "Good morning";
+  if (hour < 18) return "Good afternoon";
+  return "Good evening";
+};
 
-const AccountPill = styled(XStack, {
-  backgroundColor: "$listItemBackground",
-  paddingHorizontal: 16,
-  paddingVertical: 8,
-  borderRadius: 20,
-  alignSelf: "center",
-  alignItems: "center",
-  gap: 6,
-  pressStyle: {
-    opacity: 0.8,
-  },
-});
+// Map icon names to emojis for dashboard blocks
+const getBlockEmoji = (icon: string) => {
+  const iconMap: Record<string, string> = {
+    "trending-up": "📈",
+    "trending-down": "📉",
+    "alert-triangle": "⚠️",
+    "check-circle": "✅",
+    coffee: "☕",
+    "shopping-cart": "🛒",
+    "credit-card": "💳",
+    target: "🎯",
+    calendar: "📅",
+    zap: "⚡",
+  };
+  return iconMap[icon] || "💡";
+};
 
-const SectionTitle = styled(Text, {
-  color: "$color",
-  fontSize: 18,
-  fontFamily: "$heading",
-  marginBottom: 12,
-});
+const formatRelativeDate = (date: Date) => {
+  const now = new Date();
+  const diffDays = Math.floor((now.getTime() - date.getTime()) / (1000 * 60 * 60 * 24));
+  if (diffDays === 0) return "Today";
+  if (diffDays === 1) return "Yesterday";
+  return date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+};
 
-const SeeAllText = styled(Text, {
-  color: "$accentGradientStart",
-  fontSize: 14,
-  fontFamily: "$body",
-});
-
-// Mock data
-const recentTransactions = [
-  { id: "1", name: "Netflix", description: "Subscription", amount: "-€12.99", date: "Today" },
-  { id: "2", name: "Spotify", description: "Subscription", amount: "-€9.99", date: "Yesterday" },
-  {
-    id: "3",
-    name: "Grocery Store",
-    description: "Food & Drinks",
-    amount: "-€45.23",
-    date: "Dec 25",
-  },
-];
-
-export default function DashboardScreen() {
+export default function HomeScreen() {
   const router = useRouter();
+  const insets = useSafeAreaInsets();
+  const user = useAuthStore((s) => s.user);
+
+  // Fetch spending pulse data
+  const { data: pulse, isLoading: pulseLoading } = useSpendingPulse();
+  const { data: dashboardBlocks, isLoading: blocksLoading } = useDashboardBlocks();
+
+  // Fetch accounts and transactions
+  const { data: accounts = [], isLoading: accountsLoading } = useAccounts();
+  const { data: recentActivity = [], isLoading: activityLoading } = useRecentTransactions(5);
 
   return (
-    <GradientBackground>
-      <SafeAreaView style={{ flex: 1 }} edges={["top"]}>
-        <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom: 100 }}>
-          <YStack paddingHorizontal={20} paddingTop={40} gap={24}>
-            {/* Balance Section */}
-            <YStack alignItems="center" gap={8}>
-              <BalanceLabel>Personal · EUR</BalanceLabel>
-              <BalanceAmount>€7,293.40</BalanceAmount>
-              <AccountPill>
-                <Text color="$color" fontSize={14} fontFamily="$body">
-                  Accounts
-                </Text>
-                <ChevronRight size={16} color="$secondaryText" />
-              </AccountPill>
-            </YStack>
-
-            {/* Quick Actions */}
-            <XStack justifyContent="center" gap={16} marginTop={20}>
-              <QuickActionButton
-                icon={<Plus size={24} color="$color" />}
-                label="Import"
-                onPress={() => router.push("/(tabs)/import")}
-              />
-              <QuickActionButton
-                icon={<ArrowLeftRight size={24} color="$color" />}
-                label="Move"
-                onPress={() => {}}
-              />
-              <QuickActionButton
-                icon={<CreditCard size={24} color="$color" />}
-                label="Details"
-                onPress={() => {}}
-              />
-              <QuickActionButton
-                icon={<MoreHorizontal size={24} color="$color" />}
-                label="More"
-                onPress={() => {}}
-              />
-            </XStack>
-
-            {/* Promo Card */}
-            <PromoCard
-              title="Your Wrapped is Ready!"
-              subtitle="See your December spending story"
-              gradient
-              onPress={() => router.push("/(tabs)/insights")}
-            />
-
-            {/* Recent Transactions */}
-            <YStack gap={8}>
-              <XStack justifyContent="space-between" alignItems="center">
-                <SectionTitle>Recent Transactions</SectionTitle>
-                <SeeAllText onPress={() => router.push("/(tabs)/spend")}>See All</SeeAllText>
-              </XStack>
-
-              <YStack
-                backgroundColor="$cardBackground"
-                borderRadius={16}
-                borderWidth={1}
-                borderColor="$borderColor"
-                overflow="hidden"
-              >
-                {recentTransactions.map((tx) => (
-                  <ListItem
-                    key={tx.id}
-                    title={tx.name}
-                    subtitle={tx.description}
-                    left={<Avatar name={tx.name} size="md" />}
-                    right={
-                      <YStack alignItems="flex-end">
-                        <Text color="$color" fontSize={16} fontFamily="$body">
-                          {tx.amount}
-                        </Text>
-                        <Text color="$secondaryText" fontSize={12}>
-                          {tx.date}
-                        </Text>
-                      </YStack>
-                    }
-                    onPress={() => {}}
-                  />
-                ))}
-              </YStack>
-            </YStack>
+    <YStack flex={1} backgroundColor="$background" paddingTop={insets.top}>
+      <ScrollView contentContainerStyle={{ flexGrow: 1, padding: 20, paddingBottom: 100 }}>
+        {/* Header */}
+        <XStack justifyContent="space-between" alignItems="center" marginBottom="$4">
+          <YStack>
+            <Text color="$secondaryText" fontSize={14}>
+              {getGreeting()}
+            </Text>
+            <Text color="$color" fontSize={24} fontWeight="bold">
+              {user?.displayName || user?.username || user?.email?.split("@")[0] || "Welcome"}
+            </Text>
           </YStack>
+          <XStack gap="$2">
+            <AlertBell size={20} />
+            <Button
+              size="$3"
+              circular
+              backgroundColor="$backgroundHover"
+              icon={<Settings size={20} color="$color" />}
+              onPress={() => router.push("/(tabs)/settings")}
+            />
+          </XStack>
+        </XStack>
+
+        {/* Net Worth Card - Now shows Spending Pulse */}
+        <GlassyCard marginBottom="$4">
+          <YStack padding="$4" gap="$2">
+            <Text color="$secondaryText" fontSize={12} textTransform="uppercase">
+              This Month's Spending
+            </Text>
+            {pulseLoading ? (
+              <ActivityIndicator />
+            ) : (
+              <>
+                <Text color="$color" fontSize={36} fontWeight="bold">
+                  {formatCurrency(pulse?.currentMonthSpend ?? 0)}
+                </Text>
+                <XStack alignItems="center" gap="$2">
+                  {(pulse?.spendDelta ?? 0) > 0 ? (
+                    <TrendingUp size={16} color="#ef4444" />
+                  ) : (
+                    <TrendingDown size={16} color="#22c55e" />
+                  )}
+                  <Text
+                    color={(pulse?.spendDelta ?? 0) > 0 ? "#ef4444" : "#22c55e"}
+                    fontSize={14}
+                    fontWeight="600"
+                  >
+                    {(pulse?.spendDelta ?? 0) > 0 ? "+" : ""}
+                    {formatCurrency(pulse?.spendDelta ?? 0)}
+                  </Text>
+                  <Text color="$secondaryText" fontSize={14}>
+                    vs last month (day {pulse?.dayOfMonth})
+                  </Text>
+                </XStack>
+                {pulse?.isOverPace && (
+                  <XStack
+                    backgroundColor="rgba(239, 68, 68, 0.15)"
+                    paddingHorizontal="$3"
+                    paddingVertical="$2"
+                    borderRadius="$2"
+                    marginTop="$2"
+                  >
+                    <Text color="#ef4444" fontSize={12}>
+                      ⚠️ {pulse.paceMessage} - {pulse.pacePercent.toFixed(0)}% of last month
+                    </Text>
+                  </XStack>
+                )}
+              </>
+            )}
+          </YStack>
+        </GlassyCard>
+
+        {/* Quick Actions */}
+        <XStack justifyContent="space-around" marginBottom="$6">
+          {[
+            { icon: Send, label: "Send", onPress: () => {} },
+            { icon: Plus, label: "Add", onPress: () => router.push("/(tabs)/import") },
+            { icon: CreditCard, label: "Card", onPress: () => {} },
+            { icon: Sparkles, label: "Echo", onPress: () => router.push("/(tabs)/wrapped") },
+          ].map((action) => (
+            <YStack key={action.label} alignItems="center" gap="$2">
+              <Button
+                size="$4"
+                circular
+                backgroundColor="$backgroundHover"
+                icon={<action.icon size={22} color="$color" />}
+                onPress={action.onPress}
+              />
+              <Text color="$secondaryText" fontSize={12}>
+                {action.label}
+              </Text>
+            </YStack>
+          ))}
+        </XStack>
+
+        {/* Money Pulse */}
+        <Text color="$color" fontSize={18} fontWeight="bold" marginBottom="$3">
+          Money Pulse
+        </Text>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ marginBottom: 24 }}>
+          <XStack gap="$3">
+            {blocksLoading ? (
+              <GlassyCard width={160}>
+                <YStack padding="$3" alignItems="center" justifyContent="center" height={100}>
+                  <ActivityIndicator />
+                </YStack>
+              </GlassyCard>
+            ) : dashboardBlocks && dashboardBlocks.length > 0 ? (
+              dashboardBlocks.map((block, index) => (
+                <GlassyCard key={index} width={160}>
+                  <YStack padding="$3" gap="$2">
+                    <YStack
+                      backgroundColor={(block.color || "$accentColor") as any}
+                      width={36}
+                      height={36}
+                      borderRadius={18}
+                      alignItems="center"
+                      justifyContent="center"
+                    >
+                      <Text fontSize={18}>{getBlockEmoji(block.icon)}</Text>
+                    </YStack>
+                    <Text color="$color" fontSize={14} fontWeight="600">
+                      {block.title}
+                    </Text>
+                    <Text color="$secondaryText" fontSize={12} numberOfLines={2}>
+                      {block.subtitle || block.value}
+                    </Text>
+                  </YStack>
+                </GlassyCard>
+              ))
+            ) : (
+              <GlassyCard width={160}>
+                <YStack padding="$3" gap="$2" alignItems="center">
+                  <Text fontSize={18}>💡</Text>
+                  <Text color="$secondaryText" fontSize={12} textAlign="center">
+                    Import transactions to see insights
+                  </Text>
+                </YStack>
+              </GlassyCard>
+            )}
+          </XStack>
         </ScrollView>
-      </SafeAreaView>
-    </GradientBackground>
+
+        {/* Accounts */}
+        <XStack justifyContent="space-between" alignItems="center" marginBottom="$3">
+          <Text color="$color" fontSize={18} fontWeight="bold">
+            Accounts
+          </Text>
+          <Text color="$accentColor" fontSize={14} onPress={() => {}}>
+            See All
+          </Text>
+        </XStack>
+        <YStack gap="$2" marginBottom="$6">
+          {accountsLoading ? (
+            <GlassyCard>
+              <XStack padding="$3" alignItems="center" justifyContent="center">
+                <ActivityIndicator />
+              </XStack>
+            </GlassyCard>
+          ) : accounts.length === 0 ? (
+            <GlassyCard>
+              <YStack padding="$4" alignItems="center">
+                <Text fontSize={24}>🏦</Text>
+                <Text color="$secondaryText" marginTop="$2">
+                  No accounts yet
+                </Text>
+              </YStack>
+            </GlassyCard>
+          ) : (
+            accounts.map((account) => (
+              <GlassyCard key={account.id}>
+                <XStack padding="$3" alignItems="center" gap="$3">
+                  <YStack
+                    backgroundColor="$backgroundHover"
+                    width={44}
+                    height={44}
+                    borderRadius={22}
+                    alignItems="center"
+                    justifyContent="center"
+                  >
+                    <Text fontSize={20}>{account.emoji}</Text>
+                  </YStack>
+                  <YStack flex={1}>
+                    <Text color="$color" fontWeight="600">
+                      {account.name}
+                    </Text>
+                    {account.lastFour && (
+                      <Text color="$secondaryText" fontSize={12}>
+                        ····{account.lastFour}
+                      </Text>
+                    )}
+                  </YStack>
+                  <Text color="$color" fontSize={16} fontWeight="bold">
+                    {formatCurrency(account.balance / 100)}
+                  </Text>
+                </XStack>
+              </GlassyCard>
+            ))
+          )}
+        </YStack>
+
+        {/* Recent Activity */}
+        <XStack justifyContent="space-between" alignItems="center" marginBottom="$3">
+          <Text color="$color" fontSize={18} fontWeight="bold">
+            Recent Activity
+          </Text>
+          <Text
+            color="$accentColor"
+            fontSize={14}
+            onPress={() => router.push("/(tabs)/transactions")}
+          >
+            See All
+          </Text>
+        </XStack>
+        <GlassyCard>
+          <YStack>
+            {activityLoading ? (
+              <XStack padding="$4" justifyContent="center">
+                <ActivityIndicator />
+              </XStack>
+            ) : recentActivity.length === 0 ? (
+              <YStack padding="$4" alignItems="center">
+                <Text fontSize={24}>📋</Text>
+                <Text color="$secondaryText" marginTop="$2">
+                  No recent transactions
+                </Text>
+              </YStack>
+            ) : (
+              recentActivity.map((tx, index) => (
+                <XStack
+                  key={tx.id}
+                  padding="$3"
+                  alignItems="center"
+                  gap="$3"
+                  borderBottomWidth={index < recentActivity.length - 1 ? 1 : 0}
+                  borderBottomColor="$borderColor"
+                >
+                  <Avatar name={tx.name} size="md" />
+                  <YStack flex={1}>
+                    <Text color="$color" fontWeight="600">
+                      {tx.name}
+                    </Text>
+                    <Text color="$secondaryText" fontSize={12}>
+                      {formatRelativeDate(tx.date)}
+                    </Text>
+                  </YStack>
+                  <Text color={tx.amount < 0 ? "$color" : "#22c55e"} fontSize={16} fontWeight="600">
+                    {tx.amount < 0 ? "-" : "+"}
+                    {formatCurrency(Math.abs(tx.amount) / 100)}
+                  </Text>
+                </XStack>
+              ))
+            )}
+          </YStack>
+        </GlassyCard>
+      </ScrollView>
+    </YStack>
   );
 }
