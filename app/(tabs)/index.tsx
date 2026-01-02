@@ -15,7 +15,9 @@ import { Button, Text, XStack, YStack } from "tamagui";
 
 import { AlertBell } from "@/components/AlertBell";
 import { Avatar } from "@/components/Avatar";
+import { BalanceHistoryChart } from "@/components/BalanceHistoryChart";
 import { GlassyCard } from "@/components/GlassyCard";
+import { NetWorthCard } from "@/components/NetWorthCard";
 import { useAccounts } from "@/lib/hooks/use-accounts";
 import { useDashboardBlocks, useSpendingPulse } from "@/lib/hooks/use-insights";
 import { useRecentTransactions } from "@/lib/hooks/use-transactions";
@@ -100,47 +102,48 @@ export default function HomeScreen() {
           </XStack>
         </XStack>
 
-        {/* Net Worth Card - Now shows Spending Pulse */}
+        {/* Net Worth Card - Hero Section */}
+        <NetWorthCard />
+
+        {/* Spending Pulse Card */}
         <GlassyCard marginBottom="$4">
-          <YStack padding="$4" gap="$2">
-            <Text color="$secondaryText" fontSize={12} textTransform="uppercase">
+          <YStack padding="$3" gap="$2">
+            <Text color="$secondaryText" fontSize={11} textTransform="uppercase">
               This Month's Spending
             </Text>
             {pulseLoading ? (
               <ActivityIndicator />
             ) : (
               <>
-                <Text color="$color" fontSize={36} fontWeight="bold">
-                  {formatCurrency(pulse?.currentMonthSpend ?? 0)}
-                </Text>
-                <XStack alignItems="center" gap="$2">
-                  {(pulse?.spendDelta ?? 0) > 0 ? (
-                    <TrendingUp size={16} color="#ef4444" />
-                  ) : (
-                    <TrendingDown size={16} color="#22c55e" />
-                  )}
-                  <Text
-                    color={(pulse?.spendDelta ?? 0) > 0 ? "#ef4444" : "#22c55e"}
-                    fontSize={14}
-                    fontWeight="600"
-                  >
-                    {(pulse?.spendDelta ?? 0) > 0 ? "+" : ""}
-                    {formatCurrency(pulse?.spendDelta ?? 0)}
+                <XStack justifyContent="space-between" alignItems="center">
+                  <Text color="$color" fontSize={28} fontWeight="bold">
+                    {formatCurrency(pulse?.currentMonthSpend ?? 0)}
                   </Text>
-                  <Text color="$secondaryText" fontSize={14}>
-                    vs last month (day {pulse?.dayOfMonth})
-                  </Text>
+                  <XStack alignItems="center" gap="$1">
+                    {(pulse?.spendDelta ?? 0) > 0 ? (
+                      <TrendingUp size={14} color="#ef4444" />
+                    ) : (
+                      <TrendingDown size={14} color="#22c55e" />
+                    )}
+                    <Text
+                      color={(pulse?.spendDelta ?? 0) > 0 ? "#ef4444" : "#22c55e"}
+                      fontSize={12}
+                      fontWeight="600"
+                    >
+                      {(pulse?.spendDelta ?? 0) > 0 ? "+" : ""}
+                      {formatCurrency(pulse?.spendDelta ?? 0)}
+                    </Text>
+                  </XStack>
                 </XStack>
                 {pulse?.isOverPace && (
                   <XStack
                     backgroundColor="rgba(239, 68, 68, 0.15)"
-                    paddingHorizontal="$3"
-                    paddingVertical="$2"
+                    paddingHorizontal="$2"
+                    paddingVertical="$1"
                     borderRadius="$2"
-                    marginTop="$2"
                   >
-                    <Text color="#ef4444" fontSize={12}>
-                      ⚠️ {pulse.paceMessage} - {pulse.pacePercent.toFixed(0)}% of last month
+                    <Text color="#ef4444" fontSize={11}>
+                      ⚠️ {pulse.pacePercent.toFixed(0)}% of last month's pace
                     </Text>
                   </XStack>
                 )}
@@ -219,6 +222,12 @@ export default function HomeScreen() {
             )}
           </XStack>
         </ScrollView>
+
+        {/* Balance History Chart */}
+        <Text color="$color" fontSize={18} fontWeight="bold" marginBottom="$3">
+          Balance Trend
+        </Text>
+        <BalanceHistoryChart days={30} />
 
         {/* Accounts */}
         <XStack justifyContent="space-between" alignItems="center" marginBottom="$3">
