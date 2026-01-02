@@ -4,7 +4,9 @@ import { useFocusEffect, useRouter } from "expo-router";
 import React, { useCallback, useState } from "react";
 import { ScrollView } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { Button, H2, Input, Text, XStack, YStack } from "tamagui";
+import { Button, H2, Text, XStack, YStack } from "tamagui";
+
+import { Input } from "@/components/Input";
 
 import { GlassyButton } from "@/components/GlassyButton";
 import { GlassyCard } from "@/components/GlassyCard";

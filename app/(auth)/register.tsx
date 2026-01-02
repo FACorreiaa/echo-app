@@ -7,6 +7,7 @@ import { GlassyButton } from "@/components/GlassyButton";
 import { GlassyCard } from "@/components/GlassyCard";
 import { Input } from "@/components/Input";
 import { LoginSuccessAnimation } from "@/components/LoginTransition";
+import { PasswordInput } from "@/components/PasswordInput";
 import { useRegister } from "@/lib/hooks/use-auth";
 import { getFriendlyErrorMessage } from "@/lib/utils/error-messages";
 
@@ -173,14 +174,13 @@ export default function RegisterScreen() {
 
                 <YStack>
                   <Label>Password</Label>
-                  <Input
+                  <PasswordInput
                     placeholder="Min. 8 characters"
                     value={password}
                     onChangeText={(text) => {
                       setPassword(text);
                       clearError();
                     }}
-                    secureTextEntry
                     editable={!isLoading}
                     error={passwordError}
                     errorMessage={
@@ -193,14 +193,13 @@ export default function RegisterScreen() {
 
                 <YStack>
                   <Label>Confirm Password</Label>
-                  <Input
+                  <PasswordInput
                     placeholder="••••••••"
                     value={confirmPassword}
                     onChangeText={(text) => {
                       setConfirmPassword(text);
                       clearError();
                     }}
-                    secureTextEntry
                     editable={!isLoading}
                     error={confirmPasswordError}
                     errorMessage={confirmPasswordError ? "Passwords don't match" : undefined}

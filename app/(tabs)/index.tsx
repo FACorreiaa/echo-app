@@ -56,7 +56,11 @@ const getBlockEmoji = (icon: string) => {
   return iconMap[icon] || "💡";
 };
 
-const formatRelativeDate = (date: Date) => {
+const formatRelativeDate = (date: Date | undefined | null) => {
+  // Defensive check for invalid dates
+  if (!date || !(date instanceof Date) || isNaN(date.getTime())) {
+    return "Unknown";
+  }
   const now = new Date();
   const diffDays = Math.floor((now.getTime() - date.getTime()) / (1000 * 60 * 60 * 24));
   if (diffDays === 0) return "Today";

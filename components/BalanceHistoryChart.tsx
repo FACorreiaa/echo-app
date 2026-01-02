@@ -78,10 +78,16 @@ export function BalanceHistoryChart({ days = 30, accountId }: BalanceHistoryChar
     (_, i) => i % sampleRate === 0 || i === history.history.length - 1,
   );
 
+  // Safe date formatter
+  const formatDateLabel = (date: Date | undefined | null): string => {
+    if (!date || !(date instanceof Date) || isNaN(date.getTime())) {
+      return "";
+    }
+    return date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+  };
+
   const chartData = {
-    labels: sampledHistory.map((d) =>
-      d.date.toLocaleDateString("en-US", { month: "short", day: "numeric" }),
-    ),
+    labels: sampledHistory.map((d) => formatDateLabel(d.date)),
     datasets: [
       {
         data: sampledHistory.map((d) => d.balance),

@@ -7,6 +7,7 @@ import { GlassyButton } from "@/components/GlassyButton";
 import { GlassyCard } from "@/components/GlassyCard";
 import { Input } from "@/components/Input";
 import { LoginSuccessAnimation } from "@/components/LoginTransition";
+import { PasswordInput } from "@/components/PasswordInput";
 import { useLogin } from "@/lib/hooks/use-auth";
 import { getFriendlyErrorMessage } from "@/lib/utils/error-messages";
 
@@ -134,14 +135,13 @@ export default function LoginScreen() {
 
                 <YStack>
                   <Label>Password</Label>
-                  <Input
+                  <PasswordInput
                     placeholder="••••••••"
                     value={password}
                     onChangeText={(text) => {
                       setPassword(text);
                       if (error) setError("");
                     }}
-                    secureTextEntry
                     editable={!isLoading}
                     error={passwordError}
                   />
