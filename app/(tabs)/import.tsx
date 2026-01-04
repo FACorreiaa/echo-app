@@ -11,10 +11,13 @@ import { Input } from "@/components/Input";
 import { GlassyButton } from "@/components/GlassyButton";
 import { GlassyCard } from "@/components/GlassyCard";
 import { ImportProgress } from "@/components/import/ImportProgress";
+import { ImportSuccessSummary } from "@/components/import/ImportSuccessSummary";
+import { IngestionPulse } from "@/components/import/IngestionPulse";
 import { MappingWizard } from "@/components/import/MappingWizard";
 import {
   analyzeFileLocally,
   useAnalyzeCsvFile,
+  useAnalyzeFile,
   useImportTransactions,
   type ColumnMapping,
   type FileAnalysis,
@@ -66,9 +69,12 @@ export default function ImportScreen() {
   const insets = useSafeAreaInsets();
   const importMutation = useImportTransactions();
   const analyzeMutation = useAnalyzeCsvFile();
+  const analyzeFileMutation = useAnalyzeFile();
 
-  // State
-  const [step, setStep] = useState<"upload" | "mapping" | "importing" | "result">("upload");
+  // State - includes new 'analyzing' step for IngestionPulse
+  const [step, setStep] = useState<"upload" | "analyzing" | "mapping" | "importing" | "result">(
+    "upload",
+  );
   const [analysis, setAnalysis] = useState<FileAnalysis | null>(null);
   const [fileBytes, setFileBytes] = useState<Uint8Array | null>(null);
   const [_mapping, setMapping] = useState<ColumnMapping | null>(null);
@@ -105,20 +111,60 @@ export default function ImportScreen() {
   const handleSelectFile = async () => {
     try {
       const result = await DocumentPicker.getDocumentAsync({
-        type: ["text/csv", "text/tab-separated-values", "application/vnd.ms-excel", "text/plain"],
+        // Support CSV, TSV, and Excel files
+        type: [
+          "text/csv",
+          "text/tab-separated-values",
+          "application/vnd.ms-excel",
+          "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+          "text/plain",
+        ],
         copyToCacheDirectory: true,
       });
 
       if (result.canceled) return;
 
       const file = result.assets[0];
-      setStep("upload"); // Show uploading state if we had one
+      setStep("analyzing"); // Show IngestionPulse while analyzing
 
       // Read file content for analysis
       const bytes = await uriToBytes(file.uri);
       setFileBytes(bytes);
 
-      // Try backend analysis first, fallback to local
+      // Try smart analysis with routing hint
+      try {
+        const analysisResult = await analyzeFileMutation.mutateAsync({
+          fileBytes: bytes,
+          fileName: file.name || "file",
+          mimeType: file.mimeType || "",
+        });
+
+        console.log("File analysis result:", analysisResult.routingHint, analysisResult.fileType);
+
+        // Route to planning if detected as budget/planning sheet
+        if (analysisResult.routingHint === "planning") {
+          console.log("Routing to Planning tab - detected budget sheet");
+          router.push({
+            pathname: "/(tabs)/planning",
+            params: {
+              fromImport: "true",
+              categories: JSON.stringify(analysisResult.planAnalysis?.detectedCategories || []),
+            },
+          });
+          return;
+        }
+
+        // Use CSV analysis for transaction import
+        if (analysisResult.csvAnalysis) {
+          setAnalysis(analysisResult.csvAnalysis);
+          setStep("mapping");
+          return;
+        }
+      } catch (smartAnalysisError) {
+        console.log("Smart analysis failed, falling back to CSV analysis:", smartAnalysisError);
+      }
+
+      // Fallback: try CSV-specific backend analysis
       let resultAnalysis: FileAnalysis;
       try {
         resultAnalysis = await analyzeMutation.mutateAsync(bytes);
@@ -133,7 +179,7 @@ export default function ImportScreen() {
       setStep("mapping");
     } catch (err) {
       console.error("File selection error:", err);
-      // Show error toast
+      setStep("upload"); // Reset on error
     }
   };
 
@@ -247,10 +293,10 @@ export default function ImportScreen() {
                   </YStack>
                   <YStack alignItems="center" gap="$1">
                     <Text color="$color" fontSize={18} fontWeight="bold">
-                      Upload CSV / TSV
+                      Upload CSV, TSV, or Excel
                     </Text>
                     <Text color="$secondaryText" textAlign="center">
-                      Select a bank statement file from your device.
+                      Select a bank statement or budget file.
                     </Text>
                   </YStack>
                   <GlassyButton onPress={handleSelectFile} marginTop="$2">
@@ -287,6 +333,13 @@ export default function ImportScreen() {
                   )}
                 </XStack>
               </YStack>
+            </YStack>
+          )}
+
+          {/* Analyzing state with IngestionPulse */}
+          {step === "analyzing" && (
+            <YStack flex={1} minHeight={300}>
+              <IngestionPulse />
             </YStack>
           )}
 
@@ -344,20 +397,34 @@ export default function ImportScreen() {
           )}
 
           {/* Combined Importing / Result view */}
-          {(step === "importing" || step === "result") && (
+          {step === "importing" && (
             <YStack gap="$4">
               <ImportProgress
-                status={
-                  step === "importing" ? "importing" : importStats.error ? "error" : "success"
-                }
-                rowsTotal={importStats.total || (analysis?.sampleRows.length ?? 0) + 12} // Fake total for now
+                status="importing"
+                rowsTotal={importStats.total || (analysis?.sampleRows.length ?? 0) + 12}
                 rowsImported={importStats.imported}
                 rowsFailed={importStats.failed}
-                errorMessage={importStats.error}
               />
-
-              {step === "result" && <GlassyButton onPress={handleDone}>Done</GlassyButton>}
             </YStack>
+          )}
+
+          {/* Success view with ImportSuccessSummary */}
+          {step === "result" && (
+            <>
+              {importStats.error ? (
+                <YStack gap="$4">
+                  <ImportProgress status="error" errorMessage={importStats.error} />
+                  <GlassyButton onPress={handleCancel}>Try Again</GlassyButton>
+                </YStack>
+              ) : (
+                <ImportSuccessSummary
+                  count={importStats.imported}
+                  totalMinor={0} // TODO: Calculate from actual transactions
+                  duplicates={importStats.duplicates}
+                  onDone={handleDone}
+                />
+              )}
+            </>
           )}
         </YStack>
       </ScrollView>

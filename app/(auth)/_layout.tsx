@@ -1,10 +1,9 @@
-import { Stack } from "expo-router";
+import { Stack, useRouter } from "expo-router";
 import { GradientBackground } from "@/components/GradientBackground";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { XStack } from "tamagui";
 import { TouchableOpacity } from "react-native";
-import { useRouter } from "expo-router";
 import { ArrowLeft } from "@tamagui/lucide-icons";
 import { useTheme } from "@/contexts/ThemeContext";
 

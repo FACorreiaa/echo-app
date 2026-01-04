@@ -146,6 +146,118 @@ export function useAnalyzeCsvFile() {
   });
 }
 
+/** Routing hint returned by AnalyzeFile */
+export type RoutingHint = "transactions" | "planning";
+
+/** Result of unified file analysis with routing hint */
+export interface AnalyzeFileResult {
+  routingHint: RoutingHint;
+  fileType: "csv" | "xlsx";
+  csvAnalysis?: FileAnalysis;
+  planAnalysis?: {
+    sheets: Array<{
+      name: string;
+      rowCount: number;
+      columnCount: number;
+      formulaCount: number;
+      isLivingPlan: boolean;
+      detectedCategories: string[];
+      monthColumns: string[];
+    }>;
+    suggestedSheet: string;
+    detectedCategories: string[];
+    formulaCount: number;
+    isLivingPlan: boolean;
+  };
+  errorMessage?: string;
+}
+
+/**
+ * Hook for analyzing any file (CSV/TSV/XLSX) with smart routing
+ */
+export function useAnalyzeFile() {
+  return useMutation({
+    mutationFn: async ({
+      fileBytes,
+      fileName,
+      mimeType,
+    }: {
+      fileBytes: Uint8Array;
+      fileName: string;
+      mimeType: string;
+    }): Promise<AnalyzeFileResult> => {
+      const response = await importClient.analyzeFile({ fileBytes, fileName, mimeType });
+
+      // Convert routing hint enum to string
+      const routingHint: RoutingHint = response.routingHint === 2 ? "planning" : "transactions";
+
+      // Convert file type enum to string
+      const fileType: "csv" | "xlsx" = response.fileType === 2 ? "xlsx" : "csv";
+
+      // Build result
+      const result: AnalyzeFileResult = {
+        routingHint,
+        fileType,
+        errorMessage: response.errorMessage || undefined,
+      };
+
+      // If CSV analysis is present
+      if (response.csvAnalysis) {
+        const csv = response.csvAnalysis;
+        const sampleRows: string[][] = (csv.sampleRows ?? []).map(
+          (row: { cells?: string[] }) => row.cells ?? [],
+        );
+
+        result.csvAnalysis = {
+          headers: csv.headers ?? [],
+          sampleRows,
+          delimiter: csv.delimiter ?? ",",
+          skipLines: csv.skipLines ?? 0,
+          fingerprint: csv.fingerprint ?? "",
+          suggestions: {
+            dateCol: csv.suggestions?.dateCol ?? -1,
+            descCol: csv.suggestions?.descCol ?? -1,
+            amountCol: csv.suggestions?.amountCol ?? -1,
+            debitCol: csv.suggestions?.debitCol ?? -1,
+            creditCol: csv.suggestions?.creditCol ?? -1,
+            categoryCol: csv.suggestions?.categoryCol ?? -1,
+            isDoubleEntry: csv.suggestions?.isDoubleEntry ?? false,
+          },
+          probedDialect: {
+            isEuropeanFormat: csv.probedDialect?.isEuropeanFormat ?? false,
+            dateFormat: csv.probedDialect?.dateFormat ?? "DD/MM/YYYY",
+            confidence: csv.probedDialect?.confidence ?? 0.5,
+          },
+          mappingFound: csv.mappingFound ?? false,
+          canAutoImport: csv.canAutoImport ?? false,
+        };
+      }
+
+      // If plan analysis is present
+      if (response.planAnalysis) {
+        const plan = response.planAnalysis;
+        result.planAnalysis = {
+          sheets: (plan.sheets ?? []).map((s: any) => ({
+            name: s.name ?? "",
+            rowCount: s.rowCount ?? 0,
+            columnCount: s.columnCount ?? 0,
+            formulaCount: s.formulaCount ?? 0,
+            isLivingPlan: s.isLivingPlan ?? false,
+            detectedCategories: s.detectedCategories ?? [],
+            monthColumns: s.monthColumns ?? [],
+          })),
+          suggestedSheet: plan.suggestedSheet ?? "",
+          detectedCategories: plan.detectedCategories ?? [],
+          formulaCount: plan.formulaCount ?? 0,
+          isLivingPlan: plan.isLivingPlan ?? false,
+        };
+      }
+
+      return result;
+    },
+  });
+}
+
 /**
  * Client-side file analyzer (basic preview without backend call)
  * For a complete analysis, you'd call a backend endpoint

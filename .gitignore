@@ -45,3 +45,4 @@ app-example
 .DS_Store
 .vscode/
 .idea/
+docs/design

@@ -1,10 +1,13 @@
-import { Plus } from "@tamagui/lucide-icons";
-import React, { useState } from "react";
-import { ScrollView } from "react-native";
+import { ArrowLeft, FileSpreadsheet, Plus } from "@tamagui/lucide-icons";
+import { useLocalSearchParams } from "expo-router";
+import React, { useEffect, useState } from "react";
+import { ActivityIndicator, Pressable, ScrollView } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Button, H2, Progress, Text, XStack, YStack } from "tamagui";
 
 import { GlassyCard } from "@/components/GlassyCard";
+import { CreatePlanSheet, PlanCard, PlanDashboard } from "@/components/plan";
+import { usePlans, useSetActivePlan, type UserPlan } from "@/lib/hooks/use-plans";
 
 // Mock data - replace with real API data
 const mockGoals = [
@@ -51,11 +54,31 @@ const mockRecurring = [
   { id: "3", name: "Gym", amount: 49.99, nextDate: "Jan 1", emoji: "💪" },
 ];
 
-type TabType = "goals" | "budgets" | "recurring";
+type TabType = "plans" | "goals" | "budgets" | "recurring";
 
 export default function PlanningScreen() {
   const insets = useSafeAreaInsets();
-  const [activeTab, setActiveTab] = useState<TabType>("goals");
+  const [activeTab, setActiveTab] = useState<TabType>("plans");
+  const [createSheetOpen, setCreateSheetOpen] = useState(false);
+  const [selectedPlan, setSelectedPlan] = useState<UserPlan | null>(null);
+
+  // Params from import flow
+  const params = useLocalSearchParams();
+  const fromImport = params.fromImport === "true";
+  const importedCategories = params.categories
+    ? JSON.parse(params.categories as string)
+    : undefined;
+
+  // Auto-open create sheet if coming from import
+  useEffect(() => {
+    if (fromImport) {
+      setCreateSheetOpen(true);
+    }
+  }, [fromImport]);
+
+  // Plans from API
+  const { data: plans, isLoading: plansLoading, error: plansError } = usePlans();
+  const setActivePlan = useSetActivePlan();
 
   const renderGoals = () => (
     <YStack gap="$4">
@@ -208,6 +231,93 @@ export default function PlanningScreen() {
     </YStack>
   );
 
+  const renderPlans = () => (
+    <YStack gap="$4">
+      <Text color="$color" fontSize={18} fontWeight="bold">
+        Financial Plans
+      </Text>
+
+      {plansLoading && (
+        <YStack alignItems="center" padding="$6">
+          <ActivityIndicator color="#6366F1" />
+          <Text color="$secondaryText" marginTop="$2">
+            Loading plans...
+          </Text>
+        </YStack>
+      )}
+
+      {plansError && (
+        <GlassyCard>
+          <YStack padding="$4" alignItems="center">
+            <Text color="#ef4444">Failed to load plans</Text>
+            <Text color="$secondaryText" fontSize={12}>
+              {plansError instanceof Error ? plansError.message : "Unknown error"}
+            </Text>
+          </YStack>
+        </GlassyCard>
+      )}
+
+      {plans && plans.length === 0 && !plansLoading && (
+        <GlassyCard>
+          <YStack padding="$6" alignItems="center" gap="$3">
+            <FileSpreadsheet size={48} color="$secondaryText" />
+            <Text color="$color" fontWeight="600">
+              No plans yet
+            </Text>
+            <Text color="$secondaryText" textAlign="center">
+              Create a manual plan or import from Excel to get started.
+            </Text>
+          </YStack>
+        </GlassyCard>
+      )}
+
+      {plans?.map((plan) => (
+        <PlanCard
+          key={plan.id}
+          plan={plan}
+          onPress={() => {
+            setSelectedPlan(plan);
+          }}
+          onSetActive={plan.status !== "active" ? () => setActivePlan.mutate(plan.id) : undefined}
+        />
+      ))}
+    </YStack>
+  );
+
+  // If a plan is selected, show the dashboard detail view
+  if (selectedPlan) {
+    return (
+      <YStack flex={1} backgroundColor="$background" paddingTop={insets.top}>
+        {/* Back Header */}
+        <XStack
+          padding="$4"
+          alignItems="center"
+          gap="$3"
+          borderBottomWidth={1}
+          borderBottomColor="$borderColor"
+        >
+          <Pressable onPress={() => setSelectedPlan(null)}>
+            <XStack alignItems="center" gap="$2">
+              <ArrowLeft size={20} color="$accentColor" />
+              <Text color="$accentColor" fontSize={14}>
+                Plans
+              </Text>
+            </XStack>
+          </Pressable>
+        </XStack>
+
+        {/* Plan Dashboard */}
+        <PlanDashboard
+          plan={selectedPlan}
+          categoryGroups={selectedPlan.categoryGroups}
+          onCategoryPress={(groupId: string) => {
+            console.log("Category pressed:", groupId);
+          }}
+        />
+      </YStack>
+    );
+  }
+
   return (
     <YStack flex={1} backgroundColor="$background" paddingTop={insets.top}>
       <ScrollView contentContainerStyle={{ flexGrow: 1, padding: 20 }}>
@@ -221,12 +331,13 @@ export default function PlanningScreen() {
             circular
             backgroundColor="$accentColor"
             icon={<Plus size={20} color="white" />}
+            onPress={() => setCreateSheetOpen(true)}
           />
         </XStack>
 
         {/* Segment Control */}
         <XStack backgroundColor="$backgroundHover" borderRadius="$4" padding="$1" marginBottom="$6">
-          {(["goals", "budgets", "recurring"] as TabType[]).map((tab) => (
+          {(["plans", "goals", "budgets", "recurring"] as TabType[]).map((tab) => (
             <Button
               key={tab}
               flex={1}
@@ -242,10 +353,19 @@ export default function PlanningScreen() {
         </XStack>
 
         {/* Tab Content */}
+        {activeTab === "plans" && renderPlans()}
         {activeTab === "goals" && renderGoals()}
         {activeTab === "budgets" && renderBudgets()}
         {activeTab === "recurring" && renderRecurring()}
       </ScrollView>
+
+      {/* Create Plan Sheet */}
+      {/* Create Plan Sheet */}
+      <CreatePlanSheet
+        open={createSheetOpen}
+        onOpenChange={setCreateSheetOpen}
+        initialCategories={importedCategories}
+      />
     </YStack>
   );
 }

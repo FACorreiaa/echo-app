@@ -7,6 +7,7 @@ import { BalanceService } from "@buf/echo-tracker_echo.bufbuild_es/echo/v1/balan
 import { FinanceService } from "@buf/echo-tracker_echo.bufbuild_es/echo/v1/finance_pb";
 import { ImportService } from "@buf/echo-tracker_echo.bufbuild_es/echo/v1/imports_pb";
 import { InsightsService } from "@buf/echo-tracker_echo.bufbuild_es/echo/v1/insights_pb";
+import { PlanService } from "@buf/echo-tracker_echo.bufbuild_es/echo/v1/plan_pb";
 import { ConnectError, createClient, type Client } from "@connectrpc/connect";
 import { createConnectTransport } from "@connectrpc/connect-web";
 import { getAccessToken } from "../storage/token-storage";
@@ -35,6 +36,7 @@ export const insightsClient: Client<typeof InsightsService> = createClient(
   transport,
 );
 export const balanceClient: Client<typeof BalanceService> = createClient(BalanceService, transport);
+export const planClient: Client<typeof PlanService> = createClient(PlanService, transport);
 
 // Re-export Connect error for catch blocks
 export { ConnectError };
