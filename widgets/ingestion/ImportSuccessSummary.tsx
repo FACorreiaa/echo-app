@@ -2,7 +2,7 @@ import { ArrowUpRight, Calendar, Check, Layers, Shield } from "@tamagui/lucide-i
 import React from "react";
 import { Button, Circle, H3, Separator, Text, XStack, YStack } from "tamagui";
 
-import { GlassyCard } from "@/components/GlassyCard";
+import { GlassyCard } from "@/components/ui/GlassyCard";
 
 interface ImportSuccessSummaryProps {
   /** Number of transactions imported */

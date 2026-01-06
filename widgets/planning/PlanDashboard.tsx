@@ -11,7 +11,7 @@ import React from "react";
 import { ScrollView } from "react-native";
 import { Text, XStack, YStack } from "tamagui";
 
-import { GlassyCard } from "@/components/GlassyCard";
+import { GlassyCard } from "@/components/ui/GlassyCard";
 import type { PlanCategoryGroup, UserPlan } from "@/lib/hooks/use-plans";
 
 import { CategoryDetailCard, type CategoryDetailData } from "./CategoryDetailCard";

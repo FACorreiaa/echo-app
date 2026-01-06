@@ -4,7 +4,7 @@ import { LineChart } from "react-native-chart-kit";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { H2, Text, XStack, YStack, useTheme } from "tamagui";
 
-import { GlassyCard } from "@/components/GlassyCard";
+import { GlassyCard } from "@/components/ui/GlassyCard";
 
 // Mock data - replace with real API data
 const mockSpending = {

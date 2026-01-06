@@ -9,7 +9,7 @@ import React from "react";
 import { StyleSheet } from "react-native";
 import { Text, XStack, YStack } from "tamagui";
 
-import { GlassyCard } from "@/components/GlassyCard";
+import { GlassyCard } from "@/components/ui/GlassyCard";
 
 interface PacingMeterProps {
   /** Current month spending */
@@ -151,3 +151,6 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
 });
+
+// Alias for widget export
+export { PacingMeter as PacingWidget };

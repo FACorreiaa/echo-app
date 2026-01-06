@@ -17,7 +17,7 @@ import * as SplashScreen from "expo-splash-screen";
 import { useEffect, useState } from "react";
 import { TamaguiProvider } from "tamagui";
 
-import { EchoSplashScreen } from "@/components/EchoSplashScreen";
+import { EchoSplashScreen } from "@/components";
 import { ThemeProvider as AppThemeProvider, useTheme } from "@/contexts/ThemeContext";
 import { persistOptions, queryClient } from "@/lib/query/query-client";
 import tamaguiConfig from "../tamagui.config";

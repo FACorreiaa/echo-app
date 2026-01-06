@@ -147,3 +147,6 @@ const styles = StyleSheet.create({
     borderRadius: 4,
   },
 });
+
+// Alias for widget export
+export { EchoSplashScreen as SplashWidget };

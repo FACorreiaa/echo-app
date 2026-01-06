@@ -4,7 +4,7 @@ import { ActivityIndicator, ScrollView } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Button, H2, Text, XStack, YStack } from "tamagui";
 
-import { GlassyCard } from "@/components/GlassyCard";
+import { GlassyCard } from "@/components";
 import { useWrapped } from "@/lib/hooks/use-wrapped";
 
 type TabType = "saver" | "networth";

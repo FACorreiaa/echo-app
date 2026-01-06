@@ -4,7 +4,7 @@ import { StyleSheet, View } from "react-native";
 import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
 import { Spinner, Text, YStack } from "tamagui";
 
-import { GlassyCard } from "@/components/GlassyCard";
+import { GlassyCard } from "@/components/ui/GlassyCard";
 
 interface ImportProgressProps {
   status: "idle" | "uploading" | "analyzing" | "importing" | "success" | "error";

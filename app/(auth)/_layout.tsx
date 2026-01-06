@@ -1,11 +1,10 @@
+import { GradientBackground, ThemeToggle } from "@/components";
+import { useTheme } from "@/contexts/ThemeContext";
+import { ArrowLeft } from "@tamagui/lucide-icons";
 import { Stack, useRouter } from "expo-router";
-import { GradientBackground } from "@/components/GradientBackground";
-import { ThemeToggle } from "@/components/ThemeToggle";
+import { TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { XStack } from "tamagui";
-import { TouchableOpacity } from "react-native";
-import { ArrowLeft } from "@tamagui/lucide-icons";
-import { useTheme } from "@/contexts/ThemeContext";
 
 export default function AuthLayout() {
   const router = useRouter();

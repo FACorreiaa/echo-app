@@ -15,8 +15,8 @@ import {
   YStack,
 } from "tamagui";
 
-import { GlassyButton } from "@/components/GlassyButton";
-import { GlassyCard } from "@/components/GlassyCard";
+import { GlassyButton } from "@/components/ui/GlassyButton";
+import { GlassyCard } from "@/components/ui/GlassyCard";
 import type { ColumnMapping, FileAnalysis } from "@/lib/hooks/use-import";
 
 interface MappingWizardProps {

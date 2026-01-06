@@ -9,7 +9,7 @@
 import React from "react";
 import { Progress, Text, XStack, YStack } from "tamagui";
 
-import { GlassyCard } from "@/components/GlassyCard";
+import { GlassyCard } from "@/components/ui/GlassyCard";
 
 // Types
 export interface BudgetPillar {

@@ -62,10 +62,10 @@ const getInitials = (name: string): string => {
 
 export type AvatarProps = GetProps<typeof AvatarFrame> & {
   name: string;
-  imageUrl?: string;
+  _imageUrl?: string;
 };
 
-export const Avatar = ({ name, imageUrl, size = "md", ...props }: AvatarProps) => {
+export const Avatar = ({ name, _imageUrl, size = "md", ...props }: AvatarProps) => {
   const bgColor = stringToColor(name);
   const initials = getInitials(name);
 

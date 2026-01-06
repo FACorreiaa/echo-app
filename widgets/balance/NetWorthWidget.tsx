@@ -14,7 +14,7 @@ import React from "react";
 import { ActivityIndicator } from "react-native";
 import { Progress, Text, XStack, YStack } from "tamagui";
 
-import { GlassyCard } from "@/components/GlassyCard";
+import { GlassyCard } from "@/components/ui/GlassyCard";
 import { useBalance } from "@/lib/hooks/use-balance";
 
 // Format currency
@@ -239,3 +239,6 @@ export function NetWorthCard({ accountId }: NetWorthCardProps) {
     </GlassyCard>
   );
 }
+
+// Alias for widget export
+export { NetWorthCard as NetWorthWidget };

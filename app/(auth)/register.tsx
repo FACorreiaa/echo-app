@@ -3,11 +3,13 @@ import { useState } from "react";
 import { KeyboardAvoidingView, Platform } from "react-native";
 import { ScrollView, styled, Text, XStack, YStack } from "tamagui";
 
-import { GlassyButton } from "@/components/GlassyButton";
-import { GlassyCard } from "@/components/GlassyCard";
-import { Input } from "@/components/Input";
-import { LoginSuccessAnimation } from "@/components/LoginTransition";
-import { PasswordInput } from "@/components/PasswordInput";
+import {
+  GlassyButton,
+  GlassyCard,
+  Input,
+  LoginTransition as LoginSuccessAnimation,
+  PasswordInput,
+} from "@/components";
 import { useRegister } from "@/lib/hooks/use-auth";
 import { getFriendlyErrorMessage } from "@/lib/utils/error-messages";
 

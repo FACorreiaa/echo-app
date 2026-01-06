@@ -10,7 +10,7 @@ import React, { useCallback, useState } from "react";
 import { Keyboard } from "react-native";
 import { Button, Input, Text, XStack, YStack } from "tamagui";
 
-import { GlassyCard } from "@/components/GlassyCard";
+import { GlassyCard } from "@/components/ui/GlassyCard";
 import { useQuickCapture } from "@/lib/hooks/use-quick-capture";
 
 // Simple client-side amount parser for preview
@@ -185,3 +185,6 @@ export function QuickCapture({ onSuccess, onClose }: QuickCaptureProps) {
     </GlassyCard>
   );
 }
+
+// Alias for widget export
+export { QuickCapture as QuickCaptureWidget };

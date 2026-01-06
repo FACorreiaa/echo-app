@@ -5,9 +5,9 @@ import { ActivityIndicator, Alert, Pressable, ScrollView } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Button, H2, Progress, Text, XStack, YStack } from "tamagui";
 
-import { GlassyCard } from "@/components/GlassyCard";
-import { CreatePlanSheet, PlanCard, PlanDashboard } from "@/components/plan";
+import { GlassyCard } from "@/components";
 import { useDeletePlan, usePlans, useSetActivePlan, type UserPlan } from "@/lib/hooks/use-plans";
+import { CreatePlanSheet, PlanCard, PlanDashboard } from "@/widgets/planning";
 
 // Mock data - replace with real API data
 const mockGoals = [

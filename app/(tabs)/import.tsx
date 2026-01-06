@@ -6,14 +6,7 @@ import { ScrollView } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Button, H2, Text, XStack, YStack } from "tamagui";
 
-import { Input } from "@/components/Input";
-
-import { GlassyButton } from "@/components/GlassyButton";
-import { GlassyCard } from "@/components/GlassyCard";
-import { ImportProgress } from "@/components/import/ImportProgress";
-import { ImportSuccessSummary } from "@/components/import/ImportSuccessSummary";
-import { IngestionPulse } from "@/components/import/IngestionPulse";
-import { MappingWizard } from "@/components/import/MappingWizard";
+import { GlassyButton, GlassyCard, Input } from "@/components";
 import {
   analyzeFileLocally,
   useAnalyzeCsvFile,
@@ -22,6 +15,12 @@ import {
   type ColumnMapping,
   type FileAnalysis,
 } from "@/lib/hooks/use-import";
+import {
+  ImportProgress,
+  ImportSuccessSummary,
+  IngestionPulse,
+  MappingWizard,
+} from "@/widgets/ingestion";
 
 // Helper to convert URI to bytes (simple version for Expo)
 const uriToBytes = async (uri: string): Promise<Uint8Array> => {
@@ -77,7 +76,7 @@ export default function ImportScreen() {
   );
   const [analysis, setAnalysis] = useState<FileAnalysis | null>(null);
   const [fileBytes, setFileBytes] = useState<Uint8Array | null>(null);
-  const [_mapping, setMapping] = useState<ColumnMapping | null>(null);
+  const [, setMapping] = useState<ColumnMapping | null>(null);
   const [bankName, setBankName] = useState("");
   const [importStats, setImportStats] = useState({
     total: 0,

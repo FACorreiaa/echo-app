@@ -2,7 +2,7 @@
  * Tests for the MappingWizard component
  */
 
-import { MappingWizard } from "@/components/import/MappingWizard";
+import { MappingWizard } from "@/widgets/ingestion/MappingWizard";
 import type { FileAnalysis } from "@/lib/hooks/use-import";
 import { fireEvent, render, screen } from "./test-utils";
 

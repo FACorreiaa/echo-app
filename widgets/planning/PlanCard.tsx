@@ -7,7 +7,7 @@ import React from "react";
 import { Pressable } from "react-native";
 import { Progress, Text, XStack, YStack } from "tamagui";
 
-import { GlassyCard } from "@/components/GlassyCard";
+import { GlassyCard } from "@/components/ui/GlassyCard";
 import type { UserPlan } from "@/lib/hooks/use-plans";
 import { formatMoney } from "@/lib/hooks/use-plans";
 

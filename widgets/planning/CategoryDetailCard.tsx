@@ -8,7 +8,7 @@ import React, { useState } from "react";
 import { Pressable } from "react-native";
 import { Progress, Text, XStack, YStack } from "tamagui";
 
-import { GlassyCard } from "@/components/GlassyCard";
+import { GlassyCard } from "@/components/ui/GlassyCard";
 
 // Types
 export interface BudgetItem {

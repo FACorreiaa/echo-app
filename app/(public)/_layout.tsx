@@ -1,5 +1,5 @@
-import { GradientBackground } from "@/components/GradientBackground";
-import { ThemeToggle } from "@/components/ThemeToggle";
+import { GradientBackground } from "@/components/animations/GradientBackground";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { Menu, X } from "@tamagui/lucide-icons";
 import { Link, Slot, usePathname } from "expo-router";
 import type { Route } from "expo-router";

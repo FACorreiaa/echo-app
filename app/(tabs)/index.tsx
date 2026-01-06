@@ -5,18 +5,20 @@ import { ActivityIndicator, Modal, ScrollView } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Button, Text, XStack, YStack } from "tamagui";
 
-import { AlertBell } from "@/components/AlertBell";
-import { Avatar } from "@/components/Avatar";
-import { BalanceHistoryChart } from "@/components/BalanceHistoryChart";
-import { BentoCard, HookCard, InboxBadge, WhatIfSlider } from "@/components/bento";
-import { GlassyCard } from "@/components/GlassyCard";
-import { NetWorthCard } from "@/components/NetWorthCard";
-import { PacingMeter } from "@/components/PacingMeter";
-import { QuickCapture } from "@/components/QuickCapture";
+import {
+  AlertBell,
+  Avatar,
+  BalanceHistoryChart,
+  GlassyCard,
+  NetWorthCard,
+  PacingMeter,
+  QuickCapture,
+} from "@/components";
 import { useAccounts } from "@/lib/hooks/use-accounts";
 import { useDashboardBlocks, useSpendingPulse } from "@/lib/hooks/use-insights";
 import { useRecentTransactions } from "@/lib/hooks/use-transactions";
 import { useAuthStore } from "@/lib/stores/auth-store";
+import { BentoCard, HookCard, InboxBadge, WhatIfSlider } from "@/widgets/bento";
 
 // Format currency (moved outside component to avoid recreation)
 const formatCurrency = (amount: number) => {

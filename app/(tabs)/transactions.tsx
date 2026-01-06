@@ -13,7 +13,7 @@ import { Alert, FlatList, Pressable } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Button, H2, Input, Spinner, Text, XStack, YStack } from "tamagui";
 
-import { GlassyCard } from "@/components/GlassyCard";
+import { GlassyCard } from "@/components";
 import { RememberThisModal } from "@/components/RememberThisModal";
 import { useDeleteImportBatch, useFlatTransactions } from "@/lib/hooks/use-transactions";
 
@@ -51,15 +51,8 @@ export default function TransactionsScreen() {
   const deleteMutation = useDeleteImportBatch();
 
   // Use real API data with infinite query, filtered by import if staging
-  const {
-    transactions,
-    isLoading,
-    fetchNextPage,
-    hasNextPage,
-    isFetchingNextPage,
-    error,
-    refetch: _refetch,
-  } = useFlatTransactions(isStaging ? { importJobId } : undefined);
+  const { transactions, isLoading, fetchNextPage, hasNextPage, isFetchingNextPage, error } =
+    useFlatTransactions(isStaging ? { importJobId } : undefined);
 
   // Filter transactions by search query (client-side for now)
   const filteredTransactions = useMemo(() => {

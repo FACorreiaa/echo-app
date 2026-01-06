@@ -48,7 +48,7 @@ export const LoginSuccessAnimation = ({
         }
       });
     }
-  }, [isAnimating]);
+  }, [isAnimating, onAnimationComplete, opacity, progress, scale]);
 
   const containerStyle = useAnimatedStyle(() => ({
     opacity: opacity.value,

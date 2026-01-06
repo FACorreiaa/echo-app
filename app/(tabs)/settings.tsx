@@ -17,11 +17,8 @@ import { useRouter } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ScrollView, styled, Text, XStack, YStack } from "tamagui";
 
-import { Avatar } from "@/components/Avatar";
-import { GlassyCard } from "@/components/GlassyCard";
-import { GradientBackground } from "@/components/GradientBackground";
+import { Avatar, GlassyCard, GradientBackground, ThemeToggle } from "@/components";
 import { ListItem } from "@/components/ListItem";
-import { ThemeToggle } from "@/components/ThemeToggle";
 import { useAuthStore } from "@/lib/stores/auth-store";
 
 const UserName = styled(Text, {
@@ -127,7 +124,7 @@ export default function SettingsScreen() {
               borderColor="$borderColor"
               overflow="hidden"
             >
-              {menuItems.main.map((item, index) => (
+              {menuItems.main.map((item, _index) => (
                 <ListItem
                   key={item.label}
                   title={item.label}

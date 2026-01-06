@@ -12,7 +12,7 @@ import { ActivityIndicator, Dimensions } from "react-native";
 import { LineChart } from "react-native-chart-kit";
 import { Text, XStack, YStack } from "tamagui";
 
-import { GlassyCard } from "@/components/GlassyCard";
+import { GlassyCard } from "@/components/ui/GlassyCard";
 import { useBalanceHistory } from "@/lib/hooks/use-balance";
 
 const screenWidth = Dimensions.get("window").width;
@@ -39,6 +39,14 @@ interface BalanceHistoryChartProps {
   days?: number;
   accountId?: string;
 }
+
+// Safe date formatter - moved outside component to avoid recreation on every render
+const formatDateLabel = (date: Date | undefined | null): string => {
+  if (!date || !(date instanceof Date) || isNaN(date.getTime())) {
+    return "";
+  }
+  return date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+};
 
 export function BalanceHistoryChart({ days = 30, accountId }: BalanceHistoryChartProps) {
   const { data: history, isLoading, isError } = useBalanceHistory(days, accountId);
@@ -77,14 +85,6 @@ export function BalanceHistoryChart({ days = 30, accountId }: BalanceHistoryChar
   const sampledHistory = history.history.filter(
     (_, i) => i % sampleRate === 0 || i === history.history.length - 1,
   );
-
-  // Safe date formatter
-  const formatDateLabel = (date: Date | undefined | null): string => {
-    if (!date || !(date instanceof Date) || isNaN(date.getTime())) {
-      return "";
-    }
-    return date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
-  };
 
   const chartData = {
     labels: sampledHistory.map((d) => formatDateLabel(d.date)),
@@ -207,3 +207,6 @@ export function BalanceHistoryChart({ days = 30, accountId }: BalanceHistoryChar
     </GlassyCard>
   );
 }
+
+// Alias for widget export
+export { BalanceHistoryChart as BalanceHistoryWidget };

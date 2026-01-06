@@ -2,7 +2,7 @@
  * Tests for the ImportProgress component
  */
 
-import { ImportProgress } from "@/components/import/ImportProgress";
+import { ImportProgress } from "@/widgets/ingestion/ImportProgress";
 import { render, screen } from "./test-utils";
 
 describe("<ImportProgress />", () => {

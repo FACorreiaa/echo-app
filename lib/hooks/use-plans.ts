@@ -293,6 +293,15 @@ export function useDuplicatePlan() {
 // Excel Flow Types
 // ============================================================================
 
+// Auto-detected column mapping from Excel analysis
+export interface DetectedColumnMapping {
+  categoryColumn: string; // Detected column for categories (e.g., "A")
+  valueColumn: string; // Detected column for values (e.g., "C")
+  headerRow: number; // Detected header row (1-indexed)
+  percentageColumn?: string; // Detected column for percentages (optional)
+  confidence: number; // Detection confidence 0-1 (0.9+ = high confidence)
+}
+
 export interface ExcelSheetInfo {
   name: string;
   isLivingPlan: boolean; // Has formulas
@@ -300,6 +309,7 @@ export interface ExcelSheetInfo {
   formulaCount: number;
   detectedCategories: string[];
   monthColumns: string[]; // e.g., ["jan-26", "feb-26"]
+  detectedMapping?: DetectedColumnMapping; // Auto-detected column layout
 }
 
 export interface ExcelAnalysisResult {
@@ -329,6 +339,16 @@ export function useAnalyzeExcel() {
           formulaCount: s.formulaCount ?? 0,
           detectedCategories: s.detectedCategories ?? [],
           monthColumns: s.monthColumns ?? [],
+          // Include auto-detected column mapping if available
+          detectedMapping: s.detectedMapping
+            ? {
+                categoryColumn: s.detectedMapping.categoryColumn ?? "A",
+                valueColumn: s.detectedMapping.valueColumn ?? "C",
+                headerRow: s.detectedMapping.headerRow ?? 1,
+                percentageColumn: s.detectedMapping.percentageColumn,
+                confidence: s.detectedMapping.confidence ?? 0.5,
+              }
+            : undefined,
         })),
         suggestedSheet: response.suggestedSheet ?? "",
       };

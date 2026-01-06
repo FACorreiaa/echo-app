@@ -1,8 +1,8 @@
 import { useRouter } from "expo-router";
 import { ScrollView, styled, Text, YStack } from "tamagui";
 
-import { GlassyButton } from "@/components/GlassyButton";
-import { GlassyCard } from "@/components/GlassyCard";
+import { GlassyButton } from "@/components/ui/GlassyButton";
+import { GlassyCard } from "@/components/ui/GlassyCard";
 
 const Title = styled(Text, {
   color: "$color",

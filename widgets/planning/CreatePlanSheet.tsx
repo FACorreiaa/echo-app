@@ -8,7 +8,7 @@ import React, { useState } from "react";
 import { ActivityIndicator, Alert, Pressable } from "react-native";
 import { Button, Input, Label, ScrollView, Sheet, Text, TextArea, XStack, YStack } from "tamagui";
 
-import { GlassyCard } from "@/components/GlassyCard";
+import { GlassyCard } from "@/components/ui/GlassyCard";
 import {
   useAnalyzeExcel,
   useCreatePlan,
@@ -189,9 +189,23 @@ export function CreatePlanSheet({
     }
 
     try {
+      // Find the selected sheet's analysis data to get detected mapping
+      const sheetInfo = analyzedSheets.find((s) => s.name === selectedSheet);
+      const detectedMapping = sheetInfo?.detectedMapping;
+
       await importFromExcel.mutateAsync({
         fileId,
         sheetName: selectedSheet,
+        // Pass the detected column mapping so the backend uses correct columns
+        mapping: detectedMapping
+          ? {
+              categoryColumn: detectedMapping.categoryColumn ?? "A",
+              valueColumn: detectedMapping.valueColumn ?? "C",
+              headerRow: detectedMapping.headerRow ?? 1,
+              hasPercentageColumn: !!detectedMapping.percentageColumn,
+              percentageColumn: detectedMapping.percentageColumn ?? "",
+            }
+          : undefined,
       });
       handleClose();
     } catch {

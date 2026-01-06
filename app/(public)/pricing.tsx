@@ -1,5 +1,5 @@
-import { GlassyButton } from "@/components/GlassyButton";
-import { GlassyCard } from "@/components/GlassyCard";
+import { GlassyButton } from "@/components/ui/GlassyButton";
+import { GlassyCard } from "@/components/ui/GlassyCard";
 import { Check } from "@tamagui/lucide-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ScrollView, styled, Text, XStack, YStack } from "tamagui";

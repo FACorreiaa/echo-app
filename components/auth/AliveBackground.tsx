@@ -71,6 +71,7 @@ function NativeBackground({
     BlurMask,
     LinearGradient: SkiaGradient,
     vec,
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
   } = require("@shopify/react-native-skia");
   const { width, height } = useWindowDimensions();
 

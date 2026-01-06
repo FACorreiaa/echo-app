@@ -3,10 +3,10 @@ import { Pressable } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ScrollView, styled, Text, XStack, YStack } from "tamagui";
 
-import { Avatar } from "@/components/Avatar";
-import { GlassyCard } from "@/components/GlassyCard";
-import { GradientBackground } from "@/components/GradientBackground";
+import { Avatar } from "@/components/ui/Avatar";
+import { GradientBackground } from "@/components/animations/GradientBackground";
 import { ListItem } from "@/components/ListItem";
+import { GlassyCard } from "@/components/ui/GlassyCard";
 
 const PageTitle = styled(Text, {
   color: "$color",

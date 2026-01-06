@@ -11,8 +11,7 @@ import { Keyboard, KeyboardAvoidingView, Platform, Pressable, ScrollView } from 
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Button, Input, Text, XStack, YStack } from "tamagui";
 
-import { GlassyCard } from "@/components/GlassyCard";
-import { PasswordInput } from "@/components/PasswordInput";
+import { GlassyCard, PasswordInput } from "@/components";
 import { useLogin, useRegister } from "@/lib/hooks/use-auth";
 import { getFriendlyErrorMessage } from "@/lib/utils/error-messages";
 

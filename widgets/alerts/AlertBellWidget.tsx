@@ -224,3 +224,6 @@ function AlertCard({
 }
 
 export default AlertBell;
+
+// Alias for widget export
+export { AlertBell as AlertBellWidget };

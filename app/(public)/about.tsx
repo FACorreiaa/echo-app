@@ -1,4 +1,4 @@
-import { GlassyCard } from "@/components/GlassyCard";
+import { GlassyCard } from "@/components/ui/GlassyCard";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ScrollView, styled, Text, YStack } from "tamagui";
 
