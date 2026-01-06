@@ -1,12 +1,4 @@
-import {
-  CreditCard,
-  Plus,
-  Send,
-  Settings,
-  Sparkles,
-  TrendingDown,
-  TrendingUp,
-} from "@tamagui/lucide-icons";
+import { CreditCard, Plus, Send, Settings, Sparkles } from "@tamagui/lucide-icons";
 import { useRouter } from "expo-router";
 import React from "react";
 import { ActivityIndicator, ScrollView } from "react-native";
@@ -16,8 +8,10 @@ import { Button, Text, XStack, YStack } from "tamagui";
 import { AlertBell } from "@/components/AlertBell";
 import { Avatar } from "@/components/Avatar";
 import { BalanceHistoryChart } from "@/components/BalanceHistoryChart";
+import { BentoCard, HookCard, InboxBadge, WhatIfSlider } from "@/components/bento";
 import { GlassyCard } from "@/components/GlassyCard";
 import { NetWorthCard } from "@/components/NetWorthCard";
+import { PacingMeter } from "@/components/PacingMeter";
 import { useAccounts } from "@/lib/hooks/use-accounts";
 import { useDashboardBlocks, useSpendingPulse } from "@/lib/hooks/use-insights";
 import { useRecentTransactions } from "@/lib/hooks/use-transactions";
@@ -109,52 +103,24 @@ export default function HomeScreen() {
         {/* Net Worth Card - Hero Section */}
         <NetWorthCard />
 
-        {/* Spending Pulse Card */}
-        <GlassyCard marginBottom="$4">
-          <YStack padding="$3" gap="$2">
-            <Text color="$secondaryText" fontSize={11} textTransform="uppercase">
-              This Month's Spending
-            </Text>
-            {pulseLoading ? (
+        {/* Spending Pace Meter */}
+        {pulseLoading ? (
+          <GlassyCard marginBottom="$4">
+            <YStack padding="$4" alignItems="center">
               <ActivityIndicator />
-            ) : (
-              <>
-                <XStack justifyContent="space-between" alignItems="center">
-                  <Text color="$color" fontSize={28} fontWeight="bold">
-                    {formatCurrency(pulse?.currentMonthSpend ?? 0)}
-                  </Text>
-                  <XStack alignItems="center" gap="$1">
-                    {(pulse?.spendDelta ?? 0) > 0 ? (
-                      <TrendingUp size={14} color="#ef4444" />
-                    ) : (
-                      <TrendingDown size={14} color="#22c55e" />
-                    )}
-                    <Text
-                      color={(pulse?.spendDelta ?? 0) > 0 ? "#ef4444" : "#22c55e"}
-                      fontSize={12}
-                      fontWeight="600"
-                    >
-                      {(pulse?.spendDelta ?? 0) > 0 ? "+" : ""}
-                      {formatCurrency(pulse?.spendDelta ?? 0)}
-                    </Text>
-                  </XStack>
-                </XStack>
-                {pulse?.isOverPace && (
-                  <XStack
-                    backgroundColor="rgba(239, 68, 68, 0.15)"
-                    paddingHorizontal="$2"
-                    paddingVertical="$1"
-                    borderRadius="$2"
-                  >
-                    <Text color="#ef4444" fontSize={11}>
-                      ⚠️ {pulse.pacePercent.toFixed(0)}% of last month's pace
-                    </Text>
-                  </XStack>
-                )}
-              </>
-            )}
+            </YStack>
+          </GlassyCard>
+        ) : pulse ? (
+          <YStack marginBottom="$4">
+            <PacingMeter
+              currentSpend={pulse.currentMonthSpend}
+              lastMonthSpend={pulse.lastMonthSpend}
+              pacePercent={pulse.pacePercent}
+              isOverPace={pulse.isOverPace}
+              dayOfMonth={pulse.dayOfMonth}
+            />
           </YStack>
-        </GlassyCard>
+        ) : null}
 
         {/* Quick Actions */}
         <XStack justifyContent="space-around" marginBottom="$6">
@@ -177,6 +143,26 @@ export default function HomeScreen() {
               </Text>
             </YStack>
           ))}
+        </XStack>
+
+        {/* Bento Insights Grid */}
+        <Text color="$color" fontSize={18} fontWeight="bold" marginBottom="$3">
+          Insights
+        </Text>
+        <XStack gap="$3" marginBottom="$6" flexWrap="wrap">
+          <BentoCard size="small" flex={1} minWidth={150}>
+            <WhatIfSlider currentMonthlySpend={pulse?.currentMonthSpend ?? 1000} />
+          </BentoCard>
+          <BentoCard size="small" flex={1} minWidth={150}>
+            <HookCard
+              merchantName={dashboardBlocks?.[0]?.title ?? "Favorite Spot"}
+              visitCount={8}
+              totalSpent={(pulse?.currentMonthSpend ?? 0) * 0.15}
+            />
+          </BentoCard>
+          <BentoCard size="small" flex={1} minWidth={150}>
+            <InboxBadge count={0} onPress={() => router.push("/(tabs)/transactions")} />
+          </BentoCard>
         </XStack>
 
         {/* Money Pulse */}

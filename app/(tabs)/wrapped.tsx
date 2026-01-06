@@ -1,29 +1,30 @@
 import { Sparkles } from "@tamagui/lucide-icons";
 import React, { useState } from "react";
-import { ScrollView } from "react-native";
+import { ActivityIndicator, ScrollView } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Button, H2, Text, XStack, YStack } from "tamagui";
 
 import { GlassyCard } from "@/components/GlassyCard";
-
-// Mock data - replace with real API data
-const mockHighlights = [
-  { id: 1, label: "Saver Status", value: "Top 1%", icon: "💎" },
-  { id: 2, label: "Net Worth", value: "+$1,240", icon: "📈" },
-];
-
-const mockTopMerchant = {
-  name: "Whole Foods",
-  visits: 8,
-  emoji: "🛒",
-};
+import { useWrapped } from "@/lib/hooks/use-wrapped";
 
 type TabType = "saver" | "networth";
 
 export default function WrappedScreen() {
   const insets = useSafeAreaInsets();
   const [activeTab, setActiveTab] = useState<TabType>("saver");
-  const [selectedMonth] = useState("December 2024");
+
+  // Get current month dates
+  const now = new Date();
+  const monthStart = new Date(now.getFullYear(), now.getMonth(), 1);
+  const monthEnd = new Date(now.getFullYear(), now.getMonth() + 1, 0, 23, 59, 59);
+
+  // Fetch wrapped data
+  const { data: wrapped, isLoading } = useWrapped("month", monthStart, monthEnd);
+
+  const selectedMonth = now.toLocaleDateString("en-US", { month: "long", year: "numeric" });
+
+  // Get top card for hero section
+  const heroCard = wrapped?.cards?.[0];
 
   return (
     <YStack flex={1} backgroundColor="$background" paddingTop={insets.top}>
@@ -65,85 +66,104 @@ export default function WrappedScreen() {
           </Button>
         </XStack>
 
-        {/* Monthly Card */}
-        <GlassyCard marginBottom="$4">
-          <YStack backgroundColor="$accentGradientStart" borderRadius="$4" padding="$4" gap="$2">
-            <XStack justifyContent="space-between" alignItems="center">
-              <Text color="white" fontSize={12} textTransform="uppercase" opacity={0.8}>
-                {selectedMonth} Review
+        {/* Loading State */}
+        {isLoading && (
+          <GlassyCard marginBottom="$4">
+            <YStack padding="$6" alignItems="center">
+              <ActivityIndicator />
+              <Text color="$secondaryText" marginTop="$2">
+                Loading your highlights...
               </Text>
-              <YStack
-                backgroundColor="rgba(255,255,255,0.2)"
-                paddingHorizontal="$2"
-                paddingVertical="$1"
-                borderRadius="$2"
-              >
-                <Text color="white" fontSize={10} fontWeight="bold">
-                  NEW
-                </Text>
-              </YStack>
-            </XStack>
-            <Text color="white" fontSize={24} fontWeight="bold">
-              You spent 12% less on coffee this month.
-            </Text>
-            <Text color="white" opacity={0.8}>
-              That's enough to buy 4 extra lattes!
-            </Text>
-            <XStack alignItems="center" gap="$2" marginTop="$2">
-              <Text color="white" fontWeight="600">
-                Tap to view story
-              </Text>
-              <Text color="white">→</Text>
-            </XStack>
-          </YStack>
-        </GlassyCard>
+            </YStack>
+          </GlassyCard>
+        )}
 
-        {/* Highlights */}
-        <Text color="$color" fontSize={18} fontWeight="bold" marginBottom="$3">
-          Highlights
-        </Text>
-        <XStack gap="$3" marginBottom="$4">
-          {mockHighlights.map((highlight) => (
-            <GlassyCard key={highlight.id} flex={1}>
-              <YStack alignItems="center" padding="$3" gap="$2">
-                <Text fontSize={24}>{highlight.icon}</Text>
-                <Text color="$color" fontSize={20} fontWeight="bold">
-                  {highlight.value}
-                </Text>
-                <Text color="$secondaryText" fontSize={12}>
-                  {highlight.label}
-                </Text>
-              </YStack>
-            </GlassyCard>
-          ))}
-        </XStack>
-
-        {/* Top Merchant */}
-        <GlassyCard marginBottom="$4">
-          <XStack padding="$4" alignItems="center" gap="$3">
+        {/* Hero Card */}
+        {!isLoading && heroCard && (
+          <GlassyCard marginBottom="$4">
             <YStack
-              backgroundColor="$backgroundHover"
-              width={48}
-              height={48}
-              borderRadius={24}
-              alignItems="center"
-              justifyContent="center"
+              backgroundColor={(heroCard.accent || "$accentGradientStart") as any}
+              borderRadius="$4"
+              padding="$4"
+              gap="$2"
             >
-              <Text fontSize={24}>{mockTopMerchant.emoji}</Text>
-            </YStack>
-            <YStack flex={1}>
-              <Text color="$color" fontWeight="bold">
-                Top Merchant
+              <XStack justifyContent="space-between" alignItems="center">
+                <Text color="white" fontSize={12} textTransform="uppercase" opacity={0.8}>
+                  {selectedMonth} Review
+                </Text>
+                <YStack
+                  backgroundColor="rgba(255,255,255,0.2)"
+                  paddingHorizontal="$2"
+                  paddingVertical="$1"
+                  borderRadius="$2"
+                >
+                  <Text color="white" fontSize={10} fontWeight="bold">
+                    NEW
+                  </Text>
+                </YStack>
+              </XStack>
+              <Text color="white" fontSize={24} fontWeight="bold">
+                {heroCard.body}
               </Text>
-              <Text color="$secondaryText">
-                You visited {mockTopMerchant.name} {mockTopMerchant.visits} times.
+              <Text color="white" opacity={0.8}>
+                {heroCard.subtitle}
               </Text>
             </YStack>
-          </XStack>
-        </GlassyCard>
+          </GlassyCard>
+        )}
+
+        {/* Highlights Grid */}
+        {!isLoading && wrapped?.cards && wrapped.cards.length > 1 && (
+          <>
+            <Text color="$color" fontSize={18} fontWeight="bold" marginBottom="$3">
+              Highlights
+            </Text>
+            <XStack gap="$3" marginBottom="$4" flexWrap="wrap">
+              {wrapped.cards.slice(1).map((card, index) => (
+                <GlassyCard key={index} flex={1} minWidth={150}>
+                  <YStack alignItems="center" padding="$3" gap="$2">
+                    <YStack
+                      backgroundColor={card.accent as any}
+                      width={40}
+                      height={40}
+                      borderRadius={20}
+                      alignItems="center"
+                      justifyContent="center"
+                    >
+                      <Text color="white" fontWeight="bold">
+                        {card.title.charAt(0)}
+                      </Text>
+                    </YStack>
+                    <Text color="$color" fontSize={18} fontWeight="bold" textAlign="center">
+                      {card.body}
+                    </Text>
+                    <Text color="$secondaryText" fontSize={12} textAlign="center">
+                      {card.title}
+                    </Text>
+                  </YStack>
+                </GlassyCard>
+              ))}
+            </XStack>
+          </>
+        )}
+
+        {/* Empty State */}
+        {!isLoading && (!wrapped?.cards || wrapped.cards.length === 0) && (
+          <GlassyCard>
+            <YStack padding="$6" alignItems="center" gap="$3">
+              <Sparkles size={48} color="$secondaryText" />
+              <Text color="$color" fontSize={18} fontWeight="bold" textAlign="center">
+                No Highlights Yet
+              </Text>
+              <Text color="$secondaryText" textAlign="center">
+                Start tracking your spending to see your monthly wrapped!
+              </Text>
+            </YStack>
+          </GlassyCard>
+        )}
 
         {/* Upgrade Card */}
-        <GlassyCard>
+        <GlassyCard marginTop="$4">
           <YStack
             padding="$4"
             alignItems="center"
