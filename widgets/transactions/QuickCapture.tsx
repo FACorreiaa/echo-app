@@ -185,6 +185,3 @@ export function QuickCapture({ onSuccess, onClose }: QuickCaptureProps) {
     </GlassyCard>
   );
 }
-
-// Alias for widget export
-export { QuickCapture as QuickCaptureWidget };

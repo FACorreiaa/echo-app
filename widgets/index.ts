@@ -2,20 +2,20 @@
 export * from "./types";
 
 // Balance widgets
-export { BalanceHistoryWidget } from "./balance/BalanceHistoryWidget";
-export { NetWorthWidget } from "./balance/NetWorthWidget";
+export { BalanceHistoryChart } from "./balance/BalanceHistoryChart";
+export { NetWorthCard } from "./balance/NetWorthCard";
 
 // Insights widgets
-export { PacingWidget } from "./insights/PacingWidget";
+export { PacingMeter } from "./insights/PacingMeter";
 
 // Transaction widgets
-export { QuickCaptureWidget } from "./transactions/QuickCaptureWidget";
+export { QuickCapture } from "./transactions/QuickCapture";
 
 // Alert widgets
-export { AlertBellWidget } from "./alerts/AlertBellWidget";
+export { AlertBell } from "./alerts/AlertBell";
 
 // Onboarding widgets
-export { SplashWidget } from "./onboarding/SplashWidget";
+export { SplashScreen } from "./onboarding/SplashScreen";
 
 // Bento widgets
 export * from "./bento";

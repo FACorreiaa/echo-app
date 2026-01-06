@@ -1,2 +1,2 @@
 // Transaction Widgets
-export { QuickCaptureWidget } from "./QuickCaptureWidget";
+export { QuickCapture } from "./QuickCapture";

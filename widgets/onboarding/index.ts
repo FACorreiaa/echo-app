@@ -1,2 +1,2 @@
 // Onboarding Widgets
-export { SplashWidget } from "./SplashWidget";
+export { SplashScreen } from "./SplashScreen";

@@ -148,5 +148,4 @@ const styles = StyleSheet.create({
   },
 });
 
-// Alias for widget export
-export { EchoSplashScreen as SplashWidget };
+export { EchoSplashScreen as SplashScreen };

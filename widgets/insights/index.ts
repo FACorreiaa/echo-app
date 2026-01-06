@@ -1,2 +1,2 @@
 // Insights Widgets
-export { PacingWidget } from "./PacingWidget";
+export { PacingMeter } from "./PacingMeter";

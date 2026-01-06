@@ -151,6 +151,3 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
 });
-
-// Alias for widget export
-export { PacingMeter as PacingWidget };

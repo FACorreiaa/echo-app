@@ -21,12 +21,12 @@ export { LoginSuccessAnimation as LoginTransition } from "./animations/LoginTran
 
 // Widgets - Re-export for backward compatibility
 // These are now in @/widgets but exported here to avoid breaking changes
-export { AlertBell } from "@/widgets/alerts/AlertBellWidget";
-export { BalanceHistoryChart } from "@/widgets/balance/BalanceHistoryWidget";
-export { NetWorthCard } from "@/widgets/balance/NetWorthWidget";
-export { PacingMeter } from "@/widgets/insights/PacingWidget";
-export { EchoSplashScreen } from "@/widgets/onboarding/SplashWidget";
-export { QuickCapture } from "@/widgets/transactions/QuickCaptureWidget";
+export { AlertBell } from "@/widgets/alerts/AlertBell";
+export { BalanceHistoryChart } from "@/widgets/balance/BalanceHistoryChart";
+export { NetWorthCard } from "@/widgets/balance/NetWorthCard";
+export { PacingMeter } from "@/widgets/insights/PacingMeter";
+export { SplashScreen } from "@/widgets/onboarding/SplashScreen";
+export { QuickCapture } from "@/widgets/transactions/QuickCapture";
 
 // Bento - Re-export
 export * from "@/widgets/bento";

@@ -1,2 +1,2 @@
 // Alert Widgets
-export { AlertBellWidget } from "./AlertBellWidget";
+export { AlertBell } from "./AlertBell";

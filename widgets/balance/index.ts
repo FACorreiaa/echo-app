@@ -1,3 +1,3 @@
 // Balance Widgets
-export { BalanceHistoryWidget } from "./BalanceHistoryWidget";
-export { NetWorthWidget } from "./NetWorthWidget";
+export { BalanceHistoryChart } from "./BalanceHistoryChart";
+export { NetWorthCard } from "./NetWorthCard";

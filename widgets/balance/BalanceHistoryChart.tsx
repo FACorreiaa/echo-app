@@ -207,6 +207,3 @@ export function BalanceHistoryChart({ days = 30, accountId }: BalanceHistoryChar
     </GlassyCard>
   );
 }
-
-// Alias for widget export
-export { BalanceHistoryChart as BalanceHistoryWidget };

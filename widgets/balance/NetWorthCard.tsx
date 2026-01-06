@@ -239,6 +239,3 @@ export function NetWorthCard({ accountId }: NetWorthCardProps) {
     </GlassyCard>
   );
 }
-
-// Alias for widget export
-export { NetWorthCard as NetWorthWidget };
