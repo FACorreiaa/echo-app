@@ -1,7 +1,7 @@
 import { CreditCard, Plus, Send, Settings, Sparkles } from "@tamagui/lucide-icons";
 import { useRouter } from "expo-router";
-import React from "react";
-import { ActivityIndicator, ScrollView } from "react-native";
+import React, { useState } from "react";
+import { ActivityIndicator, Modal, ScrollView } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Button, Text, XStack, YStack } from "tamagui";
 
@@ -12,6 +12,7 @@ import { BentoCard, HookCard, InboxBadge, WhatIfSlider } from "@/components/bent
 import { GlassyCard } from "@/components/GlassyCard";
 import { NetWorthCard } from "@/components/NetWorthCard";
 import { PacingMeter } from "@/components/PacingMeter";
+import { QuickCapture } from "@/components/QuickCapture";
 import { useAccounts } from "@/lib/hooks/use-accounts";
 import { useDashboardBlocks, useSpendingPulse } from "@/lib/hooks/use-insights";
 import { useRecentTransactions } from "@/lib/hooks/use-transactions";
@@ -75,6 +76,9 @@ export default function HomeScreen() {
   const { data: accounts = [], isLoading: accountsLoading } = useAccounts();
   const { data: recentActivity = [], isLoading: activityLoading } = useRecentTransactions(5);
 
+  // Quick Capture modal state
+  const [showQuickCapture, setShowQuickCapture] = useState(false);
+
   return (
     <YStack flex={1} backgroundColor="$background" paddingTop={insets.top}>
       <ScrollView contentContainerStyle={{ flexGrow: 1, padding: 20, paddingBottom: 100 }}>
@@ -126,7 +130,7 @@ export default function HomeScreen() {
         <XStack justifyContent="space-around" marginBottom="$6">
           {[
             { icon: Send, label: "Send", onPress: () => {} },
-            { icon: Plus, label: "Add", onPress: () => router.push("/(tabs)/import") },
+            { icon: Plus, label: "Add", onPress: () => setShowQuickCapture(true) },
             { icon: CreditCard, label: "Card", onPress: () => {} },
             { icon: Sparkles, label: "Echo", onPress: () => router.push("/(tabs)/wrapped") },
           ].map((action) => (
@@ -332,6 +336,21 @@ export default function HomeScreen() {
           </YStack>
         </GlassyCard>
       </ScrollView>
+
+      {/* Quick Capture Modal */}
+      <Modal
+        visible={showQuickCapture}
+        transparent
+        animationType="slide"
+        onRequestClose={() => setShowQuickCapture(false)}
+      >
+        <YStack flex={1} backgroundColor="rgba(0,0,0,0.5)" justifyContent="center" padding="$4">
+          <QuickCapture
+            onSuccess={() => setShowQuickCapture(false)}
+            onClose={() => setShowQuickCapture(false)}
+          />
+        </YStack>
+      </Modal>
     </YStack>
   );
 }
