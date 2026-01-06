@@ -4,11 +4,11 @@
  * Key Principles:
  * - 1-3 seconds max
  * - Centered logo with subtle animation
- * - Optional loading indicator
+ * - Theme-aware colors (dark/light mode)
  * - Smooth transition out
  */
 
-import { MotiText, MotiView } from "moti";
+import { MotiView } from "moti";
 import { useEffect, useState } from "react";
 import { StyleSheet } from "react-native";
 import { Text, useTheme, YStack } from "tamagui";
@@ -30,8 +30,8 @@ export function EchoSplashScreen({
   const theme = useTheme();
   const [minTimeElapsed, setMinTimeElapsed] = useState(false);
 
-  // Get theme-aware text color
-  const textColor = theme.color?.val || "#000000";
+  // Theme-aware colors with good contrast
+  const primaryColor = theme.electricBlue?.val || "#6366F1";
 
   // Ensure minimum display time
   useEffect(() => {
@@ -61,33 +61,47 @@ export function EchoSplashScreen({
         }}
       >
         <YStack alignItems="center" gap="$3">
-          {/* Echo Logo Text */}
-          <MotiText
+          {/* Echo Logo Text - Uses theme color for dark/light mode */}
+          <MotiView
             from={{ opacity: 0, translateY: 10 }}
             animate={{ opacity: 1, translateY: 0 }}
             transition={{ type: "timing", duration: 500, delay: 200 }}
-            style={[styles.logoText, { color: textColor }]}
           >
-            Echo
-          </MotiText>
+            <Text
+              fontSize={56}
+              fontWeight="900"
+              color="$color"
+              textAlign="center"
+              letterSpacing={-1}
+              accessibilityRole="header"
+              accessibilityLabel="Echo"
+            >
+              Echo
+            </Text>
+          </MotiView>
 
-          {/* Tagline */}
+          {/* Tagline - Uses theme color with reduced opacity */}
           <MotiView
             from={{ opacity: 0 }}
-            animate={{ opacity: 0.7 }}
+            animate={{ opacity: 1 }}
             transition={{ type: "timing", duration: 400, delay: 400 }}
           >
-            <Text color="$color" fontSize="$4" fontFamily="$body" opacity={0.7}>
+            <Text
+              color="$colorHover"
+              fontSize="$4"
+              fontFamily="$body"
+              accessibilityLabel="The Alive Money OS"
+            >
               The Alive Money OS
             </Text>
           </MotiView>
         </YStack>
       </MotiView>
 
-      {/* Loading Indicator - Only shows if still loading after animation */}
+      {/* Loading Indicator - Theme-aware dot color */}
       {isLoading && minTimeElapsed && (
         <MotiView from={{ opacity: 0 }} animate={{ opacity: 1 }} style={styles.loadingContainer}>
-          <LoadingDots />
+          <LoadingDots dotColor={primaryColor} />
         </MotiView>
       )}
     </YStack>
@@ -95,11 +109,11 @@ export function EchoSplashScreen({
 }
 
 /**
- * Simple animated loading dots
+ * Simple animated loading dots with theme-aware colors
  */
-function LoadingDots() {
+function LoadingDots({ dotColor }: { dotColor: string }) {
   return (
-    <MotiView style={styles.dotsContainer}>
+    <MotiView style={styles.dotsContainer} accessibilityLabel="Loading">
       {[0, 1, 2].map((index) => (
         <MotiView
           key={index}
@@ -111,7 +125,7 @@ function LoadingDots() {
             loop: true,
             delay: index * 200,
           }}
-          style={styles.dot}
+          style={[styles.dot, { backgroundColor: dotColor }]}
         />
       ))}
     </MotiView>
@@ -119,12 +133,6 @@ function LoadingDots() {
 }
 
 const styles = StyleSheet.create({
-  logoText: {
-    fontSize: 56,
-    fontWeight: "900",
-    textAlign: "center",
-    letterSpacing: -1,
-  },
   loadingContainer: {
     position: "absolute",
     bottom: 100,
@@ -137,6 +145,5 @@ const styles = StyleSheet.create({
     width: 8,
     height: 8,
     borderRadius: 4,
-    backgroundColor: "#6366F1",
   },
 });
