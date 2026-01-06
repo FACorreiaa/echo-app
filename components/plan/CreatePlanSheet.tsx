@@ -6,7 +6,7 @@ import { Check, FileSpreadsheet, Pencil, Upload, X } from "@tamagui/lucide-icons
 import * as DocumentPicker from "expo-document-picker";
 import React, { useState } from "react";
 import { ActivityIndicator, Alert, Pressable } from "react-native";
-import { Button, Input, Label, Sheet, Text, TextArea, XStack, YStack } from "tamagui";
+import { Button, Input, Label, ScrollView, Sheet, Text, TextArea, XStack, YStack } from "tamagui";
 
 import { GlassyCard } from "@/components/GlassyCard";
 import {
@@ -21,10 +21,16 @@ type CreateMode = "select" | "manual" | "excel" | "analyze" | "select-sheet";
 interface CreatePlanSheetProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  onPlanCreated?: (plan: { id: string; name: string }) => void;
   initialCategories?: string[]; // From Excel import
 }
 
-export function CreatePlanSheet({ open, onOpenChange, initialCategories }: CreatePlanSheetProps) {
+export function CreatePlanSheet({
+  open,
+  onOpenChange,
+  onPlanCreated,
+  initialCategories,
+}: CreatePlanSheetProps) {
   const [mode, setMode] = useState<CreateMode>(initialCategories ? "manual" : "select");
   const [planName, setPlanName] = useState("");
   const [description, setDescription] = useState("");
@@ -110,6 +116,10 @@ export function CreatePlanSheet({ open, onOpenChange, initialCategories }: Creat
               },
             ],
       });
+      // Notify parent with the created plan
+      if (onPlanCreated) {
+        onPlanCreated({ id: "new", name: planName.trim() });
+      }
       handleClose();
     } catch {
       Alert.alert("Error", "Failed to create plan");
@@ -495,7 +505,11 @@ export function CreatePlanSheet({ open, onOpenChange, initialCategories }: Creat
           <YStack gap="$4" flex={1}>
             <Text color="$secondaryText">Select the sheet to import from your spreadsheet:</Text>
 
-            <YStack gap="$2">
+            <ScrollView
+              style={{ flex: 1 }}
+              contentContainerStyle={{ gap: 8, paddingBottom: 20 }}
+              showsVerticalScrollIndicator={true}
+            >
               {analyzedSheets.map((sheet) => (
                 <Pressable key={sheet.name} onPress={() => setSelectedSheet(sheet.name)}>
                   <GlassyCard>
@@ -531,7 +545,7 @@ export function CreatePlanSheet({ open, onOpenChange, initialCategories }: Creat
                   </GlassyCard>
                 </Pressable>
               ))}
-            </YStack>
+            </ScrollView>
 
             <YStack flex={1} />
 

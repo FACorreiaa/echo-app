@@ -14,9 +14,10 @@ import {
 import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { TamaguiProvider } from "tamagui";
 
+import { EchoSplashScreen } from "@/components/EchoSplashScreen";
 import { ThemeProvider as AppThemeProvider, useTheme } from "@/contexts/ThemeContext";
 import { persistOptions, queryClient } from "@/lib/query/query-client";
 import tamaguiConfig from "../tamagui.config";
@@ -26,6 +27,20 @@ SplashScreen.preventAutoHideAsync();
 
 function RootLayoutContent() {
   const { resolvedTheme } = useTheme();
+  const [showCustomSplash, setShowCustomSplash] = useState(true);
+
+  const handleSplashReady = () => {
+    setShowCustomSplash(false);
+  };
+
+  // Show custom splash screen first
+  if (showCustomSplash) {
+    return (
+      <TamaguiProvider config={tamaguiConfig} defaultTheme={resolvedTheme}>
+        <EchoSplashScreen minDuration={1800} isLoading={false} onReady={handleSplashReady} />
+      </TamaguiProvider>
+    );
+  }
 
   return (
     <TamaguiProvider config={tamaguiConfig} defaultTheme={resolvedTheme}>

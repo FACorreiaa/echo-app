@@ -147,7 +147,7 @@ export default function RegisterScreen() {
                   <Input
                     placeholder="you@example.com"
                     value={email}
-                    onChangeText={(text) => {
+                    onChangeText={(text: string) => {
                       setEmail(text);
                       clearError();
                     }}
@@ -163,7 +163,7 @@ export default function RegisterScreen() {
                   <Input
                     placeholder="johndoe"
                     value={username}
-                    onChangeText={(text) => {
+                    onChangeText={(text: string) => {
                       setUsername(text);
                       clearError();
                     }}
@@ -177,7 +177,7 @@ export default function RegisterScreen() {
                   <PasswordInput
                     placeholder="Min. 8 characters"
                     value={password}
-                    onChangeText={(text) => {
+                    onChangeText={(text: string) => {
                       setPassword(text);
                       clearError();
                     }}
@@ -196,7 +196,7 @@ export default function RegisterScreen() {
                   <PasswordInput
                     placeholder="••••••••"
                     value={confirmPassword}
-                    onChangeText={(text) => {
+                    onChangeText={(text: string) => {
                       setConfirmPassword(text);
                       clearError();
                     }}

@@ -1,4 +1,3 @@
-import type { NativeSyntheticEvent, TextInputChangeEventData } from "react-native";
 import { styled, Input as TamaguiInput, Text, YStack } from "tamagui";
 
 const BaseInput = styled(TamaguiInput, {
@@ -31,34 +30,19 @@ const BaseInput = styled(TamaguiInput, {
 
 type TamaguiInputProps = React.ComponentProps<typeof BaseInput>;
 
-interface InputProps extends Omit<TamaguiInputProps, "onChangeText"> {
+interface InputProps extends TamaguiInputProps {
   error?: boolean;
   errorMessage?: string;
-  /**
-   * Properly typed onChangeText for React Native + Tamagui compatibility
-   */
-  onChangeText?: (text: string) => void;
 }
 
-export const Input = ({ error, errorMessage, onChangeText, ...props }: InputProps) => {
-  // Handle the Tamagui/RN event type mismatch
-  const handleChange = onChangeText
-    ? (e: NativeSyntheticEvent<TextInputChangeEventData> | string) => {
-        if (typeof e === "string") {
-          onChangeText(e);
-        } else {
-          onChangeText(e.nativeEvent.text);
-        }
-      }
-    : undefined;
-
+/**
+ * Custom Input component with error state styling.
+ * Uses Tamagui Input v1.143.0+ which has proper onChangeText typing for web.
+ */
+export const Input = ({ error, errorMessage, ...props }: InputProps) => {
   return (
     <YStack>
-      <BaseInput
-        hasError={error}
-        onChangeText={handleChange as TamaguiInputProps["onChangeText"]}
-        {...props}
-      />
+      <BaseInput hasError={error} {...props} />
       {error && errorMessage && (
         <Text color="#ef4444" fontSize={12} marginTop={4} marginLeft={4} fontFamily="$body">
           {errorMessage}

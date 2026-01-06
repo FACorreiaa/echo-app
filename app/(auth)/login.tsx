@@ -122,7 +122,7 @@ export default function LoginScreen() {
                   <Input
                     placeholder="you@example.com"
                     value={email}
-                    onChangeText={(text) => {
+                    onChangeText={(text: string) => {
                       setEmail(text);
                       if (error) setError("");
                     }}
@@ -138,7 +138,7 @@ export default function LoginScreen() {
                   <PasswordInput
                     placeholder="••••••••"
                     value={password}
-                    onChangeText={(text) => {
+                    onChangeText={(text: string) => {
                       setPassword(text);
                       if (error) setError("");
                     }}

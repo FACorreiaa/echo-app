@@ -389,7 +389,18 @@ export async function uploadExcelFile(
   // Read file from uri using fetch (works for file:// URIs from expo-document-picker)
   const response = await fetch(uri);
   const blob = await response.blob();
-  const bytes = new Uint8Array(await blob.arrayBuffer());
+
+  // Convert blob to bytes using FileReader (React Native compatible)
+  const bytes = await new Promise<Uint8Array>((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      resolve(new Uint8Array(reader.result as ArrayBuffer));
+    };
+    reader.onerror = () => {
+      reject(new Error("Failed to read file"));
+    };
+    reader.readAsArrayBuffer(blob);
+  });
 
   // Determine file type from extension
   const isXlsx = filename.toLowerCase().endsWith(".xlsx");

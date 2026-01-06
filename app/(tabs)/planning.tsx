@@ -1,13 +1,13 @@
 import { ArrowLeft, FileSpreadsheet, Plus } from "@tamagui/lucide-icons";
 import { useLocalSearchParams } from "expo-router";
 import React, { useEffect, useState } from "react";
-import { ActivityIndicator, Pressable, ScrollView } from "react-native";
+import { ActivityIndicator, Alert, Pressable, ScrollView } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Button, H2, Progress, Text, XStack, YStack } from "tamagui";
 
 import { GlassyCard } from "@/components/GlassyCard";
 import { CreatePlanSheet, PlanCard, PlanDashboard } from "@/components/plan";
-import { usePlans, useSetActivePlan, type UserPlan } from "@/lib/hooks/use-plans";
+import { useDeletePlan, usePlans, useSetActivePlan, type UserPlan } from "@/lib/hooks/use-plans";
 
 // Mock data - replace with real API data
 const mockGoals = [
@@ -79,6 +79,22 @@ export default function PlanningScreen() {
   // Plans from API
   const { data: plans, isLoading: plansLoading, error: plansError } = usePlans();
   const setActivePlan = useSetActivePlan();
+  const deletePlan = useDeletePlan();
+
+  const handleDeletePlan = (planId: string) => {
+    Alert.alert(
+      "Delete Plan",
+      "Are you sure you want to delete this plan? This action cannot be undone.",
+      [
+        { text: "Cancel", style: "cancel" },
+        {
+          text: "Delete",
+          style: "destructive",
+          onPress: () => deletePlan.mutate(planId),
+        },
+      ],
+    );
+  };
 
   const renderGoals = () => (
     <YStack gap="$4">
@@ -279,6 +295,7 @@ export default function PlanningScreen() {
             setSelectedPlan(plan);
           }}
           onSetActive={plan.status !== "active" ? () => setActivePlan.mutate(plan.id) : undefined}
+          onDelete={() => handleDeletePlan(plan.id)}
         />
       ))}
     </YStack>
@@ -364,6 +381,10 @@ export default function PlanningScreen() {
       <CreatePlanSheet
         open={createSheetOpen}
         onOpenChange={setCreateSheetOpen}
+        onPlanCreated={() => {
+          // Refetch plans and the new one will appear in the list
+          // User can then tap on it to see the dashboard
+        }}
         initialCategories={importedCategories}
       />
     </YStack>

@@ -2,7 +2,7 @@
  * PlanCard - Displays a financial plan summary as a Bento card
  */
 
-import { ChevronRight, FileSpreadsheet, Pencil, Star } from "@tamagui/lucide-icons";
+import { ChevronRight, FileSpreadsheet, Pencil, Star, Trash2 } from "@tamagui/lucide-icons";
 import React from "react";
 import { Pressable } from "react-native";
 import { Progress, Text, XStack, YStack } from "tamagui";
@@ -15,9 +15,10 @@ interface PlanCardProps {
   plan: UserPlan;
   onPress?: () => void;
   onSetActive?: () => void;
+  onDelete?: () => void;
 }
 
-export function PlanCard({ plan, onPress, onSetActive }: PlanCardProps) {
+export function PlanCard({ plan, onPress, onSetActive, onDelete }: PlanCardProps) {
   const savingsRate =
     plan.totalIncome > 0 ? ((plan.surplus / plan.totalIncome) * 100).toFixed(0) : "0";
 
@@ -42,7 +43,7 @@ export function PlanCard({ plan, onPress, onSetActive }: PlanCardProps) {
                 {plan.name}
               </Text>
             </XStack>
-            <XStack gap="$2" alignItems="center">
+            <XStack gap="$3" alignItems="center">
               {isActive && (
                 <XStack
                   backgroundColor="$accentColor"
@@ -55,6 +56,19 @@ export function PlanCard({ plan, onPress, onSetActive }: PlanCardProps) {
                   </Text>
                 </XStack>
               )}
+
+              {onDelete && !isActive && (
+                <Pressable
+                  onPress={(e) => {
+                    e.stopPropagation();
+                    onDelete();
+                  }}
+                  hitSlop={8}
+                >
+                  <Trash2 size={18} color="$red10" />
+                </Pressable>
+              )}
+
               <ChevronRight size={18} color="$secondaryText" />
             </XStack>
           </XStack>
