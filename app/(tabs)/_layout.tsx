@@ -8,7 +8,7 @@ import { useAuthStore } from "@/lib/stores/auth-store";
 
 export default function TabLayout() {
   const theme = useTheme();
-  const { isAuthenticated, isHydrated } = useAuthStore();
+  const { isAuthenticated, isHydrated, hasCompletedOnboarding } = useAuthStore();
 
   // Wait for hydration before making auth decision
   if (!isHydrated) {
@@ -18,6 +18,11 @@ export default function TabLayout() {
   // Redirect to login if not authenticated
   if (!isAuthenticated) {
     return <Redirect href="/login" />;
+  }
+
+  // Redirect to onboarding if not completed
+  if (!hasCompletedOnboarding) {
+    return <Redirect href="/(onboarding)" />;
   }
 
   return (
@@ -99,6 +104,12 @@ export default function TabLayout() {
       />
       <Tabs.Screen
         name="goals"
+        options={{
+          href: null,
+        }}
+      />
+      <Tabs.Screen
+        name="subscriptions"
         options={{
           href: null,
         }}

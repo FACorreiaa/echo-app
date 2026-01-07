@@ -5,6 +5,8 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { H2, Text, XStack, YStack, useTheme } from "tamagui";
 
 import { GlassyCard } from "@/components/ui/GlassyCard";
+import { useMonthlyInsights } from "@/lib/hooks/use-insights";
+import { MonthlyInsightsCard } from "@/widgets/insights";
 
 // Mock data - replace with real API data
 const mockSpending = {
@@ -43,6 +45,9 @@ export default function InsightsScreen() {
   const theme = useTheme();
   const screenWidth = Dimensions.get("window").width - 40;
 
+  // Fetch monthly insights
+  const { data: monthlyInsights, isLoading: insightsLoading } = useMonthlyInsights();
+
   const chartConfig = {
     backgroundGradientFrom: theme.background?.val || "#0b0f19",
     backgroundGradientTo: theme.background?.val || "#0b0f19",
@@ -66,6 +71,26 @@ export default function InsightsScreen() {
         <H2 color="$color" fontSize={28} fontWeight="bold" marginBottom="$4">
           Insights
         </H2>
+
+        {/* Monthly Insights Card */}
+        {monthlyInsights && (
+          <YStack marginBottom="$6">
+            <MonthlyInsightsCard
+              month={monthlyInsights.month}
+              thingsChanged={monthlyInsights.thingsChanged}
+              recommendedAction={monthlyInsights.recommendedAction}
+              isLoading={insightsLoading}
+              onInsightPress={(insight) => {
+                console.log("Insight pressed:", insight);
+                // TODO: Navigate to detail view or show modal
+              }}
+              onActionPress={(action) => {
+                console.log("Action pressed:", action);
+                // TODO: Navigate to action screen or execute action
+              }}
+            />
+          </YStack>
+        )}
 
         {/* Total Spent Card with Chart */}
         <GlassyCard marginBottom="$6">

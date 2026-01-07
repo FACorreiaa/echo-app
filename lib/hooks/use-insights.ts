@@ -251,3 +251,168 @@ export function useDismissAlert() {
     },
   });
 }
+
+// Monthly Insights types
+export interface CategoryChange {
+  categoryName: string;
+  currentAmount: number;
+  previousAmount: number;
+  percentChange: number;
+  trend: "up" | "down" | "stable";
+}
+
+export interface NewMerchant {
+  merchantName: string;
+  amount: number;
+  transactionCount: number;
+  categoryName?: string;
+}
+
+export interface IncomeChange {
+  currentAmount: number;
+  previousAmount: number;
+  percentChange: number;
+  trend: "up" | "down" | "stable";
+}
+
+export interface MonthlyInsight {
+  type: "category_change" | "new_merchant" | "income_change";
+  title: string;
+  description: string;
+  categoryChange?: CategoryChange;
+  newMerchant?: NewMerchant;
+  incomeChange?: IncomeChange;
+}
+
+export interface RecommendedAction {
+  actionType: "uncategorized" | "high_spending" | "review_budget";
+  title: string;
+  description: string;
+  priority: number;
+  metadata?: Record<string, unknown>;
+}
+
+export interface MonthlyInsights {
+  month: string; // e.g., "2025-01"
+  thingsChanged: MonthlyInsight[];
+  recommendedAction: RecommendedAction | null;
+  totalSpending: number;
+  totalIncome: number;
+  netChange: number;
+  comparedToMonth: string; // e.g., "2024-12"
+}
+
+/**
+ * Fetch monthly insights - "3 things that changed" + "1 action to take"
+ */
+export function useMonthlyInsights(month?: string) {
+  return useQuery({
+    queryKey: ["monthly-insights", month],
+    queryFn: async (): Promise<MonthlyInsights> => {
+      try {
+        const response = await insightsClient.getMonthlyInsights({
+          month: month ?? undefined,
+        });
+
+        const insights = response.insights;
+
+        // Parse "3 things changed"
+        const thingsChanged: MonthlyInsight[] = (insights?.changes ?? []).map((change) => {
+          const type = String(change.changeType ?? "CHANGE_TYPE_UNSPECIFIED");
+
+          if (type.includes("CATEGORY")) {
+            return {
+              type: "category_change" as const,
+              title: change.title ?? "",
+              description: change.description ?? "",
+              categoryChange: {
+                categoryName: change.categoryName ?? "",
+                currentAmount: Number(change.currentAmount?.amountMinor ?? 0) / 100,
+                previousAmount: Number(change.previousAmount?.amountMinor ?? 0) / 100,
+                percentChange: change.percentChange ?? 0,
+                trend:
+                  change.percentChange && change.percentChange > 5
+                    ? "up"
+                    : change.percentChange && change.percentChange < -5
+                      ? "down"
+                      : "stable",
+              },
+            };
+          } else if (type.includes("MERCHANT")) {
+            return {
+              type: "new_merchant" as const,
+              title: change.title ?? "",
+              description: change.description ?? "",
+              newMerchant: {
+                merchantName: change.merchantName ?? "",
+                amount: Number(change.currentAmount?.amountMinor ?? 0) / 100,
+                transactionCount: change.transactionCount ?? 0,
+                categoryName: change.categoryName ?? undefined,
+              },
+            };
+          } else {
+            return {
+              type: "income_change" as const,
+              title: change.title ?? "",
+              description: change.description ?? "",
+              incomeChange: {
+                currentAmount: Number(change.currentAmount?.amountMinor ?? 0) / 100,
+                previousAmount: Number(change.previousAmount?.amountMinor ?? 0) / 100,
+                percentChange: change.percentChange ?? 0,
+                trend:
+                  change.percentChange && change.percentChange > 5
+                    ? "up"
+                    : change.percentChange && change.percentChange < -5
+                      ? "down"
+                      : "stable",
+              },
+            };
+          }
+        });
+
+        // Parse "1 action to take"
+        const action = insights?.recommendedAction;
+        const recommendedAction: RecommendedAction | null = action
+          ? {
+              actionType: String(action.actionType ?? "")
+                .toLowerCase()
+                .includes("uncategorized")
+                ? "uncategorized"
+                : String(action.actionType ?? "")
+                      .toLowerCase()
+                      .includes("spending")
+                  ? "high_spending"
+                  : "review_budget",
+              title: action.title ?? "",
+              description: action.description ?? "",
+              priority: action.priority ?? 0,
+              metadata: action.metadata ? JSON.parse(String(action.metadata)) : undefined,
+            }
+          : null;
+
+        return {
+          month: insights?.month ?? new Date().toISOString().slice(0, 7),
+          thingsChanged: thingsChanged.slice(0, 3), // Max 3
+          recommendedAction,
+          totalSpending: Number(insights?.totalSpending?.amountMinor ?? 0) / 100,
+          totalIncome: Number(insights?.totalIncome?.amountMinor ?? 0) / 100,
+          netChange: Number(insights?.netChange?.amountMinor ?? 0) / 100,
+          comparedToMonth: insights?.comparedToMonth ?? "",
+        };
+      } catch (error) {
+        // If the backend doesn't have the endpoint yet, return mock data
+        console.warn("Monthly insights endpoint not available, using mock data:", error);
+        return {
+          month: month ?? new Date().toISOString().slice(0, 7),
+          thingsChanged: [],
+          recommendedAction: null,
+          totalSpending: 0,
+          totalIncome: 0,
+          netChange: 0,
+          comparedToMonth: "",
+        };
+      }
+    },
+    staleTime: 5 * 60_000, // 5 minutes
+  });
+}

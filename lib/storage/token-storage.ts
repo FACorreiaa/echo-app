@@ -110,3 +110,15 @@ export async function clearTokens(): Promise<void> {
     removeItem(KEYS.TOKEN_EXPIRY),
   ]);
 }
+
+/**
+ * Clear all auth state including tokens and Zustand store persistence
+ * Use this for complete logout (e.g., on 401 errors)
+ */
+export async function clearAllAuthState(): Promise<void> {
+  await Promise.all([
+    clearTokens(),
+    // Clear the Zustand auth store persistence key
+    AsyncStorage.removeItem("echo-auth-storage"),
+  ]);
+}

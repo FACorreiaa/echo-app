@@ -10,8 +10,12 @@ import { InsightsService } from "@buf/echo-tracker_echo.bufbuild_es/echo/v1/insi
 import { PlanService } from "@buf/echo-tracker_echo.bufbuild_es/echo/v1/plan_pb";
 import { ConnectError, createClient, type Client } from "@connectrpc/connect";
 import { createConnectTransport } from "@connectrpc/connect-web";
-import { getAccessToken } from "../storage/token-storage";
+import { clearAllAuthState, getAccessToken } from "../storage/token-storage";
 import { API_CONFIG } from "./config";
+
+// Track if we're currently handling a 401 to prevent infinite loops
+let isHandling401 = false;
+
 // Create the Connect transport
 const transport = createConnectTransport({
   baseUrl: API_CONFIG.baseUrl,
@@ -22,7 +26,23 @@ const transport = createConnectTransport({
       if (token) {
         req.header.set("Authorization", `Bearer ${token}`);
       }
-      return next(req);
+      try {
+        return await next(req);
+      } catch (error) {
+        // Handle 401 errors - clear tokens and force re-login
+        if (
+          error instanceof ConnectError &&
+          error.code === 16 && // Code.Unauthenticated
+          !isHandling401
+        ) {
+          isHandling401 = true;
+          console.warn("[API] Unauthenticated error - clearing all auth state");
+          await clearAllAuthState();
+          isHandling401 = false;
+          // The auth store will detect token absence and redirect to login
+        }
+        throw error;
+      }
     },
   ],
 });

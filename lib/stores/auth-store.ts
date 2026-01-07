@@ -5,8 +5,8 @@
 
 import { clearTokens, getAccessToken, storeTokens } from "@/lib/storage/token-storage";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { create } from "zustand";
 import type { StateCreator } from "zustand";
+import { create } from "zustand";
 import type { PersistOptions } from "zustand/middleware";
 // Use CJS to avoid bundling import.meta in the web build.
 const { createJSONStorage, persist } =
@@ -32,11 +32,13 @@ interface AuthState {
   user: User | null;
   isAuthenticated: boolean;
   isHydrated: boolean;
+  hasCompletedOnboarding: boolean;
 
   // Actions
   setUser: (user: User | null) => void;
   setAuthenticated: (value: boolean) => void;
   setHydrated: (value: boolean) => void;
+  completeOnboarding: () => void;
 
   // Auth actions
   loginSuccess: (user: User, tokens: AuthTokens) => Promise<void>;
@@ -53,11 +55,13 @@ const createAuthStore: AuthStoreCreator = (set) => ({
   user: null,
   isAuthenticated: false,
   isHydrated: false,
+  hasCompletedOnboarding: false,
 
   // Setters
   setUser: (user) => set({ user }),
   setAuthenticated: (value) => set({ isAuthenticated: value }),
   setHydrated: (value) => set({ isHydrated: value }),
+  completeOnboarding: () => set({ hasCompletedOnboarding: true }),
 
   // Login success - store user and tokens
   loginSuccess: async (user, tokens) => {
@@ -68,7 +72,7 @@ const createAuthStore: AuthStoreCreator = (set) => ({
   // Logout - clear everything
   logout: async () => {
     await clearTokens();
-    set({ user: null, isAuthenticated: false });
+    set({ user: null, isAuthenticated: false, hasCompletedOnboarding: false });
   },
 
   // Check if user is authenticated (on app start)
@@ -83,13 +87,17 @@ const createAuthStore: AuthStoreCreator = (set) => ({
   },
 });
 
-const persistOptions: PersistOptions<AuthState, Pick<AuthState, "user" | "isAuthenticated">> = {
+const persistOptions: PersistOptions<
+  AuthState,
+  Pick<AuthState, "user" | "isAuthenticated" | "hasCompletedOnboarding">
+> = {
   name: "echo-auth-storage",
   storage: createJSONStorage(() => AsyncStorage),
-  // Only persist user data, not tokens (they go to SecureStore)
+  // Persist user data and onboarding state, not tokens (they go to SecureStore)
   partialize: (state) => ({
     user: state.user,
     isAuthenticated: state.isAuthenticated,
+    hasCompletedOnboarding: state.hasCompletedOnboarding,
   }),
   onRehydrateStorage: () => (state, error) => {
     // Mark as hydrated after rehydration completes
@@ -112,3 +120,5 @@ export const useAuthStore = create<AuthState>()(persist(createAuthStore, persist
 export const useUser = () => useAuthStore((state) => state.user);
 export const useIsAuthenticated = () => useAuthStore((state) => state.isAuthenticated);
 export const useIsHydrated = () => useAuthStore((state) => state.isHydrated);
+export const useHasCompletedOnboarding = () =>
+  useAuthStore((state) => state.hasCompletedOnboarding);

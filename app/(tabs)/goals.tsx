@@ -1,10 +1,13 @@
-import { Plus, TrendingDown, TrendingUp } from "@tamagui/lucide-icons";
+import { Plus } from "@tamagui/lucide-icons";
+import { useState } from "react";
 import { Pressable } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ScrollView, styled, Text, XStack, YStack } from "tamagui";
 
 import { GradientBackground } from "@/components/animations/GradientBackground";
 import { GlassyCard } from "@/components/ui/GlassyCard";
+import { useGoals, type Goal } from "@/lib/hooks/use-goals";
+import { ContributeSheet, CreateGoalSheet, GoalCard } from "@/widgets/goals";
 
 const PageTitle = styled(Text, {
   color: "$color",
@@ -12,83 +15,20 @@ const PageTitle = styled(Text, {
   fontFamily: "$heading",
 });
 
-const GoalTitle = styled(Text, {
-  color: "$color",
-  fontSize: 18,
-  fontFamily: "$heading",
-});
-
-const GoalSubtitle = styled(Text, {
-  color: "$secondaryText",
-  fontSize: 14,
-  fontFamily: "$body",
-});
-
-const ProgressLabel = styled(Text, {
-  color: "$color",
-  fontSize: 24,
-  fontFamily: "$heading",
-});
-
-const TargetLabel = styled(Text, {
-  color: "$secondaryText",
-  fontSize: 14,
-  fontFamily: "$body",
-});
-
-const PacingBadge = styled(XStack, {
-  paddingHorizontal: 10,
-  paddingVertical: 4,
-  borderRadius: 12,
-  alignItems: "center",
-  gap: 4,
-  variants: {
-    status: {
-      ahead: { backgroundColor: "rgba(34, 197, 94, 0.2)" },
-      behind: { backgroundColor: "rgba(239, 68, 68, 0.2)" },
-      onTrack: { backgroundColor: "rgba(45, 166, 250, 0.2)" },
-    },
-  } as const,
-});
-
-// Mock goals
-const goals = [
-  {
-    id: "1",
-    name: "Emergency Fund",
-    current: 3500,
-    target: 10000,
-    deadline: "Dec 2025",
-    status: "ahead" as const,
-    pacingText: "2 months ahead",
-  },
-  {
-    id: "2",
-    name: "New MacBook",
-    current: 800,
-    target: 2500,
-    deadline: "Jun 2025",
-    status: "behind" as const,
-    pacingText: "1 month behind",
-  },
-  {
-    id: "3",
-    name: "Vacation Fund",
-    current: 1200,
-    target: 3000,
-    deadline: "Aug 2025",
-    status: "onTrack" as const,
-    pacingText: "On track",
-  },
-];
-
-const statusColors = {
-  ahead: "#22c55e",
-  behind: "#ef4444",
-  onTrack: "#2da6fa",
-};
-
 export default function GoalsScreen() {
+  // Fetch active goals from API
+  const { data: goals, isLoading, isError } = useGoals("active");
+
+  // Sheet state
+  const [createSheetOpen, setCreateSheetOpen] = useState(false);
+  const [contributeSheetOpen, setContributeSheetOpen] = useState(false);
+  const [selectedGoal, setSelectedGoal] = useState<Goal | null>(null);
+
+  const handleGoalPress = (goal: Goal) => {
+    setSelectedGoal(goal);
+    setContributeSheetOpen(true);
+  };
+
   return (
     <GradientBackground>
       <SafeAreaView style={{ flex: 1 }} edges={["top"]}>
@@ -99,64 +39,57 @@ export default function GoalsScreen() {
               <PageTitle>Goals</PageTitle>
             </XStack>
 
-            {/* Goals Grid */}
-            <YStack gap={16}>
-              {goals.map((goal) => {
-                const progress = (goal.current / goal.target) * 100;
-                return (
-                  <GlassyCard key={goal.id}>
-                    <YStack gap={16}>
-                      <XStack justifyContent="space-between" alignItems="flex-start">
-                        <YStack gap={4} flex={1}>
-                          <GoalTitle>{goal.name}</GoalTitle>
-                          <GoalSubtitle>Target: {goal.deadline}</GoalSubtitle>
-                        </YStack>
-                        <PacingBadge status={goal.status}>
-                          {goal.status === "ahead" && (
-                            <TrendingUp size={14} color={statusColors.ahead as any} />
-                          )}
-                          {goal.status === "behind" && (
-                            <TrendingDown size={14} color={statusColors.behind as any} />
-                          )}
-                          <Text
-                            color={statusColors[goal.status] as any}
-                            fontSize={12}
-                            fontFamily="$body"
-                          >
-                            {goal.pacingText}
-                          </Text>
-                        </PacingBadge>
-                      </XStack>
+            {/* Loading State */}
+            {isLoading && (
+              <GlassyCard>
+                <YStack padding="$4" alignItems="center">
+                  <Text color="$secondaryText">Loading your goals...</Text>
+                </YStack>
+              </GlassyCard>
+            )}
 
-                      <YStack gap={8}>
-                        <XStack justifyContent="space-between" alignItems="baseline">
-                          <ProgressLabel>€{goal.current.toLocaleString()}</ProgressLabel>
-                          <TargetLabel>of €{goal.target.toLocaleString()}</TargetLabel>
-                        </XStack>
-                        <YStack
-                          height={8}
-                          backgroundColor="$listItemBackground"
-                          borderRadius={4}
-                          overflow="hidden"
-                        >
-                          <YStack
-                            height="100%"
-                            width={`${Math.min(progress, 100)}%`}
-                            backgroundColor={statusColors[goal.status] as any}
-                            borderRadius={4}
-                          />
-                        </YStack>
-                      </YStack>
-                    </YStack>
-                  </GlassyCard>
-                );
-              })}
-            </YStack>
+            {/* Error State */}
+            {isError && (
+              <GlassyCard>
+                <YStack padding="$4" alignItems="center" gap="$2">
+                  <Text color="$color" fontWeight="600">
+                    Unable to load goals
+                  </Text>
+                  <Text color="$secondaryText" fontSize={14}>
+                    Check your connection and try again
+                  </Text>
+                </YStack>
+              </GlassyCard>
+            )}
+
+            {/* Empty State */}
+            {!isLoading && !isError && (!goals || goals.length === 0) && (
+              <GlassyCard>
+                <YStack padding="$4" alignItems="center" gap="$2">
+                  <Text color="$color" fontSize={18} fontWeight="600">
+                    No active goals
+                  </Text>
+                  <Text color="$secondaryText" fontSize={14} textAlign="center">
+                    Tap the + button to create your first goal
+                  </Text>
+                </YStack>
+              </GlassyCard>
+            )}
+
+            {/* Goals Grid */}
+            {!isLoading && !isError && goals && goals.length > 0 && (
+              <YStack gap={16}>
+                {goals.map((goal) => (
+                  <GoalCard key={goal.id} goal={goal} onPress={() => handleGoalPress(goal)} />
+                ))}
+              </YStack>
+            )}
           </YStack>
         </ScrollView>
 
-        {/* FAB */}
+        {/* FAB - Create Goal */}
         <Pressable
+          onPress={() => setCreateSheetOpen(true)}
           style={{
             position: "absolute",
             bottom: 100,
@@ -176,6 +109,16 @@ export default function GoalsScreen() {
         >
           <Plus size={28} color="white" />
         </Pressable>
+
+        {/* Create Goal Sheet */}
+        <CreateGoalSheet open={createSheetOpen} onOpenChange={setCreateSheetOpen} />
+
+        {/* Contribute to Goal Sheet */}
+        <ContributeSheet
+          open={contributeSheetOpen}
+          onOpenChange={setContributeSheetOpen}
+          goal={selectedGoal}
+        />
       </SafeAreaView>
     </GradientBackground>
   );

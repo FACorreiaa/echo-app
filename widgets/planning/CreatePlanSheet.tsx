@@ -44,6 +44,7 @@ export function CreatePlanSheet({
     categoryColumn: string;
     valueColumn: string;
     headerRow: number;
+    startCell?: string; // Optional: specific cell coordinate like "B10"
   } | null>(null);
 
   // Effect to set mode if initials change (e.g. re-opening)
@@ -235,6 +236,7 @@ export function CreatePlanSheet({
           headerRow: finalMapping.headerRow,
           hasPercentageColumn: !!detected?.percentageColumn,
           percentageColumn: detected?.percentageColumn ?? "",
+          startCell: finalMapping.startCell ?? "",
         },
       });
       handleClose();
@@ -619,164 +621,256 @@ export function CreatePlanSheet({
           </YStack>
         )}
 
-        {/* Smart Mapper - Confirm Mapping */}
         {mode === "confirm-mapping" && mappingOverrides && (
           <YStack gap="$4" flex={1}>
-            <Text color="$secondaryText">Review the detected column mapping before importing:</Text>
+            <ScrollView
+              contentContainerStyle={{ flexGrow: 1, gap: 16 }}
+              showsVerticalScrollIndicator
+            >
+              <Text color="$secondaryText">
+                Review the detected column mapping before importing:
+              </Text>
 
-            {/* Confidence Summary */}
-            {(() => {
-              const sheetInfo = analyzedSheets.find((s) => s.name === selectedSheet);
-              const confidence = sheetInfo?.detectedMapping?.confidence ?? 0.5;
-              const isHigh = confidence >= 0.85;
-              const isMedium = confidence >= 0.5 && confidence < 0.85;
+              {/* Confidence Summary */}
+              {(() => {
+                const sheetInfo = analyzedSheets.find((s) => s.name === selectedSheet);
+                const confidence = sheetInfo?.detectedMapping?.confidence ?? 0.5;
+                const isHigh = confidence >= 0.85;
+                const isMedium = confidence >= 0.5 && confidence < 0.85;
 
-              return (
-                <GlassyCard>
-                  <XStack padding="$3" alignItems="center" gap="$3">
-                    <Text fontSize={24}>{isHigh ? "🟢" : isMedium ? "🟡" : "🔴"}</Text>
-                    <YStack flex={1}>
-                      <Text color="$color" fontWeight="600">
-                        {isHigh
-                          ? "High Confidence"
-                          : isMedium
-                            ? "Review Recommended"
-                            : "Manual Review Needed"}
+                return (
+                  <GlassyCard>
+                    <XStack padding="$3" alignItems="center" gap="$3">
+                      <Text fontSize={24}>{isHigh ? "🟢" : isMedium ? "🟡" : "🔴"}</Text>
+                      <YStack flex={1}>
+                        <Text color="$color" fontWeight="600">
+                          {isHigh
+                            ? "High Confidence"
+                            : isMedium
+                              ? "Review Recommended"
+                              : "Manual Review Needed"}
+                        </Text>
+                        <Text color="$secondaryText" fontSize={12}>
+                          Detection confidence: {Math.round(confidence * 100)}%
+                        </Text>
+                      </YStack>
+                    </XStack>
+                  </GlassyCard>
+                );
+              })()}
+
+              {/* Row Preview */}
+              {(() => {
+                const sheetInfo = analyzedSheets.find((s) => s.name === selectedSheet);
+                const previewRows = sheetInfo?.previewRows ?? [];
+
+                if (previewRows.length === 0) return null;
+
+                return (
+                  <GlassyCard>
+                    <YStack gap="$2">
+                      <Text
+                        color="$secondaryText"
+                        fontSize={12}
+                        fontWeight="600"
+                        padding="$3"
+                        paddingBottom={0}
+                      >
+                        DATA PREVIEW
                       </Text>
-                      <Text color="$secondaryText" fontSize={12}>
-                        Detection confidence: {Math.round(confidence * 100)}%
-                      </Text>
+                      <ScrollView horizontal showsHorizontalScrollIndicator>
+                        <YStack>
+                          {previewRows.map((row, rowIdx) => (
+                            <XStack
+                              key={rowIdx}
+                              padding="$2"
+                              gap="$3"
+                              backgroundColor={rowIdx === 0 ? "$listItemBackground" : undefined}
+                              borderBottomWidth={1}
+                              borderColor="$borderColor"
+                            >
+                              {row.map((cell, cellIdx) => (
+                                <Text
+                                  key={cellIdx}
+                                  width={100}
+                                  color={rowIdx === 0 ? "$color" : "$secondaryText"}
+                                  fontWeight={rowIdx === 0 ? "bold" : "normal"}
+                                  numberOfLines={1}
+                                  fontSize={13}
+                                >
+                                  {cell || "—"}
+                                </Text>
+                              ))}
+                            </XStack>
+                          ))}
+                        </YStack>
+                      </ScrollView>
                     </YStack>
-                  </XStack>
-                </GlassyCard>
-              );
-            })()}
+                  </GlassyCard>
+                );
+              })()}
 
-            {/* Column Mapping Fields */}
-            <GlassyCard>
-              <YStack padding="$4" gap="$4">
-                {/* Category Column */}
-                <YStack gap="$2">
-                  <Label color="$secondaryText" fontSize={12}>
-                    Category Column
-                  </Label>
-                  <XStack gap="$2" flexWrap="wrap">
-                    {["A", "B", "C", "D", "E"].map((col) => (
-                      <Pressable
-                        key={col}
-                        onPress={() =>
-                          setMappingOverrides({ ...mappingOverrides, categoryColumn: col })
+              {/* Column Mapping Fields */}
+              <GlassyCard>
+                <YStack padding="$4" gap="$4">
+                  {/* Category Column */}
+                  <YStack gap="$2">
+                    <Label color="$secondaryText" fontSize={12}>
+                      Category Column
+                    </Label>
+                    <XStack gap="$2" flexWrap="wrap">
+                      {["A", "B", "C", "D", "E"].map((col) => (
+                        <Pressable
+                          key={col}
+                          onPress={() =>
+                            setMappingOverrides({ ...mappingOverrides, categoryColumn: col })
+                          }
+                        >
+                          <YStack
+                            backgroundColor={
+                              mappingOverrides.categoryColumn === col
+                                ? "#22c55e"
+                                : "$backgroundHover"
+                            }
+                            paddingHorizontal="$4"
+                            paddingVertical="$2"
+                            borderRadius="$3"
+                            minWidth={48}
+                            alignItems="center"
+                          >
+                            <Text
+                              color={mappingOverrides.categoryColumn === col ? "white" : "$color"}
+                              fontWeight="600"
+                            >
+                              {col}
+                            </Text>
+                          </YStack>
+                        </Pressable>
+                      ))}
+                    </XStack>
+                  </YStack>
+
+                  {/* Value Column */}
+                  <YStack gap="$2">
+                    <Label color="$secondaryText" fontSize={12}>
+                      Value Column
+                    </Label>
+                    <XStack gap="$2" flexWrap="wrap">
+                      {["A", "B", "C", "D", "E", "F"].map((col) => (
+                        <Pressable
+                          key={col}
+                          onPress={() =>
+                            setMappingOverrides({ ...mappingOverrides, valueColumn: col })
+                          }
+                        >
+                          <YStack
+                            backgroundColor={
+                              mappingOverrides.valueColumn === col ? "#22c55e" : "$backgroundHover"
+                            }
+                            paddingHorizontal="$4"
+                            paddingVertical="$2"
+                            borderRadius="$3"
+                            minWidth={48}
+                            alignItems="center"
+                          >
+                            <Text
+                              color={mappingOverrides.valueColumn === col ? "white" : "$color"}
+                              fontWeight="600"
+                            >
+                              {col}
+                            </Text>
+                          </YStack>
+                        </Pressable>
+                      ))}
+                    </XStack>
+                  </YStack>
+
+                  {/* Header Row */}
+                  <YStack gap="$2">
+                    <Label color="$secondaryText" fontSize={12}>
+                      Data Starts at Row
+                    </Label>
+                    <XStack gap="$2" flexWrap="wrap">
+                      {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((row) => (
+                        <Pressable
+                          key={row}
+                          onPress={() =>
+                            setMappingOverrides({ ...mappingOverrides, headerRow: row })
+                          }
+                        >
+                          <YStack
+                            backgroundColor={
+                              mappingOverrides.headerRow === row ? "#22c55e" : "$backgroundHover"
+                            }
+                            paddingHorizontal="$3"
+                            paddingVertical="$2"
+                            borderRadius="$3"
+                            minWidth={40}
+                            alignItems="center"
+                          >
+                            <Text
+                              color={mappingOverrides.headerRow === row ? "white" : "$color"}
+                              fontWeight="600"
+                            >
+                              {row}
+                            </Text>
+                          </YStack>
+                        </Pressable>
+                      ))}
+                    </XStack>
+                  </YStack>
+
+                  {/* Cell Coordinate (Optional - for Planning Sheets) */}
+                  <YStack gap="$2">
+                    <Label color="$secondaryText" fontSize={12}>
+                      Start Cell (Optional)
+                    </Label>
+                    <XStack gap="$2" alignItems="center">
+                      <Input
+                        flex={1}
+                        placeholder="e.g., B10"
+                        value={mappingOverrides.startCell ?? ""}
+                        onChangeText={(text) =>
+                          setMappingOverrides({
+                            ...mappingOverrides,
+                            startCell: text.toUpperCase(),
+                          })
                         }
-                      >
-                        <YStack
-                          backgroundColor={
-                            mappingOverrides.categoryColumn === col ? "#22c55e" : "$backgroundHover"
-                          }
-                          paddingHorizontal="$4"
-                          paddingVertical="$2"
-                          borderRadius="$3"
-                          minWidth={48}
-                          alignItems="center"
-                        >
-                          <Text
-                            color={mappingOverrides.categoryColumn === col ? "white" : "$color"}
-                            fontWeight="600"
-                          >
-                            {col}
-                          </Text>
-                        </YStack>
-                      </Pressable>
-                    ))}
-                  </XStack>
+                        maxLength={6}
+                        autoCapitalize="characters"
+                        backgroundColor="$backgroundHover"
+                        borderWidth={0}
+                        color="$color"
+                      />
+                      <Text color="$secondaryText" fontSize={12} maxWidth={180}>
+                        For budget cells like B10, C5
+                      </Text>
+                    </XStack>
+                  </YStack>
                 </YStack>
+              </GlassyCard>
 
-                {/* Value Column */}
-                <YStack gap="$2">
-                  <Label color="$secondaryText" fontSize={12}>
-                    Value Column
-                  </Label>
-                  <XStack gap="$2" flexWrap="wrap">
-                    {["A", "B", "C", "D", "E", "F"].map((col) => (
-                      <Pressable
-                        key={col}
-                        onPress={() =>
-                          setMappingOverrides({ ...mappingOverrides, valueColumn: col })
-                        }
-                      >
-                        <YStack
-                          backgroundColor={
-                            mappingOverrides.valueColumn === col ? "#22c55e" : "$backgroundHover"
-                          }
-                          paddingHorizontal="$4"
-                          paddingVertical="$2"
-                          borderRadius="$3"
-                          minWidth={48}
-                          alignItems="center"
-                        >
-                          <Text
-                            color={mappingOverrides.valueColumn === col ? "white" : "$color"}
-                            fontWeight="600"
-                          >
-                            {col}
-                          </Text>
-                        </YStack>
-                      </Pressable>
-                    ))}
-                  </XStack>
-                </YStack>
-
-                {/* Header Row */}
-                <YStack gap="$2">
-                  <Label color="$secondaryText" fontSize={12}>
-                    Data Starts at Row
-                  </Label>
-                  <XStack gap="$2" flexWrap="wrap">
-                    {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((row) => (
-                      <Pressable
-                        key={row}
-                        onPress={() => setMappingOverrides({ ...mappingOverrides, headerRow: row })}
-                      >
-                        <YStack
-                          backgroundColor={
-                            mappingOverrides.headerRow === row ? "#22c55e" : "$backgroundHover"
-                          }
-                          paddingHorizontal="$3"
-                          paddingVertical="$2"
-                          borderRadius="$3"
-                          minWidth={40}
-                          alignItems="center"
-                        >
-                          <Text
-                            color={mappingOverrides.headerRow === row ? "white" : "$color"}
-                            fontWeight="600"
-                          >
-                            {row}
-                          </Text>
-                        </YStack>
-                      </Pressable>
-                    ))}
-                  </XStack>
-                </YStack>
+              {/* Preview Info */}
+              <YStack backgroundColor="$backgroundHover" padding="$3" borderRadius="$3" gap="$1">
+                <Text color="$color" fontWeight="600" fontSize={14}>
+                  📊 What will be imported:
+                </Text>
+                <Text color="$secondaryText" fontSize={13}>
+                  • Categories from column {mappingOverrides.categoryColumn}
+                </Text>
+                <Text color="$secondaryText" fontSize={13}>
+                  • Values from column {mappingOverrides.valueColumn}
+                </Text>
+                <Text color="$secondaryText" fontSize={13}>
+                  • Starting from row {mappingOverrides.headerRow}
+                </Text>
+                {mappingOverrides.startCell && (
+                  <Text color="$secondaryText" fontSize={13}>
+                    • Cell coordinate: {mappingOverrides.startCell}
+                  </Text>
+                )}
               </YStack>
-            </GlassyCard>
-
-            {/* Preview Info */}
-            <YStack backgroundColor="$backgroundHover" padding="$3" borderRadius="$3" gap="$1">
-              <Text color="$color" fontWeight="600" fontSize={14}>
-                📊 What will be imported:
-              </Text>
-              <Text color="$secondaryText" fontSize={13}>
-                • Categories from column {mappingOverrides.categoryColumn}
-              </Text>
-              <Text color="$secondaryText" fontSize={13}>
-                • Values from column {mappingOverrides.valueColumn}
-              </Text>
-              <Text color="$secondaryText" fontSize={13}>
-                • Starting from row {mappingOverrides.headerRow}
-              </Text>
-            </YStack>
-
-            <YStack flex={1} />
+            </ScrollView>
 
             <XStack gap="$3">
               <Button

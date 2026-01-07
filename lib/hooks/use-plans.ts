@@ -310,6 +310,7 @@ export interface ExcelSheetInfo {
   detectedCategories: string[];
   monthColumns: string[]; // e.g., ["jan-26", "feb-26"]
   detectedMapping?: DetectedColumnMapping; // Auto-detected column layout
+  previewRows?: string[][]; // First 5 rows for preview
 }
 
 export interface ExcelAnalysisResult {
@@ -349,6 +350,8 @@ export function useAnalyzeExcel() {
                 confidence: s.detectedMapping.confidence ?? 0.5,
               }
             : undefined,
+          // Include preview rows for UI display
+          previewRows: s.previewRows?.map((row) => row.cells ?? []) ?? [],
         })),
         suggestedSheet: response.suggestedSheet ?? "",
       };
@@ -372,6 +375,7 @@ export function useImportFromExcel() {
         headerRow?: number;
         hasPercentageColumn?: boolean;
         percentageColumn?: string;
+        startCell?: string; // B10-style cell coordinate
       };
     }) => {
       const response = await planClient.importPlanFromExcel({
@@ -384,6 +388,7 @@ export function useImportFromExcel() {
               headerRow: input.mapping.headerRow ?? 1,
               hasPercentageColumn: input.mapping.hasPercentageColumn ?? false,
               percentageColumn: input.mapping.percentageColumn ?? "",
+              startCell: input.mapping.startCell ?? "",
             }
           : undefined,
       });
@@ -413,12 +418,12 @@ export async function uploadExcelFile(
   // Convert blob to bytes using FileReader (React Native compatible)
   const bytes = await new Promise<Uint8Array>((resolve, reject) => {
     const reader = new FileReader();
-    reader.onload = () => {
+    reader.addEventListener("load", () => {
       resolve(new Uint8Array(reader.result as ArrayBuffer));
-    };
-    reader.onerror = () => {
+    });
+    reader.addEventListener("error", () => {
       reject(new Error("Failed to read file"));
-    };
+    });
     reader.readAsArrayBuffer(blob);
   });
 

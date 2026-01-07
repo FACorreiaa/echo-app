@@ -3,7 +3,7 @@
  */
 
 import { balanceClient } from "@/lib/api/client";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 export interface Money {
   amountMinor: bigint;
@@ -143,4 +143,32 @@ export function formatBalance(amount: number, currency = "EUR"): string {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   }).format(amount);
+}
+
+/**
+ * Set opening balance mutation
+ */
+export function useSetOpeningBalance() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async ({
+      amountMinor,
+      currencyCode = "EUR",
+    }: {
+      amountMinor: number;
+      currencyCode?: string;
+    }) => {
+      const response = await balanceClient.setOpeningBalance({
+        amountMinor: BigInt(amountMinor),
+        currencyCode,
+      });
+      return response;
+    },
+    onSuccess: () => {
+      // Invalidate balance queries to refetch with new opening balance
+      queryClient.invalidateQueries({ queryKey: ["balance"] });
+      queryClient.invalidateQueries({ queryKey: ["balance-history"] });
+    },
+  });
 }
