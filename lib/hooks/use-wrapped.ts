@@ -14,6 +14,18 @@ export interface WrappedCard {
   accent: string;
 }
 
+// Behavioral archetype (e.g., "Coffee Enthusiast", "Night Owl")
+export interface BehavioralArchetype {
+  id: string;
+  title: string;
+  description: string;
+  emoji: string;
+  rank: number;
+  categoryId?: string;
+  merchantName?: string;
+  amountMinor: number;
+}
+
 export interface WrappedSummary {
   id: string;
   userId: string;
@@ -21,6 +33,8 @@ export interface WrappedSummary {
   periodStart: Date;
   periodEnd: Date;
   cards: WrappedCard[];
+  archetypes: BehavioralArchetype[];
+  shareUrl?: string;
   createdAt: Date;
 }
 
@@ -70,6 +84,17 @@ export function useWrapped(
           body: c.body ?? "",
           accent: c.accent ?? "#6366F1",
         })),
+        archetypes: (wrapped?.archetypes ?? []).map((a) => ({
+          id: a.id ?? "",
+          title: a.title ?? "",
+          description: a.description ?? "",
+          emoji: a.emoji ?? "💡",
+          rank: a.rank ?? 1,
+          categoryId: a.categoryId ?? undefined,
+          merchantName: a.merchantName ?? undefined,
+          amountMinor: Number(a.amount?.amountMinor ?? 0),
+        })),
+        shareUrl: wrapped?.shareUrl ?? undefined,
         createdAt: wrapped?.createdAt
           ? new Date(Number(wrapped.createdAt.seconds) * 1000)
           : new Date(),
