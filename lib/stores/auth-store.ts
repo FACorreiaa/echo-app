@@ -3,7 +3,7 @@
  * Manages authentication state across app restarts
  */
 
-import { clearTokens, getAccessToken, storeTokens } from "@/lib/storage/token-storage";
+import { clearAllAuthState, getAccessToken, storeTokens } from "@/lib/storage/token-storage";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import type { StateCreator } from "zustand";
 import { create } from "zustand";
@@ -69,9 +69,9 @@ const createAuthStore: AuthStoreCreator = (set) => ({
     set({ user, isAuthenticated: true });
   },
 
-  // Logout - clear everything
+  // Logout - clear everything (tokens + Zustand persistence)
   logout: async () => {
-    await clearTokens();
+    await clearAllAuthState();
     set({ user: null, isAuthenticated: false, hasCompletedOnboarding: false });
   },
 

@@ -6,6 +6,7 @@ import { Button, H2, Text, XStack, YStack } from "tamagui";
 
 import { GlassyCard } from "@/components";
 import { useWrapped } from "@/lib/hooks/use-wrapped";
+import { ArchetypeCard } from "@/widgets/wrapped/ArchetypeCard";
 
 type TabType = "saver" | "networth";
 
@@ -110,6 +111,28 @@ export default function WrappedScreen() {
               </Text>
             </YStack>
           </GlassyCard>
+        )}
+
+        {/* Archetypes Section */}
+        {!isLoading && wrapped?.archetypes && wrapped.archetypes.length > 0 && (
+          <>
+            <Text color="$color" fontSize={18} fontWeight="bold" marginBottom="$3">
+              Your Archetypes
+            </Text>
+            <YStack gap="$3" marginBottom="$4">
+              {wrapped.archetypes.map((archetype) => (
+                <ArchetypeCard
+                  key={archetype.id}
+                  id={archetype.id}
+                  title={archetype.title}
+                  emoji={archetype.emoji}
+                  description={archetype.description}
+                  rank={archetype.rank}
+                  amountMinor={archetype.amountMinor}
+                />
+              ))}
+            </YStack>
+          </>
         )}
 
         {/* Highlights Grid */}

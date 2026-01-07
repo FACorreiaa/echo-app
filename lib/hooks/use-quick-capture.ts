@@ -43,10 +43,15 @@ export function useQuickCapture() {
       };
     },
     onSuccess: () => {
-      // Invalidate transactions and insights queries
+      // Invalidate all related queries for real-time updates
       queryClient.invalidateQueries({ queryKey: ["transactions"] });
       queryClient.invalidateQueries({ queryKey: ["spendingPulse"] });
       queryClient.invalidateQueries({ queryKey: ["dashboardBlocks"] });
+      // Real-time balance and goal updates
+      queryClient.invalidateQueries({ queryKey: ["balance"] });
+      queryClient.invalidateQueries({ queryKey: ["balanceHistory"] });
+      queryClient.invalidateQueries({ queryKey: ["goals"] });
+      queryClient.invalidateQueries({ queryKey: ["monthlyInsights"] });
     },
   });
 }

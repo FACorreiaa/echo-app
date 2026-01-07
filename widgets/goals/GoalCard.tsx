@@ -73,6 +73,50 @@ function formatDeadline(endAt: Date | null): string {
   return `${month} ${year}`;
 }
 
+/**
+ * Calculate projected time to reach goal based on current pace
+ * Returns formatted string like "4.2 months" or "3 weeks"
+ */
+function getProjectedTimeToGoal(
+  current: number,
+  target: number,
+  amountNeededPerDay: number,
+  startAt: Date | null,
+): string | null {
+  // Edge cases
+  if (current >= target) return "Goal reached! 🎉";
+  if (amountNeededPerDay <= 0) return null;
+
+  const remaining = target - current;
+
+  // Calculate daily savings rate based on actual progress
+  const daysSinceStart = startAt
+    ? Math.max(1, Math.floor((Date.now() - startAt.getTime()) / (1000 * 60 * 60 * 24)))
+    : 30; // Default to 30 days if no start date
+
+  const dailySavingsRate = current / daysSinceStart;
+
+  // If no progress yet, use needed per day as estimate
+  const effectiveRate = dailySavingsRate > 0 ? dailySavingsRate : amountNeededPerDay;
+
+  if (effectiveRate <= 0) return null;
+
+  const daysToGoal = remaining / effectiveRate;
+  const monthsToGoal = daysToGoal / 30;
+
+  if (monthsToGoal < 1) {
+    const weeksToGoal = Math.max(1, Math.round(daysToGoal / 7));
+    return `${weeksToGoal} week${weeksToGoal !== 1 ? "s" : ""}`;
+  }
+
+  if (monthsToGoal > 12) {
+    const yearsToGoal = monthsToGoal / 12;
+    return `${yearsToGoal.toFixed(1)} years`;
+  }
+
+  return `${monthsToGoal.toFixed(1)} months`;
+}
+
 // ============================================================================
 // Component
 // ============================================================================
@@ -94,6 +138,12 @@ export interface GoalCardProps {
 export function GoalCard({ goal, onPress }: GoalCardProps) {
   const progress = (goal.current / goal.target) * 100;
   const pacingStatus = getPacingStatus(goal.pacePercent);
+  const projectedTime = getProjectedTimeToGoal(
+    goal.current,
+    goal.target,
+    goal.amountNeededPerDay,
+    goal.startAt,
+  );
 
   return (
     <GlassyCard onPress={onPress}>
@@ -124,6 +174,21 @@ export function GoalCard({ goal, onPress }: GoalCardProps) {
           </XStack>
 
           <GoalProgressBar progress={progress} status={pacingStatus} />
+
+          {/* Projection Display */}
+          {projectedTime && (
+            <XStack alignItems="center" gap={6} marginTop={4}>
+              <Text color="$secondaryText" fontSize={12}>
+                ⏱️
+              </Text>
+              <Text color="$secondaryText" fontSize={13} fontFamily="$body">
+                At this pace, reach goal in{" "}
+                <Text color="$color" fontWeight="600">
+                  {projectedTime}
+                </Text>
+              </Text>
+            </XStack>
+          )}
         </YStack>
       </YStack>
     </GlassyCard>
