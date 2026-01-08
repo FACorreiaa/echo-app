@@ -1,12 +1,14 @@
 import { Filter, Plus } from "@tamagui/lucide-icons";
-import { Pressable } from "react-native";
+import { ActivityIndicator, Pressable } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ScrollView, styled, Text, XStack, YStack } from "tamagui";
 
-import { Avatar } from "@/components/ui/Avatar";
 import { GradientBackground } from "@/components/animations/GradientBackground";
 import { ListItem } from "@/components/ListItem";
+import { Avatar } from "@/components/ui/Avatar";
 import { GlassyCard } from "@/components/ui/GlassyCard";
+import { useSpendingPulse } from "@/lib/hooks/use-insights";
+import { useFlatTransactions } from "@/lib/hooks/use-transactions";
 
 const PageTitle = styled(Text, {
   color: "$color",
@@ -54,68 +56,66 @@ const DateHeader = styled(Text, {
   paddingBottom: 8,
 });
 
-// Mock data
-const categories = [
-  { name: "Food & Drinks", amount: "€234.50", percent: 35 },
-  { name: "Transport", amount: "€89.00", percent: 13 },
-  { name: "Subscriptions", amount: "€67.99", percent: 10 },
-  { name: "Shopping", amount: "€156.00", percent: 23 },
-  { name: "Other", amount: "€120.00", percent: 18 },
-];
-
-const transactions = [
-  {
-    id: "1",
-    name: "Starbucks",
-    category: "Food & Drinks",
-    amount: "-€5.40",
-    date: "Today",
-    group: "Today",
-  },
-  {
-    id: "2",
-    name: "Uber",
-    category: "Transport",
-    amount: "-€12.50",
-    date: "10:30",
-    group: "Today",
-  },
-  {
-    id: "3",
-    name: "Amazon",
-    category: "Shopping",
-    amount: "-€29.99",
-    date: "Yesterday",
-    group: "Yesterday",
-  },
-  {
-    id: "4",
-    name: "Netflix",
-    category: "Subscriptions",
-    amount: "-€12.99",
-    date: "Dec 25",
-    group: "December 25",
-  },
-  {
-    id: "5",
-    name: "Lidl",
-    category: "Food & Drinks",
-    amount: "-€45.23",
-    date: "Dec 25",
-    group: "December 25",
-  },
-];
-
-const groupedTransactions = transactions.reduce(
-  (acc, tx) => {
-    if (!acc[tx.group]) acc[tx.group] = [];
-    acc[tx.group].push(tx);
-    return acc;
-  },
-  {} as Record<string, typeof transactions>,
-);
+// Transaction interface for UI
+interface UITransaction {
+  id: string;
+  merchantName: string;
+  description: string;
+  categoryName: string | null;
+  amount: number;
+  postedAt: Date | null;
+}
 
 export default function SpendScreen() {
+  // Fetch transactions using flat query
+  const { transactions: rawTransactions, isLoading: transactionsLoading } = useFlatTransactions();
+
+  // Convert proto transactions to UI format
+  const transactions: UITransaction[] = (rawTransactions ?? []).map((tx) => ({
+    id: tx.id,
+    merchantName: tx.merchantName ?? "",
+    description: tx.description ?? "",
+    categoryName: null, // Not in proto yet
+    amount: tx.amount ? Number(tx.amount.amountMinor) / 100 : 0,
+    postedAt: tx.postedAt ? new Date(Number(tx.postedAt.seconds) * 1000) : null,
+  }));
+
+  // Fetch spending pulse for category breakdown
+  const { data: pulse, isLoading: pulseLoading } = useSpendingPulse();
+  const topCategories = pulse?.topCategories ?? [];
+
+  // Format date for grouping
+  function formatDateGroup(date: Date | null): string {
+    if (!date) return "Unknown";
+    const now = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const yesterday = new Date(today);
+    yesterday.setDate(yesterday.getDate() - 1);
+
+    const txDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+
+    if (txDate.getTime() === today.getTime()) return "Today";
+    if (txDate.getTime() === yesterday.getTime()) return "Yesterday";
+    return date.toLocaleDateString("en-US", { month: "long", day: "numeric" });
+  }
+
+  // Group transactions by date
+  const groupedTransactions = transactions.reduce<Record<string, UITransaction[]>>((acc, tx) => {
+    const dateStr = formatDateGroup(tx.postedAt);
+    if (!acc[dateStr]) acc[dateStr] = [];
+    acc[dateStr].push(tx);
+    return acc;
+  }, {});
+
+  // Format amount for display
+  function formatAmount(amount: number): string {
+    const prefix = amount < 0 ? "-" : "+";
+    return `${prefix}€${Math.abs(amount).toFixed(2)}`;
+  }
+
+  // Get current month name
+  const currentMonth = new Date().toLocaleDateString("en-US", { month: "long" });
+
   return (
     <GradientBackground>
       <SafeAreaView style={{ flex: 1 }} edges={["top"]}>
@@ -127,7 +127,7 @@ export default function SpendScreen() {
               <XStack gap={12}>
                 <PeriodPill>
                   <Text color="$color" fontSize={14} fontFamily="$body">
-                    December
+                    {currentMonth}
                   </Text>
                 </PeriodPill>
                 <Pressable>
@@ -139,52 +139,89 @@ export default function SpendScreen() {
             {/* Category Breakdown */}
             <GlassyCard>
               <SectionTitle>By Category</SectionTitle>
-              <YStack gap={12}>
-                {categories.map((cat) => (
-                  <XStack key={cat.name} alignItems="center" gap={12}>
-                    <YStack
-                      width={4}
-                      height={32}
-                      borderRadius={2}
-                      backgroundColor="$accentGradientStart"
-                    />
-                    <CategoryLabel>{cat.name}</CategoryLabel>
-                    <CategoryAmount>{cat.amount}</CategoryAmount>
-                  </XStack>
-                ))}
-              </YStack>
+              {pulseLoading ? (
+                <YStack alignItems="center" padding="$4">
+                  <ActivityIndicator color="#2da6fa" />
+                </YStack>
+              ) : topCategories.length === 0 ? (
+                <Text color="$secondaryText" textAlign="center" padding="$4">
+                  No spending data yet
+                </Text>
+              ) : (
+                <YStack gap={12}>
+                  {topCategories.slice(0, 5).map((cat) => (
+                    <XStack key={cat.categoryName} alignItems="center" gap={12}>
+                      <YStack
+                        width={4}
+                        height={32}
+                        borderRadius={2}
+                        backgroundColor="$accentGradientStart"
+                      />
+                      <CategoryLabel>{cat.categoryName}</CategoryLabel>
+                      <CategoryAmount>€{cat.amount.toFixed(2)}</CategoryAmount>
+                    </XStack>
+                  ))}
+                </YStack>
+              )}
             </GlassyCard>
 
             {/* Transaction List */}
             <YStack gap={8}>
               <SectionTitle>All Transactions</SectionTitle>
-              <YStack
-                backgroundColor="$cardBackground"
-                borderRadius={16}
-                borderWidth={1}
-                borderColor="$borderColor"
-                overflow="hidden"
-              >
-                {Object.entries(groupedTransactions).map(([group, txs]) => (
-                  <YStack key={group}>
-                    <DateHeader>{group}</DateHeader>
-                    {txs.map((tx) => (
-                      <ListItem
-                        key={tx.id}
-                        title={tx.name}
-                        subtitle={tx.category}
-                        left={<Avatar name={tx.name} size="md" />}
-                        right={
-                          <Text color="$color" fontSize={16} fontFamily="$body">
-                            {tx.amount}
-                          </Text>
-                        }
-                        onPress={() => {}}
-                      />
-                    ))}
+              {transactionsLoading ? (
+                <YStack alignItems="center" padding="$6">
+                  <ActivityIndicator color="#2da6fa" />
+                  <Text color="$secondaryText" marginTop="$2">
+                    Loading transactions...
+                  </Text>
+                </YStack>
+              ) : transactions.length === 0 ? (
+                <GlassyCard>
+                  <YStack padding="$5" alignItems="center" gap="$3">
+                    <Text fontSize={32}>💸</Text>
+                    <Text color="$color" fontWeight="600">
+                      No Transactions
+                    </Text>
+                    <Text color="$secondaryText" textAlign="center" fontSize={14}>
+                      Import a CSV or add your first transaction
+                    </Text>
                   </YStack>
-                ))}
-              </YStack>
+                </GlassyCard>
+              ) : (
+                <YStack
+                  backgroundColor="$cardBackground"
+                  borderRadius={16}
+                  borderWidth={1}
+                  borderColor="$borderColor"
+                  overflow="hidden"
+                >
+                  {Object.entries(groupedTransactions).map(([group, txs]) => (
+                    <YStack key={group}>
+                      <DateHeader>{group}</DateHeader>
+                      {txs.map((tx) => (
+                        <ListItem
+                          key={tx.id}
+                          title={tx.merchantName || tx.description || "Unknown"}
+                          subtitle={tx.categoryName ?? "Uncategorized"}
+                          left={
+                            <Avatar name={tx.merchantName || tx.description || "?"} size="md" />
+                          }
+                          right={
+                            <Text
+                              color={tx.amount < 0 ? "$color" : "#22c55e"}
+                              fontSize={16}
+                              fontFamily="$body"
+                            >
+                              {formatAmount(tx.amount)}
+                            </Text>
+                          }
+                          onPress={() => {}}
+                        />
+                      ))}
+                    </YStack>
+                  ))}
+                </YStack>
+              )}
             </YStack>
           </YStack>
         </ScrollView>

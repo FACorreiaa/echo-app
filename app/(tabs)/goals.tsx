@@ -7,7 +7,7 @@ import { ScrollView, styled, Text, XStack, YStack } from "tamagui";
 import { GradientBackground } from "@/components/animations/GradientBackground";
 import { GlassyCard } from "@/components/ui/GlassyCard";
 import { useGoals, type Goal } from "@/lib/hooks/use-goals";
-import { ContributeSheet, CreateGoalSheet, GoalCard } from "@/widgets/goals";
+import { ContributeSheet, CreateGoalSheet, EditGoalSheet, GoalCard } from "@/widgets/goals";
 
 const PageTitle = styled(Text, {
   color: "$color",
@@ -21,12 +21,13 @@ export default function GoalsScreen() {
 
   // Sheet state
   const [createSheetOpen, setCreateSheetOpen] = useState(false);
+  const [editSheetOpen, setEditSheetOpen] = useState(false);
   const [contributeSheetOpen, setContributeSheetOpen] = useState(false);
   const [selectedGoal, setSelectedGoal] = useState<Goal | null>(null);
 
   const handleGoalPress = (goal: Goal) => {
     setSelectedGoal(goal);
-    setContributeSheetOpen(true);
+    setEditSheetOpen(true);
   };
 
   return (
@@ -112,6 +113,9 @@ export default function GoalsScreen() {
 
         {/* Create Goal Sheet */}
         <CreateGoalSheet open={createSheetOpen} onOpenChange={setCreateSheetOpen} />
+
+        {/* Edit Goal Sheet */}
+        <EditGoalSheet open={editSheetOpen} onOpenChange={setEditSheetOpen} goal={selectedGoal} />
 
         {/* Contribute to Goal Sheet */}
         <ContributeSheet

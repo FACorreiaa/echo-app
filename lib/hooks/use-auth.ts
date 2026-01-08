@@ -62,8 +62,13 @@ export function useLogin() {
       await loginSuccess(user, tokens);
       // Invalidate user query to refetch
       queryClient.invalidateQueries({ queryKey: queryKeys.auth.user() });
-      // Navigate to main app
-      router.replace("/(tabs)");
+      // Check if onboarding completed - existing users go to tabs, new users to onboarding
+      const hasCompletedOnboarding = useAuthStore.getState().hasCompletedOnboarding;
+      if (hasCompletedOnboarding) {
+        router.replace("/(tabs)");
+      } else {
+        router.replace("/(onboarding)");
+      }
     },
   });
 }
@@ -102,7 +107,8 @@ export function useRegister() {
     onSuccess: async ({ user, tokens }) => {
       await loginSuccess(user, tokens);
       queryClient.invalidateQueries({ queryKey: queryKeys.auth.user() });
-      router.replace("/(tabs)");
+      // New users always go to onboarding
+      router.replace("/(onboarding)");
     },
   });
 }

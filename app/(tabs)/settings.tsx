@@ -3,23 +3,21 @@ import {
   Bell,
   ChevronRight,
   Eye,
-  FileText,
   HelpCircle,
   Inbox,
   Info,
-  Lightbulb,
   LogOut,
   Palette,
   Shield,
   User,
 } from "@tamagui/lucide-icons";
-import { useRouter } from "expo-router";
+import { Alert } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ScrollView, styled, Text, XStack, YStack } from "tamagui";
 
 import { Avatar, GlassyCard, GradientBackground, ThemeToggle } from "@/components";
 import { ListItem } from "@/components/ListItem";
-import { useAuthStore } from "@/lib/stores/auth-store";
+import { useLogout } from "@/lib/hooks/use-auth";
 
 const UserName = styled(Text, {
   color: "$color",
@@ -49,8 +47,9 @@ const menuItems = {
   main: [
     { icon: HelpCircle, label: "Help", route: null },
     { icon: User, label: "Account", route: null },
-    { icon: FileText, label: "Documents & Statements", route: null },
-    { icon: Lightbulb, label: "Learn", route: null },
+    // v0.1: Removed to focus on Import -> Map -> Plan loop
+    // { icon: FileText, label: "Documents & Statements", route: null },
+    // { icon: Lightbulb, label: "Learn", route: null },
     { icon: Inbox, label: "Inbox", route: null, badge: 3 },
   ],
   settings: [
@@ -67,12 +66,19 @@ const menuItems = {
 };
 
 export default function SettingsScreen() {
-  const router = useRouter();
-  const logout = useAuthStore((s) => s.logout);
+  const logoutMutation = useLogout();
 
-  const handleLogout = async () => {
-    await logout();
-    router.replace("/(public)");
+  const handleLogout = () => {
+    Alert.alert("Log Out", "Are you sure you want to log out?", [
+      { text: "Cancel", style: "cancel" },
+      {
+        text: "Log Out",
+        style: "destructive",
+        onPress: () => {
+          logoutMutation.mutate();
+        },
+      },
+    ]);
   };
 
   return (
@@ -104,6 +110,7 @@ export default function SettingsScreen() {
                   </Text>
                 </YStack>
               </GlassyCard>
+              {/* v0.1: Removed Invite Friends to focus on core loop
               <GlassyCard flex={1}>
                 <YStack gap={4}>
                   <Text color="$color" fontSize={16} fontFamily="$heading">
@@ -114,6 +121,7 @@ export default function SettingsScreen() {
                   </Text>
                 </YStack>
               </GlassyCard>
+              */}
             </XStack>
 
             {/* Main Menu */}

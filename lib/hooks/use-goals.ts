@@ -16,16 +16,14 @@
  * - Error handling
  */
 
+import { financeClient } from "@/lib/api/client";
 import type {
-  Goal as ProtoGoal,
   GoalStatus,
   GoalType,
-  CreateGoalRequest,
-  UpdateGoalRequest,
-  ContributeToGoalRequest,
+  Goal as ProtoGoal,
 } from "@buf/echo-tracker_echo.bufbuild_es/echo/v1/finance_pb";
+
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { financeClient } from "@/lib/api/client";
 
 // ============================================================================
 // Types
@@ -226,7 +224,7 @@ function timestampToDate(timestamp: { seconds: bigint; nanos: number } | undefin
 /**
  * Convert Date to proto Timestamp
  */
-function dateToTimestamp(date: Date | undefined): { seconds: bigint; nanos: number } | undefined {
+function dateToTimestamp(date: Date | undefined) {
   if (!date) return undefined;
   return {
     seconds: BigInt(Math.floor(date.getTime() / 1000)),
@@ -371,18 +369,16 @@ export function useCreateGoal() {
 
   return useMutation({
     mutationFn: async (input: CreateGoalInput): Promise<Goal> => {
-      const request: CreateGoalRequest = {
+      const response = await financeClient.createGoal({
         name: input.name,
         type: convertToProtoGoalType(input.type),
         target: {
           amountMinor: majorToMinor(input.target),
-          currencyCode: "EUR", // TODO: Make this configurable
+          currencyCode: "EUR",
         },
         startAt: dateToTimestamp(input.startAt),
         endAt: dateToTimestamp(input.endAt),
-      };
-
-      const response = await financeClient.createGoal(request);
+      });
 
       if (!response.goal) {
         throw new Error("Failed to create goal");
@@ -411,7 +407,7 @@ export function useUpdateGoal() {
 
   return useMutation({
     mutationFn: async (input: UpdateGoalInput): Promise<Goal> => {
-      const request: UpdateGoalRequest = {
+      const response = await financeClient.updateGoal({
         goalId: input.goalId,
         name: input.name,
         target: input.target
@@ -422,9 +418,7 @@ export function useUpdateGoal() {
           : undefined,
         endAt: dateToTimestamp(input.endAt),
         status: input.status ? convertToProtoGoalStatus(input.status) : undefined,
-      };
-
-      const response = await financeClient.updateGoal(request);
+      });
 
       if (!response.goal) {
         throw new Error("Failed to update goal");
@@ -482,16 +476,14 @@ export function useContributeToGoal() {
 
   return useMutation({
     mutationFn: async (input: ContributeToGoalInput): Promise<ContributeToGoalResult> => {
-      const request: ContributeToGoalRequest = {
+      const response = await financeClient.contributeToGoal({
         goalId: input.goalId,
         amount: {
           amountMinor: majorToMinor(input.amount),
           currencyCode: "EUR",
         },
         note: input.note,
-      };
-
-      const response = await financeClient.contributeToGoal(request);
+      });
 
       if (!response.goal || !response.contribution) {
         throw new Error("Failed to contribute to goal");

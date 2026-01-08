@@ -1,4 +1,4 @@
-import { CreditCard, Plus, Send, Settings, Sparkles } from "@tamagui/lucide-icons";
+import { CreditCard, Plus, Settings, Sparkles, TrendingUp } from "@tamagui/lucide-icons";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import { ActivityIndicator, Modal, ScrollView } from "react-native";
@@ -15,6 +15,7 @@ import {
   QuickCapture,
 } from "@/components";
 import { useAccounts } from "@/lib/hooks/use-accounts";
+import { useSetOpeningBalance } from "@/lib/hooks/use-balance";
 import { useDashboardBlocks, useSpendingPulse } from "@/lib/hooks/use-insights";
 import { useRecentTransactions } from "@/lib/hooks/use-transactions";
 import { useAuthStore } from "@/lib/stores/auth-store";
@@ -81,6 +82,13 @@ export default function HomeScreen() {
   // Quick Capture modal state
   const [showQuickCapture, setShowQuickCapture] = useState(false);
 
+  // Net Worth Sheet state
+  const [showNetWorthSheet, setShowNetWorthSheet] = useState(false);
+  const [netWorthAmount, setNetWorthAmount] = useState("");
+
+  // Net Worth mutation
+  const setOpeningBalance = useSetOpeningBalance();
+
   return (
     <YStack flex={1} backgroundColor="$background" paddingTop={insets.top}>
       <ScrollView contentContainerStyle={{ flexGrow: 1, padding: 20, paddingBottom: 100 }}>
@@ -131,7 +139,7 @@ export default function HomeScreen() {
         {/* Quick Actions */}
         <XStack justifyContent="space-around" marginBottom="$6">
           {[
-            { icon: Send, label: "Send", onPress: () => {} },
+            { icon: TrendingUp, label: "Net Worth", onPress: () => setShowNetWorthSheet(true) },
             { icon: Plus, label: "Add", onPress: () => setShowQuickCapture(true) },
             { icon: CreditCard, label: "Card", onPress: () => {} },
             { icon: Sparkles, label: "Echo", onPress: () => router.push("/(tabs)/wrapped") },
@@ -351,6 +359,126 @@ export default function HomeScreen() {
             onSuccess={() => setShowQuickCapture(false)}
             onClose={() => setShowQuickCapture(false)}
           />
+        </YStack>
+      </Modal>
+
+      {/* Net Worth Sheet */}
+      <Modal
+        visible={showNetWorthSheet}
+        transparent
+        animationType="slide"
+        onRequestClose={() => setShowNetWorthSheet(false)}
+      >
+        <YStack flex={1} backgroundColor="rgba(0,0,0,0.5)" justifyContent="flex-end">
+          <YStack
+            backgroundColor="$background"
+            padding="$5"
+            borderTopLeftRadius={24}
+            borderTopRightRadius={24}
+            gap="$4"
+          >
+            <XStack justifyContent="space-between" alignItems="center">
+              <Text color="$color" fontSize={20} fontWeight="bold">
+                📈 Add to Net Worth
+              </Text>
+              <Button size="$3" circular chromeless onPress={() => setShowNetWorthSheet(false)}>
+                ✕
+              </Button>
+            </XStack>
+
+            <Text color="$secondaryText" fontSize={14}>
+              Enter the amount to add to your tracked net worth
+            </Text>
+
+            <XStack alignItems="center" gap="$2">
+              <Text color="$color" fontSize={32} fontWeight="bold">
+                €
+              </Text>
+              <YStack flex={1}>
+                <Text color="$secondaryText" fontSize={12}>
+                  Amount
+                </Text>
+                <XStack
+                  backgroundColor="$backgroundHover"
+                  borderRadius="$4"
+                  padding="$3"
+                  alignItems="center"
+                >
+                  <Text
+                    color={netWorthAmount ? "$color" : "$secondaryText"}
+                    fontSize={24}
+                    fontWeight="bold"
+                    flex={1}
+                  >
+                    {netWorthAmount || "0"}
+                  </Text>
+                </XStack>
+              </YStack>
+            </XStack>
+
+            {/* Number Pad */}
+            <YStack gap="$2">
+              {[
+                ["1", "2", "3"],
+                ["4", "5", "6"],
+                ["7", "8", "9"],
+                [".", "0", "⌫"],
+              ].map((row, i) => (
+                <XStack key={i} gap="$2" justifyContent="center">
+                  {row.map((key) => (
+                    <Button
+                      key={key}
+                      size="$5"
+                      flex={1}
+                      backgroundColor="$backgroundHover"
+                      onPress={() => {
+                        if (key === "⌫") {
+                          setNetWorthAmount((prev) => prev.slice(0, -1));
+                        } else if (key === "." && netWorthAmount.includes(".")) {
+                          // Don't allow multiple decimal points
+                        } else {
+                          setNetWorthAmount((prev) => prev + key);
+                        }
+                      }}
+                    >
+                      <Text color="$color" fontSize={20}>
+                        {key}
+                      </Text>
+                    </Button>
+                  ))}
+                </XStack>
+              ))}
+            </YStack>
+
+            <Button
+              size="$5"
+              backgroundColor={setOpeningBalance.isPending ? "$backgroundHover" : "#22c55e"}
+              color="white"
+              fontWeight="bold"
+              onPress={() => {
+                const amountInCents = Math.round(parseFloat(netWorthAmount) * 100);
+                setOpeningBalance.mutate(
+                  { amountMinor: amountInCents },
+                  {
+                    onSuccess: () => {
+                      setShowNetWorthSheet(false);
+                      setNetWorthAmount("");
+                    },
+                    onError: (error) => {
+                      console.error("Failed to update net worth:", error);
+                    },
+                  },
+                );
+              }}
+              disabled={
+                !netWorthAmount || parseFloat(netWorthAmount) <= 0 || setOpeningBalance.isPending
+              }
+            >
+              {setOpeningBalance.isPending
+                ? "Adding..."
+                : `Add €${netWorthAmount || "0"} to Net Worth`}
+            </Button>
+          </YStack>
         </YStack>
       </Modal>
     </YStack>

@@ -99,17 +99,30 @@ const persistOptions: PersistOptions<
     isAuthenticated: state.isAuthenticated,
     hasCompletedOnboarding: state.hasCompletedOnboarding,
   }),
-  onRehydrateStorage: () => (state, error) => {
+  onRehydrateStorage: () => async (state, error) => {
     // Mark as hydrated after rehydration completes
     // Note: state can be undefined on first run (no stored data)
+    if (error) {
+      console.warn("Auth store hydration error:", error);
+    }
+
+    // Validate persisted auth state by checking if tokens exist
+    if (state?.isAuthenticated) {
+      const token = await getAccessToken();
+      if (!token) {
+        // No token found - clear stale auth state
+        console.warn("Auth state persisted but no token found. Clearing stale auth.");
+        await clearAllAuthState();
+        state.setAuthenticated(false);
+        state.setUser(null);
+      }
+    }
+
     if (state) {
       state.setHydrated(true);
     } else {
       // First run or hydration error - still need to mark as hydrated
       useAuthStore.getState().setHydrated(true);
-    }
-    if (error) {
-      console.warn("Auth store hydration error:", error);
     }
   },
 };

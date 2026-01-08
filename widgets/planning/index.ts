@@ -5,6 +5,8 @@
 // Core plan components
 export { CategoryGroupCard } from "./CategoryGroupCard";
 export { CreatePlanSheet } from "./CreatePlanSheet";
+export { EditBudgetSheet } from "./EditBudgetSheet";
+export { EditRecurringSheet } from "./EditRecurringSheet";
 export { PlanCard } from "./PlanCard";
 
 // Dashboard components

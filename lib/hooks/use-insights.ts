@@ -305,30 +305,38 @@ export interface MonthlyInsights {
 /**
  * Fetch monthly insights - "3 things that changed" + "1 action to take"
  */
-export function useMonthlyInsights(month?: string) {
+export function useMonthlyInsights(month?: Date) {
+  // Default to first day of current month if not provided
+  const monthStart = month ?? new Date(new Date().getFullYear(), new Date().getMonth(), 1);
+
   return useQuery({
-    queryKey: ["monthly-insights", month],
+    queryKey: ["monthly-insights", monthStart.toISOString()],
     queryFn: async (): Promise<MonthlyInsights> => {
       try {
         const response = await insightsClient.getMonthlyInsights({
-          month: month ?? undefined,
+          monthStart: {
+            seconds: BigInt(Math.floor(monthStart.getTime() / 1000)),
+            nanos: 0,
+          },
         });
 
         const insights = response.insights;
 
-        // Parse "3 things changed"
+        // Parse "3 things changed" - using correct proto field names
         const thingsChanged: MonthlyInsight[] = (insights?.changes ?? []).map((change) => {
-          const type = String(change.changeType ?? "CHANGE_TYPE_UNSPECIFIED");
+          // Proto uses 'type' enum, not 'changeType'
+          const changeType = change.type ?? 0;
 
-          if (type.includes("CATEGORY")) {
+          // Check if it's a category change (types 1 or 2)
+          if (changeType === 1 || changeType === 2) {
             return {
               type: "category_change" as const,
               title: change.title ?? "",
               description: change.description ?? "",
               categoryChange: {
-                categoryName: change.categoryName ?? "",
-                currentAmount: Number(change.currentAmount?.amountMinor ?? 0) / 100,
-                previousAmount: Number(change.previousAmount?.amountMinor ?? 0) / 100,
+                categoryName: change.categoryId ?? "",
+                currentAmount: Number(change.amountChange?.amountMinor ?? 0) / 100,
+                previousAmount: 0, // Proto only has delta, not absolute values
                 percentChange: change.percentChange ?? 0,
                 trend:
                   change.percentChange && change.percentChange > 5
@@ -338,26 +346,28 @@ export function useMonthlyInsights(month?: string) {
                       : "stable",
               },
             };
-          } else if (type.includes("MERCHANT")) {
+          } else if (changeType === 3 || changeType === 4) {
+            // New merchant or merchant increase
             return {
               type: "new_merchant" as const,
               title: change.title ?? "",
               description: change.description ?? "",
               newMerchant: {
                 merchantName: change.merchantName ?? "",
-                amount: Number(change.currentAmount?.amountMinor ?? 0) / 100,
-                transactionCount: change.transactionCount ?? 0,
-                categoryName: change.categoryName ?? undefined,
+                amount: Number(change.amountChange?.amountMinor ?? 0) / 100,
+                transactionCount: 0, // Not in proto
+                categoryName: change.categoryId ?? undefined,
               },
             };
           } else {
+            // Income change (type 7) or other
             return {
               type: "income_change" as const,
               title: change.title ?? "",
               description: change.description ?? "",
               incomeChange: {
-                currentAmount: Number(change.currentAmount?.amountMinor ?? 0) / 100,
-                previousAmount: Number(change.previousAmount?.amountMinor ?? 0) / 100,
+                currentAmount: Number(change.amountChange?.amountMinor ?? 0) / 100,
+                previousAmount: 0,
                 percentChange: change.percentChange ?? 0,
                 trend:
                   change.percentChange && change.percentChange > 5
@@ -370,40 +380,42 @@ export function useMonthlyInsights(month?: string) {
           }
         });
 
-        // Parse "1 action to take"
+        // Parse "1 action to take" - using correct proto field names
         const action = insights?.recommendedAction;
         const recommendedAction: RecommendedAction | null = action
           ? {
-              actionType: String(action.actionType ?? "")
-                .toLowerCase()
-                .includes("uncategorized")
-                ? "uncategorized"
-                : String(action.actionType ?? "")
-                      .toLowerCase()
-                      .includes("spending")
-                  ? "high_spending"
-                  : "review_budget",
+              // Proto uses 'type' enum, not 'actionType'
+              actionType:
+                action.type === 4
+                  ? "uncategorized"
+                  : action.type === 2
+                    ? "high_spending"
+                    : "review_budget",
               title: action.title ?? "",
               description: action.description ?? "",
               priority: action.priority ?? 0,
-              metadata: action.metadata ? JSON.parse(String(action.metadata)) : undefined,
             }
           : null;
 
+        // Extract month from monthStart timestamp
+        const monthDate = insights?.monthStart
+          ? new Date(Number(insights.monthStart.seconds) * 1000)
+          : monthStart;
+
         return {
-          month: insights?.month ?? new Date().toISOString().slice(0, 7),
+          month: monthDate.toISOString().slice(0, 7),
           thingsChanged: thingsChanged.slice(0, 3), // Max 3
           recommendedAction,
-          totalSpending: Number(insights?.totalSpending?.amountMinor ?? 0) / 100,
+          totalSpending: Number(insights?.totalSpend?.amountMinor ?? 0) / 100,
           totalIncome: Number(insights?.totalIncome?.amountMinor ?? 0) / 100,
-          netChange: Number(insights?.netChange?.amountMinor ?? 0) / 100,
-          comparedToMonth: insights?.comparedToMonth ?? "",
+          netChange: Number(insights?.net?.amountMinor ?? 0) / 100,
+          comparedToMonth: "", // Not directly in proto
         };
       } catch (error) {
         // If the backend doesn't have the endpoint yet, return mock data
         console.warn("Monthly insights endpoint not available, using mock data:", error);
         return {
-          month: month ?? new Date().toISOString().slice(0, 7),
+          month: monthStart.toISOString().slice(0, 7),
           thingsChanged: [],
           recommendedAction: null,
           totalSpending: 0,

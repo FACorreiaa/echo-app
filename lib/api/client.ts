@@ -11,6 +11,7 @@ import { PlanService } from "@buf/echo-tracker_echo.bufbuild_es/echo/v1/plan_pb"
 import { ConnectError, createClient, type Client } from "@connectrpc/connect";
 import { createConnectTransport } from "@connectrpc/connect-web";
 import { clearAllAuthState, getAccessToken } from "../storage/token-storage";
+import { useAuthStore } from "../stores/auth-store";
 import { API_CONFIG } from "./config";
 
 // Track if we're currently handling a 401 to prevent infinite loops
@@ -38,8 +39,11 @@ const transport = createConnectTransport({
           isHandling401 = true;
           console.warn("[API] Unauthenticated error - clearing all auth state");
           await clearAllAuthState();
+          // Also reset the Zustand auth store
+          useAuthStore.getState().setAuthenticated(false);
+          useAuthStore.getState().setUser(null);
           isHandling401 = false;
-          // The auth store will detect token absence and redirect to login
+          // The auth guard in (tabs)/_layout.tsx will redirect to login
         }
         throw error;
       }

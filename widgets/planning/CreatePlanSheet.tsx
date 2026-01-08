@@ -2,6 +2,7 @@
  * CreatePlanSheet - Modal for creating new plans (manual or Excel import)
  */
 
+import { SuggestionCard, type ImportSuggestion } from "@/widgets/staging/SuggestionCard";
 import { Check, FileSpreadsheet, Pencil, Upload, X } from "@tamagui/lucide-icons";
 import * as DocumentPicker from "expo-document-picker";
 import React, { useState } from "react";
@@ -16,7 +17,14 @@ import {
   type ExcelSheetInfo,
 } from "@/lib/hooks/use-plans";
 
-type CreateMode = "select" | "manual" | "excel" | "analyze" | "select-sheet" | "confirm-mapping";
+type CreateMode =
+  | "select"
+  | "manual"
+  | "excel"
+  | "analyze"
+  | "select-sheet"
+  | "confirm-mapping"
+  | "review-suggestions";
 
 interface CreatePlanSheetProps {
   open: boolean;
@@ -46,6 +54,9 @@ export function CreatePlanSheet({
     headerRow: number;
     startCell?: string; // Optional: specific cell coordinate like "B10"
   } | null>(null);
+
+  // Staging Area: detected suggestions from Excel parse
+  const [detectedSuggestions, setDetectedSuggestions] = useState<ImportSuggestion[]>([]);
 
   // Effect to set mode if initials change (e.g. re-opening)
   React.useEffect(() => {
@@ -892,6 +903,69 @@ export function CreatePlanSheet({
                 disabled={importFromExcel.isPending}
               >
                 {importFromExcel.isPending ? "Importing..." : "Import Plan"}
+              </Button>
+            </XStack>
+          </YStack>
+        )}
+
+        {/* Review Suggestions Mode */}
+        {mode === "review-suggestions" && (
+          <YStack gap="$4">
+            <Text color="$color" fontSize={22} fontWeight="bold" fontFamily="$heading">
+              🎯 Review Suggestions
+            </Text>
+            <Text color="$secondaryText" fontSize={14}>
+              Echo found these items in your Excel. Confirm to add them to your plan:
+            </Text>
+
+            <ScrollView style={{ maxHeight: 400 }}>
+              <YStack gap="$3">
+                {detectedSuggestions.map((suggestion) => (
+                  <SuggestionCard
+                    key={suggestion.id}
+                    suggestion={suggestion}
+                    onAccept={(s) => {
+                      // Remove from suggestions list
+                      setDetectedSuggestions((prev) => prev.filter((item) => item.id !== s.id));
+                      // TODO: Open pre-filled edit sheet based on type
+                      Alert.alert(
+                        "Item Added",
+                        `Added "${s.suggestedName}" as ${s.type}. You can edit it later in the Planning tab.`,
+                      );
+                    }}
+                    onDismiss={(s) => {
+                      setDetectedSuggestions((prev) => prev.filter((item) => item.id !== s.id));
+                    }}
+                  />
+                ))}
+
+                {detectedSuggestions.length === 0 && (
+                  <GlassyCard>
+                    <YStack padding="$4" alignItems="center" gap="$2">
+                      <Text fontSize={32}>✅</Text>
+                      <Text color="$color" fontWeight="600">
+                        All suggestions reviewed!
+                      </Text>
+                      <Text color="$secondaryText" fontSize={14} textAlign="center">
+                        You can close this sheet and start using your plan.
+                      </Text>
+                    </YStack>
+                  </GlassyCard>
+                )}
+              </YStack>
+            </ScrollView>
+
+            <XStack gap="$3" marginTop="$2">
+              <Button
+                flex={1}
+                backgroundColor="$backgroundHover"
+                color="$color"
+                onPress={() => setMode("confirm-mapping")}
+              >
+                Back
+              </Button>
+              <Button flex={2} backgroundColor="#22c55e" color="white" onPress={handleClose}>
+                Done
               </Button>
             </XStack>
           </YStack>
