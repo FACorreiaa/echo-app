@@ -7,6 +7,7 @@ import { queryKeys } from "@/lib/query/query-client";
 import { clearTokens, getRefreshToken } from "@/lib/storage/token-storage";
 import { useAuthStore, type AuthTokens, type User } from "@/lib/stores/auth-store";
 import { timestampDate } from "@bufbuild/protobuf/wkt";
+import { CommonActions, useNavigation } from "@react-navigation/native";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "expo-router";
 
@@ -105,6 +106,8 @@ export function useRegister() {
       return { user, tokens };
     },
     onSuccess: async ({ user, tokens }) => {
+      // IMPORTANT: Reset onboarding for NEW users (they haven't completed it yet)
+      useAuthStore.getState().setHasCompletedOnboarding(false);
       await loginSuccess(user, tokens);
       queryClient.invalidateQueries({ queryKey: queryKeys.auth.user() });
       // New users always go to onboarding
@@ -112,29 +115,60 @@ export function useRegister() {
     },
   });
 }
-
 /**
  * Logout mutation hook
+ * Implements three-layer secure logout:
+ * 1. Storage wipe (tokens)
+ * 2. State reset (Zustand + React Query)
+ * 3. Navigation stack reset (prevents back-button access)
  */
 export function useLogout() {
   const queryClient = useQueryClient();
   const logout = useAuthStore((state) => state.logout);
-  const router = useRouter();
+  const navigation = useNavigation();
 
   return useMutation({
     mutationFn: async () => {
+      console.log("[LOGOUT] Starting logout process...");
+      // === LAYER 1: Storage Wipe ===
+      // Clear tokens first (handled inside logout())
+      await logout();
+      console.log("[LOGOUT] Storage cleared");
+
+      // === LAYER 2: State Reset ===
+      // Clear all cached queries (financial data, user info, etc.)
+      queryClient.clear();
+      console.log("[LOGOUT] Query cache cleared");
+
+      // === LAYER 3: Server-side revocation (fire-and-forget) ===
       const refreshToken = await getRefreshToken();
       if (refreshToken) {
-        await authApi.logout(refreshToken);
+        authApi.logout(refreshToken).catch(() => {
+          // Silently ignore - user is already logged out locally
+        });
       }
     },
-    onSettled: async () => {
-      // Always clear local state, even if API call fails
-      await logout();
-      // Clear all queries
-      queryClient.clear();
-      // Navigate to login
-      router.replace("/(auth)/login");
+    onSuccess: () => {
+      console.log("[LOGOUT] Success - resetting navigation stack");
+      // === LAYER 3: Navigation Stack Reset ===
+      // CommonActions.reset wipes the entire navigation stack
+      // This prevents back-button from revealing financial data
+      navigation.dispatch(
+        CommonActions.reset({
+          index: 0,
+          routes: [{ name: "(auth)" }],
+        }),
+      );
+    },
+    onError: (error) => {
+      console.error("[LOGOUT] Error:", error);
+      // Even on error, ensure navigation happens
+      navigation.dispatch(
+        CommonActions.reset({
+          index: 0,
+          routes: [{ name: "(auth)" }],
+        }),
+      );
     },
   });
 }

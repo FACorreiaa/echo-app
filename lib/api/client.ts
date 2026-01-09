@@ -42,8 +42,13 @@ const transport = createConnectTransport({
           // Also reset the Zustand auth store
           useAuthStore.getState().setAuthenticated(false);
           useAuthStore.getState().setUser(null);
+          useAuthStore.getState().setHasCompletedOnboarding(false);
           isHandling401 = false;
-          // The auth guard in (tabs)/_layout.tsx will redirect to login
+
+          // Force navigation to login - the auth guard won't re-render automatically
+          // eslint-disable-next-line @typescript-eslint/no-require-imports
+          const { router } = require("expo-router");
+          router.replace("/(auth)/login");
         }
         throw error;
       }

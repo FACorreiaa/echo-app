@@ -38,6 +38,7 @@ interface AuthState {
   setUser: (user: User | null) => void;
   setAuthenticated: (value: boolean) => void;
   setHydrated: (value: boolean) => void;
+  setHasCompletedOnboarding: (value: boolean) => void;
   completeOnboarding: () => void;
 
   // Auth actions
@@ -61,6 +62,7 @@ const createAuthStore: AuthStoreCreator = (set) => ({
   setUser: (user) => set({ user }),
   setAuthenticated: (value) => set({ isAuthenticated: value }),
   setHydrated: (value) => set({ isHydrated: value }),
+  setHasCompletedOnboarding: (value) => set({ hasCompletedOnboarding: value }),
   completeOnboarding: () => set({ hasCompletedOnboarding: true }),
 
   // Login success - store user and tokens

@@ -114,11 +114,17 @@ export async function clearTokens(): Promise<void> {
 /**
  * Clear all auth state including tokens and Zustand store persistence
  * Use this for complete logout (e.g., on 401 errors)
+ *
+ * This is EXHAUSTIVE to prevent "zombie" state from persisted data
  */
 export async function clearAllAuthState(): Promise<void> {
   await Promise.all([
+    // Clear secure tokens
     clearTokens(),
     // Clear the Zustand auth store persistence key
     AsyncStorage.removeItem("echo-auth-storage"),
+    // Clear ALL AsyncStorage to prevent any zombie state
+    // This includes React Query cache, other persisted stores, etc.
+    AsyncStorage.clear(),
   ]);
 }

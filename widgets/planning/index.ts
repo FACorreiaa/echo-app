@@ -3,6 +3,8 @@
  */
 
 // Core plan components
+export { CategoryGroupBuilder } from "./CategoryGroupBuilder";
+export type { BuilderCategory, BuilderGroup, BuilderItem, ItemType } from "./CategoryGroupBuilder";
 export { CategoryGroupCard } from "./CategoryGroupCard";
 export { CreatePlanSheet } from "./CreatePlanSheet";
 export { EditBudgetSheet } from "./EditBudgetSheet";

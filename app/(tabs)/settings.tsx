@@ -17,7 +17,6 @@ import { ScrollView, styled, Text, XStack, YStack } from "tamagui";
 
 import { Avatar, GlassyCard, GradientBackground, ThemeToggle } from "@/components";
 import { ListItem } from "@/components/ListItem";
-import { useLogout } from "@/lib/hooks/use-auth";
 
 const UserName = styled(Text, {
   color: "$color",
@@ -66,16 +65,60 @@ const menuItems = {
 };
 
 export default function SettingsScreen() {
-  const logoutMutation = useLogout();
-
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    console.log("[SETTINGS] handleLogout called");
     Alert.alert("Log Out", "Are you sure you want to log out?", [
       { text: "Cancel", style: "cancel" },
       {
         text: "Log Out",
         style: "destructive",
-        onPress: () => {
-          logoutMutation.mutate();
+        onPress: async () => {
+          console.log("[SETTINGS] User confirmed logout");
+          try {
+            // 1. Get refresh token BEFORE clearing state
+            // eslint-disable-next-line @typescript-eslint/no-require-imports
+            const { getRefreshToken, clearAllAuthState } = require("@/lib/storage/token-storage");
+            const refreshToken = await getRefreshToken();
+            console.log("[SETTINGS] Got refresh token:", !!refreshToken);
+
+            // 2. Tell Go backend to delete session in Postgres
+            if (refreshToken) {
+              try {
+                // eslint-disable-next-line @typescript-eslint/no-require-imports
+                const { authClient } = require("@/lib/api/client");
+                await authClient.logout({ refreshToken });
+                console.log("[SETTINGS] Backend logout successful");
+              } catch (backendError) {
+                // Network error is OK - we still wipe locally
+                console.warn(
+                  "[SETTINGS] Backend logout failed (will still clear local):",
+                  backendError,
+                );
+              }
+            }
+
+            // 3. Clear ALL local state (tokens + Zustand + AsyncStorage)
+            await clearAllAuthState();
+            console.log("[SETTINGS] Local state cleared");
+
+            // 4. Navigate to login
+            // eslint-disable-next-line @typescript-eslint/no-require-imports
+            const { router } = require("expo-router");
+            router.replace("/(auth)/login");
+          } catch (error) {
+            console.error("[SETTINGS] Logout error:", error);
+            // Fallback: still try to clear and navigate
+            try {
+              // eslint-disable-next-line @typescript-eslint/no-require-imports
+              const { clearAllAuthState } = require("@/lib/storage/token-storage");
+              await clearAllAuthState();
+              // eslint-disable-next-line @typescript-eslint/no-require-imports
+              const { router } = require("expo-router");
+              router.replace("/(auth)/login");
+            } catch {
+              // Last resort
+            }
+          }
         },
       },
     ]);
@@ -214,7 +257,7 @@ export default function SettingsScreen() {
               textAlign="center"
               marginTop={8}
             >
-              Version 1.0.0{"\n"}Echo Finance Inc.
+              Version 0.1.0{"\n"}Echo Finance Inc.
             </Text>
           </YStack>
         </ScrollView>

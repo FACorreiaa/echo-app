@@ -208,6 +208,14 @@ export default function PlanningScreen() {
             <Text color="$secondaryText" textAlign="center" fontSize={14}>
               Create a financial plan to set monthly budgets
             </Text>
+            <Button
+              marginTop="$2"
+              backgroundColor="$accentColor"
+              onPress={() => setCreateSheetOpen(true)}
+            >
+              <Plus size={16} color="white" />
+              <Text color="white">Create Plan</Text>
+            </Button>
           </YStack>
         </GlassyCard>
       ) : budgets.length === 0 ? (
@@ -215,11 +223,23 @@ export default function PlanningScreen() {
           <YStack padding="$5" alignItems="center" gap="$3">
             <Text fontSize={32}>💰</Text>
             <Text color="$color" fontWeight="600">
-              No Budgets Set
+              No Budgets Defined
             </Text>
             <Text color="$secondaryText" textAlign="center" fontSize={14}>
-              Add category budgets to your plan
+              Your active plan "{activePlan.name}" has no budget items yet. Tap to go to Plans and
+              edit your budget structure.
             </Text>
+            <Button
+              marginTop="$2"
+              backgroundColor="$accentColor"
+              onPress={() => {
+                setSelectedPlan(activePlan);
+                setActiveTab("plans");
+              }}
+            >
+              <Pencil size={16} color="white" />
+              <Text color="white">Edit Plan</Text>
+            </Button>
           </YStack>
         </GlassyCard>
       ) : (
@@ -297,8 +317,25 @@ export default function PlanningScreen() {
               No Subscriptions
             </Text>
             <Text color="$secondaryText" textAlign="center" fontSize={14}>
-              Import transactions to detect recurring charges
+              Import transactions to auto-detect recurring charges, or add recurring expenses to
+              your plan structure.
             </Text>
+            <XStack gap="$2" marginTop="$2">
+              {activePlan && (
+                <Button
+                  backgroundColor="$backgroundHover"
+                  borderWidth={1}
+                  borderColor="$borderColor"
+                  onPress={() => {
+                    setSelectedPlan(activePlan);
+                    setActiveTab("plans");
+                  }}
+                >
+                  <Pencil size={14} color="$color" />
+                  <Text color="$color">Edit Plan</Text>
+                </Button>
+              )}
+            </XStack>
           </YStack>
         </GlassyCard>
       ) : (

@@ -188,15 +188,57 @@ export function useCreatePlan() {
       name: string;
       description?: string;
       currencyCode?: string;
-      categoryGroups?: unknown[];
+      categoryGroups?: Array<{
+        name: string;
+        color?: string;
+        targetPercent?: number;
+        categories?: Array<{
+          name: string;
+          icon?: string;
+          items?: Array<{
+            name: string;
+            budgetedMinor?: number | bigint;
+            labels?: Record<string, string>;
+          }>;
+          labels?: Record<string, string>;
+        }>;
+        labels?: Record<string, string>;
+      }>;
     }) => {
-      const response = await planClient.createPlan({
-        name: input.name,
-        description: input.description ?? "",
-        currencyCode: input.currencyCode ?? "EUR",
-        categoryGroups: (input.categoryGroups ?? []) as [],
-      });
-      return response.plan ? mapPlanFromProto(response.plan) : null;
+      console.log("[useCreatePlan] Creating plan with input:", input.name);
+      try {
+        // Transform categoryGroups to ensure BigInt for budgetedMinor
+        const transformedGroups = (input.categoryGroups ?? []).map((group) => ({
+          name: group.name,
+          color: group.color ?? "",
+          targetPercent: group.targetPercent ?? 0,
+          categories: (group.categories ?? []).map((cat) => ({
+            name: cat.name,
+            icon: cat.icon ?? "",
+            items: (cat.items ?? []).map((item) => ({
+              name: item.name,
+              budgetedMinor: BigInt(item.budgetedMinor ?? 0),
+              labels: item.labels ?? {},
+            })),
+            labels: cat.labels ?? {},
+          })),
+          labels: group.labels ?? {},
+        }));
+
+        console.log("[useCreatePlan] Transformed groups count:", transformedGroups.length);
+
+        const response = await planClient.createPlan({
+          name: input.name,
+          description: input.description ?? "",
+          currencyCode: input.currencyCode ?? "EUR",
+          categoryGroups: transformedGroups,
+        });
+        console.log("[useCreatePlan] Response received:", response);
+        return response.plan ? mapPlanFromProto(response.plan) : null;
+      } catch (error) {
+        console.error("[useCreatePlan] Error:", error);
+        throw error;
+      }
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["plans"] });

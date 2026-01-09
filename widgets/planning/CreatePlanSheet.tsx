@@ -16,10 +16,12 @@ import {
   useImportFromExcel,
   type ExcelSheetInfo,
 } from "@/lib/hooks/use-plans";
+import { CategoryGroupBuilder, type BuilderGroup } from "./CategoryGroupBuilder";
 
 type CreateMode =
   | "select"
   | "manual"
+  | "build-structure" // NEW: Category builder step
   | "excel"
   | "analyze"
   | "select-sheet"
@@ -58,6 +60,9 @@ export function CreatePlanSheet({
   // Staging Area: detected suggestions from Excel parse
   const [detectedSuggestions, setDetectedSuggestions] = useState<ImportSuggestion[]>([]);
 
+  // Category Builder: for manual plan structure
+  const [builderGroups, setBuilderGroups] = useState<BuilderGroup[]>([]);
+
   // Effect to set mode if initials change (e.g. re-opening)
   React.useEffect(() => {
     if (initialCategories && open) {
@@ -78,6 +83,7 @@ export function CreatePlanSheet({
     setFileId(null);
     setAnalyzedSheets([]);
     setSelectedSheet("");
+    setBuilderGroups([]);
   };
 
   const handleClose = () => {
@@ -92,56 +98,80 @@ export function CreatePlanSheet({
     }
 
     try {
+      // Convert builderGroups to API format
+      const categoryGroupsPayload =
+        builderGroups.length > 0
+          ? builderGroups.map((group) => ({
+              name: group.name,
+              color: group.color,
+              targetPercent: group.targetPercent,
+              categories: group.categories.map((cat) => ({
+                name: cat.name,
+                icon: cat.icon ?? "",
+                items: cat.items.map((item) => ({
+                  name: item.name,
+                  budgetedMinor: BigInt(item.budgetedMinor ?? 0), // Ensure valid BigInt
+                  labels: {},
+                })),
+                labels: {},
+              })),
+              labels: {},
+            }))
+          : initialCategories?.length
+            ? [
+                {
+                  name: "Imported Rules",
+                  color: "#6366f1",
+                  targetPercent: 100,
+                  categories: initialCategories.map((c) => ({
+                    name: c,
+                    items: [],
+                    labels: {},
+                  })),
+                  labels: {},
+                },
+              ]
+            : [
+                {
+                  name: "Necessities",
+                  color: "#22c55e",
+                  targetPercent: 50,
+                  labels: { en: "Necessities", pt: "Necessidades" },
+                  categories: [],
+                },
+                {
+                  name: "Wants",
+                  color: "#f59e0b",
+                  targetPercent: 30,
+                  labels: { en: "Wants", pt: "Desejos" },
+                  categories: [],
+                },
+                {
+                  name: "Savings",
+                  color: "#6366f1",
+                  targetPercent: 20,
+                  labels: { en: "Savings", pt: "Poupança" },
+                  categories: [],
+                },
+              ];
+
       await createPlan.mutateAsync({
         name: planName.trim(),
         description: description.trim() || undefined,
         currencyCode: "EUR",
-        // Use imported categories if available, otherwise default structure
-        categoryGroups: initialCategories?.length
-          ? [
-              {
-                name: "Imported Rules",
-                color: "#6366f1",
-                targetPercent: 100,
-                categories: initialCategories.map((c) => ({
-                  name: c,
-                  items: [],
-                  labels: {},
-                })),
-                labels: {},
-              },
-            ]
-          : [
-              {
-                name: "Necessities",
-                color: "#22c55e",
-                targetPercent: 50,
-                labels: { en: "Necessities", pt: "Necessidades" },
-                categories: [],
-              },
-              {
-                name: "Wants",
-                color: "#f59e0b",
-                targetPercent: 30,
-                labels: { en: "Wants", pt: "Desejos" },
-                categories: [],
-              },
-              {
-                name: "Savings",
-                color: "#6366f1",
-                targetPercent: 20,
-                labels: { en: "Savings", pt: "Poupança" },
-                categories: [],
-              },
-            ],
+        categoryGroups: categoryGroupsPayload,
       });
       // Notify parent with the created plan
       if (onPlanCreated) {
         onPlanCreated({ id: "new", name: planName.trim() });
       }
       handleClose();
-    } catch {
-      Alert.alert("Error", "Failed to create plan");
+    } catch (error) {
+      console.error("[CreatePlan] Error creating plan:", error);
+      Alert.alert(
+        "Error",
+        `Failed to create plan: ${error instanceof Error ? error.message : String(error)}`,
+      );
     }
   };
 
@@ -447,8 +477,45 @@ export function CreatePlanSheet({
                 flex={2}
                 backgroundColor="$accentColor"
                 color="white"
+                onPress={() => setMode("build-structure")}
+                disabled={!planName.trim()}
+              >
+                Build Budget Structure →
+              </Button>
+            </XStack>
+          </YStack>
+        )}
+
+        {/* Build Structure - CategoryGroupBuilder Step */}
+        {mode === "build-structure" && (
+          <YStack gap="$4" flex={1}>
+            <Text color="$color" fontWeight="600" fontSize={16}>
+              Define your budget structure for "{planName}"
+            </Text>
+            <Text color="$secondaryText" fontSize={14}>
+              Add category groups (like "Fundamentals", "Fun"), then add categories and line items
+              to each. Mark each item as Budget, Recurring, or Savings Goal.
+            </Text>
+
+            <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
+              <CategoryGroupBuilder groups={builderGroups} onChange={setBuilderGroups} />
+            </ScrollView>
+
+            <XStack gap="$3" marginTop="$2">
+              <Button
+                flex={1}
+                backgroundColor="$backgroundHover"
+                color="$color"
+                onPress={() => setMode("manual")}
+              >
+                Back
+              </Button>
+              <Button
+                flex={2}
+                backgroundColor="$accentColor"
+                color="white"
                 onPress={handleCreateManual}
-                disabled={createPlan.isPending}
+                disabled={createPlan.isPending || builderGroups.length === 0}
               >
                 {createPlan.isPending ? "Creating..." : "Create Plan"}
               </Button>
