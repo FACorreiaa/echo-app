@@ -36,6 +36,7 @@
     "@tanstack/react-query": "^5.90.16",
     "@tanstack/react-query-persist-client": "^5.90.18",
     "@typescript/native-preview": "7.0.0-dev.20251227.1",
+    "echo-tracker_echo.bufbuild_es:latest": "link:@buf/echo-tracker_echo.bufbuild_es:latest",
     "expo": "~54.0.30",
     "expo-blur": "~15.0.8",
     "expo-constants": "~18.0.12",

@@ -10,6 +10,7 @@
 import { MotiView } from "moti";
 import React, { useState } from "react";
 import { ActivityIndicator, Keyboard, Pressable } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Button, H2, Input, Text, XStack, YStack } from "tamagui";
 
 import { GlassyButton } from "@/components/ui/GlassyButton";
@@ -28,6 +29,7 @@ export function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
   const [balanceInput, setBalanceInput] = useState("");
   const [error, setError] = useState<string | null>(null);
 
+  const insets = useSafeAreaInsets();
   const setOpeningBalance = useSetOpeningBalance();
   const completeOnboarding = useAuthStore((state) => state.completeOnboarding);
 
@@ -60,7 +62,13 @@ export function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
   };
 
   return (
-    <YStack flex={1} backgroundColor="$background" padding="$5">
+    <YStack
+      flex={1}
+      backgroundColor="$background"
+      paddingHorizontal="$5"
+      paddingTop={insets.top + 20}
+      paddingBottom={insets.bottom + 20}
+    >
       {/* Step 1: Welcome */}
       {step === "welcome" && (
         <MotiView

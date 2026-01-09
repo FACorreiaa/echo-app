@@ -6,7 +6,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Button, H2, Progress, Text, XStack, YStack } from "tamagui";
 
 import { GlassyCard } from "@/components";
-import { useGoals } from "@/lib/hooks/use-goals";
+import { calcProgress, formatMoney, usePlanItemsByTab } from "@/lib/hooks/use-plan-items-by-tab";
 import {
   useDeletePlan,
   usePlan,
@@ -15,9 +15,12 @@ import {
   type PlanItem,
 } from "@/lib/hooks/use-plans";
 import { useSubscriptions, type Subscription } from "@/lib/hooks/use-subscriptions";
+import { useActivePlanStore } from "@/lib/stores/use-active-plan-store";
 import {
+  ActivePlanHeader,
   CreatePlanSheet,
   EditBudgetSheet,
+  EditPlanSheet,
   EditRecurringSheet,
   ItemTypesSheet,
   PlanCard,
@@ -51,13 +54,38 @@ export default function PlanningScreen() {
   const [itemTypesOpen, setItemTypesOpen] = useState(false);
   const [selectedBudgetItem, setSelectedBudgetItem] = useState<PlanItem | null>(null);
   const [selectedSubscription, setSelectedSubscription] = useState<Subscription | null>(null);
+  const [editPlanOpen, setEditPlanOpen] = useState(false);
 
-  // Subscriptions from API (used in renderRecurring)
-  const { data: subsData, isLoading: subscriptionsLoading } = useSubscriptions("active");
+  // Plans from API - FIRST to get active plan
+  const { data: plans, isLoading: plansLoading, error: plansError } = usePlans();
+  // Get the active plan from the list
+  const activePlanData = plans?.find((p) => p.status === "active") ?? null;
+  const { setActivePlanId } = useActivePlanStore();
+
+  // Sync active plan to store
+  useEffect(() => {
+    if (activePlanData?.id) {
+      setActivePlanId(activePlanData.id);
+    }
+  }, [activePlanData?.id, setActivePlanId]);
+
+  // Filtered queries for tabs - DEPEND on activePlanData
+  const { data: budgetData, isLoading: budgetItemsLoading } = usePlanItemsByTab(
+    activePlanData?.id ?? null,
+    "budgets",
+  );
+  const { data: recurringData, isLoading: recurringItemsLoading } = usePlanItemsByTab(
+    activePlanData?.id ?? null,
+    "recurring",
+  );
+  const { data: goalData, isLoading: goalItemsLoading } = usePlanItemsByTab(
+    activePlanData?.id ?? null,
+    "goals",
+  );
+
+  // Subscriptions from API (legacy/other)
+  const { data: subsData } = useSubscriptions("active");
   const subscriptions = subsData?.subscriptions ?? [];
-
-  // Goals from API
-  const { data: goals, isLoading: goalsLoading } = useGoals();
 
   // Params from import flow
   const params = useLocalSearchParams();
@@ -73,8 +101,6 @@ export default function PlanningScreen() {
     }
   }, [fromImport]);
 
-  // Plans from API
-  const { data: plans, isLoading: plansLoading, error: plansError } = usePlans();
   const { data: selectedPlan, isLoading: planDetailsLoading } = usePlan(selectedPlanId ?? "");
   const setActivePlan = useSetActivePlan();
   const deletePlan = useDeletePlan();
@@ -96,17 +122,50 @@ export default function PlanningScreen() {
 
   const renderGoals = () => (
     <YStack gap="$4">
+      {/* Global Progress Header */}
+      {activePlanData && (
+        <GlassyCard>
+          <YStack padding="$4" gap="$2">
+            <Text color="$color" fontWeight="600">
+              Goal Progress
+            </Text>
+            <XStack justifyContent="space-between">
+              <Text color="$secondaryText">Target</Text>
+              <Text color="$color" fontWeight="bold">
+                {formatMoney(goalData?.totalBudgetedMinor ?? BigInt(0))}
+              </Text>
+            </XStack>
+            <XStack justifyContent="space-between">
+              <Text color="$secondaryText">Saved</Text>
+              <Text color="#22c55e" fontWeight="bold">
+                {formatMoney(goalData?.totalActualMinor ?? BigInt(0))}
+              </Text>
+            </XStack>
+            <Progress
+              value={calcProgress(
+                goalData?.totalActualMinor ?? BigInt(0),
+                goalData?.totalBudgetedMinor ?? BigInt(0),
+              )}
+              backgroundColor="$backgroundHover"
+              marginTop="$2"
+            >
+              <Progress.Indicator backgroundColor="#22c55e" />
+            </Progress>
+          </YStack>
+        </GlassyCard>
+      )}
+
       <Text color="$color" fontSize={18} fontWeight="bold">
         Active Goals
       </Text>
-      {goalsLoading ? (
+      {goalItemsLoading ? (
         <YStack alignItems="center" padding="$6">
           <ActivityIndicator color="#6366F1" />
           <Text color="$secondaryText" marginTop="$2">
             Loading goals...
           </Text>
         </YStack>
-      ) : !goals || goals.length === 0 ? (
+      ) : !goalData?.items || goalData.items.length === 0 ? (
         <GlassyCard>
           <YStack padding="$5" alignItems="center" gap="$3">
             <Text fontSize={32}>🎯</Text>
@@ -114,41 +173,104 @@ export default function PlanningScreen() {
               No Goals Yet
             </Text>
             <Text color="$secondaryText" textAlign="center" fontSize={14}>
-              Create your first savings goal to start tracking
+              Create your first savings goal in your plan structure
             </Text>
+            <Button
+              marginTop="$2"
+              backgroundColor="$accentColor"
+              onPress={() => setEditPlanOpen(true)}
+            >
+              <Pencil size={16} color="white" />
+              <Text color="white">Edit Plan</Text>
+            </Button>
           </YStack>
         </GlassyCard>
       ) : (
-        goals.map((goal) => (
-          <GlassyCard key={goal.id}>
-            <YStack padding="$4" gap="$3">
-              <XStack justifyContent="space-between" alignItems="center">
-                <XStack alignItems="center" gap="$2">
-                  <Text fontSize={20}>{GOAL_EMOJIS[goal.type] ?? "🎯"}</Text>
-                  <Text color="$color" fontWeight="600">
-                    {goal.name}
+        goalData.items.map((goal) => {
+          const progress = calcProgress(goal.actualMinor, goal.budgetedMinor);
+          return (
+            <GlassyCard key={goal.id}>
+              <YStack padding="$4" gap="$3">
+                <XStack justifyContent="space-between" alignItems="center">
+                  <XStack alignItems="center" gap="$2">
+                    <Text fontSize={20}>{GOAL_EMOJIS["save"] ?? "🎯"}</Text>
+                    <Text color="$color" fontWeight="600">
+                      {goal.name}
+                    </Text>
+                  </XStack>
+                  <Text color="$secondaryText">{Math.round(progress)}%</Text>
+                </XStack>
+                <Progress value={progress} backgroundColor="$backgroundHover">
+                  <Progress.Indicator backgroundColor="$accentColor" />
+                </Progress>
+                <XStack justifyContent="space-between" alignItems="center">
+                  <Text color="$secondaryText" fontSize={14}>
+                    {formatMoney(goal.actualMinor)} / {formatMoney(goal.budgetedMinor)}
                   </Text>
                 </XStack>
-                <Text color="$secondaryText">{goal.progressPercent}%</Text>
-              </XStack>
-              <Progress value={goal.progressPercent} backgroundColor="$backgroundHover">
-                <Progress.Indicator backgroundColor="$accentColor" />
-              </Progress>
-              <XStack justifyContent="space-between" alignItems="center">
-                <Text color="$secondaryText" fontSize={14}>
-                  €{goal.current.toLocaleString()} / €{goal.target.toLocaleString()}
-                </Text>
-                <Text
-                  color={goal.isBehindPace ? "#ef4444" : "#22c55e"}
-                  fontSize={14}
-                  fontWeight="600"
-                >
-                  {goal.paceMessage}
-                </Text>
-              </XStack>
-            </YStack>
-          </GlassyCard>
-        ))
+              </YStack>
+            </GlassyCard>
+          );
+        })
+      )}
+
+      <Text color="$color" fontSize={18} fontWeight="bold">
+        Active Goals
+      </Text>
+      {goalItemsLoading ? (
+        <YStack alignItems="center" padding="$6">
+          <ActivityIndicator color="#6366F1" />
+          <Text color="$secondaryText" marginTop="$2">
+            Loading goals...
+          </Text>
+        </YStack>
+      ) : !goalData?.items || goalData.items.length === 0 ? (
+        <GlassyCard>
+          <YStack padding="$5" alignItems="center" gap="$3">
+            <Text fontSize={32}>🎯</Text>
+            <Text color="$color" fontWeight="600">
+              No Goals Yet
+            </Text>
+            <Text color="$secondaryText" textAlign="center" fontSize={14}>
+              Create your first savings goal in your plan structure
+            </Text>
+            <Button
+              marginTop="$2"
+              backgroundColor="$accentColor"
+              onPress={() => setEditPlanOpen(true)}
+            >
+              <Pencil size={16} color="white" />
+              <Text color="white">Edit Plan</Text>
+            </Button>
+          </YStack>
+        </GlassyCard>
+      ) : (
+        goalData.items.map((goal) => {
+          const progress = calcProgress(goal.actualMinor, goal.budgetedMinor);
+          return (
+            <GlassyCard key={goal.id}>
+              <YStack padding="$4" gap="$3">
+                <XStack justifyContent="space-between" alignItems="center">
+                  <XStack alignItems="center" gap="$2">
+                    <Text fontSize={20}>{GOAL_EMOJIS["save"] ?? "🎯"}</Text>
+                    <Text color="$color" fontWeight="600">
+                      {goal.name}
+                    </Text>
+                  </XStack>
+                  <Text color="$secondaryText">{Math.round(progress)}%</Text>
+                </XStack>
+                <Progress value={progress} backgroundColor="$backgroundHover">
+                  <Progress.Indicator backgroundColor="$accentColor" />
+                </Progress>
+                <XStack justifyContent="space-between" alignItems="center">
+                  <Text color="$secondaryText" fontSize={14}>
+                    {formatMoney(goal.actualMinor)} / {formatMoney(goal.budgetedMinor)}
+                  </Text>
+                </XStack>
+              </YStack>
+            </GlassyCard>
+          );
+        })
       )}
 
       {/* Pockets Section - Coming Soon */}
@@ -179,29 +301,70 @@ export default function PlanningScreen() {
     </YStack>
   );
 
-  // Get budgets from active plan
-  const activePlan = plans?.find((p) => p.status === "active");
-  const budgets =
-    activePlan?.categoryGroups
-      ?.flatMap((group) =>
-        group.categories.flatMap((cat) =>
-          cat.items.map((item) => ({
-            id: item.id,
-            name: item.name,
-            spent: item.actual ?? 0,
-            limit: item.budgeted ?? 0,
-            emoji: cat.icon ?? "📊",
-          })),
-        ),
-      )
-      .filter((b) => b.limit > 0) ?? [];
+  /* Removed derived activePlan/budgets here */
 
   const renderBudgets = () => (
     <YStack gap="$4">
+      {/* Global Progress Header */}
+      {activePlanData && (
+        <GlassyCard>
+          <YStack padding="$4" gap="$2">
+            <Text color="$color" fontWeight="600">
+              Total Budget
+            </Text>
+            <XStack justifyContent="space-between">
+              <Text color="$secondaryText">Budgeted</Text>
+              <Text color="$color" fontWeight="bold">
+                {formatMoney(budgetData?.totalBudgetedMinor ?? BigInt(0))}
+              </Text>
+            </XStack>
+            <XStack justifyContent="space-between">
+              <Text color="$secondaryText">Spent</Text>
+              <Text color="$color" fontWeight="bold">
+                {formatMoney(budgetData?.totalActualMinor ?? BigInt(0))}
+              </Text>
+            </XStack>
+            <Progress
+              value={calcProgress(
+                budgetData?.totalActualMinor ?? BigInt(0),
+                budgetData?.totalBudgetedMinor ?? BigInt(0),
+              )}
+              backgroundColor="$backgroundHover"
+              marginTop="$2"
+            >
+              <Progress.Indicator
+                backgroundColor={
+                  Number(budgetData?.totalActualMinor ?? 0) >
+                  Number(budgetData?.totalBudgetedMinor ?? 0)
+                    ? "#ef4444"
+                    : "$accentColor"
+                }
+              />
+            </Progress>
+            <XStack justifyContent="flex-end">
+              <Text color="$secondaryText" fontSize={12}>
+                {formatMoney(
+                  (budgetData?.totalBudgetedMinor ?? BigInt(0)) -
+                    (budgetData?.totalActualMinor ?? BigInt(0)),
+                )}{" "}
+                remaining
+              </Text>
+            </XStack>
+          </YStack>
+        </GlassyCard>
+      )}
+
       <Text color="$color" fontSize={18} fontWeight="bold">
         Monthly Budgets
       </Text>
-      {!activePlan ? (
+      {budgetItemsLoading ? (
+        <YStack alignItems="center" padding="$6">
+          <ActivityIndicator color="#6366F1" />
+          <Text color="$secondaryText" marginTop="$2">
+            Loading budgets...
+          </Text>
+        </YStack>
+      ) : !activePlanData ? (
         <GlassyCard>
           <YStack padding="$5" alignItems="center" gap="$3">
             <Text fontSize={32}>📊</Text>
@@ -221,7 +384,7 @@ export default function PlanningScreen() {
             </Button>
           </YStack>
         </GlassyCard>
-      ) : budgets.length === 0 ? (
+      ) : !budgetData?.items || budgetData.items.length === 0 ? (
         <GlassyCard>
           <YStack padding="$5" alignItems="center" gap="$3">
             <Text fontSize={32}>💰</Text>
@@ -229,16 +392,13 @@ export default function PlanningScreen() {
               No Budgets Defined
             </Text>
             <Text color="$secondaryText" textAlign="center" fontSize={14}>
-              Your active plan "{activePlan.name}" has no budget items yet. Tap to go to Plans and
-              edit your budget structure.
+              Your active plan "{activePlanData.name}" has no budget items yet. Tap to go to Plans
+              and edit your budget structure.
             </Text>
             <Button
               marginTop="$2"
               backgroundColor="$accentColor"
-              onPress={() => {
-                setSelectedPlanId(activePlan.id);
-                setActiveTab("plans");
-              }}
+              onPress={() => setEditPlanOpen(true)}
             >
               <Pencil size={16} color="white" />
               <Text color="white">Edit Plan</Text>
@@ -246,8 +406,8 @@ export default function PlanningScreen() {
           </YStack>
         </GlassyCard>
       ) : (
-        budgets.map((budget) => {
-          const progress = budget.limit > 0 ? (budget.spent / budget.limit) * 100 : 0;
+        budgetData.items.map((budget) => {
+          const progress = calcProgress(budget.actualMinor, budget.budgetedMinor);
           const isOverBudget = progress > 100;
           return (
             <Pressable
@@ -256,8 +416,8 @@ export default function PlanningScreen() {
                 setSelectedBudgetItem({
                   id: budget.id,
                   name: budget.name,
-                  budgeted: budget.limit,
-                  actual: budget.spent,
+                  budgeted: Number(budget.budgetedMinor) / 100,
+                  actual: Number(budget.actualMinor) / 100,
                   widgetType: "input",
                   fieldType: "currency",
                   labels: {},
@@ -269,7 +429,7 @@ export default function PlanningScreen() {
                 <YStack padding="$4" gap="$3">
                   <XStack justifyContent="space-between" alignItems="center">
                     <XStack alignItems="center" gap="$2">
-                      <Text fontSize={20}>{budget.emoji}</Text>
+                      <Text fontSize={20}>📊</Text>
                       <Text color="$color" fontWeight="600">
                         {budget.name}
                       </Text>
@@ -285,10 +445,10 @@ export default function PlanningScreen() {
                   </Progress>
                   <XStack justifyContent="space-between" alignItems="center">
                     <Text color="$secondaryText" fontSize={14}>
-                      €{budget.spent} / €{budget.limit}
+                      {formatMoney(budget.actualMinor)} / {formatMoney(budget.budgetedMinor)}
                     </Text>
                     <Text color="$secondaryText" fontSize={14}>
-                      €{Math.max(0, budget.limit - budget.spent)} left
+                      {formatMoney(budget.budgetedMinor - budget.actualMinor)} left
                     </Text>
                   </XStack>
                 </YStack>
@@ -302,17 +462,51 @@ export default function PlanningScreen() {
 
   const renderRecurring = () => (
     <YStack gap="$4">
+      {/* Global Progress Header */}
+      {activePlanData && (
+        <GlassyCard>
+          <YStack padding="$4" gap="$2">
+            <Text color="$color" fontWeight="600">
+              Recurring Expenses
+            </Text>
+            <XStack justifyContent="space-between">
+              <Text color="$secondaryText">Committed</Text>
+              <Text color="$color" fontWeight="bold">
+                {formatMoney(recurringData?.totalBudgetedMinor ?? BigInt(0))}
+              </Text>
+            </XStack>
+            <XStack justifyContent="space-between">
+              <Text color="$secondaryText">Paid</Text>
+              <Text color="$color" fontWeight="bold">
+                {formatMoney(recurringData?.totalActualMinor ?? BigInt(0))}
+              </Text>
+            </XStack>
+            <Progress
+              value={calcProgress(
+                recurringData?.totalActualMinor ?? BigInt(0),
+                recurringData?.totalBudgetedMinor ?? BigInt(0),
+              )}
+              backgroundColor="$backgroundHover"
+              marginTop="$2"
+            >
+              <Progress.Indicator backgroundColor="$accentColor" />
+            </Progress>
+          </YStack>
+        </GlassyCard>
+      )}
+
       <Text color="$color" fontSize={18} fontWeight="bold">
         Recurring Subscriptions
       </Text>
-      {subscriptionsLoading ? (
+      {recurringItemsLoading ? (
         <YStack alignItems="center" padding="$6">
           <ActivityIndicator color="#6366F1" />
           <Text color="$secondaryText" marginTop="$2">
-            Loading subscriptions...
+            Loading updated items...
           </Text>
         </YStack>
-      ) : subscriptions.length === 0 ? (
+      ) : (!recurringData?.items || recurringData.items.length === 0) &&
+        subscriptions.length === 0 ? (
         <GlassyCard>
           <YStack padding="$5" alignItems="center" gap="$3">
             <Text fontSize={32}>📺</Text>
@@ -324,15 +518,12 @@ export default function PlanningScreen() {
               your plan structure.
             </Text>
             <XStack gap="$2" marginTop="$2">
-              {activePlan && (
+              {activePlanData && (
                 <Button
                   backgroundColor="$backgroundHover"
                   borderWidth={1}
                   borderColor="$borderColor"
-                  onPress={() => {
-                    setSelectedPlanId(activePlan.id);
-                    setActiveTab("plans");
-                  }}
+                  onPress={() => setEditPlanOpen(true)}
                 >
                   <Pencil size={14} color="$color" />
                   <Text color="$color">Edit Plan</Text>
@@ -342,15 +533,10 @@ export default function PlanningScreen() {
           </YStack>
         </GlassyCard>
       ) : (
-        subscriptions.map((sub: Subscription) => (
-          <Pressable
-            key={sub.id}
-            onPress={() => {
-              setSelectedSubscription(sub);
-              setEditRecurringOpen(true);
-            }}
-          >
-            <GlassyCard>
+        <>
+          {/* Render Plan Items first */}
+          {recurringData?.items.map((item) => (
+            <GlassyCard key={item.id}>
               <XStack padding="$4" alignItems="center" gap="$3">
                 <YStack
                   backgroundColor="$backgroundHover"
@@ -360,23 +546,60 @@ export default function PlanningScreen() {
                   alignItems="center"
                   justifyContent="center"
                 >
-                  <Text fontSize={24}>📺</Text>
+                  <Text fontSize={24}>🔄</Text>
                 </YStack>
                 <YStack flex={1}>
                   <Text color="$color" fontWeight="600">
-                    {sub.merchantName}
+                    {item.name}
                   </Text>
                   <Text color="$secondaryText" fontSize={14}>
-                    Next: {formatNextDate(sub.nextExpectedAt)}
+                    Plan Item
                   </Text>
                 </YStack>
                 <Text color="$color" fontWeight="bold">
-                  €{sub.amount.toFixed(2)}
+                  {formatMoney(item.budgetedMinor)}
                 </Text>
               </XStack>
             </GlassyCard>
-          </Pressable>
-        ))
+          ))}
+
+          {/* Render Subscriptions (Legacy) */}
+          {subscriptions.map((sub: Subscription) => (
+            <Pressable
+              key={sub.id}
+              onPress={() => {
+                setSelectedSubscription(sub);
+                setEditRecurringOpen(true);
+              }}
+            >
+              <GlassyCard>
+                <XStack padding="$4" alignItems="center" gap="$3">
+                  <YStack
+                    backgroundColor="$backgroundHover"
+                    width={48}
+                    height={48}
+                    borderRadius={24}
+                    alignItems="center"
+                    justifyContent="center"
+                  >
+                    <Text fontSize={24}>📺</Text>
+                  </YStack>
+                  <YStack flex={1}>
+                    <Text color="$color" fontWeight="600">
+                      {sub.merchantName}
+                    </Text>
+                    <Text color="$secondaryText" fontSize={14}>
+                      Next: {formatNextDate(sub.nextExpectedAt)}
+                    </Text>
+                  </YStack>
+                  <Text color="$color" fontWeight="bold">
+                    €{sub.amount.toFixed(2)}
+                  </Text>
+                </XStack>
+              </GlassyCard>
+            </Pressable>
+          ))}
+        </>
       )}
     </YStack>
   );
@@ -497,7 +720,7 @@ export default function PlanningScreen() {
         <XStack
           padding="$4"
           alignItems="center"
-          gap="$3"
+          justifyContent="space-between"
           borderBottomWidth={1}
           borderBottomColor="$borderColor"
         >
@@ -509,6 +732,10 @@ export default function PlanningScreen() {
               </Text>
             </XStack>
           </Pressable>
+
+          <Button size="$3" chromeless onPress={() => setEditPlanOpen(true)}>
+            <Pencil size={18} color="$accentColor" />
+          </Button>
         </XStack>
 
         {/* Plan Dashboard */}
@@ -549,6 +776,9 @@ export default function PlanningScreen() {
           </XStack>
         </XStack>
 
+        {/* System Health */}
+        <ActivePlanHeader />
+
         {/* Segment Control */}
         <XStack backgroundColor="$backgroundHover" borderRadius="$4" padding="$1" marginBottom="$6">
           {(["plans", "goals", "budgets", "recurring"] as TabType[]).map((tab) => (
@@ -583,6 +813,19 @@ export default function PlanningScreen() {
         }}
         initialCategories={importedCategories}
       />
+
+      {/* Edit Plan Sheet */}
+      {selectedPlanId && (
+        <EditPlanSheet planId={selectedPlanId} open={editPlanOpen} onOpenChange={setEditPlanOpen} />
+      )}
+      {/* Also support editing active plan if no plan is selected/viewed */}
+      {!selectedPlanId && activePlanData && (
+        <EditPlanSheet
+          planId={activePlanData.id}
+          open={editPlanOpen}
+          onOpenChange={setEditPlanOpen}
+        />
+      )}
 
       {/* Edit Budget Sheet */}
       <EditBudgetSheet

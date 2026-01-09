@@ -25,6 +25,8 @@ export interface PlanItem {
   widgetType: "input" | "slider" | "toggle" | "readonly";
   fieldType: "currency" | "percentage" | "number" | "text";
   labels: Record<string, string>;
+  itemType?: "budget" | "recurring" | "goal" | "income";
+  configId?: string;
 }
 
 export interface PlanCategory {
@@ -199,6 +201,9 @@ export function useCreatePlan() {
             name: string;
             budgetedMinor?: number | bigint;
             labels?: Record<string, string>;
+            itemType?: string; // "budget", "recurring", "goal", "income"
+            configId?: string;
+            initialActualMinor?: number | bigint;
           }>;
           labels?: Record<string, string>;
         }>;
@@ -207,7 +212,8 @@ export function useCreatePlan() {
     }) => {
       console.log("[useCreatePlan] Creating plan with input:", input.name);
       try {
-        // Transform categoryGroups to ensure BigInt for budgetedMinor
+        // Helper to map item type string to proto enum
+        // Transform categoryGroups
         const transformedGroups = (input.categoryGroups ?? []).map((group) => ({
           name: group.name,
           color: group.color ?? "",
@@ -218,6 +224,11 @@ export function useCreatePlan() {
             items: (cat.items ?? []).map((item) => ({
               name: item.name,
               budgetedMinor: BigInt(item.budgetedMinor ?? 0),
+              itemType: mapItemTypeToProto(item.itemType),
+              configId: item.configId,
+              initialActualMinor: item.initialActualMinor
+                ? BigInt(item.initialActualMinor)
+                : undefined,
               labels: item.labels ?? {},
             })),
             labels: cat.labels ?? {},
@@ -242,6 +253,82 @@ export function useCreatePlan() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["plans"] });
+    },
+  });
+}
+
+/**
+ * Update an existing plan structure (Edit Plan)
+ */
+export function useUpdatePlanStructure() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (input: {
+      planId: string;
+      categoryGroups: Array<{
+        id?: string;
+        name: string;
+        color?: string;
+        targetPercent?: number;
+        categories?: Array<{
+          id?: string;
+          name: string;
+          icon?: string;
+          items?: Array<{
+            id?: string;
+            name: string;
+            budgetedMinor?: number | bigint;
+            labels?: Record<string, string>;
+            itemType?: string;
+            configId?: string;
+            initialActualMinor?: number | bigint;
+          }>;
+          labels?: Record<string, string>;
+        }>;
+        labels?: Record<string, string>;
+      }>;
+    }) => {
+      try {
+        const transformedGroups = input.categoryGroups.map((group) => ({
+          id: group.id,
+          name: group.name,
+          color: group.color ?? "",
+          targetPercent: group.targetPercent ?? 0,
+          categories: (group.categories ?? []).map((cat) => ({
+            id: cat.id,
+            name: cat.name,
+            icon: cat.icon ?? "",
+            items: (cat.items ?? []).map((item) => ({
+              id: item.id,
+              name: item.name,
+              budgetedMinor: BigInt(item.budgetedMinor ?? 0),
+              itemType: mapItemTypeToProto(item.itemType),
+              configId: item.configId,
+              initialActualMinor: item.initialActualMinor
+                ? BigInt(item.initialActualMinor)
+                : undefined,
+              labels: item.labels ?? {},
+            })),
+            labels: cat.labels ?? {},
+          })),
+          labels: group.labels ?? {},
+        }));
+
+        const response = await planClient.updatePlanStructure({
+          planId: input.planId,
+          categoryGroups: transformedGroups,
+        });
+        return response.plan ? mapPlanFromProto(response.plan) : null;
+      } catch (error) {
+        console.error("[useUpdatePlanStructure] Error:", error);
+        throw error;
+      }
+    },
+    onSuccess: (_, variables) => {
+      queryClient.invalidateQueries({ queryKey: ["plans"] });
+      queryClient.invalidateQueries({ queryKey: ["plan", variables.planId] });
+      queryClient.invalidateQueries({ queryKey: ["plan-items"] }); // Invalidate items by tab
     },
   });
 }
@@ -375,7 +462,7 @@ export function useAnalyzeExcel() {
       });
 
       return {
-        sheets: (response.sheets ?? []).map((s) => ({
+        sheets: (response.sheets ?? []).map((s: any) => ({
           name: s.name ?? "",
           isLivingPlan: s.isLivingPlan ?? false,
           rowCount: s.rowCount ?? 0,
@@ -393,7 +480,7 @@ export function useAnalyzeExcel() {
               }
             : undefined,
           // Include preview rows for UI display
-          previewRows: s.previewRows?.map((row) => row.cells ?? []) ?? [],
+          previewRows: s.previewRows?.map((row: any) => row.cells ?? []) ?? [],
         })),
         suggestedSheet: response.suggestedSheet ?? "",
       };
@@ -530,6 +617,8 @@ function mapPlanFromProto(proto: {
         widgetType?: number;
         fieldType?: number;
         labels?: Record<string, string>;
+        itemType?: number;
+        configId?: string;
       }>;
     }>;
   }>;
@@ -567,10 +656,27 @@ function mapPlanFromProto(proto: {
           widgetType: mapWidgetType(i.widgetType ?? 0),
           fieldType: mapFieldType(i.fieldType ?? 0),
           labels: i.labels ?? {},
+          itemType: mapProtoItemType(i.itemType ?? 0),
+          configId: i.configId,
         })),
       })),
     })),
   };
+}
+
+function mapProtoItemType(proto: number): "budget" | "recurring" | "goal" | "income" | undefined {
+  switch (proto) {
+    case 1:
+      return "budget";
+    case 2:
+      return "recurring";
+    case 3:
+      return "goal";
+    case 4:
+      return "income";
+    default:
+      return undefined;
+  }
 }
 
 function mapWidgetType(proto: number): "input" | "slider" | "toggle" | "readonly" {
@@ -613,5 +719,20 @@ function mapStatusToProto(status: PlanStatus): ProtoPlanStatus {
       return 3 as ProtoPlanStatus;
     default:
       return 0 as ProtoPlanStatus;
+  }
+}
+
+function mapItemTypeToProto(type?: string): number {
+  switch (type) {
+    case "budget":
+      return 1;
+    case "recurring":
+      return 2;
+    case "goal":
+      return 3;
+    case "income":
+      return 4;
+    default:
+      return 0;
   }
 }

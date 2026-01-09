@@ -7,7 +7,14 @@
  * 3. Add line items with budgeted amounts (Rent: €1000, Electricity: €50)
  */
 
-import { Check, ChevronDown, ChevronRight, Plus, Trash2 } from "@tamagui/lucide-icons";
+import {
+  Check,
+  ChevronDown,
+  ChevronRight,
+  Info as InfoIcon,
+  Plus,
+  Trash2,
+} from "@tamagui/lucide-icons";
 import React, { useState } from "react";
 import { Alert, Pressable } from "react-native";
 import { Button, H3, Input, Text, XStack, YStack } from "tamagui";
@@ -18,6 +25,7 @@ import {
   useItemConfigs,
   type ItemConfig,
 } from "@/lib/hooks/use-item-configs";
+import { ItemTypesSheet } from "./ItemTypesSheet";
 
 // Types for the builder
 export type ItemType = "budget" | "recurring" | "goal" | "income";
@@ -28,6 +36,7 @@ export interface BuilderItem {
   budgetedMinor: number;
   itemType: ItemType;
   configId?: string; // Link to dynamic config
+  initialActualMinor?: number; // For "Saved" amount in Goals
 }
 
 export interface BuilderCategory {
@@ -46,6 +55,7 @@ export interface BuilderGroup {
 }
 
 interface CategoryGroupBuilderProps {
+  initialGroups?: BuilderGroup[];
   groups: BuilderGroup[];
   onChange: (groups: BuilderGroup[]) => void;
 }
@@ -64,12 +74,25 @@ const ITEM_TYPE_CONFIG: Record<ItemType, { label: string; color: string }> = {
 /**
  * Main CategoryGroupBuilder component
  */
-export function CategoryGroupBuilder({ groups, onChange }: CategoryGroupBuilderProps) {
+export function CategoryGroupBuilder({
+  groups,
+  onChange,
+  initialGroups,
+}: CategoryGroupBuilderProps) {
+  // Initialize from initialGroups if provided and groups are empty (first load)
+  React.useEffect(() => {
+    if (initialGroups && groups.length === 0) {
+      onChange(initialGroups);
+      setExpandedGroups(new Set(initialGroups.map((g) => g.id)));
+    }
+  }, [initialGroups]);
+
   const [expandedGroups, setExpandedGroups] = useState<Set<string>>(
     new Set(groups.map((g) => g.id)),
   );
   const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set());
   const [newGroupName, setNewGroupName] = useState("");
+  const [infoSheetOpen, setInfoSheetOpen] = useState(false);
 
   // Toggle group expansion
   const toggleGroup = (groupId: string) => {
@@ -160,6 +183,16 @@ export function CategoryGroupBuilder({ groups, onChange }: CategoryGroupBuilderP
       name: itemName,
       budgetedMinor: 0,
       itemType,
+      configId:
+        itemType === "budget"
+          ? "1"
+          : itemType === "recurring"
+            ? "2"
+            : itemType === "goal"
+              ? "3"
+              : itemType === "income"
+                ? "4"
+                : undefined,
     };
     onChange(
       groups.map((g) =>
@@ -168,6 +201,34 @@ export function CategoryGroupBuilder({ groups, onChange }: CategoryGroupBuilderP
               ...g,
               categories: g.categories.map((c) =>
                 c.id === categoryId ? { ...c, items: [...c.items, newItem] } : c,
+              ),
+            }
+          : g,
+      ),
+    );
+  };
+
+  // Update item actual (for goals)
+  const updateItemActual = (
+    groupId: string,
+    categoryId: string,
+    itemId: string,
+    initialActualMinor: number,
+  ) => {
+    onChange(
+      groups.map((g) =>
+        g.id === groupId
+          ? {
+              ...g,
+              categories: g.categories.map((c) =>
+                c.id === categoryId
+                  ? {
+                      ...c,
+                      items: c.items.map((i) =>
+                        i.id === itemId ? { ...i, initialActualMinor } : i,
+                      ),
+                    }
+                  : c,
               ),
             }
           : g,
@@ -219,6 +280,30 @@ export function CategoryGroupBuilder({ groups, onChange }: CategoryGroupBuilderP
 
   return (
     <YStack gap="$3">
+      {/* Header with Help */}
+      <XStack justifyContent="space-between" alignItems="center" paddingHorizontal="$1">
+        <Text color="$secondaryText" fontSize={12}>
+          Draft your plan structure
+        </Text>
+        <Button
+          size="$2"
+          chromeless
+          onPress={() => setInfoSheetOpen(true)}
+          pressStyle={{ opacity: 0.7 }}
+          paddingHorizontal="$2"
+        >
+          <XStack alignItems="center" gap="$2">
+            {/* Icon */}
+            <InfoIcon size={14} color="$accentColor" />
+            <Text color="$accentColor" fontSize={12} fontWeight="600">
+              Item Types Key
+            </Text>
+          </XStack>
+        </Button>
+      </XStack>
+
+      <ItemTypesSheet open={infoSheetOpen} onOpenChange={setInfoSheetOpen} />
+
       {/* Add new group */}
       <GlassyCard>
         <XStack padding="$3" gap="$2" alignItems="center">
@@ -258,6 +343,9 @@ export function CategoryGroupBuilder({ groups, onChange }: CategoryGroupBuilderP
           onUpdateItemBudget={(catId, itemId, amount) =>
             updateItemBudget(group.id, catId, itemId, amount)
           }
+          onUpdateItemActual={(catId, itemId, amount) =>
+            updateItemActual(group.id, catId, itemId, amount)
+          }
           onDeleteItem={(catId, itemId) => deleteItem(group.id, catId, itemId)}
         />
       ))}
@@ -292,6 +380,7 @@ interface GroupCardProps {
   onDeleteCategory: (categoryId: string) => void;
   onAddItem: (categoryId: string, name: string, itemType: ItemType) => void;
   onUpdateItemBudget: (categoryId: string, itemId: string, amount: number) => void;
+  onUpdateItemActual: (categoryId: string, itemId: string, amount: number) => void;
   onDeleteItem: (categoryId: string, itemId: string) => void;
 }
 
@@ -306,6 +395,7 @@ function GroupCard({
   onDeleteCategory,
   onAddItem,
   onUpdateItemBudget,
+  onUpdateItemActual,
   onDeleteItem,
 }: GroupCardProps) {
   const [newCategoryName, setNewCategoryName] = useState("");
@@ -392,6 +482,9 @@ function GroupCard({
                 onUpdateItemBudget={(itemId, amount) =>
                   onUpdateItemBudget(category.id, itemId, amount)
                 }
+                onUpdateItemActual={(itemId, amount) =>
+                  onUpdateItemActual(category.id, itemId, amount)
+                }
                 onDeleteItem={(itemId) => onDeleteItem(category.id, itemId)}
               />
             ))}
@@ -419,6 +512,7 @@ interface CategoryCardProps {
   onDelete: () => void;
   onAddItem: (name: string, itemType: ItemType) => void;
   onUpdateItemBudget: (itemId: string, amount: number) => void;
+  onUpdateItemActual: (itemId: string, amount: number) => void;
   onDeleteItem: (itemId: string) => void;
 }
 
@@ -429,6 +523,7 @@ function CategoryCard({
   onDelete,
   onAddItem,
   onUpdateItemBudget,
+  onUpdateItemActual,
   onDeleteItem,
 }: CategoryCardProps) {
   const [newItemName, setNewItemName] = useState("");
@@ -491,6 +586,7 @@ function CategoryCard({
               key={item.id}
               item={item}
               onUpdateBudget={(amount) => onUpdateItemBudget(item.id, amount)}
+              onUpdateActual={(amount) => onUpdateItemActual(item.id, amount)}
               onDelete={() => onDeleteItem(item.id)}
             />
           ))}
@@ -524,20 +620,33 @@ function CategoryCard({
 interface ItemRowProps {
   item: BuilderItem;
   onUpdateBudget: (amount: number) => void;
+  onUpdateActual: (amount: number) => void;
   onDelete: () => void;
 }
 
-function ItemRow({ item, onUpdateBudget, onDelete }: ItemRowProps) {
-  const [inputValue, setInputValue] = useState(
+function ItemRow({ item, onUpdateBudget, onUpdateActual, onDelete }: ItemRowProps) {
+  const [budgetInputValue, setBudgetInputValue] = useState(
     item.budgetedMinor > 0 ? (item.budgetedMinor / 100).toString() : "",
   );
 
-  const handleBlur = () => {
-    const amount = parseFloat(inputValue.replace(",", ".")) || 0;
+  const [actualInputValue, setActualInputValue] = useState(
+    item.initialActualMinor && item.initialActualMinor > 0
+      ? (item.initialActualMinor / 100).toString()
+      : "",
+  );
+
+  const handleBudgetBlur = () => {
+    const amount = parseFloat(budgetInputValue.replace(",", ".")) || 0;
     onUpdateBudget(Math.round(amount * 100));
   };
 
+  const handleActualBlur = () => {
+    const amount = parseFloat(actualInputValue.replace(",", ".")) || 0;
+    onUpdateActual(Math.round(amount * 100));
+  };
+
   const typeConfig = ITEM_TYPE_CONFIG[item.itemType];
+  const isGoal = item.itemType === "goal";
 
   return (
     <XStack
@@ -560,19 +669,53 @@ function ItemRow({ item, onUpdateBudget, onDelete }: ItemRowProps) {
           {typeConfig.label}
         </Text>
       </YStack>
-      <XStack alignItems="center" gap="$1">
-        <Text color="$secondaryText">€</Text>
-        <Input
-          size="$2"
-          width={70}
-          keyboardType="decimal-pad"
-          value={inputValue}
-          onChangeText={setInputValue}
-          onBlur={handleBlur}
-          textAlign="right"
-          backgroundColor="rgba(255,255,255,0.05)"
-        />
+
+      {/* Inputs */}
+      <XStack alignItems="center" gap="$2">
+        {/* For goals, show Target label */}
+        {isGoal && (
+          <Text color="$secondaryText" fontSize={10}>
+            Target:
+          </Text>
+        )}
+
+        <XStack alignItems="center" gap="$1">
+          <Text color="$secondaryText">€</Text>
+          <Input
+            size="$2"
+            width={70}
+            keyboardType="decimal-pad"
+            value={budgetInputValue}
+            onChangeText={setBudgetInputValue}
+            onBlur={handleBudgetBlur}
+            textAlign="right"
+            backgroundColor="rgba(255,255,255,0.05)"
+            placeholder={isGoal ? "Target" : "Limit"}
+          />
+        </XStack>
+
+        {/* Goal only: Current Saved */}
+        {isGoal && (
+          <XStack alignItems="center" gap="$1" paddingLeft="$2">
+            <Text color="$secondaryText" fontSize={10}>
+              Saved:
+            </Text>
+            <Text color="$secondaryText">€</Text>
+            <Input
+              size="$2"
+              width={70}
+              keyboardType="decimal-pad"
+              value={actualInputValue}
+              onChangeText={setActualInputValue}
+              onBlur={handleActualBlur}
+              textAlign="right"
+              backgroundColor="rgba(255,255,255,0.05)"
+              placeholder="0"
+            />
+          </XStack>
+        )}
       </XStack>
+
       <Pressable onPress={onDelete}>
         <Trash2 size={14} color="$red10" />
       </Pressable>

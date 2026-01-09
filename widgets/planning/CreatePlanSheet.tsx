@@ -110,7 +110,12 @@ export function CreatePlanSheet({
                 icon: cat.icon ?? "",
                 items: cat.items.map((item) => ({
                   name: item.name,
-                  budgetedMinor: BigInt(item.budgetedMinor ?? 0), // Ensure valid BigInt
+                  budgetedMinor: BigInt(item.budgetedMinor ?? 0),
+                  configId: item.configId,
+                  itemType: item.itemType,
+                  initialActualMinor: item.initialActualMinor
+                    ? BigInt(item.initialActualMinor)
+                    : undefined,
                   labels: {},
                 })),
                 labels: {},

@@ -3,11 +3,13 @@
  */
 
 // Core plan components
+export { ActivePlanHeader } from "./ActivePlanHeader";
 export { CategoryGroupBuilder } from "./CategoryGroupBuilder";
 export type { BuilderCategory, BuilderGroup, BuilderItem, ItemType } from "./CategoryGroupBuilder";
 export { CategoryGroupCard } from "./CategoryGroupCard";
 export { CreatePlanSheet } from "./CreatePlanSheet";
 export { EditBudgetSheet } from "./EditBudgetSheet";
+export { EditPlanSheet } from "./EditPlanSheet";
 export { EditRecurringSheet } from "./EditRecurringSheet";
 export { PlanCard } from "./PlanCard";
 
