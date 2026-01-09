@@ -30,7 +30,7 @@ interface PlanDashboardProps {
 // Format currency for display
 function formatCurrency(amountMinor: number, currencyCode = "EUR"): string {
   const amount = amountMinor / 100;
-  return new Intl.NumberFormat("pt-PT", {
+  return new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: currencyCode,
     minimumFractionDigits: 0,
@@ -124,7 +124,7 @@ export function PlanDashboard({ plan, categoryGroups = [], onCategoryPress }: Pl
               <XStack gap="$2" alignItems="center">
                 <Wallet size={16} color="$accentColor" />
                 <Text color="$secondaryText" fontSize={12}>
-                  Orçamento Total
+                  Total Budget
                 </Text>
               </XStack>
               <Text color="$color" fontWeight="700" fontSize={20}>
@@ -139,7 +139,7 @@ export function PlanDashboard({ plan, categoryGroups = [], onCategoryPress }: Pl
               <XStack gap="$2" alignItems="center">
                 <TrendingUp size={16} color={surplus >= 0 ? "#22c55e" : "#ef4444"} />
                 <Text color="$secondaryText" fontSize={12}>
-                  Sobra / Déficit
+                  Surplus / Deficit
                 </Text>
               </XStack>
               <Text color={surplus >= 0 ? "#22c55e" : "#ef4444"} fontWeight="700" fontSize={20}>
@@ -154,11 +154,11 @@ export function PlanDashboard({ plan, categoryGroups = [], onCategoryPress }: Pl
               <XStack gap="$2" alignItems="center">
                 <Calendar size={16} color="$accentColor" />
                 <Text color="$secondaryText" fontSize={12}>
-                  Período
+                  Period
                 </Text>
               </XStack>
               <Text color="$color" fontWeight="700" fontSize={20}>
-                {new Date().toLocaleDateString("pt-PT", { month: "short", year: "numeric" })}
+                {new Date().toLocaleDateString("en-US", { month: "short", year: "numeric" })}
               </Text>
             </YStack>
           </GlassyCard>
@@ -177,7 +177,7 @@ export function PlanDashboard({ plan, categoryGroups = [], onCategoryPress }: Pl
         {/* Category Details */}
         <YStack gap="$3">
           <Text color="$color" fontWeight="600" fontSize={16}>
-            Categorias de Despesa
+            Spending Categories
           </Text>
           {detailData.map((category) => (
             <CategoryDetailCard

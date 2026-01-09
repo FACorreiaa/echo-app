@@ -9,10 +9,10 @@ import { GlassyCard } from "@/components";
 import { useGoals } from "@/lib/hooks/use-goals";
 import {
   useDeletePlan,
+  usePlan,
   usePlans,
   useSetActivePlan,
   type PlanItem,
-  type UserPlan,
 } from "@/lib/hooks/use-plans";
 import { useSubscriptions, type Subscription } from "@/lib/hooks/use-subscriptions";
 import {
@@ -43,7 +43,7 @@ export default function PlanningScreen() {
   const insets = useSafeAreaInsets();
   const [activeTab, setActiveTab] = useState<TabType>("plans");
   const [createSheetOpen, setCreateSheetOpen] = useState(false);
-  const [selectedPlan, setSelectedPlan] = useState<UserPlan | null>(null);
+  const [selectedPlanId, setSelectedPlanId] = useState<string | null>(null);
 
   // Edit sheet state
   const [editBudgetOpen, setEditBudgetOpen] = useState(false);
@@ -75,6 +75,7 @@ export default function PlanningScreen() {
 
   // Plans from API
   const { data: plans, isLoading: plansLoading, error: plansError } = usePlans();
+  const { data: selectedPlan, isLoading: planDetailsLoading } = usePlan(selectedPlanId ?? "");
   const setActivePlan = useSetActivePlan();
   const deletePlan = useDeletePlan();
 
@@ -235,7 +236,7 @@ export default function PlanningScreen() {
               marginTop="$2"
               backgroundColor="$accentColor"
               onPress={() => {
-                setSelectedPlan(activePlan);
+                setSelectedPlanId(activePlan.id);
                 setActiveTab("plans");
               }}
             >
@@ -329,7 +330,7 @@ export default function PlanningScreen() {
                   borderWidth={1}
                   borderColor="$borderColor"
                   onPress={() => {
-                    setSelectedPlan(activePlan);
+                    setSelectedPlanId(activePlan.id);
                     setActiveTab("plans");
                   }}
                 >
@@ -461,7 +462,7 @@ export default function PlanningScreen() {
           key={plan.id}
           plan={plan}
           onPress={() => {
-            setSelectedPlan(plan);
+            setSelectedPlanId(plan.id);
           }}
           onSetActive={plan.status !== "active" ? () => setActivePlan.mutate(plan.id) : undefined}
           onDelete={() => handleDeletePlan(plan.id)}
@@ -471,7 +472,25 @@ export default function PlanningScreen() {
   );
 
   // If a plan is selected, show the dashboard detail view
-  if (selectedPlan) {
+  if (selectedPlanId) {
+    // Show loading while fetching full plan details
+    if (planDetailsLoading || !selectedPlan) {
+      return (
+        <YStack
+          flex={1}
+          backgroundColor="$background"
+          paddingTop={insets.top}
+          justifyContent="center"
+          alignItems="center"
+        >
+          <ActivityIndicator size="large" />
+          <Text color="$secondaryText" marginTop="$2">
+            Loading plan details...
+          </Text>
+        </YStack>
+      );
+    }
+
     return (
       <YStack flex={1} backgroundColor="$background" paddingTop={insets.top}>
         {/* Back Header */}
@@ -482,7 +501,7 @@ export default function PlanningScreen() {
           borderBottomWidth={1}
           borderBottomColor="$borderColor"
         >
-          <Pressable onPress={() => setSelectedPlan(null)}>
+          <Pressable onPress={() => setSelectedPlanId(null)}>
             <XStack alignItems="center" gap="$2">
               <ArrowLeft size={20} color="$accentColor" />
               <Text color="$accentColor" fontSize={14}>
