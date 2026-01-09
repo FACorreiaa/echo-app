@@ -11,6 +11,7 @@ import {
   Shield,
   User,
 } from "@tamagui/lucide-icons";
+import { useRouter } from "expo-router";
 import { Alert } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ScrollView, styled, Text, XStack, YStack } from "tamagui";
@@ -65,6 +66,8 @@ const menuItems = {
 };
 
 export default function SettingsScreen() {
+  const router = useRouter();
+
   const handleLogout = async () => {
     console.log("[SETTINGS] handleLogout called");
     Alert.alert("Log Out", "Are you sure you want to log out?", [
@@ -221,7 +224,13 @@ export default function SettingsScreen() {
                       <ChevronRight size={20} color="$secondaryText" />
                     )
                   }
-                  onPress={item.hasToggle ? undefined : () => {}}
+                  onPress={
+                    item.hasToggle
+                      ? undefined
+                      : () => {
+                          if (item.route) router.push(`/${item.route}` as any);
+                        }
+                  }
                 />
               ))}
             </YStack>

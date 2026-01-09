@@ -1,4 +1,4 @@
-import { ArrowLeft, FileSpreadsheet, Pencil, Plus } from "@tamagui/lucide-icons";
+import { ArrowLeft, FileSpreadsheet, Pencil, Plus, Settings } from "@tamagui/lucide-icons";
 import { useLocalSearchParams } from "expo-router";
 import React, { useEffect, useState } from "react";
 import { ActivityIndicator, Alert, Pressable, ScrollView } from "react-native";
@@ -19,6 +19,7 @@ import {
   CreatePlanSheet,
   EditBudgetSheet,
   EditRecurringSheet,
+  ItemTypesSheet,
   PlanCard,
   PlanDashboard,
 } from "@/widgets/planning";
@@ -47,6 +48,7 @@ export default function PlanningScreen() {
   // Edit sheet state
   const [editBudgetOpen, setEditBudgetOpen] = useState(false);
   const [editRecurringOpen, setEditRecurringOpen] = useState(false);
+  const [itemTypesOpen, setItemTypesOpen] = useState(false);
   const [selectedBudgetItem, setSelectedBudgetItem] = useState<PlanItem | null>(null);
   const [selectedSubscription, setSelectedSubscription] = useState<Subscription | null>(null);
 
@@ -510,13 +512,22 @@ export default function PlanningScreen() {
           <H2 color="$color" fontSize={28} fontWeight="bold">
             Planning
           </H2>
-          <Button
-            size="$3"
-            circular
-            backgroundColor="$accentColor"
-            icon={<Plus size={20} color="white" />}
-            onPress={() => setCreateSheetOpen(true)}
-          />
+          <XStack gap="$2">
+            <Button
+              size="$3"
+              circular
+              backgroundColor="$backgroundHover"
+              icon={<Settings size={18} color="$secondaryText" />}
+              onPress={() => setItemTypesOpen(true)}
+            />
+            <Button
+              size="$3"
+              circular
+              backgroundColor="$accentColor"
+              icon={<Plus size={20} color="white" />}
+              onPress={() => setCreateSheetOpen(true)}
+            />
+          </XStack>
         </XStack>
 
         {/* Segment Control */}
@@ -570,6 +581,9 @@ export default function PlanningScreen() {
         subscription={selectedSubscription}
         onSubscriptionUpdated={() => setEditRecurringOpen(false)}
       />
+
+      {/* Item Types Sheet */}
+      <ItemTypesSheet open={itemTypesOpen} onOpenChange={setItemTypesOpen} />
     </YStack>
   );
 }

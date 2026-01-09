@@ -30,3 +30,9 @@ export type { MonthlyRowData, MonthlyValue } from "./MonthlyGridView";
 // Goal tracking
 export { GoalActualProgress, calculatePillarsFromGroups } from "./GoalActualProgress";
 export type { BudgetPillar } from "./GoalActualProgress";
+
+// Item type configuration
+export { ItemTypesSheet } from "./ItemTypesSheet";
+
+// Monthly budget versioning
+export { MonthlyBudgetView } from "./MonthlyBudgetView";

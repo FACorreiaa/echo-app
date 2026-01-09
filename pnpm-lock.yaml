@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@buf/echo-tracker_echo.bufbuild_es':
         specifier: latest
-        version: 2.10.2-20260107171113-7aef81fc1e3f.1(@bufbuild/protobuf@2.10.2)
+        version: 2.10.2-20260109091821-123b762193d8.1(@bufbuild/protobuf@2.10.2)
       '@bufbuild/protobuf':
         specifier: ^2.10.2
         version: 2.10.2
@@ -732,8 +732,8 @@ packages:
     peerDependencies:
       '@bufbuild/protobuf': ^2.10.2
 
-  '@buf/echo-tracker_echo.bufbuild_es@2.10.2-20260107171113-7aef81fc1e3f.1':
-    resolution: {tarball: https://buf.build/gen/npm/v1/@buf/echo-tracker_echo.bufbuild_es/-/echo-tracker_echo.bufbuild_es-2.10.2-20260107171113-7aef81fc1e3f.1.tgz}
+  '@buf/echo-tracker_echo.bufbuild_es@2.10.2-20260109091821-123b762193d8.1':
+    resolution: {tarball: https://buf.build/gen/npm/v1/@buf/echo-tracker_echo.bufbuild_es/-/echo-tracker_echo.bufbuild_es-2.10.2-20260109091821-123b762193d8.1.tgz}
     peerDependencies:
       '@bufbuild/protobuf': ^2.10.2
 
@@ -7726,7 +7726,7 @@ snapshots:
     dependencies:
       '@bufbuild/protobuf': 2.10.2
 
-  '@buf/echo-tracker_echo.bufbuild_es@2.10.2-20260107171113-7aef81fc1e3f.1(@bufbuild/protobuf@2.10.2)':
+  '@buf/echo-tracker_echo.bufbuild_es@2.10.2-20260109091821-123b762193d8.1(@bufbuild/protobuf@2.10.2)':
     dependencies:
       '@buf/bufbuild_protovalidate.bufbuild_es': 2.10.2-20251209175733-2a1774d88802.1(@bufbuild/protobuf@2.10.2)
       '@buf/protocolbuffers_wellknowntypes.bufbuild_es': 2.10.2-20230331140314-f17e05fe4a76.1(@bufbuild/protobuf@2.10.2)

@@ -319,7 +319,7 @@ export function CreatePlanSheet({
             </Text>
 
             {/* Manual Option */}
-            <Pressable onPress={() => setMode("manual")}>
+            <Pressable onPress={() => setMode("build-structure")}>
               <GlassyCard>
                 <XStack padding="$4" alignItems="center" gap="$4">
                   <YStack
@@ -489,9 +489,16 @@ export function CreatePlanSheet({
         {/* Build Structure - CategoryGroupBuilder Step */}
         {mode === "build-structure" && (
           <YStack gap="$4" flex={1}>
-            <Text color="$color" fontWeight="600" fontSize={16}>
-              Define your budget structure for "{planName}"
-            </Text>
+            {/* Inline Plan Name Input */}
+            <Input
+              placeholder="Plan name (e.g., 2026 Budget)"
+              value={planName}
+              onChangeText={((text: string) => setPlanName(text)) as any}
+              backgroundColor="$backgroundHover"
+              borderColor="$borderColor"
+              color="$color"
+              size="$5"
+            />
             <Text color="$secondaryText" fontSize={14}>
               Add category groups (like "Fundamentals", "Fun"), then add categories and line items
               to each. Mark each item as Budget, Recurring, or Savings Goal.
@@ -506,7 +513,7 @@ export function CreatePlanSheet({
                 flex={1}
                 backgroundColor="$backgroundHover"
                 color="$color"
-                onPress={() => setMode("manual")}
+                onPress={() => setMode("select")}
               >
                 Back
               </Button>
@@ -515,7 +522,7 @@ export function CreatePlanSheet({
                 backgroundColor="$accentColor"
                 color="white"
                 onPress={handleCreateManual}
-                disabled={createPlan.isPending || builderGroups.length === 0}
+                disabled={createPlan.isPending || builderGroups.length === 0 || !planName.trim()}
               >
                 {createPlan.isPending ? "Creating..." : "Create Plan"}
               </Button>
