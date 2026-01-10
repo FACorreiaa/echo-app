@@ -89,14 +89,22 @@ const config = createTamagui({
       borderColor: "#e5e7eb",
       shadowColor: "rgba(0,0,0,0.1)",
       // Custom semantic tokens
-      glassBorder: "#e5e7eb",
-      glassWhite: "rgba(255, 255, 255, 0.9)",
+      secondaryText: "#575E6A", // WCAG AA compliant
+      placeholderColor: "#8E8E93",
+
+      // Legacy & Accents
       cardBackground: "#ffffff",
       listItemBackground: "#f9fafb",
       accentGradientStart: "#6366f1",
       accentGradientEnd: "#8b5cf6",
       accentColor: "#6366f1",
-      secondaryText: "#6b7280",
+
+      // Glassmorphism
+      glassBackground: "rgba(255, 255, 255, 0.4)",
+      glassBorder: "rgba(0, 0, 0, 0.08)",
+      glassShadow: "rgba(0, 0, 0, 0.05)",
+      glassWhite: "rgba(255, 255, 255, 0.9)",
+
       // Additional color tokens
       deepBlue: "#0b0f19",
       electricBlue: "#2da6fa",
@@ -107,18 +115,15 @@ const config = createTamagui({
     },
     dark: {
       ...defaultConfig.themes.dark,
-      background: "#0b0f19",
-      backgroundHover: "#111827",
-      backgroundPress: "#1f2937",
-      backgroundFocus: "#0b0f19",
+      background: "#050505", // Deep Black
       color: "#ffffff",
-      colorHover: "#e5e7eb",
-      colorPress: "#ffffff",
-      colorFocus: "#ffffff",
-      borderColor: "rgba(255, 255, 255, 0.15)",
-      shadowColor: "rgba(0,0,0,0.5)",
-      // Custom semantic tokens
-      glassBorder: "rgba(255, 255, 255, 0.15)",
+      placeholderColor: "#636366",
+
+      // Glassmorphism
+      glassBackground: "rgba(255, 255, 255, 0.06)",
+      glassBorder: "rgba(255, 255, 255, 0.12)",
+      glassShadow: "rgba(0, 0, 0, 0.4)",
+
       glassWhite: "rgba(255, 255, 255, 0.15)",
       cardBackground: "rgba(255, 255, 255, 0.08)",
       listItemBackground: "rgba(255, 255, 255, 0.05)",

@@ -1,9 +1,8 @@
-import { GlassyCard } from "@/components/ui/GlassyCard";
+import { GlassWidget } from "@/components/GlassWidget";
 import { useSystemHealth } from "@/lib/hooks/use-system-health";
 import { Activity, AlertTriangle, CheckCircle, TrendingUp } from "@tamagui/lucide-icons";
-import { View } from "moti";
 import React from "react";
-import { H2, H4, Paragraph, SizableText, XStack, YStack, useTheme } from "tamagui";
+import { H2, H4, Paragraph, SizableText, View, XStack, YStack, useTheme } from "tamagui";
 
 export const SystemHealthScoreCard = () => {
   const { score, status, isLoading } = useSystemHealth();
@@ -30,12 +29,17 @@ export const SystemHealthScoreCard = () => {
   }
 
   return (
-    <GlassyCard p="$4" mb="$4" animation="bouncy">
-      <YStack space="$3" ai="center">
+    <GlassWidget marginBottom="$4" animation="bouncy">
+      <YStack space="$3" alignItems="center">
         {/* Header */}
-        <XStack ai="center" space="$2" opacity={0.8}>
-          <TrendingUp size={14} color="$gray11" />
-          <SizableText size="$2" color="$gray11" tt="uppercase" ls={1}>
+        <XStack alignItems="center" space="$2" opacity={0.8}>
+          <TrendingUp size={14} color={"$gray11" as any} />
+          <SizableText
+            size="$2"
+            color={"$gray11" as any}
+            textTransform="uppercase"
+            letterSpacing={1}
+          >
             System Health
           </SizableText>
         </XStack>
@@ -44,12 +48,13 @@ export const SystemHealthScoreCard = () => {
         <View
           from={{ opacity: 0.6, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{
-            type: "timing",
-            duration: 2000,
-            loop: true,
-            repeatReverse: true,
-          }}
+          transition={
+            {
+              type: "timing",
+              duration: 2000,
+              loop: true,
+            } as any
+          }
           style={{
             position: "absolute",
             top: 40,
@@ -63,25 +68,25 @@ export const SystemHealthScoreCard = () => {
         />
 
         <YStack
-          ai="center"
-          jc="center"
+          alignItems="center"
+          justifyContent="center"
           width={100}
           height={100}
-          bc="$backgroundTransparent"
-          br={50}
-          bw={4}
+          backgroundColor={"transparent" as any}
+          borderRadius={50}
+          borderWidth={4}
           borderColor={statusColor as any}
         >
-          <H2 color={statusColor as any} fow="800">
+          <H2 color={statusColor as any} fontWeight="800">
             {Math.round(score)}
           </H2>
         </YStack>
 
         {/* Status Badge */}
-        <YStack ai="center" space="$1">
+        <YStack alignItems="center" space="$1">
           <StatusIcon size={20} color={statusColor as any} />
           <H4 color={statusColor as any}>{statusText}</H4>
-          <Paragraph size="$2" color="$gray10" ta="center">
+          <Paragraph size="$2" color={"$gray10" as any} textAlign="center">
             {status === "HEALTHY"
               ? "You are on track to fund all goals."
               : status === "WARNING"
@@ -90,6 +95,6 @@ export const SystemHealthScoreCard = () => {
           </Paragraph>
         </YStack>
       </YStack>
-    </GlassyCard>
+    </GlassWidget>
   );
 };

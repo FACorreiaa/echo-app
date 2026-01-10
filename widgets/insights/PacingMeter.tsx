@@ -3,12 +3,11 @@
  * Enhanced with Ghost Time Indicator to show spending vs time.
  */
 
+import { GlassWidget } from "@/components/GlassWidget";
 import { TrendingDown, TrendingUp } from "@tamagui/lucide-icons";
 import { MotiView } from "moti";
 import React from "react";
-import { Text, XStack, YStack, useTheme } from "tamagui";
-
-import { GlassyCard } from "@/components/ui/GlassyCard";
+import { SizableText, Text, XStack, YStack, useTheme } from "tamagui";
 
 interface PacingMeterProps {
   /** Current month spending */
@@ -22,15 +21,6 @@ interface PacingMeterProps {
   /** Currency code */
   currencyCode?: string;
 }
-
-// Format currency for display
-const formatCurrency = (amount: number, code = "EUR") =>
-  new Intl.NumberFormat("pt-PT", {
-    style: "currency",
-    currency: code,
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
-  }).format(amount);
 
 export function PacingMeter({
   currentSpend,
@@ -64,13 +54,20 @@ export function PacingMeter({
   };
 
   return (
-    <GlassyCard>
-      <YStack padding="$4" gap="$3">
-        {/* Header */}
-        <XStack justifyContent="space-between" alignItems="center">
-          <Text color="$color" fontSize={16} fontWeight="600">
+    <GlassWidget marginBottom="$4">
+      <YStack gap="$2.5">
+        <XStack alignItems="center" gap="$2" opacity={0.8}>
+          <TrendingUp size={14} color={"$gray11" as any} />
+          <SizableText
+            size="$2"
+            color={"$gray11" as any}
+            textTransform="uppercase"
+            letterSpacing={1}
+          >
             Monthly Pacing
-          </Text>
+          </SizableText>
+        </XStack>
+        <XStack justifyContent="space-between" alignItems="center">
           <Text color="$secondaryText" fontSize={12}>
             Day {daysElapsed} / {daysTotal}
           </Text>
@@ -83,7 +80,7 @@ export function PacingMeter({
               Spent
             </Text>
             <Text color="$color" fontSize={14}>
-              {formatCurrency(currentSpend, currencyCode)}
+              {formatBalance(currentSpend, currencyCode)}
             </Text>
           </YStack>
           <YStack items="flex-end">
@@ -91,7 +88,7 @@ export function PacingMeter({
               Budget
             </Text>
             <Text color="$color" fontSize={14}>
-              {formatCurrency(monthlyBudget, currencyCode)}
+              {formatBalance(monthlyBudget, currencyCode)}
             </Text>
           </YStack>
         </XStack>
@@ -168,6 +165,6 @@ export function PacingMeter({
           </Text>
         </XStack>
       </YStack>
-    </GlassyCard>
+    </GlassWidget>
   );
 }

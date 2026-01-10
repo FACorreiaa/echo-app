@@ -2,7 +2,7 @@ import { Activity, AlertTriangle, CheckCircle, Target, TrendingUp } from "@tamag
 import React from "react";
 import { H4, Paragraph, Progress, Separator, Text, XStack, YStack } from "tamagui";
 
-import { GlassyCard } from "@/components/ui/GlassyCard";
+import { GlassWidget } from "@/components/GlassWidget";
 import { formatBalance } from "@/lib/hooks/use-balance";
 import { useSystemHealth } from "@/lib/hooks/use-system-health";
 
@@ -39,7 +39,7 @@ export const ActivePlanHeader = () => {
   }
 
   return (
-    <GlassyCard p="$4" mb="$4">
+    <GlassWidget marginBottom="$4">
       <YStack space="$3">
         {/* Header Row */}
         <XStack justifyContent="space-between" alignItems="center">
@@ -123,6 +123,6 @@ export const ActivePlanHeader = () => {
           </XStack>
         )}
       </YStack>
-    </GlassyCard>
+    </GlassWidget>
   );
 };

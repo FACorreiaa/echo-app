@@ -1,4 +1,4 @@
-import { GlassyCard } from "@/components/ui/GlassyCard";
+import { GlassWidget } from "@/components/GlassWidget";
 import { useSystemHealth } from "@/lib/hooks/use-system-health";
 import { AlertCircle, ArrowRight, CheckCircle, Info, TrendingUp } from "@tamagui/lucide-icons";
 import React from "react";
@@ -22,9 +22,9 @@ export const InsightSummaryCard = () => {
   if (isLoading || !insightMessages || insightMessages.length === 0) return null;
 
   return (
-    <YStack space="$3" mb="$4">
+    <YStack space="$3" marginBottom="$4">
       {insightMessages.map((msg, index) => (
-        <GlassyCard key={index} p="$3" animation="quick">
+        <GlassWidget key={index} animation="quick">
           <XStack alignItems="center" space="$3">
             {getIcon(msg)}
             <YStack flex={1}>
@@ -34,7 +34,7 @@ export const InsightSummaryCard = () => {
             </YStack>
             <Button size="$2" chromeless icon={ArrowRight} opacity={0.5} />
           </XStack>
-        </GlassyCard>
+        </GlassWidget>
       ))}
     </YStack>
   );
