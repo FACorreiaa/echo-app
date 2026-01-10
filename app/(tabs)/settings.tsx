@@ -54,7 +54,7 @@ const menuItems = {
   ],
   settings: [
     { icon: Shield, label: "Security", route: null },
-    { icon: Eye, label: "Privacy", route: null },
+    { icon: Eye, label: "Privacy", route: "settings/privacy" },
     { icon: Bell, label: "Notification Settings", route: null },
     { icon: Palette, label: "Appearance", route: null, hasToggle: true },
     { icon: Accessibility, label: "Accessibility", route: null },
@@ -88,8 +88,8 @@ export default function SettingsScreen() {
             if (refreshToken) {
               try {
                 // eslint-disable-next-line @typescript-eslint/no-require-imports
-                const { authClient } = require("@/lib/api/client");
-                await authClient.logout({ refreshToken });
+                const { logout } = require("@/lib/api/auth");
+                await logout(refreshToken);
                 console.log("[SETTINGS] Backend logout successful");
               } catch (backendError) {
                 // Network error is OK - we still wipe locally

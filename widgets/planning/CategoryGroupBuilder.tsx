@@ -17,7 +17,7 @@ import {
 } from "@tamagui/lucide-icons";
 import React, { useState } from "react";
 import { Alert, Pressable } from "react-native";
-import { Button, H3, Input, Text, XStack, YStack } from "tamagui";
+import { Button, H3, Input, ScrollView, Text, XStack, YStack } from "tamagui";
 
 import { GlassyCard } from "@/components/ui/GlassyCard";
 import {
@@ -28,7 +28,7 @@ import {
 import { ItemTypesSheet } from "./ItemTypesSheet";
 
 // Types for the builder
-export type ItemType = "budget" | "recurring" | "goal" | "income";
+export type ItemType = "budget" | "recurring" | "goal" | "income" | "investment" | "debt";
 
 export interface BuilderItem {
   id: string;
@@ -69,6 +69,8 @@ const ITEM_TYPE_CONFIG: Record<ItemType, { label: string; color: string }> = {
   recurring: { label: "Recurring", color: "#f59e0b" },
   goal: { label: "Savings", color: "#6366f1" },
   income: { label: "Income", color: "#14b8a6" },
+  investment: { label: "Invest", color: "#8b5cf6" },
+  debt: { label: "Debt", color: "#ef4444" },
 };
 
 /**
@@ -192,7 +194,11 @@ export function CategoryGroupBuilder({
               ? "3"
               : itemType === "income"
                 ? "4"
-                : undefined,
+                : itemType === "investment"
+                  ? "5"
+                  : itemType === "debt"
+                    ? "6"
+                    : undefined,
     };
     onChange(
       groups.map((g) =>
@@ -735,38 +741,38 @@ interface ItemTypeSelectorProps {
 function ItemTypeSelector({ value, onChange }: ItemTypeSelectorProps) {
   const { data: configs = DEFAULT_ITEM_CONFIGS } = useItemConfigs();
 
-  // Filter to show only expense types by default (outflow behavior)
-  const expenseConfigs = configs.filter(
-    (c) => c.behavior === "outflow" && ["budgets", "recurring", "goals"].includes(c.targetTab),
-  );
+  // Show all configs
+  const expenseConfigs = configs;
 
   return (
-    <XStack>
-      {expenseConfigs.map((config) => {
-        const isSelected = value === mapConfigToItemType(config);
-        return (
-          <Pressable key={config.id} onPress={() => onChange(mapConfigToItemType(config))}>
-            <YStack
-              backgroundColor={isSelected ? (config.colorHex as any) : "transparent"}
-              borderWidth={1}
-              borderColor={config.colorHex as any}
-              paddingHorizontal="$2"
-              paddingVertical="$1"
-              borderRadius="$1"
-              marginRight="$1"
-            >
-              <Text
-                color={isSelected ? "white" : (config.colorHex as any)}
-                fontSize={10}
-                fontWeight="600"
+    <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+      <XStack>
+        {expenseConfigs.map((config) => {
+          const isSelected = value === mapConfigToItemType(config);
+          return (
+            <Pressable key={config.id} onPress={() => onChange(mapConfigToItemType(config))}>
+              <YStack
+                backgroundColor={isSelected ? (config.colorHex as any) : "transparent"}
+                borderWidth={1}
+                borderColor={config.colorHex as any}
+                paddingHorizontal="$2"
+                paddingVertical="$1"
+                borderRadius="$1"
+                marginRight="$1"
               >
-                {config.shortCode.slice(0, 1)}
-              </Text>
-            </YStack>
-          </Pressable>
-        );
-      })}
-    </XStack>
+                <Text
+                  color={isSelected ? "white" : (config.colorHex as any)}
+                  fontSize={10}
+                  fontWeight="600"
+                >
+                  {config.shortCode.slice(0, 2)}
+                </Text>
+              </YStack>
+            </Pressable>
+          );
+        })}
+      </XStack>
+    </ScrollView>
   );
 }
 
@@ -781,6 +787,10 @@ function mapConfigToItemType(config: ItemConfig): ItemType {
       return "goal";
     case "income":
       return "income";
+    case "portfolio":
+      return "investment";
+    case "liabilities":
+      return "debt";
     default:
       return "budget";
   }

@@ -29142,6 +29142,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark"
       },
       "dark_Button": {
@@ -29284,6 +29287,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_Button"
       },
       "dark_SliderTrackActive": {
@@ -29426,6 +29432,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_SliderTrackActive"
       },
       "dark_black_Button": {
@@ -29568,6 +29577,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_black_Button"
       },
       "dark_black_SliderTrackActive": {
@@ -29710,6 +29722,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_black_SliderTrackActive"
       },
       "dark_Card": {
@@ -29852,6 +29867,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_Card"
       },
       "dark_Input": {
@@ -29994,6 +30012,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_Input"
       },
       "dark_ListItem": {
@@ -30136,6 +30157,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_ListItem"
       },
       "dark_Progress": {
@@ -30278,6 +30302,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_Progress"
       },
       "dark_SelectTrigger": {
@@ -30420,6 +30447,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_SelectTrigger"
       },
       "dark_SliderTrack": {
@@ -30562,6 +30592,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_SliderTrack"
       },
       "dark_TextArea": {
@@ -30704,6 +30737,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_TextArea"
       },
       "dark_TooltipArrow": {
@@ -30846,6 +30882,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_TooltipArrow"
       },
       "dark_black_Card": {
@@ -30988,6 +31027,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_black_Card"
       },
       "dark_black_Input": {
@@ -31130,6 +31172,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_black_Input"
       },
       "dark_black_ListItem": {
@@ -31272,6 +31317,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_black_ListItem"
       },
       "dark_black_Progress": {
@@ -31414,6 +31462,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_black_Progress"
       },
       "dark_black_SelectTrigger": {
@@ -31556,6 +31607,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_black_SelectTrigger"
       },
       "dark_black_SliderTrack": {
@@ -31698,6 +31752,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_black_SliderTrack"
       },
       "dark_black_TextArea": {
@@ -31840,6 +31897,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_black_TextArea"
       },
       "dark_black_TooltipArrow": {
@@ -31982,6 +32042,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_black_TooltipArrow"
       },
       "dark_Checkbox": {
@@ -32124,6 +32187,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_Checkbox"
       },
       "dark_RadioGroupItem": {
@@ -32266,6 +32332,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_RadioGroupItem"
       },
       "dark_Switch": {
@@ -32408,6 +32477,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_Switch"
       },
       "dark_TooltipContent": {
@@ -32550,6 +32622,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_TooltipContent"
       },
       "dark_black_Checkbox": {
@@ -32692,6 +32767,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_black_Checkbox"
       },
       "dark_black_RadioGroupItem": {
@@ -32834,6 +32912,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_black_RadioGroupItem"
       },
       "dark_black_Switch": {
@@ -32976,6 +33057,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_black_Switch"
       },
       "dark_black_TooltipContent": {
@@ -33118,6 +33202,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_black_TooltipContent"
       },
       "dark_ProgressIndicator": {
@@ -33260,6 +33347,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_ProgressIndicator"
       },
       "dark_SliderThumb": {
@@ -33402,6 +33492,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_SliderThumb"
       },
       "dark_SwitchThumb": {
@@ -33544,6 +33637,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_SwitchThumb"
       },
       "dark_Tooltip": {
@@ -33686,6 +33782,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_Tooltip"
       },
       "dark_black_ProgressIndicator": {
@@ -33828,6 +33927,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_black_ProgressIndicator"
       },
       "dark_black_SliderThumb": {
@@ -33970,6 +34072,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_black_SliderThumb"
       },
       "dark_black_SwitchThumb": {
@@ -34112,6 +34217,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_black_SwitchThumb"
       },
       "dark_black_Tooltip": {
@@ -34254,6 +34362,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_black_Tooltip"
       },
       "dark_accent": {
@@ -34396,6 +34507,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_accent"
       },
       "dark_accent_Button": {
@@ -34538,6 +34652,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_accent_Button"
       },
       "dark_accent_SliderTrackActive": {
@@ -34680,6 +34797,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_accent_SliderTrackActive"
       },
       "dark_white_Button": {
@@ -34822,6 +34942,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_white_Button"
       },
       "dark_white_SliderTrackActive": {
@@ -34964,6 +35087,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_white_SliderTrackActive"
       },
       "dark_accent_Card": {
@@ -35106,6 +35232,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_accent_Card"
       },
       "dark_accent_Input": {
@@ -35248,6 +35377,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_accent_Input"
       },
       "dark_accent_ListItem": {
@@ -35390,6 +35522,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_accent_ListItem"
       },
       "dark_accent_Progress": {
@@ -35532,6 +35667,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_accent_Progress"
       },
       "dark_accent_SelectTrigger": {
@@ -35674,6 +35812,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_accent_SelectTrigger"
       },
       "dark_accent_SliderTrack": {
@@ -35816,6 +35957,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_accent_SliderTrack"
       },
       "dark_accent_TextArea": {
@@ -35958,6 +36102,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_accent_TextArea"
       },
       "dark_accent_TooltipArrow": {
@@ -36100,6 +36247,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_accent_TooltipArrow"
       },
       "dark_white_Card": {
@@ -36242,6 +36392,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_white_Card"
       },
       "dark_white_Input": {
@@ -36384,6 +36537,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_white_Input"
       },
       "dark_white_ListItem": {
@@ -36526,6 +36682,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_white_ListItem"
       },
       "dark_white_Progress": {
@@ -36668,6 +36827,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_white_Progress"
       },
       "dark_white_SelectTrigger": {
@@ -36810,6 +36972,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_white_SelectTrigger"
       },
       "dark_white_SliderTrack": {
@@ -36952,6 +37117,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_white_SliderTrack"
       },
       "dark_white_TextArea": {
@@ -37094,6 +37262,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_white_TextArea"
       },
       "dark_white_TooltipArrow": {
@@ -37236,6 +37407,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_white_TooltipArrow"
       },
       "dark_accent_Checkbox": {
@@ -37378,6 +37552,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_accent_Checkbox"
       },
       "dark_accent_RadioGroupItem": {
@@ -37520,6 +37697,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_accent_RadioGroupItem"
       },
       "dark_accent_Switch": {
@@ -37662,6 +37842,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_accent_Switch"
       },
       "dark_accent_TooltipContent": {
@@ -37804,6 +37987,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_accent_TooltipContent"
       },
       "dark_white_Checkbox": {
@@ -37946,6 +38132,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_white_Checkbox"
       },
       "dark_white_RadioGroupItem": {
@@ -38088,6 +38277,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_white_RadioGroupItem"
       },
       "dark_white_Switch": {
@@ -38230,6 +38422,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_white_Switch"
       },
       "dark_white_TooltipContent": {
@@ -38372,6 +38567,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_white_TooltipContent"
       },
       "dark_accent_ProgressIndicator": {
@@ -38514,6 +38712,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_accent_ProgressIndicator"
       },
       "dark_accent_SliderThumb": {
@@ -38656,6 +38857,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_accent_SliderThumb"
       },
       "dark_accent_SwitchThumb": {
@@ -38798,6 +39002,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_accent_SwitchThumb"
       },
       "dark_accent_Tooltip": {
@@ -38940,6 +39147,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_accent_Tooltip"
       },
       "dark_black": {
@@ -39082,6 +39292,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_black"
       },
       "dark_blue": {
@@ -39224,6 +39437,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_blue"
       },
       "dark_blue_Button": {
@@ -39366,6 +39582,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_blue_Button"
       },
       "dark_blue_SliderTrackActive": {
@@ -39508,6 +39727,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_blue_SliderTrackActive"
       },
       "dark_blue_Card": {
@@ -39650,6 +39872,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_blue_Card"
       },
       "dark_blue_Input": {
@@ -39792,6 +40017,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_blue_Input"
       },
       "dark_blue_ListItem": {
@@ -39934,6 +40162,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_blue_ListItem"
       },
       "dark_blue_Progress": {
@@ -40076,6 +40307,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_blue_Progress"
       },
       "dark_blue_SelectTrigger": {
@@ -40218,6 +40452,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_blue_SelectTrigger"
       },
       "dark_blue_SliderTrack": {
@@ -40360,6 +40597,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_blue_SliderTrack"
       },
       "dark_blue_TextArea": {
@@ -40502,6 +40742,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_blue_TextArea"
       },
       "dark_blue_TooltipArrow": {
@@ -40644,6 +40887,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_blue_TooltipArrow"
       },
       "dark_blue_Checkbox": {
@@ -40786,6 +41032,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_blue_Checkbox"
       },
       "dark_blue_RadioGroupItem": {
@@ -40928,6 +41177,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_blue_RadioGroupItem"
       },
       "dark_blue_Switch": {
@@ -41070,6 +41322,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_blue_Switch"
       },
       "dark_blue_TooltipContent": {
@@ -41212,6 +41467,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_blue_TooltipContent"
       },
       "dark_blue_ProgressIndicator": {
@@ -41354,6 +41612,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_blue_ProgressIndicator"
       },
       "dark_blue_SliderThumb": {
@@ -41496,6 +41757,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_blue_SliderThumb"
       },
       "dark_blue_SwitchThumb": {
@@ -41638,6 +41902,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_blue_SwitchThumb"
       },
       "dark_blue_Tooltip": {
@@ -41780,6 +42047,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_blue_Tooltip"
       },
       "dark_green": {
@@ -41922,6 +42192,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_green"
       },
       "dark_green_Button": {
@@ -42064,6 +42337,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_green_Button"
       },
       "dark_green_SliderTrackActive": {
@@ -42206,6 +42482,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_green_SliderTrackActive"
       },
       "dark_green_Card": {
@@ -42348,6 +42627,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_green_Card"
       },
       "dark_green_Input": {
@@ -42490,6 +42772,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_green_Input"
       },
       "dark_green_ListItem": {
@@ -42632,6 +42917,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_green_ListItem"
       },
       "dark_green_Progress": {
@@ -42774,6 +43062,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_green_Progress"
       },
       "dark_green_SelectTrigger": {
@@ -42916,6 +43207,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_green_SelectTrigger"
       },
       "dark_green_SliderTrack": {
@@ -43058,6 +43352,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_green_SliderTrack"
       },
       "dark_green_TextArea": {
@@ -43200,6 +43497,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_green_TextArea"
       },
       "dark_green_TooltipArrow": {
@@ -43342,6 +43642,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_green_TooltipArrow"
       },
       "dark_green_Checkbox": {
@@ -43484,6 +43787,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_green_Checkbox"
       },
       "dark_green_RadioGroupItem": {
@@ -43626,6 +43932,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_green_RadioGroupItem"
       },
       "dark_green_Switch": {
@@ -43768,6 +44077,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_green_Switch"
       },
       "dark_green_TooltipContent": {
@@ -43910,6 +44222,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_green_TooltipContent"
       },
       "dark_green_ProgressIndicator": {
@@ -44052,6 +44367,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_green_ProgressIndicator"
       },
       "dark_green_SliderThumb": {
@@ -44194,6 +44512,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_green_SliderThumb"
       },
       "dark_green_SwitchThumb": {
@@ -44336,6 +44657,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_green_SwitchThumb"
       },
       "dark_green_Tooltip": {
@@ -44478,6 +44802,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_green_Tooltip"
       },
       "dark_red": {
@@ -44620,6 +44947,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_red"
       },
       "dark_red_Button": {
@@ -44762,6 +45092,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_red_Button"
       },
       "dark_red_SliderTrackActive": {
@@ -44904,6 +45237,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_red_SliderTrackActive"
       },
       "dark_red_Card": {
@@ -45046,6 +45382,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_red_Card"
       },
       "dark_red_Input": {
@@ -45188,6 +45527,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_red_Input"
       },
       "dark_red_ListItem": {
@@ -45330,6 +45672,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_red_ListItem"
       },
       "dark_red_Progress": {
@@ -45472,6 +45817,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_red_Progress"
       },
       "dark_red_SelectTrigger": {
@@ -45614,6 +45962,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_red_SelectTrigger"
       },
       "dark_red_SliderTrack": {
@@ -45756,6 +46107,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_red_SliderTrack"
       },
       "dark_red_TextArea": {
@@ -45898,6 +46252,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_red_TextArea"
       },
       "dark_red_TooltipArrow": {
@@ -46040,6 +46397,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_red_TooltipArrow"
       },
       "dark_red_Checkbox": {
@@ -46182,6 +46542,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_red_Checkbox"
       },
       "dark_red_RadioGroupItem": {
@@ -46324,6 +46687,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_red_RadioGroupItem"
       },
       "dark_red_Switch": {
@@ -46466,6 +46832,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_red_Switch"
       },
       "dark_red_TooltipContent": {
@@ -46608,6 +46977,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_red_TooltipContent"
       },
       "dark_red_ProgressIndicator": {
@@ -46750,6 +47122,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_red_ProgressIndicator"
       },
       "dark_red_SliderThumb": {
@@ -46892,6 +47267,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_red_SliderThumb"
       },
       "dark_red_SwitchThumb": {
@@ -47034,6 +47412,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_red_SwitchThumb"
       },
       "dark_red_Tooltip": {
@@ -47176,6 +47557,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_red_Tooltip"
       },
       "dark_white": {
@@ -47318,6 +47702,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_white"
       },
       "dark_white_ProgressIndicator": {
@@ -47460,6 +47847,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_white_ProgressIndicator"
       },
       "dark_white_SliderThumb": {
@@ -47602,6 +47992,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_white_SliderThumb"
       },
       "dark_white_SwitchThumb": {
@@ -47744,6 +48137,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_white_SwitchThumb"
       },
       "dark_white_Tooltip": {
@@ -47886,6 +48282,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_white_Tooltip"
       },
       "dark_yellow": {
@@ -48028,6 +48427,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_yellow"
       },
       "dark_yellow_Button": {
@@ -48170,6 +48572,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_yellow_Button"
       },
       "dark_yellow_SliderTrackActive": {
@@ -48312,6 +48717,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_yellow_SliderTrackActive"
       },
       "dark_yellow_Card": {
@@ -48454,6 +48862,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_yellow_Card"
       },
       "dark_yellow_Input": {
@@ -48596,6 +49007,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_yellow_Input"
       },
       "dark_yellow_ListItem": {
@@ -48738,6 +49152,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_yellow_ListItem"
       },
       "dark_yellow_Progress": {
@@ -48880,6 +49297,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_yellow_Progress"
       },
       "dark_yellow_SelectTrigger": {
@@ -49022,6 +49442,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_yellow_SelectTrigger"
       },
       "dark_yellow_SliderTrack": {
@@ -49164,6 +49587,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_yellow_SliderTrack"
       },
       "dark_yellow_TextArea": {
@@ -49306,6 +49732,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_yellow_TextArea"
       },
       "dark_yellow_TooltipArrow": {
@@ -49448,6 +49877,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_yellow_TooltipArrow"
       },
       "dark_yellow_Checkbox": {
@@ -49590,6 +50022,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_yellow_Checkbox"
       },
       "dark_yellow_RadioGroupItem": {
@@ -49732,6 +50167,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_yellow_RadioGroupItem"
       },
       "dark_yellow_Switch": {
@@ -49874,6 +50312,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_yellow_Switch"
       },
       "dark_yellow_TooltipContent": {
@@ -50016,6 +50457,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_yellow_TooltipContent"
       },
       "dark_yellow_ProgressIndicator": {
@@ -50158,6 +50602,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_yellow_ProgressIndicator"
       },
       "dark_yellow_SliderThumb": {
@@ -50300,6 +50747,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_yellow_SliderThumb"
       },
       "dark_yellow_SwitchThumb": {
@@ -50442,6 +50892,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_yellow_SwitchThumb"
       },
       "dark_yellow_Tooltip": {
@@ -50584,6 +51037,9 @@
         "secondaryText": "#9ca3af",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "dark_yellow_Tooltip"
       },
       "light": {
@@ -50726,6 +51182,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light"
       },
       "light_Button": {
@@ -50868,6 +51327,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_Button"
       },
       "light_SliderTrackActive": {
@@ -51010,6 +51472,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_SliderTrackActive"
       },
       "light_white_Button": {
@@ -51152,6 +51617,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_white_Button"
       },
       "light_white_SliderTrackActive": {
@@ -51294,6 +51762,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_white_SliderTrackActive"
       },
       "light_Card": {
@@ -51436,6 +51907,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_Card"
       },
       "light_Input": {
@@ -51578,6 +52052,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_Input"
       },
       "light_ListItem": {
@@ -51720,6 +52197,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_ListItem"
       },
       "light_Progress": {
@@ -51862,6 +52342,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_Progress"
       },
       "light_SelectTrigger": {
@@ -52004,6 +52487,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_SelectTrigger"
       },
       "light_SliderTrack": {
@@ -52146,6 +52632,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_SliderTrack"
       },
       "light_TextArea": {
@@ -52288,6 +52777,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_TextArea"
       },
       "light_TooltipArrow": {
@@ -52430,6 +52922,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_TooltipArrow"
       },
       "light_white_Card": {
@@ -52572,6 +53067,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_white_Card"
       },
       "light_white_Input": {
@@ -52714,6 +53212,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_white_Input"
       },
       "light_white_ListItem": {
@@ -52856,6 +53357,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_white_ListItem"
       },
       "light_white_Progress": {
@@ -52998,6 +53502,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_white_Progress"
       },
       "light_white_SelectTrigger": {
@@ -53140,6 +53647,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_white_SelectTrigger"
       },
       "light_white_SliderTrack": {
@@ -53282,6 +53792,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_white_SliderTrack"
       },
       "light_white_TextArea": {
@@ -53424,6 +53937,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_white_TextArea"
       },
       "light_white_TooltipArrow": {
@@ -53566,6 +54082,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_white_TooltipArrow"
       },
       "light_Checkbox": {
@@ -53708,6 +54227,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_Checkbox"
       },
       "light_RadioGroupItem": {
@@ -53850,6 +54372,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_RadioGroupItem"
       },
       "light_Switch": {
@@ -53992,6 +54517,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_Switch"
       },
       "light_TooltipContent": {
@@ -54134,6 +54662,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_TooltipContent"
       },
       "light_white_Checkbox": {
@@ -54276,6 +54807,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_white_Checkbox"
       },
       "light_white_RadioGroupItem": {
@@ -54418,6 +54952,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_white_RadioGroupItem"
       },
       "light_white_Switch": {
@@ -54560,6 +55097,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_white_Switch"
       },
       "light_white_TooltipContent": {
@@ -54702,6 +55242,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_white_TooltipContent"
       },
       "light_ProgressIndicator": {
@@ -54844,6 +55387,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_ProgressIndicator"
       },
       "light_SliderThumb": {
@@ -54986,6 +55532,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_SliderThumb"
       },
       "light_SwitchThumb": {
@@ -55128,6 +55677,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_SwitchThumb"
       },
       "light_Tooltip": {
@@ -55270,6 +55822,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_Tooltip"
       },
       "light_white_ProgressIndicator": {
@@ -55412,6 +55967,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_white_ProgressIndicator"
       },
       "light_white_SliderThumb": {
@@ -55554,6 +56112,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_white_SliderThumb"
       },
       "light_white_SwitchThumb": {
@@ -55696,6 +56257,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_white_SwitchThumb"
       },
       "light_white_Tooltip": {
@@ -55838,6 +56402,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_white_Tooltip"
       },
       "light_accent": {
@@ -55980,6 +56547,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_accent"
       },
       "light_accent_Button": {
@@ -56122,6 +56692,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_accent_Button"
       },
       "light_accent_SliderTrackActive": {
@@ -56264,6 +56837,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_accent_SliderTrackActive"
       },
       "light_black_Button": {
@@ -56406,6 +56982,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_black_Button"
       },
       "light_black_SliderTrackActive": {
@@ -56548,6 +57127,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_black_SliderTrackActive"
       },
       "light_accent_Card": {
@@ -56690,6 +57272,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_accent_Card"
       },
       "light_accent_Input": {
@@ -56832,6 +57417,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_accent_Input"
       },
       "light_accent_ListItem": {
@@ -56974,6 +57562,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_accent_ListItem"
       },
       "light_accent_Progress": {
@@ -57116,6 +57707,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_accent_Progress"
       },
       "light_accent_SelectTrigger": {
@@ -57258,6 +57852,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_accent_SelectTrigger"
       },
       "light_accent_SliderTrack": {
@@ -57400,6 +57997,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_accent_SliderTrack"
       },
       "light_accent_TextArea": {
@@ -57542,6 +58142,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_accent_TextArea"
       },
       "light_accent_TooltipArrow": {
@@ -57684,6 +58287,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_accent_TooltipArrow"
       },
       "light_black_Card": {
@@ -57826,6 +58432,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_black_Card"
       },
       "light_black_Input": {
@@ -57968,6 +58577,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_black_Input"
       },
       "light_black_ListItem": {
@@ -58110,6 +58722,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_black_ListItem"
       },
       "light_black_Progress": {
@@ -58252,6 +58867,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_black_Progress"
       },
       "light_black_SelectTrigger": {
@@ -58394,6 +59012,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_black_SelectTrigger"
       },
       "light_black_SliderTrack": {
@@ -58536,6 +59157,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_black_SliderTrack"
       },
       "light_black_TextArea": {
@@ -58678,6 +59302,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_black_TextArea"
       },
       "light_black_TooltipArrow": {
@@ -58820,6 +59447,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_black_TooltipArrow"
       },
       "light_accent_Checkbox": {
@@ -58962,6 +59592,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_accent_Checkbox"
       },
       "light_accent_RadioGroupItem": {
@@ -59104,6 +59737,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_accent_RadioGroupItem"
       },
       "light_accent_Switch": {
@@ -59246,6 +59882,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_accent_Switch"
       },
       "light_accent_TooltipContent": {
@@ -59388,6 +60027,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_accent_TooltipContent"
       },
       "light_black_Checkbox": {
@@ -59530,6 +60172,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_black_Checkbox"
       },
       "light_black_RadioGroupItem": {
@@ -59672,6 +60317,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_black_RadioGroupItem"
       },
       "light_black_Switch": {
@@ -59814,6 +60462,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_black_Switch"
       },
       "light_black_TooltipContent": {
@@ -59956,6 +60607,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_black_TooltipContent"
       },
       "light_accent_ProgressIndicator": {
@@ -60098,6 +60752,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_accent_ProgressIndicator"
       },
       "light_accent_SliderThumb": {
@@ -60240,6 +60897,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_accent_SliderThumb"
       },
       "light_accent_SwitchThumb": {
@@ -60382,6 +61042,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_accent_SwitchThumb"
       },
       "light_accent_Tooltip": {
@@ -60524,6 +61187,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_accent_Tooltip"
       },
       "light_black": {
@@ -60666,6 +61332,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_black"
       },
       "light_black_ProgressIndicator": {
@@ -60808,6 +61477,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_black_ProgressIndicator"
       },
       "light_black_SliderThumb": {
@@ -60950,6 +61622,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_black_SliderThumb"
       },
       "light_black_SwitchThumb": {
@@ -61092,6 +61767,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_black_SwitchThumb"
       },
       "light_black_Tooltip": {
@@ -61234,6 +61912,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_black_Tooltip"
       },
       "light_blue": {
@@ -61376,6 +62057,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_blue"
       },
       "light_blue_Button": {
@@ -61518,6 +62202,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_blue_Button"
       },
       "light_blue_SliderTrackActive": {
@@ -61660,6 +62347,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_blue_SliderTrackActive"
       },
       "light_blue_Card": {
@@ -61802,6 +62492,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_blue_Card"
       },
       "light_blue_Input": {
@@ -61944,6 +62637,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_blue_Input"
       },
       "light_blue_ListItem": {
@@ -62086,6 +62782,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_blue_ListItem"
       },
       "light_blue_Progress": {
@@ -62228,6 +62927,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_blue_Progress"
       },
       "light_blue_SelectTrigger": {
@@ -62370,6 +63072,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_blue_SelectTrigger"
       },
       "light_blue_SliderTrack": {
@@ -62512,6 +63217,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_blue_SliderTrack"
       },
       "light_blue_TextArea": {
@@ -62654,6 +63362,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_blue_TextArea"
       },
       "light_blue_TooltipArrow": {
@@ -62796,6 +63507,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_blue_TooltipArrow"
       },
       "light_blue_Checkbox": {
@@ -62938,6 +63652,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_blue_Checkbox"
       },
       "light_blue_RadioGroupItem": {
@@ -63080,6 +63797,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_blue_RadioGroupItem"
       },
       "light_blue_Switch": {
@@ -63222,6 +63942,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_blue_Switch"
       },
       "light_blue_TooltipContent": {
@@ -63364,6 +64087,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_blue_TooltipContent"
       },
       "light_blue_ProgressIndicator": {
@@ -63506,6 +64232,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_blue_ProgressIndicator"
       },
       "light_blue_SliderThumb": {
@@ -63648,6 +64377,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_blue_SliderThumb"
       },
       "light_blue_SwitchThumb": {
@@ -63790,6 +64522,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_blue_SwitchThumb"
       },
       "light_blue_Tooltip": {
@@ -63932,6 +64667,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_blue_Tooltip"
       },
       "light_green": {
@@ -64074,6 +64812,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_green"
       },
       "light_green_Button": {
@@ -64216,6 +64957,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_green_Button"
       },
       "light_green_SliderTrackActive": {
@@ -64358,6 +65102,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_green_SliderTrackActive"
       },
       "light_green_Card": {
@@ -64500,6 +65247,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_green_Card"
       },
       "light_green_Input": {
@@ -64642,6 +65392,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_green_Input"
       },
       "light_green_ListItem": {
@@ -64784,6 +65537,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_green_ListItem"
       },
       "light_green_Progress": {
@@ -64926,6 +65682,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_green_Progress"
       },
       "light_green_SelectTrigger": {
@@ -65068,6 +65827,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_green_SelectTrigger"
       },
       "light_green_SliderTrack": {
@@ -65210,6 +65972,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_green_SliderTrack"
       },
       "light_green_TextArea": {
@@ -65352,6 +66117,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_green_TextArea"
       },
       "light_green_TooltipArrow": {
@@ -65494,6 +66262,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_green_TooltipArrow"
       },
       "light_green_Checkbox": {
@@ -65636,6 +66407,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_green_Checkbox"
       },
       "light_green_RadioGroupItem": {
@@ -65778,6 +66552,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_green_RadioGroupItem"
       },
       "light_green_Switch": {
@@ -65920,6 +66697,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_green_Switch"
       },
       "light_green_TooltipContent": {
@@ -66062,6 +66842,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_green_TooltipContent"
       },
       "light_green_ProgressIndicator": {
@@ -66204,6 +66987,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_green_ProgressIndicator"
       },
       "light_green_SliderThumb": {
@@ -66346,6 +67132,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_green_SliderThumb"
       },
       "light_green_SwitchThumb": {
@@ -66488,6 +67277,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_green_SwitchThumb"
       },
       "light_green_Tooltip": {
@@ -66630,6 +67422,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_green_Tooltip"
       },
       "light_red": {
@@ -66772,6 +67567,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_red"
       },
       "light_red_Button": {
@@ -66914,6 +67712,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_red_Button"
       },
       "light_red_SliderTrackActive": {
@@ -67056,6 +67857,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_red_SliderTrackActive"
       },
       "light_red_Card": {
@@ -67198,6 +68002,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_red_Card"
       },
       "light_red_Input": {
@@ -67340,6 +68147,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_red_Input"
       },
       "light_red_ListItem": {
@@ -67482,6 +68292,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_red_ListItem"
       },
       "light_red_Progress": {
@@ -67624,6 +68437,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_red_Progress"
       },
       "light_red_SelectTrigger": {
@@ -67766,6 +68582,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_red_SelectTrigger"
       },
       "light_red_SliderTrack": {
@@ -67908,6 +68727,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_red_SliderTrack"
       },
       "light_red_TextArea": {
@@ -68050,6 +68872,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_red_TextArea"
       },
       "light_red_TooltipArrow": {
@@ -68192,6 +69017,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_red_TooltipArrow"
       },
       "light_red_Checkbox": {
@@ -68334,6 +69162,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_red_Checkbox"
       },
       "light_red_RadioGroupItem": {
@@ -68476,6 +69307,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_red_RadioGroupItem"
       },
       "light_red_Switch": {
@@ -68618,6 +69452,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_red_Switch"
       },
       "light_red_TooltipContent": {
@@ -68760,6 +69597,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_red_TooltipContent"
       },
       "light_red_ProgressIndicator": {
@@ -68902,6 +69742,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_red_ProgressIndicator"
       },
       "light_red_SliderThumb": {
@@ -69044,6 +69887,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_red_SliderThumb"
       },
       "light_red_SwitchThumb": {
@@ -69186,6 +70032,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_red_SwitchThumb"
       },
       "light_red_Tooltip": {
@@ -69328,6 +70177,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_red_Tooltip"
       },
       "light_white": {
@@ -69470,6 +70322,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_white"
       },
       "light_yellow": {
@@ -69612,6 +70467,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_yellow"
       },
       "light_yellow_Button": {
@@ -69754,6 +70612,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_yellow_Button"
       },
       "light_yellow_SliderTrackActive": {
@@ -69896,6 +70757,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_yellow_SliderTrackActive"
       },
       "light_yellow_Card": {
@@ -70038,6 +70902,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_yellow_Card"
       },
       "light_yellow_Input": {
@@ -70180,6 +71047,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_yellow_Input"
       },
       "light_yellow_ListItem": {
@@ -70322,6 +71192,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_yellow_ListItem"
       },
       "light_yellow_Progress": {
@@ -70464,6 +71337,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_yellow_Progress"
       },
       "light_yellow_SelectTrigger": {
@@ -70606,6 +71482,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_yellow_SelectTrigger"
       },
       "light_yellow_SliderTrack": {
@@ -70748,6 +71627,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_yellow_SliderTrack"
       },
       "light_yellow_TextArea": {
@@ -70890,6 +71772,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_yellow_TextArea"
       },
       "light_yellow_TooltipArrow": {
@@ -71032,6 +71917,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_yellow_TooltipArrow"
       },
       "light_yellow_Checkbox": {
@@ -71174,6 +72062,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_yellow_Checkbox"
       },
       "light_yellow_RadioGroupItem": {
@@ -71316,6 +72207,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_yellow_RadioGroupItem"
       },
       "light_yellow_Switch": {
@@ -71458,6 +72352,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_yellow_Switch"
       },
       "light_yellow_TooltipContent": {
@@ -71600,6 +72497,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_yellow_TooltipContent"
       },
       "light_yellow_ProgressIndicator": {
@@ -71742,6 +72642,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_yellow_ProgressIndicator"
       },
       "light_yellow_SliderThumb": {
@@ -71884,6 +72787,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_yellow_SliderThumb"
       },
       "light_yellow_SwitchThumb": {
@@ -72026,6 +72932,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_yellow_SwitchThumb"
       },
       "light_yellow_Tooltip": {
@@ -72168,6 +73077,9 @@
         "secondaryText": "#6b7280",
         "deepBlue": "#0b0f19",
         "electricBlue": "#2da6fa",
+        "healthGood": "#22c55e",
+        "healthWarning": "#f59e0b",
+        "healthCritical": "#ef4444",
         "id": "light_yellow_Tooltip"
       }
     },

@@ -1,81 +1,42 @@
-import { AlertTriangle, CheckCircle, TrendingUp, Wallet } from "@tamagui/lucide-icons";
-import React, { useMemo } from "react";
+import { Activity, AlertTriangle, CheckCircle, Target, TrendingUp } from "@tamagui/lucide-icons";
+import React from "react";
 import { H4, Paragraph, Progress, Separator, Text, XStack, YStack } from "tamagui";
 
 import { GlassyCard } from "@/components/ui/GlassyCard";
-import { formatBalance, useBalance } from "@/lib/hooks/use-balance";
-import { usePlan } from "@/lib/hooks/use-plans";
-import { useActivePlanId } from "@/lib/stores/use-active-plan-store";
+import { formatBalance } from "@/lib/hooks/use-balance";
+import { useSystemHealth } from "@/lib/hooks/use-system-health";
 
 /**
  * ActivePlanHeader - "The Pulse" of the FinanceOS
  *
  * Displays the real-time health of the user's financial system:
- * 1. Execution: How much of the plan has been spent vs budgeted.
- * 2. Funding: Is the plan fully funded by Net Worth? (Surplus/Deficit)
+ * 1. Health Score: Composite 0-100 score.
+ * 2. Pacing: Spending speed vs Time speed.
+ * 3. Velocity: Goal funding speed.
  */
 export const ActivePlanHeader = () => {
-  const activePlanId = useActivePlanId();
-  const { data: plan, isLoading: planLoading } = usePlan(activePlanId || "");
-  const { data: balance, isLoading: balanceLoading } = useBalance();
+  const { score, status, burnRatePacing, goalVelocity, liquidityRatio, fundingGap, isLoading } =
+    useSystemHealth();
 
-  // 1. Calculate Execution (Spent vs Budgeted)
-  const executionMetrics = useMemo(() => {
-    if (!plan || !plan.categoryGroups) return { budgeted: 0, spent: 0, percent: 0 };
+  if (isLoading) return null;
 
-    let totalBudgeted = 0;
-    let totalSpent = 0;
+  // Dynamic Colors & Text
+  let statusColor = "$healthGood";
+  let statusBg = "$green2";
+  let statusText = "SYSTEM OPTIMAL";
+  let statusIcon = <CheckCircle size={12} color="$healthGood" />;
 
-    // Iterate all groups -> categories -> items
-    for (const group of plan.categoryGroups) {
-      for (const category of group.categories) {
-        for (const item of category.items) {
-          // Only count "budget" and "recurring" items for execution (expenses)
-          // "Goals" are savings, "Income" is income.
-          if (item.itemType === "budget" || item.itemType === "recurring") {
-            totalBudgeted += item.budgeted;
-            totalSpent += item.actual;
-          }
-        }
-      }
-    }
-
-    const percent = totalBudgeted > 0 ? (totalSpent / totalBudgeted) * 100 : 0;
-    return { budgeted: totalBudgeted, spent: totalSpent, percent };
-  }, [plan]);
-
-  // 2. Calculate Funding (Net Worth vs Plan Cost)
-  const fundingMetrics = useMemo(() => {
-    if (!plan || !balance) return { funded: false, diff: 0, status: "checking" };
-
-    const netWorth = balance.totalNetWorth;
-    // Actually, "Plan Cost" is total expenses in the plan (Budget + Recurring + Goals?)
-    // "Goals" are internal transfers usually, but if funding via external, it matters.
-    // Let's use Plan.TotalExpenses which normally sums up all outflows.
-
-    // In Echo, "TotalExpenses" = Budget + Recurring + Goals (if treated as expense/transfer).
-    // Let's use plan.totalExpenses as the "Required Funding".
-    const required = plan.totalExpenses;
-
-    const diff = netWorth - required;
-    const isFunded = diff >= 0;
-
-    return {
-      isFunded,
-      diff,
-      required,
-      netWorth,
-    };
-  }, [plan, balance, executionMetrics]);
-
-  if (!activePlanId) return null; // No active plan selected
-  if (planLoading || balanceLoading) return null; // Or skeleton
-
-  const isOverSpent = executionMetrics.percent > 100;
-  const isNearLimit = executionMetrics.percent > 90;
-
-  // Dynamic Colors
-  const progressColor = isOverSpent ? "$red10" : isNearLimit ? "$orange10" : "$green10";
+  if (status === "CRITICAL") {
+    statusColor = "$healthCritical";
+    statusBg = "$red2";
+    statusText = "SYSTEM CRITICAL";
+    statusIcon = <AlertTriangle size={12} color="$healthCritical" />;
+  } else if (status === "WARNING") {
+    statusColor = "$healthWarning";
+    statusBg = "$orange2";
+    statusText = "PACING WARNING";
+    statusIcon = <Activity size={12} color="$healthWarning" />;
+  }
 
   return (
     <GlassyCard p="$4" mb="$4">
@@ -88,54 +49,76 @@ export const ActivePlanHeader = () => {
               System Health
             </H4>
           </XStack>
-          {fundingMetrics.isFunded ? (
-            <XStack space="$1.5" alignItems="center" bg="$green2" px="$2" py="$1" borderRadius="$4">
-              <CheckCircle size={12} color="$green10" />
-              <Text fontSize={11} color="$green11" fontWeight="600">
-                FULLY FUNDED
-              </Text>
-            </XStack>
-          ) : (
-            <XStack space="$1.5" alignItems="center" bg="$red2" px="$2" py="$1" borderRadius="$4">
-              <AlertTriangle size={12} color="$red10" />
-              <Text fontSize={11} color="$red11" fontWeight="600">
-                LIQUIDITY WARNING
-              </Text>
-            </XStack>
-          )}
+          <XStack
+            space="$1.5"
+            alignItems="center"
+            bg={statusBg as any}
+            px="$2"
+            py="$1"
+            borderRadius="$4"
+          >
+            {statusIcon}
+            <Text fontSize={11} color={statusColor as any} fontWeight="600">
+              {statusText} • {score}
+            </Text>
+          </XStack>
         </XStack>
 
         <Separator />
 
-        {/* 1. Execution Progress */}
-        <YStack space="$2">
-          <XStack justifyContent="space-between">
-            <Text fontSize="$3" color="$color11">
-              Execution (Spent vs Planned)
+        {/* Metrics Grid */}
+        <XStack gap="$2" justifyContent="space-between">
+          {/* Burn Rate Pacing */}
+          <YStack flex={1} space="$1">
+            <Text fontSize={11} color="$secondaryText">
+              Burn Rate Pacing
             </Text>
-            <Text fontSize="$3" fontWeight="bold">
-              {formatBalance(executionMetrics.spent)}{" "}
-              <Text color="$color8">/ {formatBalance(executionMetrics.budgeted)}</Text>
-            </Text>
-          </XStack>
-          <Progress value={Math.min(executionMetrics.percent, 100)} size="$2">
-            <Progress.Indicator animation="bouncy" bg={progressColor as any} />
-          </Progress>
-          <XStack justifyContent="flex-end">
-            <Text fontSize={11} color={isOverSpent ? "$red10" : "$color10"}>
-              {executionMetrics.percent.toFixed(0)}% Utilized {isOverSpent && "(Over Budget)"}
-            </Text>
-          </XStack>
-        </YStack>
+            <XStack alignItems="center" space="$1.5">
+              <Activity size={14} color={burnRatePacing > 1.2 ? "$red10" : "$color"} />
+              <Text
+                fontSize={14}
+                fontWeight="bold"
+                color={burnRatePacing > 1.2 ? "$red10" : "$color"}
+              >
+                {burnRatePacing.toFixed(2)}x
+              </Text>
+            </XStack>
+            <Progress value={Math.min((burnRatePacing / 2) * 100, 100)} size="$1" mt="$1">
+              <Progress.Indicator bg={burnRatePacing > 1.2 ? "$red10" : ("$green10" as any)} />
+            </Progress>
+          </YStack>
 
-        {/* 2. Funding Insight */}
-        {!fundingMetrics.isFunded && (
-          <XStack bg="$red2" p="$2" borderRadius="$3" space="$2" alignItems="center">
-            <Wallet size={16} color="$red10" />
+          {/* Separator Line */}
+          <Separator vertical height={30} />
+
+          {/* Goal Velocity */}
+          <YStack flex={1} space="$1" alignItems="flex-end">
+            <Text fontSize={11} color="$secondaryText">
+              Goal Velocity
+            </Text>
+            <XStack alignItems="center" space="$1.5">
+              <Text
+                fontSize={14}
+                fontWeight="bold"
+                color={goalVelocity > 0.8 ? "$green10" : "$color"}
+              >
+                {(goalVelocity * 100).toFixed(0)}%
+              </Text>
+              <Target size={14} color={goalVelocity > 0.8 ? "$green10" : "$color"} />
+            </XStack>
+            <Progress value={Math.min(goalVelocity * 100, 100)} size="$1" mt="$1">
+              <Progress.Indicator bg={goalVelocity > 0.8 ? "$green10" : ("$orange10" as any)} />
+            </Progress>
+          </YStack>
+        </XStack>
+
+        {/* Insight/Warning Footer */}
+        {liquidityRatio < 1.0 && (
+          <XStack bg="$red2" p="$2" borderRadius="$3" space="$2" alignItems="center" mt="$1">
+            <AlertTriangle size={16} color="$red10" />
             <Paragraph fontSize={12} color="$red11" flex={1}>
-              Your Net Worth ({formatBalance(fundingMetrics.netWorth ?? 0)}) doesn't cover this plan
-              ({formatBalance(fundingMetrics.required ?? 0)}). Shortfall:{" "}
-              {formatBalance(Math.abs(fundingMetrics.diff ?? 0))}.
+              Liquidity Shortfall: {formatBalance(Math.abs(fundingGap))}. Deposit funds to secure
+              plan.
             </Paragraph>
           </XStack>
         )}

@@ -14,7 +14,8 @@
     "format:fast": "oxfmt .",
     "prepare": "husky",
     "test": "jest --watchAll",
-    "buf-update": "pnpm remove @buf/echo-tracker_echo.bufbuild_es && pnpm add @buf/echo-tracker_echo.bufbuild_es:latest"
+    "buf-update": "pnpm remove @buf/echo-tracker_echo.bufbuild_es && pnpm add @buf/echo-tracker_echo.bufbuild_es:latest",
+    "tamagui:generate": "tamagui generate"
   },
   "dependencies": {
     "@buf/echo-tracker_echo.bufbuild_es": "latest",
@@ -103,7 +104,7 @@
       "./jest.setup.ts"
     ],
     "transformIgnorePatterns": [
-      "node_modules/(?!((jest-)?react-native|@react-native(-community)?)|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|react-native-svg|tamagui|@tamagui/.*|@buf/.*|@bufbuild/.*|@connectrpc/.*)"
+      "node_modules/(?!((jest-)?react-native|@react-native(-community)?)|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|react-native-svg|tamagui|@tamagui/.*|@buf/.*|@bufbuild/.*|@connectrpc/.*|moti)"
     ]
   }
 }

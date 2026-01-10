@@ -2,16 +2,14 @@ import { render, screen } from "@testing-library/react-native";
 import React from "react";
 
 import * as useBalanceHook from "@/lib/hooks/use-balance";
-import * as usePlansHook from "@/lib/hooks/use-plans";
-import * as useActivePlanStoreHook from "@/lib/stores/use-active-plan-store";
+import * as useSystemHealthHook from "@/lib/hooks/use-system-health";
 import config from "@/tamagui.config";
 import { TamaguiProvider } from "tamagui";
 import { ActivePlanHeader } from "../ActivePlanHeader";
 
 // Mock dependencies
 jest.mock("@/lib/hooks/use-balance");
-jest.mock("@/lib/hooks/use-plans");
-jest.mock("@/lib/stores/use-active-plan-store");
+jest.mock("@/lib/hooks/use-system-health");
 jest.mock("@/components/ui/GlassyCard", () => {
   const { View } = require("react-native");
   return {
@@ -30,81 +28,85 @@ const renderWithTheme = (component: React.ReactNode) => {
 describe("ActivePlanHeader", () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    (useBalanceHook.formatBalance as jest.Mock).mockImplementation((val) => `€${val}`);
   });
 
-  it("renders nothing if no active plan", () => {
-    (useActivePlanStoreHook.useActivePlanId as jest.Mock).mockReturnValue(null);
-    (usePlansHook.usePlan as jest.Mock).mockReturnValue({ data: null, isLoading: false });
-    (useBalanceHook.useBalance as jest.Mock).mockReturnValue({ data: null, isLoading: false });
+  it("renders nothing if loading", () => {
+    (useSystemHealthHook.useSystemHealth as jest.Mock).mockReturnValue({
+      isLoading: true,
+      score: 0,
+    });
 
     renderWithTheme(<ActivePlanHeader />);
     expect(screen.queryByText("System Health")).toBeNull();
   });
 
-  it("renders fully funded state correctly", () => {
-    (useActivePlanStoreHook.useActivePlanId as jest.Mock).mockReturnValue("plan-1");
-
-    const mockPlan = {
-      id: "plan-1",
-      totalExpenses: 2000,
-      categoryGroups: [
-        {
-          categories: [
-            {
-              items: [
-                { itemType: "budget", budgeted: 1000, actual: 500 },
-                { itemType: "recurring", budgeted: 1000, actual: 1000 },
-              ],
-            },
-          ],
-        },
-      ],
-    };
-    (usePlansHook.usePlan as jest.Mock).mockReturnValue({ data: mockPlan, isLoading: false });
-
-    const mockBalance = {
-      totalNetWorth: 5000,
-    };
-    (useBalanceHook.useBalance as jest.Mock).mockReturnValue({
-      data: mockBalance,
+  it("renders HEALTHY state with optimal score", () => {
+    (useSystemHealthHook.useSystemHealth as jest.Mock).mockReturnValue({
       isLoading: false,
+      score: 95,
+      status: "HEALTHY",
+      liquidityRatio: 1.5,
+      burnRatePacing: 0.8, // Good, under 1.0
+      goalVelocity: 1.0,
+      fundingGap: 100,
+      dailyAllowance: 50,
+      insightMessages: [],
     });
-    (useBalanceHook.formatBalance as jest.Mock).mockImplementation((val) => `€${val}`);
 
     renderWithTheme(<ActivePlanHeader />);
 
     expect(screen.getByText("System Health")).toBeTruthy();
-    expect(screen.getByText("FULLY FUNDED")).toBeTruthy();
-    expect(screen.getByText("Execution (Spent vs Planned)")).toBeTruthy();
+    expect(screen.getByText("SYSTEM OPTIMAL • 95")).toBeTruthy();
 
-    // 1500 spent / 2000 budgeted
-    expect(screen.getByText(/€1500/)).toBeTruthy();
-    expect(screen.getByText(/\/ €2000/)).toBeTruthy();
-    expect(screen.getByText(/75% Utilized/)).toBeTruthy();
+    // Check Pacing
+    expect(screen.getByText("Burn Rate Pacing")).toBeTruthy();
+    expect(screen.getByText("0.80x")).toBeTruthy();
+
+    // Check Velocity
+    expect(screen.getByText("Goal Velocity")).toBeTruthy();
+    expect(screen.getByText("100%")).toBeTruthy();
   });
 
-  it("renders liquidity warning when underfunded", () => {
-    (useActivePlanStoreHook.useActivePlanId as jest.Mock).mockReturnValue("plan-1");
-
-    const mockPlan = {
-      id: "plan-1",
-      totalExpenses: 5000, // Needs 5000
-      categoryGroups: [],
-    };
-    (usePlansHook.usePlan as jest.Mock).mockReturnValue({ data: mockPlan, isLoading: false });
-
-    const mockBalance = {
-      totalNetWorth: 2000, // Only has 2000
-    };
-    (useBalanceHook.useBalance as jest.Mock).mockReturnValue({
-      data: mockBalance,
+  it("renders CRITICAL state with shortfall message", () => {
+    (useSystemHealthHook.useSystemHealth as jest.Mock).mockReturnValue({
       isLoading: false,
+      score: 40,
+      status: "CRITICAL",
+      liquidityRatio: 0.5,
+      burnRatePacing: 1.5,
+      goalVelocity: 0.2,
+      fundingGap: -2000,
+      dailyAllowance: 0,
+      insightMessages: [],
     });
 
     renderWithTheme(<ActivePlanHeader />);
 
-    expect(screen.getByText("LIQUIDITY WARNING")).toBeTruthy();
-    // Shortfall 3000
-    expect(screen.getByText(/Shortfall: €3000/)).toBeTruthy();
+    expect(screen.getByText("SYSTEM CRITICAL • 40")).toBeTruthy();
+
+    // Check Pacing Warning
+    expect(screen.getByText("1.50x")).toBeTruthy();
+
+    // Check Shortfall Message
+    expect(screen.getByText(/Liquidity Shortfall: €2000/)).toBeTruthy();
+  });
+
+  it("renders WARNING state", () => {
+    (useSystemHealthHook.useSystemHealth as jest.Mock).mockReturnValue({
+      isLoading: false,
+      score: 75,
+      status: "WARNING",
+      liquidityRatio: 1.1,
+      burnRatePacing: 1.1,
+      goalVelocity: 0.5,
+      fundingGap: 200,
+      dailyAllowance: 10,
+      insightMessages: [],
+    });
+
+    renderWithTheme(<ActivePlanHeader />);
+
+    expect(screen.getByText("PACING WARNING • 75")).toBeTruthy();
   });
 });

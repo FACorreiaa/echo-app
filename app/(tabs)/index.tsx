@@ -5,23 +5,25 @@ import { ActivityIndicator, Modal, ScrollView } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Button, Text, XStack, YStack } from "tamagui";
 
-import {
-  AlertBell,
-  Avatar,
-  BalanceHistoryChart,
-  GlassyCard,
-  NetWorthCard,
-  PacingMeter,
-  QuickCapture,
-} from "@/components";
+import { AlertBell, Avatar, BalanceHistoryChart, GlassyCard, NetWorthCard } from "@/components";
+import { DailyAllowanceWidget } from "@/widgets/insights/DailyAllowanceWidget";
+import { InsightSummaryCard } from "@/widgets/insights/InsightSummaryCard";
+import { PacingMeter } from "@/widgets/insights/PacingMeter";
+import { SystemHealthScoreCard } from "@/widgets/insights/SystemHealthScoreCard";
+
+import { QuickCapture } from "@/components";
 import { useAccounts } from "@/lib/hooks/use-accounts";
 import { useSetOpeningBalance } from "@/lib/hooks/use-balance";
-import { useDashboardBlocks, useSpendingPulse } from "@/lib/hooks/use-insights";
+import {
+  useDashboardBlocks,
+  useSpendingPulse as useSpendingPulseHook,
+} from "@/lib/hooks/use-insights"; // Retaining for Bento/Blocks if needed
+import { useSystemHealth } from "@/lib/hooks/use-system-health";
 import { useRecentTransactions } from "@/lib/hooks/use-transactions";
 import { useAuthStore } from "@/lib/stores/auth-store";
-import { BentoCard, HookCard, InboxBadge, WhatIfSlider } from "@/widgets/bento";
+import { BentoCard, HookCard, WhatIfSlider } from "@/widgets/bento";
 
-// Format currency (moved outside component to avoid recreation)
+// Format currency helper
 const formatCurrency = (amount: number) => {
   return new Intl.NumberFormat("en-US", {
     style: "currency",
@@ -29,7 +31,7 @@ const formatCurrency = (amount: number) => {
   }).format(amount);
 };
 
-// Get greeting based on time of day (moved outside component)
+// Greeting helper
 const getGreeting = () => {
   const hour = new Date().getHours();
   if (hour < 12) return "Good morning";
@@ -37,25 +39,8 @@ const getGreeting = () => {
   return "Good evening";
 };
 
-// Map icon names to emojis for dashboard blocks
-const getBlockEmoji = (icon: string) => {
-  const iconMap: Record<string, string> = {
-    "trending-up": "📈",
-    "trending-down": "📉",
-    "alert-triangle": "⚠️",
-    "check-circle": "✅",
-    coffee: "☕",
-    "shopping-cart": "🛒",
-    "credit-card": "💳",
-    target: "🎯",
-    calendar: "📅",
-    zap: "⚡",
-  };
-  return iconMap[icon] || "💡";
-};
-
+// Date formatter
 const formatRelativeDate = (date: Date | undefined | null) => {
-  // Defensive check for invalid dates
   if (!date || !(date instanceof Date) || isNaN(date.getTime())) {
     return "Unknown";
   }
@@ -71,35 +56,38 @@ export default function HomeScreen() {
   const insets = useSafeAreaInsets();
   const user = useAuthStore((s) => s.user);
 
-  // Fetch spending pulse data
-  const { data: pulse, isLoading: pulseLoading } = useSpendingPulse();
-  const { data: dashboardBlocks, isLoading: blocksLoading } = useDashboardBlocks();
+  // Data Hooks
+  const {
+    totalBudgeted,
+    totalSpent,
+    daysElapsed,
+    daysTotal,
+    isLoading: _healthLoading,
+  } = useSystemHealth();
 
-  // Fetch accounts and transactions
-  const { data: accounts = [], isLoading: accountsLoading } = useAccounts();
+  const { data: _accounts = [], isLoading: _accountsLoading } = useAccounts();
   const { data: recentActivity = [], isLoading: activityLoading } = useRecentTransactions(5);
+  // Optional: Pulse data for Bento if we want to keep it driven by real transaction insights
+  const { data: _pulse } = useSpendingPulseHook();
+  const { data: dashboardBlocks } = useDashboardBlocks();
 
-  // Quick Capture modal state
+  // Local State
   const [showQuickCapture, setShowQuickCapture] = useState(false);
-
-  // Net Worth Sheet state
   const [showNetWorthSheet, setShowNetWorthSheet] = useState(false);
   const [netWorthAmount, setNetWorthAmount] = useState("");
-
-  // Net Worth mutation
   const setOpeningBalance = useSetOpeningBalance();
 
   return (
     <YStack flex={1} backgroundColor="$background" paddingTop={insets.top}>
       <ScrollView contentContainerStyle={{ flexGrow: 1, padding: 20, paddingBottom: 100 }}>
-        {/* Header */}
+        {/* HEADER */}
         <XStack justifyContent="space-between" alignItems="center" marginBottom="$4">
           <YStack>
             <Text color="$secondaryText" fontSize={14}>
               {getGreeting()}
             </Text>
             <Text color="$color" fontSize={24} fontWeight="bold">
-              {user?.displayName || user?.username || user?.email?.split("@")[0] || "Welcome"}
+              {user?.displayName || user?.username || "Welcome"}
             </Text>
           </YStack>
           <XStack gap="$2">
@@ -114,35 +102,38 @@ export default function HomeScreen() {
           </XStack>
         </XStack>
 
-        {/* Net Worth Card - Hero Section */}
-        <NetWorthCard />
+        {/* COMMAND CENTER - HERO AREA */}
+        <SystemHealthScoreCard />
 
-        {/* Spending Pace Meter */}
-        {pulseLoading ? (
-          <GlassyCard marginBottom="$4">
-            <YStack padding="$4" alignItems="center">
-              <ActivityIndicator />
-            </YStack>
-          </GlassyCard>
-        ) : pulse ? (
-          <YStack marginBottom="$4">
-            <PacingMeter
-              currentSpend={pulse.currentMonthSpend}
-              lastMonthSpend={pulse.lastMonthSpend}
-              pacePercent={pulse.pacePercent}
-              isOverPace={pulse.isOverPace}
-              dayOfMonth={pulse.dayOfMonth}
-            />
+        <XStack gap="$3" marginBottom="$4">
+          {/* Left Column: Daily Allowance */}
+          <YStack flex={1}>
+            <DailyAllowanceWidget />
           </YStack>
-        ) : null}
+        </XStack>
 
-        {/* Quick Actions */}
+        {/* PACING & INSIGHTS */}
+        <YStack gap="$4" marginBottom="$6">
+          <PacingMeter
+            monthlyBudget={totalBudgeted}
+            currentSpend={totalSpent}
+            daysElapsed={daysElapsed}
+            daysTotal={daysTotal}
+          />
+
+          <InsightSummaryCard />
+        </YStack>
+
+        {/* BENTO GRID (Keep relevant quick actions?) */}
+        <Text color="$color" fontSize={18} fontWeight="bold" marginBottom="$3">
+          Quick Actions
+        </Text>
         <XStack justifyContent="space-around" marginBottom="$6">
           {[
             { icon: TrendingUp, label: "Net Worth", onPress: () => setShowNetWorthSheet(true) },
             { icon: Plus, label: "Add", onPress: () => setShowQuickCapture(true) },
             { icon: CreditCard, label: "Card", onPress: () => {} },
-            { icon: Sparkles, label: "Echo", onPress: () => router.push("/(tabs)/wrapped") },
+            { icon: Sparkles, label: "Wrappd", onPress: () => router.push("/(tabs)/wrapped") },
           ].map((action) => (
             <YStack key={action.label} alignItems="center" gap="$2">
               <Button
@@ -159,140 +150,35 @@ export default function HomeScreen() {
           ))}
         </XStack>
 
-        {/* Bento Insights Grid */}
+        {/* NET WORTH & TRENDS */}
         <Text color="$color" fontSize={18} fontWeight="bold" marginBottom="$3">
-          Insights
+          Financial Overview
         </Text>
-        <XStack gap="$3" marginBottom="$6" flexWrap="wrap">
+        <NetWorthCard />
+
+        {/* Use existing BentoCards if useful */}
+        <XStack gap="$3" marginTop="$4" marginBottom="$6" flexWrap="wrap">
           <BentoCard size="small" flex={1} minWidth={150}>
-            <WhatIfSlider currentMonthlySpend={pulse?.currentMonthSpend ?? 1000} />
+            <WhatIfSlider currentMonthlySpend={totalSpent || 1000} />
           </BentoCard>
           <BentoCard size="small" flex={1} minWidth={150}>
+            {/* Reuse pulse data if available for HookCard */}
             <HookCard
-              merchantName={dashboardBlocks?.[0]?.title ?? "Favorite Spot"}
-              visitCount={8}
-              totalSpent={(pulse?.currentMonthSpend ?? 0) * 0.15}
+              merchantName={dashboardBlocks?.[0]?.title ?? "Top Spot"}
+              visitCount={5}
+              totalSpent={totalSpent * 0.15}
             />
-          </BentoCard>
-          <BentoCard size="small" flex={1} minWidth={150}>
-            <InboxBadge count={0} onPress={() => router.push("/(tabs)/transactions")} />
           </BentoCard>
         </XStack>
 
-        {/* Money Pulse */}
-        <Text color="$color" fontSize={18} fontWeight="bold" marginBottom="$3">
-          Money Pulse
-        </Text>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ marginBottom: 24 }}>
-          <XStack gap="$3">
-            {blocksLoading ? (
-              <GlassyCard width={160}>
-                <YStack padding="$3" alignItems="center" justifyContent="center" height={100}>
-                  <ActivityIndicator />
-                </YStack>
-              </GlassyCard>
-            ) : dashboardBlocks && dashboardBlocks.length > 0 ? (
-              dashboardBlocks.map((block, index) => (
-                <GlassyCard key={index} width={160}>
-                  <YStack padding="$3" gap="$2">
-                    <YStack
-                      backgroundColor={(block.color || "$accentColor") as any}
-                      width={36}
-                      height={36}
-                      borderRadius={18}
-                      alignItems="center"
-                      justifyContent="center"
-                    >
-                      <Text fontSize={18}>{getBlockEmoji(block.icon)}</Text>
-                    </YStack>
-                    <Text color="$color" fontSize={14} fontWeight="600">
-                      {block.title}
-                    </Text>
-                    <Text color="$secondaryText" fontSize={12} numberOfLines={2}>
-                      {block.subtitle || block.value}
-                    </Text>
-                  </YStack>
-                </GlassyCard>
-              ))
-            ) : (
-              <GlassyCard width={160}>
-                <YStack padding="$3" gap="$2" alignItems="center">
-                  <Text fontSize={18}>💡</Text>
-                  <Text color="$secondaryText" fontSize={12} textAlign="center">
-                    Import transactions to see insights
-                  </Text>
-                </YStack>
-              </GlassyCard>
-            )}
-          </XStack>
-        </ScrollView>
-
-        {/* Balance History Chart */}
+        {/* BALANCE HISTORY */}
         <Text color="$color" fontSize={18} fontWeight="bold" marginBottom="$3">
           Balance Trend
         </Text>
         <BalanceHistoryChart days={30} />
 
-        {/* Accounts */}
-        <XStack justifyContent="space-between" alignItems="center" marginBottom="$3">
-          <Text color="$color" fontSize={18} fontWeight="bold">
-            Accounts
-          </Text>
-          <Text color="$accentColor" fontSize={14} onPress={() => {}}>
-            See All
-          </Text>
-        </XStack>
-        <YStack gap="$2" marginBottom="$6">
-          {accountsLoading ? (
-            <GlassyCard>
-              <XStack padding="$3" alignItems="center" justifyContent="center">
-                <ActivityIndicator />
-              </XStack>
-            </GlassyCard>
-          ) : accounts.length === 0 ? (
-            <GlassyCard>
-              <YStack padding="$4" alignItems="center">
-                <Text fontSize={24}>🏦</Text>
-                <Text color="$secondaryText" marginTop="$2">
-                  No accounts yet
-                </Text>
-              </YStack>
-            </GlassyCard>
-          ) : (
-            accounts.map((account) => (
-              <GlassyCard key={account.id}>
-                <XStack padding="$3" alignItems="center" gap="$3">
-                  <YStack
-                    backgroundColor="$backgroundHover"
-                    width={44}
-                    height={44}
-                    borderRadius={22}
-                    alignItems="center"
-                    justifyContent="center"
-                  >
-                    <Text fontSize={20}>{account.emoji}</Text>
-                  </YStack>
-                  <YStack flex={1}>
-                    <Text color="$color" fontWeight="600">
-                      {account.name}
-                    </Text>
-                    {account.lastFour && (
-                      <Text color="$secondaryText" fontSize={12}>
-                        ····{account.lastFour}
-                      </Text>
-                    )}
-                  </YStack>
-                  <Text color="$color" fontSize={16} fontWeight="bold">
-                    {formatCurrency(account.balance / 100)}
-                  </Text>
-                </XStack>
-              </GlassyCard>
-            ))
-          )}
-        </YStack>
-
-        {/* Recent Activity */}
-        <XStack justifyContent="space-between" alignItems="center" marginBottom="$3">
+        {/* RECENT ACTIVITY */}
+        <XStack justifyContent="space-between" alignItems="center" marginBottom="$3" marginTop="$6">
           <Text color="$color" fontSize={18} fontWeight="bold">
             Recent Activity
           </Text>
@@ -313,9 +199,7 @@ export default function HomeScreen() {
             ) : recentActivity.length === 0 ? (
               <YStack padding="$4" alignItems="center">
                 <Text fontSize={24}>📋</Text>
-                <Text color="$secondaryText" marginTop="$2">
-                  No recent transactions
-                </Text>
+                <Text color="$secondaryText">No recent transactions</Text>
               </YStack>
             ) : (
               recentActivity.map((tx, index) => (
@@ -347,7 +231,7 @@ export default function HomeScreen() {
         </GlassyCard>
       </ScrollView>
 
-      {/* Quick Capture Modal */}
+      {/* MODALS */}
       <Modal
         visible={showQuickCapture}
         transparent
@@ -362,7 +246,6 @@ export default function HomeScreen() {
         </YStack>
       </Modal>
 
-      {/* Net Worth Sheet */}
       <Modal
         visible={showNetWorthSheet}
         transparent
@@ -385,11 +268,9 @@ export default function HomeScreen() {
                 ✕
               </Button>
             </XStack>
-
             <Text color="$secondaryText" fontSize={14}>
               Enter the amount to add to your tracked net worth
             </Text>
-
             <XStack alignItems="center" gap="$2">
               <Text color="$color" fontSize={32} fontWeight="bold">
                 €
@@ -415,8 +296,6 @@ export default function HomeScreen() {
                 </XStack>
               </YStack>
             </XStack>
-
-            {/* Number Pad */}
             <YStack gap="$2">
               {[
                 ["1", "2", "3"],
@@ -432,13 +311,9 @@ export default function HomeScreen() {
                       flex={1}
                       backgroundColor="$backgroundHover"
                       onPress={() => {
-                        if (key === "⌫") {
-                          setNetWorthAmount((prev) => prev.slice(0, -1));
-                        } else if (key === "." && netWorthAmount.includes(".")) {
-                          // Don't allow multiple decimal points
-                        } else {
-                          setNetWorthAmount((prev) => prev + key);
-                        }
+                        if (key === "⌫") setNetWorthAmount((prev) => prev.slice(0, -1));
+                        else if (key === "." && netWorthAmount.includes(".")) {
+                        } else setNetWorthAmount((prev) => prev + key);
                       }}
                     >
                       <Text color="$color" fontSize={20}>
@@ -449,7 +324,6 @@ export default function HomeScreen() {
                 </XStack>
               ))}
             </YStack>
-
             <Button
               size="$5"
               backgroundColor={setOpeningBalance.isPending ? "$backgroundHover" : "#22c55e"}
@@ -463,9 +337,6 @@ export default function HomeScreen() {
                     onSuccess: () => {
                       setShowNetWorthSheet(false);
                       setNetWorthAmount("");
-                    },
-                    onError: (error) => {
-                      console.error("Failed to update net worth:", error);
                     },
                   },
                 );

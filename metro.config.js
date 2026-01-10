@@ -13,5 +13,4 @@ module.exports = withTamagui(config, {
   components: ["tamagui"],
   config: "./tamagui.config.ts",
   outputCSS: "./tamagui-web.css",
-  cssInterop: true,
 });

@@ -1,27 +1,24 @@
 /**
  * PacingMeter - Visual spending pace comparison component
- * Shows current spending pace vs last month with animated progress bar
+ * Enhanced with Ghost Time Indicator to show spending vs time.
  */
 
 import { TrendingDown, TrendingUp } from "@tamagui/lucide-icons";
 import { MotiView } from "moti";
 import React from "react";
-import { StyleSheet } from "react-native";
-import { Text, XStack, YStack } from "tamagui";
+import { Text, XStack, YStack, useTheme } from "tamagui";
 
 import { GlassyCard } from "@/components/ui/GlassyCard";
 
 interface PacingMeterProps {
   /** Current month spending */
   currentSpend: number;
-  /** Same time last month spending */
-  lastMonthSpend: number;
-  /** Pace percentage (100 = same as last month) */
-  pacePercent: number;
-  /** Whether over pace */
-  isOverPace: boolean;
-  /** Day of month for context */
-  dayOfMonth: number;
+  /** Total monthly budget */
+  monthlyBudget: number;
+  /** Days elapsed in the month */
+  daysElapsed: number;
+  /** Total days in the month */
+  daysTotal: number;
   /** Currency code */
   currencyCode?: string;
 }
@@ -37,27 +34,33 @@ const formatCurrency = (amount: number, code = "EUR") =>
 
 export function PacingMeter({
   currentSpend,
-  lastMonthSpend,
-  pacePercent,
-  isOverPace,
-  dayOfMonth,
+  monthlyBudget,
+  daysElapsed,
+  daysTotal,
   currencyCode = "EUR",
 }: PacingMeterProps) {
-  // Calculate progress bar width (cap at 150% for display)
-  const barWidth = Math.min(pacePercent, 150);
+  const theme = useTheme();
+
+  // 1. Calculate Progress
+  const spendingProgress = Math.min((currentSpend / monthlyBudget) * 100, 100);
+  const timeProgress = (daysElapsed / daysTotal) * 100;
+
+  // 2. Determine Pace
+  // If spending progress > time progress => Overpacing
+  const isOverPacing = spendingProgress > timeProgress;
+  const burnRate = timeProgress > 0 ? spendingProgress / timeProgress : 0;
 
   // Colors
-  const overPaceColor = "#ef4444"; // Red
-  const underPaceColor = "#22c55e"; // Green
-  const barColor = isOverPace ? overPaceColor : underPaceColor;
+  const overPaceColor = "$red10";
+  const underPaceColor = "$green10";
+  const barColor = isOverPacing ? overPaceColor : underPaceColor;
 
-  // Message based on pace
+  // Message
   const getMessage = () => {
-    if (pacePercent < 80) return "Great job! Well under budget 💪";
-    if (pacePercent < 100) return "On track to spend less this month";
-    if (pacePercent <= 110) return "Slightly over pace";
-    if (pacePercent <= 130) return "Spending faster than last month";
-    return "Significantly over pace ⚠️";
+    if (burnRate > 1.5) return "Spending 1.5x faster than time! ⚠️";
+    if (burnRate > 1.1) return "Slightly ahead of schedule";
+    if (burnRate < 0.8) return "Great! Well under budget 💪";
+    return "On track";
   };
 
   return (
@@ -66,77 +69,101 @@ export function PacingMeter({
         {/* Header */}
         <XStack justifyContent="space-between" alignItems="center">
           <Text color="$color" fontSize={16} fontWeight="600">
-            Spending Pace
+            Monthly Pacing
           </Text>
           <Text color="$secondaryText" fontSize={12}>
-            Day {dayOfMonth}
+            Day {daysElapsed} / {daysTotal}
           </Text>
         </XStack>
 
-        {/* Pace Bar Container */}
-        <YStack gap="$2">
-          {/* Labels */}
-          <XStack justifyContent="space-between">
+        {/* Stats */}
+        <XStack justifyContent="space-between">
+          <YStack>
             <Text color="$secondaryText" fontSize={11}>
+              Spent
+            </Text>
+            <Text color="$color" fontSize={14}>
               {formatCurrency(currentSpend, currencyCode)}
             </Text>
+          </YStack>
+          <YStack items="flex-end">
             <Text color="$secondaryText" fontSize={11}>
-              vs {formatCurrency(lastMonthSpend, currencyCode)} last month
+              Budget
             </Text>
-          </XStack>
+            <Text color="$color" fontSize={14}>
+              {formatCurrency(monthlyBudget, currencyCode)}
+            </Text>
+          </YStack>
+        </XStack>
 
-          {/* Progress Bar */}
+        {/* Progress Bar Container */}
+        <YStack height={32} justifyContent="center">
+          {/* Track */}
           <YStack
-            height={24}
+            height={12}
             backgroundColor="$backgroundHover"
             borderRadius="$3"
             overflow="hidden"
+            width="100%"
           >
-            {/* Animated fill */}
+            {/* Spending Bar */}
             <MotiView
               from={{ width: "0%" }}
-              animate={{ width: `${Math.min(barWidth / 1.5, 100)}%` }}
+              animate={{ width: `${spendingProgress}%` }}
               transition={{ type: "timing", duration: 800 }}
-              style={[styles.progressBar, { backgroundColor: barColor }]}
-            />
-
-            {/* Baseline marker at 66% (representing 100% of last month) */}
-            <YStack
-              position="absolute"
-              left="66%"
-              top={0}
-              bottom={0}
-              width={2}
-              backgroundColor="$color"
-              opacity={0.3}
+              style={{
+                height: "100%",
+                backgroundColor: (theme[barColor as any] as any)?.val || "#22c55e",
+                borderRadius: 6,
+              }}
             />
           </YStack>
 
-          {/* Pace percentage */}
-          <XStack justifyContent="center" gap="$2" alignItems="center">
-            {isOverPace ? (
-              <TrendingUp size={16} color={overPaceColor} />
-            ) : (
-              <TrendingDown size={16} color={underPaceColor} />
-            )}
-            <Text color={barColor} fontSize={24} fontWeight="bold">
-              {pacePercent.toFixed(0)}%
-            </Text>
-            <Text color="$secondaryText" fontSize={12}>
-              of last month's pace
-            </Text>
-          </XStack>
+          {/* Ghost Time Indicator Line */}
+          <MotiView
+            from={{ opacity: 0.4 }}
+            animate={{ opacity: 0.8 }}
+            transition={{ loop: true, type: "timing", duration: 1500 }}
+            style={{
+              position: "absolute",
+              left: `${timeProgress}%`,
+              top: -4,
+              bottom: -4,
+              width: 2,
+              backgroundColor: (theme.color as any)?.val || "white",
+              zIndex: 10,
+            }}
+          />
+
+          {/* Ghost Label */}
+          <Text
+            position="absolute"
+            left={`${Math.min(timeProgress, 90)}%` as any} // Prevent overflow
+            top={-20}
+            fontSize={10}
+            color="$secondaryText"
+            style={{ transform: [{ translateX: -10 }] }} // Center approx
+          >
+            Today
+          </Text>
         </YStack>
 
-        {/* Message */}
+        {/* Footer Status */}
         <XStack
-          backgroundColor={isOverPace ? "rgba(239, 68, 68, 0.1)" : "rgba(34, 197, 94, 0.1)"}
+          backgroundColor={isOverPacing ? "$red2" : "$green2"}
           paddingHorizontal="$3"
           paddingVertical="$2"
           borderRadius="$3"
           justifyContent="center"
+          alignItems="center"
+          gap="$2"
         >
-          <Text color={barColor} fontSize={13} textAlign="center">
+          {isOverPacing ? (
+            <TrendingUp size={14} color={overPaceColor as any} />
+          ) : (
+            <TrendingDown size={14} color={underPaceColor as any} />
+          )}
+          <Text color={barColor as any} fontSize={13} textAlign="center">
             {getMessage()}
           </Text>
         </XStack>
@@ -144,10 +171,3 @@ export function PacingMeter({
     </GlassyCard>
   );
 }
-
-const styles = StyleSheet.create({
-  progressBar: {
-    height: "100%",
-    borderRadius: 8,
-  },
-});

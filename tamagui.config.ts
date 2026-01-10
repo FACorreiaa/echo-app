@@ -100,6 +100,10 @@ const config = createTamagui({
       // Additional color tokens
       deepBlue: "#0b0f19",
       electricBlue: "#2da6fa",
+      // Health Colors
+      healthGood: "#22c55e",
+      healthWarning: "#f59e0b",
+      healthCritical: "#ef4444",
     },
     dark: {
       ...defaultConfig.themes.dark,
@@ -125,6 +129,10 @@ const config = createTamagui({
       // Additional color tokens
       deepBlue: "#0b0f19",
       electricBlue: "#2da6fa",
+      // Health Colors
+      healthGood: "#22c55e",
+      healthWarning: "#f59e0b",
+      healthCritical: "#ef4444",
     },
   },
   media: {

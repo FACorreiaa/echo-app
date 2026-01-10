@@ -55,11 +55,11 @@ type HealthReport struct {
 **Status:** Not Implemented
 
 **Tasks:**
-- [ ] Create `useSystemHealth()` React Query hook
-- [ ] Fetch data from `InsightService.GetSystemHealth`
-- [ ] Transform proto response to TypeScript types
-- [ ] Add proper caching (staleTime: 60s)
-- [ ] Handle loading and error states
+- [x] Create `useSystemHealth()` React Query hook
+- [x] Fetch data from `InsightService.GetSystemHealth` (Simulated/Calculated Client-side)
+- [x] Transform proto response to TypeScript types
+- [x] Add proper caching (staleTime: 60s)
+- [x] Handle loading and error states
 
 **TypeScript Interface:**
 ```typescript
@@ -216,13 +216,13 @@ Daily Allowance = (Remaining Budget - Remaining Recurring Bills) / Days Left in 
 **Status:** Partially Implemented (Shows basic execution and funding)
 
 **Tasks:**
-- [ ] Integrate `useSystemHealth()` hook
-- [ ] Replace current "System Health" text with numeric score
-- [ ] Add score badge (90+ green, 60-89 yellow, <60 red)
-- [ ] Show "Burn Rate Pacing" metric: "Spending 1.2x faster than planned"
-- [ ] Show "Goal Velocity" metric: "Goals 80% funded"
-- [ ] Add expandable section for detailed health breakdown
-- [ ] Write unit tests
+- [x] Integrate `useSystemHealth()` hook
+- [x] Replace current "System Health" text with numeric score
+- [x] Add score badge (90+ green, 60-89 yellow, <60 red)
+- [x] Show "Burn Rate Pacing" metric: "Spending 1.2x faster than planned"
+- [x] Show "Goal Velocity" metric: "Goals 80% funded"
+- [x] Add expandable section for detailed health breakdown
+- [x] Write unit tests
 
 ---
 
