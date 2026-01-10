@@ -4,6 +4,7 @@
 
 // Core plan components
 export { ActivePlanHeader } from "./ActivePlanHeader";
+export { BudgetCard } from "./BudgetCard";
 export { CategoryGroupBuilder } from "./CategoryGroupBuilder";
 export type { BuilderCategory, BuilderGroup, BuilderItem, ItemType } from "./CategoryGroupBuilder";
 export { CategoryGroupCard } from "./CategoryGroupCard";
@@ -11,7 +12,9 @@ export { CreatePlanSheet } from "./CreatePlanSheet";
 export { EditBudgetSheet } from "./EditBudgetSheet";
 export { EditPlanSheet } from "./EditPlanSheet";
 export { EditRecurringSheet } from "./EditRecurringSheet";
+export { GoalCard } from "./GoalCard";
 export { PlanCard } from "./PlanCard";
+export { RecurringCard } from "./RecurringCard";
 
 // Dashboard components
 export { CATEGORY_COLORS, CategorySpendingChart } from "./CategorySpendingChart";

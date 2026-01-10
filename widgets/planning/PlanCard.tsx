@@ -5,7 +5,7 @@
 import { ChevronRight, FileSpreadsheet, Pencil, Star, Trash2 } from "@tamagui/lucide-icons";
 import React from "react";
 import { Pressable } from "react-native";
-import { Progress, Text, XStack, YStack } from "tamagui";
+import { Progress, Separator, Text, XStack, YStack } from "tamagui";
 
 import { GlassyCard } from "@/components/ui/GlassyCard";
 import type { UserPlan } from "@/lib/hooks/use-plans";
@@ -34,24 +34,37 @@ export function PlanCard({ plan, onPress, onSetActive, onDelete }: PlanCardProps
           {/* Header */}
           <XStack justifyContent="space-between" alignItems="center">
             <XStack alignItems="center" gap="$2" flex={1}>
-              {isExcel ? (
-                <FileSpreadsheet size={20} color="$accentColor" />
-              ) : (
-                <Pencil size={20} color="$accentColor" />
-              )}
-              <Text color="$color" fontWeight="600" numberOfLines={1} flex={1}>
+              <XStack
+                width={32}
+                height={32}
+                alignItems="center"
+                justifyContent="center"
+                backgroundColor="$backgroundHover"
+                borderRadius="$4"
+              >
+                {isExcel ? (
+                  <FileSpreadsheet size={18} color="$accentColor" />
+                ) : (
+                  <Pencil size={18} color="$accentColor" />
+                )}
+              </XStack>
+              <Text color="$color" fontSize={16} fontWeight="700" numberOfLines={1} flex={1}>
                 {plan.name}
               </Text>
             </XStack>
-            <XStack gap="$3" alignItems="center">
+
+            <XStack gap="$2" alignItems="center">
               {isActive && (
                 <XStack
-                  backgroundColor="$accentColor"
+                  backgroundColor="$green2"
                   paddingHorizontal="$2"
                   paddingVertical="$1"
-                  borderRadius="$2"
+                  borderRadius="$4"
+                  alignItems="center"
+                  gap="$1.5"
                 >
-                  <Text color="white" fontSize={12} fontWeight="bold">
+                  <Star size={10} color="$green10" fill="$green10" />
+                  <Text color="$green11" fontSize={10} fontWeight="700">
                     ACTIVE
                   </Text>
                 </XStack>
@@ -64,78 +77,101 @@ export function PlanCard({ plan, onPress, onSetActive, onDelete }: PlanCardProps
                     onDelete();
                   }}
                   hitSlop={8}
+                  style={{ opacity: 0.8 }}
                 >
-                  <Trash2 size={18} color="$red10" />
+                  <Trash2 size={16} color="$red10" />
                 </Pressable>
               )}
 
-              <ChevronRight size={18} color="$secondaryText" />
+              {!isActive && <ChevronRight size={16} color="$secondaryText" />}
             </XStack>
           </XStack>
 
+          <Separator borderColor="$borderColor" opacity={0.5} />
+
           {/* Summary Stats */}
-          <XStack justifyContent="space-between">
-            <YStack>
-              <Text color="$secondaryText" fontSize={12}>
+          <XStack justifyContent="space-between" gap="$2">
+            <YStack flex={1}>
+              <Text color="$secondaryText" fontSize={11} marginBottom={2}>
                 Income
               </Text>
-              <Text color="#22c55e" fontWeight="600">
+              <Text color="#22c55e" fontWeight="700" fontSize={14}>
                 {formatMoney(plan.totalIncome, plan.currencyCode)}
               </Text>
             </YStack>
-            <YStack alignItems="center">
-              <Text color="$secondaryText" fontSize={12}>
+            <YStack flex={1} alignItems="center">
+              <Text color="$secondaryText" fontSize={11} marginBottom={2}>
                 Expenses
               </Text>
-              <Text color="#ef4444" fontWeight="600">
+              <Text color="#ef4444" fontWeight="700" fontSize={14}>
                 {formatMoney(plan.totalExpenses, plan.currencyCode)}
               </Text>
             </YStack>
-            <YStack alignItems="flex-end">
-              <Text color="$secondaryText" fontSize={12}>
+            <YStack flex={1} alignItems="flex-end">
+              <Text color="$secondaryText" fontSize={11} marginBottom={2}>
                 Surplus
               </Text>
-              <Text color={plan.surplus >= 0 ? "#22c55e" : "#ef4444"} fontWeight="600">
+              <Text
+                color={plan.surplus >= 0 ? "#22c55e" : "#ef4444"}
+                fontWeight="700"
+                fontSize={14}
+              >
                 {formatMoney(plan.surplus, plan.currencyCode)}
               </Text>
             </YStack>
           </XStack>
 
           {/* Progress Bar */}
-          <YStack gap="$1">
+          <YStack gap="$2">
             <XStack justifyContent="space-between">
-              <Text color="$secondaryText" fontSize={12}>
+              <Text color="$color11" fontSize={12}>
                 Budget Used
               </Text>
-              <Text color="$secondaryText" fontSize={12}>
+              <Text color="$secondaryText" fontSize={12} fontWeight="500">
                 {savingsRate}% savings rate
               </Text>
             </XStack>
-            <Progress value={Math.min(incomeUsed, 100)} backgroundColor="$backgroundHover">
-              <Progress.Indicator backgroundColor={incomeUsed > 100 ? "#ef4444" : "$accentColor"} />
+            <Progress
+              value={Math.min(incomeUsed, 100)}
+              size="$2"
+              backgroundColor="$backgroundHover"
+            >
+              <Progress.Indicator
+                animation="bouncy"
+                backgroundColor={incomeUsed > 100 ? "$red10" : "$accentColor"}
+              />
             </Progress>
           </YStack>
 
           {/* Category Groups Preview */}
           {plan.categoryGroups.length > 0 && (
-            <XStack flexWrap="wrap" gap="$1">
+            <XStack flexWrap="wrap" gap="$1.5" marginTop="$1">
               {plan.categoryGroups.slice(0, 3).map((group) => (
                 <XStack
                   key={group.id}
-                  backgroundColor={(group.color ?? "$backgroundHover") as any}
+                  backgroundColor="$backgroundHover"
                   paddingHorizontal="$2"
-                  paddingVertical="$1"
-                  borderRadius="$2"
+                  paddingVertical="$1.5"
+                  borderRadius="$3"
+                  borderWidth={1}
+                  borderColor="$borderColor"
                 >
-                  <Text color="white" fontSize={10} fontWeight="500">
+                  <Text color="$color11" fontSize={10} fontWeight="500">
                     {group.name}
                   </Text>
                 </XStack>
               ))}
               {plan.categoryGroups.length > 3 && (
-                <Text color="$secondaryText" fontSize={10}>
-                  +{plan.categoryGroups.length - 3} more
-                </Text>
+                <XStack
+                  paddingHorizontal="$2"
+                  paddingVertical="$1.5"
+                  borderRadius="$3"
+                  backgroundColor="$backgroundHover"
+                >
+                  <Text color="$secondaryText" fontSize={10} fontWeight="500">
+                    +{plan.categoryGroups.length - 3}
+                  </Text>
+                </XStack>
               )}
             </XStack>
           )}
@@ -148,12 +184,11 @@ export function PlanCard({ plan, onPress, onSetActive, onDelete }: PlanCardProps
                 alignItems="center"
                 gap="$2"
                 paddingVertical="$2"
-                borderTopWidth={1}
-                borderTopColor="$borderColor"
+                backgroundColor="$backgroundHover"
+                borderRadius="$3"
                 marginTop="$2"
               >
-                <Star size={14} color="$accentColor" />
-                <Text color="$accentColor" fontSize={12} fontWeight="500">
+                <Text color="$accentColor" fontSize={12} fontWeight="600">
                   Set as Active Plan
                 </Text>
               </XStack>
