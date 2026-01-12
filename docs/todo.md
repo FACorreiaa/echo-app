@@ -377,3 +377,130 @@ Your data is your legacy. We don't just protect it—we ensure you own it, forev
 - [ ] **Visual differentiation for cash vs investment accounts** - Different icons/colors for account types
 - [ ] Account detail view with individual balance history chart
 - [ ] Swipe actions on account cards (hide, favorite, etc.)
+
+// TODO:
+
+. Fixing the "Empty Tab" Disconnect
+The reason your Goals and Budgets tabs feel empty (as seen in 15.40.49.jpg) is that the data entered in the Wizard isn't yet being "pushed" or "mapped" to those specific views.
+
+The Solution: When a user marks an item as [S] Savings or [B] Budget, or Recurring [R] in the Wizard, your Go backend should save that item with its respective LineItemType.
+
+The Result: The moment the user hits "Create Plan," those tabs will automatically populate with data filtered by that type and the active_plan_id.
+
+4. Addressing the Salary in the Graph
+As you noted in your previous query, your Salary ([IN]) should act as the baseline but should not be a bar in the expense graph.
+
+Income = The "Master Container."
+
+Budgets/Goals/Recurring = The "Slices" of that container.
+
+The Graph: Should show how much of the "Master Container" is taken up by each category (Fundamentals, Fun, Future).
+
+And the user should be able to smart replicate a plan. So there is several months and the user can just copy the month of january for february and change values if needed.
+
+The smartest approach for plan replication is to treat a plan as a **Template** that can be "instantiated" for any given month. Instead of just a copy-paste, it should be a **"Deep Clone"** that carries over the structure (the categories and the "Rent", "Groceries" buckets) while allowing the user to override specific values for the new period.
+
+### **1. The "Deep Clone" Architecture**
+
+From a backend perspective, you shouldn't just change the date of an existing plan. You should create a new `PlanID` with a new `Period` (e.g., February 2026) but with the exact same **Line Item Configuration**.
+
+**The Data Flow:**
+
+1. **Selection:** User taps "Replicate" on the January plan.
+2. **Target Month:** User selects "February".
+3. **The Clone RPC:** The frontend calls `ReplicatePlan(source_id, target_period)`.
+4. **Backend Execution:** Go creates a new record in the `plans` table and iterates through all `plan_line_items` from the source, inserting them with the new `plan_id`.
+
+---
+
+### **2. The "Smart" Override UI**
+
+The "Smart" part comes during the replication step. Instead of forcing the user to go back to the Workbench, you show a **Summary Diff** view before finalization.
+
+* **Recurring items [R]:** These stay the same (e.g., Rent is always €700). The app should mark these as "Inherited".
+* **Variable Budgets [B]:** The app should ask: *"Do you want to keep the January limits, or adjust based on last month's spending?"*.
+* **One-Time Items:** The app should intelligently filter out one-time items (like "Christmas Gift") so they don't clutter February.
+
+---
+
+### **3. Why this solves the "Disconnected" Feeling**
+
+By using this approach, you create a **"Financial Baseline"**:
+
+* **Speed:** It takes 2 seconds to set up a new month.
+* **Consistency:** The **Goals** and **Budgets** tabs for February are instantly ready because they were built from the January blueprint.
+* **Comparison:** Because the structure (categories) is identical, the **Insights** tab can now do "Month-over-Month" analysis: *"You spent 15% more on Groceries in Feb than in Jan"*.
+
+---
+
+### **4. Correcting the Graph Logic for Replicated Plans**
+
+As you pointed out in your latest screenshot `18.37.25 (2).jpg`, the salary (Income [IN]) currently dwarfs your expense visualization.
+
+When the user replicates a plan for a new month:
+
+* **Total Budget Header:** Should reflect the €3000 cap.
+* **The "Para onde vai o meu dinheiro?" Graph:** Must ignore the €3000 bar. It should strictly show how that money is divided between **Fundamentals**, **Fun**, and **Future** (Goals).
+* **Surplus/Deficit:** If they increase a budget during replication, the **Surplus** should update in real-time on that summary screen so they don't accidentally plan a deficit.
+
+@Screenshot%202026-01-09%20at%2023.00.48.png What do I need to change on my tamagui style if I want that not only every widget follow this style but also every component like buttons and icons, etc?
+
+To ensure your entire application—from buttons to icons—follows the sophisticated glassmorphism style seen in your workspace, you must move beyond individual component styling and implement a **Global Glassmorphism System** within your Tamagui configuration.
+
+### **1. Universal Glass Configuration**
+
+The "Smartest" approach is to define a specialized sub-theme or a set of "Glass Component" factories. In your `tamagui.config.ts`, you should create a unified set of `glassProps` that can be applied to any component using Tamagui's `styled` function.
+
+```typescript
+// Define a standard set of glass properties to ensure visual consistency
+export const glassProps = {
+  backgroundColor: '$glassBackground',
+  borderWidth: 1,
+  borderColor: '$glassBorder',
+  shadowColor: '$shadowColor',
+  shadowRadius: 20,
+  // Add blur for the authentic glass effect (requires expo-blur)
+}
+
+// Create styled versions of standard components
+export const GlassButton = styled(Button, {
+  ...glassProps,
+  hoverStyle: { backgroundColor: 'rgba(255,255,255,0.15)' },
+  pressStyle: { scale: 0.97 },
+})
+
+```
+
+---
+
+### **2. Replicating Plans: The "Smart Template" Logic**
+
+Replicating a plan from January to February shouldn't just be a "copy-paste." It needs to be an **intelligent instantiation**.
+
+**The Smartest Replication Workflow:**
+
+* **Persistent vs. Variable:** The system should automatically identify **Recurring [R]** items (like Rent) and lock their values for the new month while flagging **Variable Budgets [B]** (like Dining Out) for potential adjustment based on the previous month's actual spending.
+* **Rollover Logic:** If January had a surplus, Echo should ask if you want to apply that extra liquidity toward a **Savings Goal [S]** in the February plan.
+* **Ghost Templates:** Keep the "January Structure" as a background reference. If a user starts a new plan, Echo should suggest: *"We noticed you had 'Gym' as a Recurring cost last month. Add it to February?"*
+
+---
+
+### **3. Fixing the Graph and Editability Logic**
+
+* **Income Exclusion:** You are absolutely correct; **Income [IN]** should be the "Master Container," not a bar in your expense graph. Your chart should only visualize the **allocation** of that income into the "3Fs" (Fundamental, Fun, Future).
+* **The "Double-Click" Workbench:** To enable editing without deletion, your frontend needs to manage a `localState` for the item. Double-clicking should swap the `Text` component for an `Input` component that calls your new Go `UpdatePlanItem` RPC upon "Blur" or "Enter."
+* **Language & Translation:** To fix the hardcoded "Para onde vai o seu dinheiro?", use a translation key in your code (e.g., `i18n.t('plan.allocation_chart_title')`). This allows for dynamic idiom swapping later.
+
+---
+
+### **4. Addressing the "Pencil" and Wizard Disconnect**
+
+The pencil icon in your screenshots represents **Workbench Mode**.
+
+1. **Clicking Pencil:** Should transform the static Plan view into the **Wizard GUI** you see in your screen recording, but pre-populated with current data.
+2. **Wizard Integration:** Budgets and Goals **must** be part of this GUI. The user needs to see the "Total Impact" of a new goal on their monthly surplus before they commit to it.
+
+
+draft the Go UpdatePlanItem and ReplicatePlan RPCs to ensure your backend can handle these partial edits and the "Smart Replication" logic simultaneously?
+Create a proper plan for this. 
+

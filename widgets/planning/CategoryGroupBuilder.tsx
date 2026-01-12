@@ -352,6 +352,46 @@ export function CategoryGroupBuilder({
           onUpdateItemActual={(catId, itemId, amount) =>
             updateItemActual(group.id, catId, itemId, amount)
           }
+          onUpdateItemName={(catId, itemId, name) =>
+            onChange(
+              groups.map((g) =>
+                g.id === group.id
+                  ? {
+                      ...g,
+                      categories: g.categories.map((c) =>
+                        c.id === catId
+                          ? {
+                              ...c,
+                              items: c.items.map((i) => (i.id === itemId ? { ...i, name } : i)),
+                            }
+                          : c,
+                      ),
+                    }
+                  : g,
+              ),
+            )
+          }
+          onUpdateItemType={(catId, itemId, type) =>
+            onChange(
+              groups.map((g) =>
+                g.id === group.id
+                  ? {
+                      ...g,
+                      categories: g.categories.map((c) =>
+                        c.id === catId
+                          ? {
+                              ...c,
+                              items: c.items.map((i) =>
+                                i.id === itemId ? { ...i, itemType: type } : i,
+                              ),
+                            }
+                          : c,
+                      ),
+                    }
+                  : g,
+              ),
+            )
+          }
           onDeleteItem={(catId, itemId) => deleteItem(group.id, catId, itemId)}
         />
       ))}
@@ -387,6 +427,8 @@ interface GroupCardProps {
   onAddItem: (categoryId: string, name: string, itemType: ItemType) => void;
   onUpdateItemBudget: (categoryId: string, itemId: string, amount: number) => void;
   onUpdateItemActual: (categoryId: string, itemId: string, amount: number) => void;
+  onUpdateItemName: (categoryId: string, itemId: string, name: string) => void;
+  onUpdateItemType: (categoryId: string, itemId: string, type: ItemType) => void;
   onDeleteItem: (categoryId: string, itemId: string) => void;
 }
 
@@ -402,6 +444,8 @@ function GroupCard({
   onAddItem,
   onUpdateItemBudget,
   onUpdateItemActual,
+  onUpdateItemName,
+  onUpdateItemType,
   onDeleteItem,
 }: GroupCardProps) {
   const [newCategoryName, setNewCategoryName] = useState("");
@@ -491,6 +535,8 @@ function GroupCard({
                 onUpdateItemActual={(itemId, amount) =>
                   onUpdateItemActual(category.id, itemId, amount)
                 }
+                onUpdateItemName={(itemId, name) => onUpdateItemName(category.id, itemId, name)}
+                onUpdateItemType={(itemId, type) => onUpdateItemType(category.id, itemId, type)}
                 onDeleteItem={(itemId) => onDeleteItem(category.id, itemId)}
               />
             ))}
@@ -519,6 +565,8 @@ interface CategoryCardProps {
   onAddItem: (name: string, itemType: ItemType) => void;
   onUpdateItemBudget: (itemId: string, amount: number) => void;
   onUpdateItemActual: (itemId: string, amount: number) => void;
+  onUpdateItemName: (itemId: string, name: string) => void;
+  onUpdateItemType: (itemId: string, type: ItemType) => void;
   onDeleteItem: (itemId: string) => void;
 }
 
@@ -530,6 +578,8 @@ function CategoryCard({
   onAddItem,
   onUpdateItemBudget,
   onUpdateItemActual,
+  onUpdateItemName,
+  onUpdateItemType,
   onDeleteItem,
 }: CategoryCardProps) {
   const [newItemName, setNewItemName] = useState("");
@@ -593,6 +643,8 @@ function CategoryCard({
               item={item}
               onUpdateBudget={(amount) => onUpdateItemBudget(item.id, amount)}
               onUpdateActual={(amount) => onUpdateItemActual(item.id, amount)}
+              onUpdateName={(name) => onUpdateItemName(item.id, name)}
+              onUpdateType={(type) => onUpdateItemType(item.id, type)}
               onDelete={() => onDeleteItem(item.id)}
             />
           ))}
@@ -623,14 +675,27 @@ function CategoryCard({
 // ItemRow Component
 // ============================================================================
 
+import { Pencil } from "@tamagui/lucide-icons";
+
 interface ItemRowProps {
   item: BuilderItem;
   onUpdateBudget: (amount: number) => void;
   onUpdateActual: (amount: number) => void;
+  onUpdateName: (name: string) => void;
+  onUpdateType: (type: ItemType) => void;
   onDelete: () => void;
 }
 
-function ItemRow({ item, onUpdateBudget, onUpdateActual, onDelete }: ItemRowProps) {
+function ItemRow({
+  item,
+  onUpdateBudget,
+  onUpdateActual,
+  onUpdateName,
+  onUpdateType,
+  onDelete,
+}: ItemRowProps) {
+  const [isEditing, setIsEditing] = useState(false);
+  const [editName, setEditName] = useState(item.name);
   const [budgetInputValue, setBudgetInputValue] = useState(
     item.budgetedMinor > 0 ? (item.budgetedMinor / 100).toString() : "",
   );
@@ -641,6 +706,11 @@ function ItemRow({ item, onUpdateBudget, onUpdateActual, onDelete }: ItemRowProp
       : "",
   );
 
+  // Sync edit name if item name changes externally
+  React.useEffect(() => {
+    setEditName(item.name);
+  }, [item.name]);
+
   const handleBudgetBlur = () => {
     const amount = parseFloat(budgetInputValue.replace(",", ".")) || 0;
     onUpdateBudget(Math.round(amount * 100));
@@ -649,6 +719,13 @@ function ItemRow({ item, onUpdateBudget, onUpdateActual, onDelete }: ItemRowProp
   const handleActualBlur = () => {
     const amount = parseFloat(actualInputValue.replace(",", ".")) || 0;
     onUpdateActual(Math.round(amount * 100));
+  };
+
+  const saveEdits = () => {
+    if (editName.trim()) {
+      onUpdateName(editName.trim());
+    }
+    setIsEditing(false);
   };
 
   const typeConfig = ITEM_TYPE_CONFIG[item.itemType];
@@ -662,69 +739,101 @@ function ItemRow({ item, onUpdateBudget, onUpdateActual, onDelete }: ItemRowProp
       padding="$2"
       borderRadius="$2"
     >
-      <Text color="$color" flex={1} fontSize="$3">
-        {item.name}
-      </Text>
-      <YStack
-        backgroundColor={typeConfig.color as any}
-        paddingHorizontal="$2"
-        paddingVertical="$1"
-        borderRadius="$1"
-      >
-        <Text color="white" fontSize={10} fontWeight="600">
-          {typeConfig.label}
-        </Text>
-      </YStack>
-
-      {/* Inputs */}
-      <XStack alignItems="center" gap="$2">
-        {/* For goals, show Target label */}
-        {isGoal && (
-          <Text color="$secondaryText" fontSize={10}>
-            Target:
-          </Text>
-        )}
-
-        <XStack alignItems="center" gap="$1">
-          <Text color="$secondaryText">€</Text>
+      {isEditing ? (
+        <XStack flex={1} gap="$2" alignItems="center">
           <Input
+            flex={1}
             size="$2"
-            width={70}
-            keyboardType="decimal-pad"
-            value={budgetInputValue}
-            onChangeText={setBudgetInputValue}
-            onBlur={handleBudgetBlur}
-            textAlign="right"
-            backgroundColor="rgba(255,255,255,0.05)"
-            placeholder={isGoal ? "Target" : "Limit"}
+            value={editName}
+            onChangeText={setEditName}
+            onSubmitEditing={saveEdits}
+            autoFocus
           />
+          <ItemTypeSelector value={item.itemType} onChange={(t) => onUpdateType(t)} />
+          <Button size="$2" onPress={saveEdits} icon={Check} scaleIcon={1.2} chromeless />
         </XStack>
-
-        {/* Goal only: Current Saved */}
-        {isGoal && (
-          <XStack alignItems="center" gap="$1" paddingLeft="$2">
-            <Text color="$secondaryText" fontSize={10}>
-              Saved:
+      ) : (
+        <>
+          <Pressable onLongPress={() => setIsEditing(true)} style={{ flex: 1 }}>
+            <Text color="$color" fontSize="$3" numberOfLines={1}>
+              {item.name}
             </Text>
+          </Pressable>
+          <YStack
+            backgroundColor={typeConfig.color as any}
+            paddingHorizontal="$2"
+            paddingVertical="$1"
+            borderRadius="$1"
+          >
+            <Text color="white" fontSize={10} fontWeight="600">
+              {typeConfig.label}
+            </Text>
+          </YStack>
+        </>
+      )}
+
+      {/* Inputs (Always visible unless editing takes up space? No, keep amounts visible or hide?)
+          Let's keep amounts visible if not editing, or maybe even while editing? 
+          Space is tight. Let's hide amounts while editing Name/Type. 
+      */}
+      {!isEditing && (
+        <XStack alignItems="center" gap="$2">
+          {/* For goals, show Target label */}
+          {isGoal && (
+            <Text color="$secondaryText" fontSize={10}>
+              Target:
+            </Text>
+          )}
+
+          <XStack alignItems="center" gap="$1">
             <Text color="$secondaryText">€</Text>
             <Input
               size="$2"
               width={70}
               keyboardType="decimal-pad"
-              value={actualInputValue}
-              onChangeText={setActualInputValue}
-              onBlur={handleActualBlur}
+              value={budgetInputValue}
+              onChangeText={setBudgetInputValue}
+              onBlur={handleBudgetBlur}
               textAlign="right"
               backgroundColor="rgba(255,255,255,0.05)"
-              placeholder="0"
+              placeholder={isGoal ? "Target" : "Limit"}
             />
           </XStack>
-        )}
-      </XStack>
 
-      <Pressable onPress={onDelete}>
-        <Trash2 size={14} color="$red10" />
-      </Pressable>
+          {/* Goal only: Current Saved */}
+          {isGoal && (
+            <XStack alignItems="center" gap="$1" paddingLeft="$2">
+              <Text color="$secondaryText" fontSize={10}>
+                Saved:
+              </Text>
+              <Text color="$secondaryText">€</Text>
+              <Input
+                size="$2"
+                width={70}
+                keyboardType="decimal-pad"
+                value={actualInputValue}
+                onChangeText={setActualInputValue}
+                onBlur={handleActualBlur}
+                textAlign="right"
+                backgroundColor="rgba(255,255,255,0.05)"
+                placeholder="0"
+              />
+            </XStack>
+          )}
+        </XStack>
+      )}
+
+      {/* Actions */}
+      {!isEditing ? (
+        <XStack gap="$2" alignItems="center">
+          <Pressable onPress={() => setIsEditing(true)}>
+            <Pencil size={14} color="$secondaryText" />
+          </Pressable>
+          <Pressable onPress={onDelete}>
+            <Trash2 size={14} color="$red10" />
+          </Pressable>
+        </XStack>
+      ) : null}
     </XStack>
   );
 }

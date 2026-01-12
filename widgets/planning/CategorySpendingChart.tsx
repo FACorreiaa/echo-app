@@ -91,7 +91,7 @@ export function CategorySpendingChart({
       {/* Chart Title */}
       <XStack justifyContent="space-between" alignItems="center">
         <Text color="$color" fontWeight="600" fontSize={16}>
-          Para onde vai o meu dinheiro?
+          Where does my money go?
         </Text>
         <Text color="$secondaryText" fontSize={12}>
           {formatCurrency(totalBudgeted, currencyCode)} total

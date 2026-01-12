@@ -4,6 +4,7 @@
  */
 
 import { GlassWidget } from "@/components/GlassWidget";
+import { formatBalance } from "@/lib/hooks/use-balance";
 import { TrendingDown, TrendingUp } from "@tamagui/lucide-icons";
 import { MotiView } from "moti";
 import React from "react";

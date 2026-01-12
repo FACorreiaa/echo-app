@@ -6,7 +6,7 @@ import React from "react";
 import { H2, Paragraph, SizableText, XStack, YStack } from "tamagui";
 
 export const DailyAllowanceWidget = () => {
-  const { dailyAllowance, _ } = useSystemHealth();
+  const { dailyAllowance } = useSystemHealth();
 
   // Calculate remaining days in month
   const now = new Date();

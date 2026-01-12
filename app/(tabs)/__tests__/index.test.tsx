@@ -10,9 +10,13 @@ jest.mock("@/lib/hooks/use-system-health");
 jest.mock("@/lib/hooks/use-accounts", () => ({
   useAccounts: jest.fn(() => ({ data: [], isLoading: false })),
 }));
-jest.mock("@/lib/hooks/use-balance", () => ({
-  useSetOpeningBalance: jest.fn(() => ({ mutate: jest.fn(), isPending: false })),
-}));
+jest.mock("@/lib/hooks/use-balance", () => {
+  const original = jest.requireActual("@/lib/hooks/use-balance");
+  return {
+    ...original,
+    useSetOpeningBalance: jest.fn(() => ({ mutate: jest.fn(), isPending: false })),
+  };
+});
 jest.mock("@/lib/hooks/use-insights", () => ({
   useSpendingPulse: jest.fn(() => ({ data: null })),
   useDashboardBlocks: jest.fn(() => ({ data: [] })),

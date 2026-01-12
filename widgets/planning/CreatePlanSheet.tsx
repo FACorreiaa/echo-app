@@ -17,9 +17,11 @@ import {
   type ExcelSheetInfo,
 } from "@/lib/hooks/use-plans";
 import { CategoryGroupBuilder, type BuilderGroup } from "./CategoryGroupBuilder";
+import { PLAN_TEMPLATES } from "./data/templates";
 
 type CreateMode =
   | "select"
+  | "select-template" // NEW: Template Gallery
   | "manual"
   | "build-structure" // NEW: Category builder step
   | "excel"
@@ -375,43 +377,169 @@ export function CreatePlanSheet({
               </GlassyCard>
             </Pressable>
 
-            {/* Template Option - Coming Soon */}
-            <GlassyCard opacity={0.6}>
-              <XStack padding="$4" alignItems="center" gap="$4">
-                <YStack
-                  backgroundColor="$backgroundHover"
-                  width={56}
-                  height={56}
-                  borderRadius={28}
-                  alignItems="center"
-                  justifyContent="center"
+            {/* Template Option */}
+            <Pressable onPress={() => setMode("select-template")}>
+              <GlassyCard>
+                <XStack padding="$4" alignItems="center" gap="$4">
+                  <YStack
+                    backgroundColor="$backgroundHover"
+                    width={56}
+                    height={56}
+                    borderRadius={28}
+                    alignItems="center"
+                    justifyContent="center"
+                  >
+                    <Text fontSize={28}>📋</Text>
+                  </YStack>
+                  <YStack flex={1}>
+                    <XStack alignItems="center" gap="$2">
+                      <Text color="$color" fontWeight="600" fontSize={18}>
+                        Use Template
+                      </Text>
+                      <Text
+                        color="$accentColor"
+                        fontSize={10}
+                        fontWeight="bold"
+                        backgroundColor="$accentColor"
+                        opacity={0.2}
+                        paddingHorizontal="$2"
+                        paddingVertical="$1"
+                        borderRadius="$1"
+                      >
+                        NEW
+                      </Text>
+                    </XStack>
+                    <Text color="$secondaryText" fontSize={14}>
+                      Start with a pre-made template (50/30/20, etc.)
+                    </Text>
+                  </YStack>
+                </XStack>
+              </GlassyCard>
+            </Pressable>
+          </YStack>
+        )}
+
+        {/* Template Selection Gallery */}
+        {mode === "select-template" && (
+          <YStack gap="$4" flex={1}>
+            <Text color="$secondaryText" marginBottom="$2">
+              Select a framework to start your plan:
+            </Text>
+
+            <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ gap: 12 }}>
+              {PLAN_TEMPLATES.map((template) => (
+                <Pressable
+                  key={template.id}
+                  onPress={() => {
+                    // 1. Map template to builder groups
+                    const groups: BuilderGroup[] = template.groups.map((g) => ({
+                      id: Math.random().toString(36).substr(2, 9),
+                      name: g.name,
+                      color: g.color,
+                      targetPercent: g.targetPercent,
+                      categories: g.categories.map((c) => ({
+                        id: Math.random().toString(36).substr(2, 9),
+                        name: c.name,
+                        icon: c.icon,
+                        items:
+                          c.items?.map((i) => ({
+                            id: Math.random().toString(36).substr(2, 9),
+                            name: i.name,
+                            itemType: i.type,
+                            budgetedMinor: 0,
+                          })) || [],
+                      })),
+                    }));
+
+                    // 2. Set state
+                    setBuilderGroups(groups);
+                    setPlanName(`${template.name} Plan`);
+                    setDescription(template.description);
+
+                    // 3. Go to builder
+                    setMode("build-structure");
+                  }}
                 >
-                  <Text fontSize={28}>📋</Text>
-                </YStack>
-                <YStack flex={1}>
-                  <XStack alignItems="center" gap="$2">
-                    <Text color="$color" fontWeight="600" fontSize={18}>
-                      Use Template
-                    </Text>
-                    <Text
-                      color="$accentColor"
-                      fontSize={10}
-                      fontWeight="bold"
-                      backgroundColor="$accentColor"
-                      opacity={0.2}
-                      paddingHorizontal="$2"
-                      paddingVertical="$1"
-                      borderRadius="$1"
+                  <GlassyCard>
+                    <XStack padding="$4" gap="$3" alignItems="center">
+                      {/* Icon */}
+                      <YStack
+                        width={48}
+                        height={48}
+                        backgroundColor="$backgroundHover"
+                        borderRadius="$4"
+                        alignItems="center"
+                        justifyContent="center"
+                      >
+                        <Text fontSize={24}>{template.icon}</Text>
+                      </YStack>
+
+                      {/* Info */}
+                      <YStack flex={1} gap="$1">
+                        <XStack alignItems="center" gap="$2">
+                          <Text color="$color" fontWeight="bold" fontSize={16}>
+                            {template.name}
+                          </Text>
+                          {template.badge && (
+                            <Text
+                              fontSize={10}
+                              color="$background"
+                              fontWeight="bold"
+                              backgroundColor="$color"
+                              paddingHorizontal="$2"
+                              paddingVertical={2}
+                              borderRadius="$2"
+                              overflow="hidden"
+                            >
+                              {template.badge}
+                            </Text>
+                          )}
+                        </XStack>
+                        <Text color="$secondaryText" fontSize={13} numberOfLines={2}>
+                          {template.description}
+                        </Text>
+                      </YStack>
+
+                      {/* Arrow */}
+                      <Text color="$secondaryText" fontSize={20}>
+                        →
+                      </Text>
+                    </XStack>
+
+                    {/* Structure Preview */}
+                    <XStack
+                      padding="$3"
+                      backgroundColor="$backgroundPress"
+                      paddingVertical="$2"
+                      gap="$2"
                     >
-                      SOON
-                    </Text>
-                  </XStack>
-                  <Text color="$secondaryText" fontSize={14}>
-                    Start with a pre-made template (50/30/20, etc.)
-                  </Text>
-                </YStack>
-              </XStack>
-            </GlassyCard>
+                      {template.groups.map((g, i) => (
+                        <XStack key={i} alignItems="center" gap="$1">
+                          <YStack
+                            width={6}
+                            height={6}
+                            borderRadius={3}
+                            backgroundColor={g.color as any}
+                          />
+                          <Text fontSize={10} color="$secondaryText">
+                            {g.name} ({g.targetPercent}%)
+                          </Text>
+                        </XStack>
+                      ))}
+                    </XStack>
+                  </GlassyCard>
+                </Pressable>
+              ))}
+            </ScrollView>
+
+            <Button
+              backgroundColor="$backgroundHover"
+              color="$color"
+              onPress={() => setMode("select")}
+              marginTop="$4"
+            >
+              Back
+            </Button>
           </YStack>
         )}
 
