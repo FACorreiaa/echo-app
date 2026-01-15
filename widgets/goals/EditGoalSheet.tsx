@@ -154,7 +154,7 @@ export function EditGoalSheet({
               step={10}
               onValueChange={([val]) => setCurrent(val)}
             >
-              <Slider.Track backgroundColor={"$gray5" as any}>
+              <Slider.Track backgroundColor="$backgroundHover">
                 <Slider.TrackActive backgroundColor="$blue10" />
               </Slider.Track>
               <Slider.Thumb
@@ -211,7 +211,7 @@ export function EditGoalSheet({
               <Label fontWeight="600" fontFamily="$body">
                 Deadline
               </Label>
-              <Button icon={Calendar} size="$5" backgroundColor={"$gray4" as any} color="$color">
+              <Button icon={Calendar} size="$5" backgroundColor="$backgroundHover" color="$color">
                 {goal.endAt
                   ? goal.endAt.toLocaleDateString("en-US", {
                       month: "short",

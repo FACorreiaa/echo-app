@@ -5,11 +5,11 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ScrollView, styled, Text, XStack, YStack } from "tamagui";
 
 import {
+  FormField,
   GlassyButton,
   GlassyCard,
-  Input,
   LoginTransition as LoginSuccessAnimation,
-  PasswordInput,
+  PasswordField,
 } from "@/components";
 import { useLogin } from "@/lib/hooks/use-auth";
 import { getFriendlyErrorMessage } from "@/lib/utils/error-messages";
@@ -17,26 +17,18 @@ import { getFriendlyErrorMessage } from "@/lib/utils/error-messages";
 const Title = styled(Text, {
   color: "$color",
   fontSize: 32,
+  fontWeight: "900",
   fontFamily: "$heading",
   textAlign: "center",
   marginBottom: 8,
 });
 
 const Subtitle = styled(Text, {
-  color: "$color",
-  opacity: 0.6,
+  color: "$secondaryText",
   fontSize: 16,
   fontFamily: "$body",
   textAlign: "center",
   marginBottom: 32,
-});
-
-const Label = styled(Text, {
-  color: "$color",
-  fontSize: 14,
-  fontFamily: "$body",
-  marginBottom: 6,
-  marginLeft: 4,
 });
 
 const ErrorBanner = styled(YStack, {
@@ -86,7 +78,6 @@ export default function LoginScreen() {
           setShowSuccessAnimation(true);
         },
         onError: (err) => {
-          // Use friendly error messages
           const friendlyMessage = getFriendlyErrorMessage(err);
           setError(friendlyMessage);
         },
@@ -129,35 +120,31 @@ export default function LoginScreen() {
               ) : null}
 
               <YStack space="$4">
-                <YStack>
-                  <Label>Email</Label>
-                  <Input
-                    placeholder="you@example.com"
-                    value={email}
-                    onChangeText={(text: string) => {
-                      setEmail(text);
-                      if (error) setError("");
-                    }}
-                    autoCapitalize="none"
-                    keyboardType="email-address"
-                    editable={!isLoading}
-                    error={emailError}
-                  />
-                </YStack>
+                <FormField
+                  label="Email"
+                  placeholder="you@example.com"
+                  value={email}
+                  onChangeText={(text: string) => {
+                    setEmail(text);
+                    if (error) setError("");
+                  }}
+                  autoCapitalize="none"
+                  keyboardType="email-address"
+                  editable={!isLoading}
+                  error={emailError}
+                />
 
-                <YStack>
-                  <Label>Password</Label>
-                  <PasswordInput
-                    placeholder="••••••••"
-                    value={password}
-                    onChangeText={(text: string) => {
-                      setPassword(text);
-                      if (error) setError("");
-                    }}
-                    editable={!isLoading}
-                    error={passwordError}
-                  />
-                </YStack>
+                <PasswordField
+                  label="Password"
+                  placeholder="••••••••"
+                  value={password}
+                  onChangeText={(text: string) => {
+                    setPassword(text);
+                    if (error) setError("");
+                  }}
+                  editable={!isLoading}
+                  error={passwordError}
+                />
 
                 <YStack marginTop={10}>
                   <GlassyButton
@@ -165,18 +152,20 @@ export default function LoginScreen() {
                     disabled={isLoading}
                     opacity={isLoading ? 0.7 : 1}
                   >
-                    {isLoading ? "Signing in..." : "Sign In"}
+                    <Text color="white" fontWeight="700">
+                      {isLoading ? "Signing in..." : "Sign In"}
+                    </Text>
                   </GlassyButton>
                 </YStack>
               </YStack>
             </GlassyCard>
 
             <XStack justifyContent="center" marginTop={20}>
-              <Text color="$color" opacity={0.6} fontSize={14} fontFamily="$body">
+              <Text color="$secondaryText" fontSize={14} fontFamily="$body">
                 Don&apos;t have an account?{" "}
               </Text>
               <Link href="/register" asChild>
-                <Text color="$electricBlue" fontSize={14} fontFamily="$body">
+                <Text color="$accentColor" fontSize={14} fontWeight="600" fontFamily="$body">
                   Sign Up
                 </Text>
               </Link>

@@ -147,7 +147,7 @@ export function EditBudgetSheet({
                 step={10}
                 onValueChange={([val]) => setBudgeted(val)}
               >
-                <Slider.Track backgroundColor={"$gray5" as any}>
+                <Slider.Track backgroundColor="$backgroundHover">
                   <Slider.TrackActive backgroundColor="$blue10" />
                 </Slider.Track>
                 <Slider.Thumb

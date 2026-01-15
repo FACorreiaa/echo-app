@@ -113,6 +113,12 @@ const config = createTamagui({
       healthGood: "#22c55e",
       healthWarning: "#f59e0b",
       healthCritical: "#ef4444",
+
+      // Form-specific tokens (WCAG AA compliant)
+      formInputBackground: "rgba(0, 0, 0, 0.03)",
+      formInputBorder: "rgba(0, 0, 0, 0.1)",
+      formInputPlaceholder: "#8E8E93",
+      formLabel: "#0f172a",
     },
     dark: {
       ...defaultConfig.themes.dark,
@@ -140,6 +146,12 @@ const config = createTamagui({
       healthGood: "#22c55e",
       healthWarning: "#f59e0b",
       healthCritical: "#ef4444",
+
+      // Form-specific tokens (WCAG AA compliant)
+      formInputBackground: "rgba(255, 255, 255, 0.05)",
+      formInputBorder: "rgba(255, 255, 255, 0.15)",
+      formInputPlaceholder: "#636366",
+      formLabel: "#ffffff",
     },
   },
   media: {

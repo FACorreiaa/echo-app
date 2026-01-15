@@ -51,6 +51,7 @@ export default function PlanningScreen() {
   const [selectedBudgetItem, setSelectedBudgetItem] = useState<PlanItem | null>(null);
   const [selectedSubscription, setSelectedSubscription] = useState<Subscription | null>(null);
   const [editPlanOpen, setEditPlanOpen] = useState(false);
+  const [createWizardOpen, setCreateWizardOpen] = useState(false);
 
   // Plans from API - FIRST to get active plan
   const { data: plans, isLoading: plansLoading, error: plansError } = usePlans();
@@ -551,7 +552,7 @@ export default function PlanningScreen() {
                 borderWidth={1}
                 borderColor="$borderColor"
                 icon={<Pencil size={18} color="$color" />}
-                onPress={() => setCreateSheetOpen(true)}
+                onPress={() => setCreateWizardOpen(true)}
               >
                 Manual
               </Button>
@@ -693,15 +694,24 @@ export default function PlanningScreen() {
         {activeTab === "recurring" && renderRecurring()}
       </ScrollView>
 
-      {/* Create Plan Sheet */}
+      {/* Create Plan Sheet (for Excel import) */}
       <CreatePlanSheet
         open={createSheetOpen}
         onOpenChange={setCreateSheetOpen}
         onPlanCreated={() => {
           // Refetch plans and the new one will appear in the list
-          // User can then tap on it to see the dashboard
         }}
         initialCategories={importedCategories}
+      />
+
+      {/* Create Plan Wizard (for manual creation via stepper) */}
+      <PlanWizardSheet
+        mode="create"
+        open={createWizardOpen}
+        onOpenChange={setCreateWizardOpen}
+        onComplete={(planId) => {
+          setSelectedPlanId(planId);
+        }}
       />
 
       {/* Edit Plan Wizard */}

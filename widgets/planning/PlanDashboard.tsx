@@ -99,6 +99,10 @@ function groupsToDetailData(groups: PlanCategoryGroup[]): CategoryDetailData[] {
 export function PlanDashboard({ plan, categoryGroups = [], onCategoryPress }: PlanDashboardProps) {
   const [isEditSheetOpen, setIsEditSheetOpen] = useState(false);
   const [isReplicateSheetOpen, setIsReplicateSheetOpen] = useState(false);
+  // For deep-linking: which step to open the wizard at
+  const [editInitialStep, _setEditInitialStep] = useState<
+    "structure" | "budgets" | "goals" | "review"
+  >("structure");
 
   const chartData = groupsToChartData(categoryGroups);
   const detailData = groupsToDetailData(categoryGroups);
@@ -113,24 +117,23 @@ export function PlanDashboard({ plan, categoryGroups = [], onCategoryPress }: Pl
       g.categories.forEach((c) => {
         c.items.forEach((i) => {
           const amount = (i.budgeted ?? 0) * 100;
-          if (i.itemType === "income") {
+          const itemType = i.itemType ?? "budget";
+
+          if (itemType === "income") {
             incomeTotal += amount;
-          } else if (i.itemType === "goal") {
+          } else if (itemType === "goal") {
             savingsTotal += amount;
           } else {
-            expenseTotal += amount; // Budget, Recurring, Debt
+            // Budget, Recurring, Debt are all outflows
+            expenseTotal += amount;
           }
         });
       });
     });
 
-    // Fallback: If no income items defined, use plan.totalIncome
-    if (incomeTotal === 0 && plan.totalIncome > 0) {
-      incomeTotal = plan.totalIncome * 100;
-    }
-
+    // No fallback - income only comes from explicit income items
     return { incomeTotal, expenseTotal, savingsTotal };
-  }, [categoryGroups, plan.totalIncome]);
+  }, [categoryGroups]);
 
   const totalBudgeted = chartData.reduce((sum, item) => sum + item.budgetedMinor, 0);
   const surplus = incomeTotal / 100 - totalBudgeted / 100; // Recalculate surplus based on items
@@ -273,6 +276,7 @@ export function PlanDashboard({ plan, categoryGroups = [], onCategoryPress }: Pl
         planId={plan.id}
         open={isEditSheetOpen}
         onOpenChange={setIsEditSheetOpen}
+        initialStep={editInitialStep}
       />
 
       <ReplicatePlanSheet

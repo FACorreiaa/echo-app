@@ -12,6 +12,7 @@ export { GlassyCard } from "./ui/GlassyCard";
 export { ThemeToggle } from "./ui/ThemeToggle";
 
 // Input components (now in components/ui/)
+export { FormField, GlassInput, GlassPasswordInput, PasswordField } from "./ui/GlassInput";
 export { Input } from "./ui/Input";
 export { PasswordInput } from "./ui/PasswordInput";
 

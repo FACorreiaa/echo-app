@@ -10,6 +10,8 @@ interface PasswordInputProps {
   error?: boolean;
   errorMessage?: string;
   editable?: boolean;
+  /** Force dark styling regardless of theme (for pages with dark backgrounds) */
+  forceDark?: boolean;
 }
 
 export const PasswordInput = ({
@@ -19,6 +21,7 @@ export const PasswordInput = ({
   error,
   errorMessage,
   editable = true,
+  forceDark,
 }: PasswordInputProps) => {
   const [showPassword, setShowPassword] = useState(false);
   const theme = useTheme();
@@ -28,10 +31,20 @@ export const PasswordInput = ({
   };
 
   // Get theme colors for styling
-  const backgroundColor = error ? "rgba(239, 68, 68, 0.05)" : theme.background?.val || "#1a1a1a";
-  const borderColor = error ? "#ef4444" : theme.borderColor?.val || "#333";
-  const textColor = theme.color?.val || "#fff";
-  const placeholderColor = theme.colorHover?.val || "#888";
+  // When forceDark is true, use dark theme colors
+  const backgroundColor = error
+    ? "rgba(239, 68, 68, 0.05)"
+    : forceDark
+      ? "rgba(255, 255, 255, 0.1)"
+      : theme.background?.val || "#1a1a1a";
+  const borderColor = error
+    ? "#ef4444"
+    : forceDark
+      ? "rgba(255, 255, 255, 0.2)"
+      : theme.borderColor?.val || "#333";
+  const textColor = forceDark ? "#ffffff" : theme.color?.val || "#fff";
+  const placeholderColor = forceDark ? "rgba(255, 255, 255, 0.5)" : theme.colorHover?.val || "#888";
+  const iconColor = forceDark ? "rgba(255, 255, 255, 0.6)" : "$colorHover";
 
   return (
     <YStack>
@@ -56,9 +69,9 @@ export const PasswordInput = ({
         />
         <Pressable onPress={toggleVisibility} style={styles.toggleButton}>
           {showPassword ? (
-            <EyeOff size={20} color="$colorHover" />
+            <EyeOff size={20} color={iconColor} />
           ) : (
-            <Eye size={20} color="$colorHover" />
+            <Eye size={20} color={iconColor} />
           )}
         </Pressable>
       </XStack>

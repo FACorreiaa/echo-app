@@ -100,7 +100,7 @@ export function AlertBell({ size = 24 }: AlertBellProps) {
               <Text fontSize="$6" fontWeight="bold">
                 Notifications
               </Text>
-              <Text fontSize="$3" opacity={0.6}>
+              <Text fontSize="$3" color="$secondaryText">
                 {unreadCount} unread
               </Text>
             </XStack>
@@ -116,10 +116,10 @@ export function AlertBell({ size = 24 }: AlertBellProps) {
               ) : alerts.length === 0 ? (
                 <YStack flex={1} alignItems="center" justifyContent="center" padding="$6">
                   <Text fontSize={40}>✨</Text>
-                  <Text fontSize="$5" opacity={0.7} marginTop="$2">
+                  <Text fontSize="$5" color="$secondaryText" marginTop="$2">
                     All caught up!
                   </Text>
-                  <Text fontSize="$3" opacity={0.5} textAlign="center" marginTop="$1">
+                  <Text fontSize="$3" color="$secondaryText" textAlign="center" marginTop="$1">
                     No new alerts right now
                   </Text>
                 </YStack>
@@ -190,7 +190,7 @@ function AlertCard({
             <Text fontSize="$4" fontWeight={alert.isRead ? "normal" : "bold"} numberOfLines={1}>
               {alert.title}
             </Text>
-            <Text fontSize="$3" opacity={0.7} numberOfLines={2} marginTop="$1">
+            <Text fontSize="$3" color="$secondaryText" numberOfLines={2} marginTop="$1">
               {alert.message}
             </Text>
           </YStack>
@@ -205,14 +205,14 @@ function AlertCard({
             onDismiss();
           }}
         >
-          <Text fontSize="$3" opacity={0.5}>
+          <Text fontSize="$3" color="$secondaryText">
             ✕
           </Text>
         </Button>
       </XStack>
 
       <XStack justifyContent="space-between" marginTop="$2">
-        <Text fontSize="$2" opacity={0.5}>
+        <Text fontSize="$2" color="$secondaryText">
           {formatRelativeTime(alert.createdAt)}
         </Text>
         {!alert.isRead && (

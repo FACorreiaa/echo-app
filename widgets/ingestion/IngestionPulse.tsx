@@ -81,8 +81,8 @@ export const IngestionPulse = ({ messages, intervalMs = 2000 }: IngestionPulsePr
           <Circle
             key={index}
             size={8}
-            backgroundColor={index === currentStep ? "$accentColor" : ("$gray6" as any)}
-            opacity={index === currentStep ? 1 : 0.5}
+            backgroundColor={index === currentStep ? "$accentColor" : "$borderColor"}
+            opacity={index === currentStep ? 1 : 0.6}
           />
         ))}
       </XStack>

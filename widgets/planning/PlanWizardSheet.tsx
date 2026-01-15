@@ -38,6 +38,8 @@ interface PlanWizardSheetProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   onComplete?: (planId: string) => void;
+  /** Initial step to open on - for deep-linking from item types */
+  initialStep?: WizardStep;
 }
 
 type WizardStep = "structure" | "budgets" | "goals" | "review";
@@ -90,12 +92,13 @@ export function PlanWizardSheet({
   open,
   onOpenChange,
   onComplete,
+  initialStep,
 }: PlanWizardSheetProps) {
   const { data: existingPlan, isLoading: _planLoading } = usePlan(planId ?? "");
   const createPlan = useCreatePlan();
   const updatePlan = useUpdatePlanStructure();
 
-  const [currentStep, setCurrentStep] = useState<WizardStep>("structure");
+  const [currentStep, setCurrentStep] = useState<WizardStep>(initialStep ?? "structure");
   const [planName, setPlanName] = useState("");
   const [builderGroups, setBuilderGroups] = useState<BuilderGroup[]>([]);
 
@@ -130,12 +133,12 @@ export function PlanWizardSheet({
     }
   }, [existingPlan, mode, open]);
 
-  // Reset step when opening
+  // Reset step when opening - use initialStep if provided
   useEffect(() => {
     if (open) {
-      setCurrentStep("structure");
+      setCurrentStep(initialStep ?? "structure");
     }
-  }, [open]);
+  }, [open, initialStep]);
 
   // ============================================================================
   // Calculations

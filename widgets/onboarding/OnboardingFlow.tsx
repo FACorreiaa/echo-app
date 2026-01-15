@@ -51,8 +51,10 @@ export function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
     }
   };
 
-  const handleComplete = () => {
+  const handleComplete = async () => {
     completeOnboarding();
+    // Wait for Zustand to persist to AsyncStorage before navigating
+    await new Promise((resolve) => setTimeout(resolve, 150));
     onComplete();
   };
 

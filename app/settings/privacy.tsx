@@ -47,8 +47,8 @@ export default function PrivacyScreen() {
 
             {/* Pillars */}
             <YStack gap="$4">
-              {pillars.map((pillar, i) => (
-                <GlassyCard key={pillar.title} p="$4" animation="medium" delay={i * 100}>
+              {pillars.map((pillar) => (
+                <GlassyCard key={pillar.title} p="$4" animation="medium">
                   <XStack gap="$4">
                     <YStack
                       backgroundColor="$backgroundHover"
@@ -74,7 +74,7 @@ export default function PrivacyScreen() {
             {/* Export Data Action */}
             <GlassyCard p="$5" mt="$4">
               <YStack alignItems="center" gap="$4">
-                <Database size={40} color="$gray8" />
+                <Database size={40} color="$secondaryText" />
                 <YStack gap="$1" alignItems="center">
                   <Text color="$color" fontSize={18} fontWeight="bold">
                     Export Your Data

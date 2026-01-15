@@ -5,11 +5,11 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ScrollView, styled, Text, XStack, YStack } from "tamagui";
 
 import {
+  FormField,
   GlassyButton,
   GlassyCard,
-  Input,
   LoginTransition as LoginSuccessAnimation,
-  PasswordInput,
+  PasswordField,
 } from "@/components";
 import { useRegister } from "@/lib/hooks/use-auth";
 import { getFriendlyErrorMessage } from "@/lib/utils/error-messages";
@@ -17,26 +17,18 @@ import { getFriendlyErrorMessage } from "@/lib/utils/error-messages";
 const Title = styled(Text, {
   color: "$color",
   fontSize: 32,
+  fontWeight: "900",
   fontFamily: "$heading",
   textAlign: "center",
   marginBottom: 8,
 });
 
 const Subtitle = styled(Text, {
-  color: "$color",
-  opacity: 0.6,
+  color: "$secondaryText",
   fontSize: 16,
   fontFamily: "$body",
   textAlign: "center",
   marginBottom: 32,
-});
-
-const Label = styled(Text, {
-  color: "$color",
-  fontSize: 14,
-  fontFamily: "$body",
-  marginBottom: 6,
-  marginLeft: 4,
 });
 
 const ErrorBanner = styled(YStack, {
@@ -157,69 +149,61 @@ export default function RegisterScreen() {
               ) : null}
 
               <YStack space="$4">
-                <YStack>
-                  <Label>Email</Label>
-                  <Input
-                    placeholder="you@example.com"
-                    value={email}
-                    onChangeText={(text: string) => {
-                      setEmail(text);
-                      clearError();
-                    }}
-                    autoCapitalize="none"
-                    keyboardType="email-address"
-                    editable={!isLoading}
-                    error={emailError}
-                  />
-                </YStack>
+                <FormField
+                  label="Email"
+                  placeholder="you@example.com"
+                  value={email}
+                  onChangeText={(text: string) => {
+                    setEmail(text);
+                    clearError();
+                  }}
+                  autoCapitalize="none"
+                  keyboardType="email-address"
+                  editable={!isLoading}
+                  error={emailError}
+                />
 
-                <YStack>
-                  <Label>Username (Optional)</Label>
-                  <Input
-                    placeholder="johndoe"
-                    value={username}
-                    onChangeText={(text: string) => {
-                      setUsername(text);
-                      clearError();
-                    }}
-                    autoCapitalize="none"
-                    editable={!isLoading}
-                  />
-                </YStack>
+                <FormField
+                  label="Username (Optional)"
+                  placeholder="johndoe"
+                  value={username}
+                  onChangeText={(text: string) => {
+                    setUsername(text);
+                    clearError();
+                  }}
+                  autoCapitalize="none"
+                  editable={!isLoading}
+                />
 
-                <YStack>
-                  <Label>Password</Label>
-                  <PasswordInput
-                    placeholder="Min. 8 characters"
-                    value={password}
-                    onChangeText={(text: string) => {
-                      setPassword(text);
-                      clearError();
-                    }}
-                    editable={!isLoading}
-                    error={passwordError}
-                    errorMessage={
-                      hasSubmitted && password && password.length < 8
-                        ? "Must be at least 8 characters"
-                        : undefined
-                    }
-                  />
-                </YStack>
+                <PasswordField
+                  label="Password"
+                  placeholder="Min. 8 characters"
+                  value={password}
+                  onChangeText={(text: string) => {
+                    setPassword(text);
+                    clearError();
+                  }}
+                  editable={!isLoading}
+                  error={passwordError}
+                  errorMessage={
+                    hasSubmitted && password && password.length < 8
+                      ? "Must be at least 8 characters"
+                      : undefined
+                  }
+                />
 
-                <YStack>
-                  <Label>Confirm Password</Label>
-                  <PasswordInput
-                    placeholder="••••••••"
-                    value={confirmPassword}
-                    onChangeText={(text: string) => {
-                      setConfirmPassword(text);
-                      clearError();
-                    }}
-                    editable={!isLoading}
-                    error={confirmPasswordError}
-                    errorMessage={confirmPasswordError ? "Passwords don't match" : undefined}
-                  />
-                </YStack>
+                <PasswordField
+                  label="Confirm Password"
+                  placeholder="••••••••"
+                  value={confirmPassword}
+                  onChangeText={(text: string) => {
+                    setConfirmPassword(text);
+                    clearError();
+                  }}
+                  editable={!isLoading}
+                  error={confirmPasswordError}
+                  errorMessage={confirmPasswordError ? "Passwords don't match" : undefined}
+                />
 
                 <YStack marginTop={10}>
                   <GlassyButton
@@ -227,18 +211,20 @@ export default function RegisterScreen() {
                     disabled={isLoading}
                     opacity={isLoading ? 0.7 : 1}
                   >
-                    {isLoading ? "Creating Account..." : "Create Account"}
+                    <Text color="white" fontWeight="700">
+                      {isLoading ? "Creating Account..." : "Create Account"}
+                    </Text>
                   </GlassyButton>
                 </YStack>
               </YStack>
             </GlassyCard>
 
             <XStack justifyContent="center" marginTop={20} marginBottom={40}>
-              <Text color="$color" opacity={0.6} fontSize={14} fontFamily="$body">
+              <Text color="$secondaryText" fontSize={14} fontFamily="$body">
                 Already have an account?{" "}
               </Text>
               <Link href="/login" asChild>
-                <Text color="$electricBlue" fontSize={14} fontFamily="$body">
+                <Text color="$accentColor" fontSize={14} fontWeight="600" fontFamily="$body">
                   Sign In
                 </Text>
               </Link>

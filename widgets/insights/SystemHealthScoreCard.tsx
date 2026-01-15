@@ -32,14 +32,9 @@ export const SystemHealthScoreCard = () => {
     <GlassWidget marginBottom="$4" animation="bouncy">
       <YStack space="$3" alignItems="center">
         {/* Header */}
-        <XStack alignItems="center" space="$2" opacity={0.8}>
-          <TrendingUp size={14} color={"$gray11" as any} />
-          <SizableText
-            size="$2"
-            color={"$gray11" as any}
-            textTransform="uppercase"
-            letterSpacing={1}
-          >
+        <XStack alignItems="center" space="$2">
+          <TrendingUp size={14} color="$secondaryText" />
+          <SizableText size="$2" color="$secondaryText" textTransform="uppercase" letterSpacing={1}>
             System Health
           </SizableText>
         </XStack>
@@ -86,7 +81,7 @@ export const SystemHealthScoreCard = () => {
         <YStack alignItems="center" space="$1">
           <StatusIcon size={20} color={statusColor as any} />
           <H4 color={statusColor as any}>{statusText}</H4>
-          <Paragraph size="$2" color={"$gray10" as any} textAlign="center">
+          <Paragraph size="$2" color="$secondaryText" textAlign="center">
             {status === "HEALTHY"
               ? "You are on track to fund all goals."
               : status === "WARNING"

@@ -57,14 +57,9 @@ export function PacingMeter({
   return (
     <GlassWidget marginBottom="$4">
       <YStack gap="$2.5">
-        <XStack alignItems="center" gap="$2" opacity={0.8}>
-          <TrendingUp size={14} color={"$gray11" as any} />
-          <SizableText
-            size="$2"
-            color={"$gray11" as any}
-            textTransform="uppercase"
-            letterSpacing={1}
-          >
+        <XStack alignItems="center" gap="$2">
+          <TrendingUp size={14} color="$secondaryText" />
+          <SizableText size="$2" color="$secondaryText" textTransform="uppercase" letterSpacing={1}>
             Monthly Pacing
           </SizableText>
         </XStack>
