@@ -78,32 +78,33 @@ const config = createTamagui({
     ...defaultConfig.themes,
     light: {
       ...defaultConfig.themes.light,
-      background: "#ffffff",
-      backgroundHover: "#f9fafb",
-      backgroundPress: "#f3f4f6",
-      backgroundFocus: "#ffffff",
+      background: "#F2F2F7", // Platinum for better glass contrast
+      backgroundHover: "#e8e8ed",
+      backgroundPress: "#dcdce2",
+      backgroundFocus: "#F2F2F7",
       color: "#0f172a",
       colorHover: "#374151",
       colorPress: "#0f172a",
       colorFocus: "#0f172a",
-      borderColor: "#e5e7eb",
-      shadowColor: "rgba(0,0,0,0.1)",
+      borderColor: "#d1d5db",
+      shadowColor: "rgba(0,0,0,0.12)",
       // Custom semantic tokens
-      secondaryText: "#575E6A", // WCAG AA compliant
+      secondaryText: "#575E6A", // WCAG AA compliant on #F2F2F7
       placeholderColor: "#8E8E93",
 
       // Legacy & Accents
-      cardBackground: "#ffffff",
-      listItemBackground: "#f9fafb",
+      cardBackground: "rgba(255, 255, 255, 0.85)",
+      listItemBackground: "rgba(255, 255, 255, 0.6)",
       accentGradientStart: "#6366f1",
       accentGradientEnd: "#8b5cf6",
       accentColor: "#6366f1",
 
       // Glassmorphism
-      glassBackground: "rgba(255, 255, 255, 0.4)",
-      glassBorder: "rgba(0, 0, 0, 0.08)",
-      glassShadow: "rgba(0, 0, 0, 0.05)",
-      glassWhite: "rgba(255, 255, 255, 0.9)",
+      glassBackground: "rgba(255, 255, 255, 0.5)",
+      glassBorder: "rgba(0, 0, 0, 0.1)",
+      glassShadow: "rgba(0, 0, 0, 0.08)",
+      glassWhite: "rgba(255, 255, 255, 0.95)",
+      glassHighlight: "rgba(255, 255, 255, 0.85)", // For elevated elements
 
       // Additional color tokens
       deepBlue: "#0b0f19",
@@ -115,16 +116,17 @@ const config = createTamagui({
     },
     dark: {
       ...defaultConfig.themes.dark,
-      background: "#050505", // Deep Black
+      background: "#050505", // Deep Black for glass glow effect
       color: "#ffffff",
       placeholderColor: "#636366",
 
-      // Glassmorphism
-      glassBackground: "rgba(255, 255, 255, 0.06)",
-      glassBorder: "rgba(255, 255, 255, 0.12)",
-      glassShadow: "rgba(0, 0, 0, 0.4)",
+      // Glassmorphism - Enhanced visibility
+      glassBackground: "rgba(255, 255, 255, 0.08)",
+      glassBorder: "rgba(255, 255, 255, 0.15)",
+      glassShadow: "rgba(0, 0, 0, 0.5)",
+      glassWhite: "rgba(255, 255, 255, 0.12)",
+      glassHighlight: "rgba(255, 255, 255, 0.18)", // For elevated elements
 
-      glassWhite: "rgba(255, 255, 255, 0.15)",
       cardBackground: "rgba(255, 255, 255, 0.08)",
       listItemBackground: "rgba(255, 255, 255, 0.05)",
       accentGradientStart: "#2da6fa",

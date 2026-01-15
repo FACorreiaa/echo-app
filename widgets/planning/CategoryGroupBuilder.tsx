@@ -20,6 +20,7 @@ import { Alert, Pressable } from "react-native";
 import { Button, H3, Input, ScrollView, Text, XStack, YStack } from "tamagui";
 
 import { GlassyCard } from "@/components/ui/GlassyCard";
+import { ITEM_TYPE_TOOLTIPS, Tooltip } from "@/components/ui/Tooltip";
 import {
   DEFAULT_ITEM_CONFIGS,
   useItemConfigs,
@@ -855,29 +856,33 @@ function ItemTypeSelector({ value, onChange }: ItemTypeSelectorProps) {
 
   return (
     <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-      <XStack>
+      <XStack gap="$1">
         {expenseConfigs.map((config) => {
           const isSelected = value === mapConfigToItemType(config);
+          const itemType = mapConfigToItemType(config);
+          const tooltipText = ITEM_TYPE_TOOLTIPS[itemType] || config.label;
+
           return (
-            <Pressable key={config.id} onPress={() => onChange(mapConfigToItemType(config))}>
-              <YStack
-                backgroundColor={isSelected ? (config.colorHex as any) : "transparent"}
-                borderWidth={1}
-                borderColor={config.colorHex as any}
-                paddingHorizontal="$2"
-                paddingVertical="$1"
-                borderRadius="$1"
-                marginRight="$1"
-              >
-                <Text
-                  color={isSelected ? "white" : (config.colorHex as any)}
-                  fontSize={10}
-                  fontWeight="600"
+            <Tooltip key={config.id} content={tooltipText} position="top">
+              <Pressable onPress={() => onChange(itemType)}>
+                <YStack
+                  backgroundColor={isSelected ? (config.colorHex as any) : "transparent"}
+                  borderWidth={1}
+                  borderColor={config.colorHex as any}
+                  paddingHorizontal="$2"
+                  paddingVertical="$1"
+                  borderRadius="$2"
                 >
-                  {config.shortCode.slice(0, 2)}
-                </Text>
-              </YStack>
-            </Pressable>
+                  <Text
+                    color={isSelected ? "white" : (config.colorHex as any)}
+                    fontSize={10}
+                    fontWeight="600"
+                  >
+                    {config.shortCode}
+                  </Text>
+                </YStack>
+              </Pressable>
+            </Tooltip>
           );
         })}
       </XStack>

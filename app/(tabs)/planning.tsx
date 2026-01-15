@@ -21,12 +21,12 @@ import {
   BudgetCard,
   CreatePlanSheet,
   EditBudgetSheet,
-  EditPlanSheet,
   EditRecurringSheet,
   GoalCard,
   ItemTypesSheet,
   PlanCard,
   PlanDashboard,
+  PlanWizardSheet,
   RecurringCard,
 } from "@/widgets/planning";
 
@@ -704,13 +704,19 @@ export default function PlanningScreen() {
         initialCategories={importedCategories}
       />
 
-      {/* Edit Plan Sheet */}
+      {/* Edit Plan Wizard */}
       {selectedPlanId && (
-        <EditPlanSheet planId={selectedPlanId} open={editPlanOpen} onOpenChange={setEditPlanOpen} />
+        <PlanWizardSheet
+          mode="edit"
+          planId={selectedPlanId}
+          open={editPlanOpen}
+          onOpenChange={setEditPlanOpen}
+        />
       )}
       {/* Also support editing active plan if no plan is selected/viewed */}
       {!selectedPlanId && activePlanData && (
-        <EditPlanSheet
+        <PlanWizardSheet
+          mode="edit"
           planId={activePlanData.id}
           open={editPlanOpen}
           onOpenChange={setEditPlanOpen}

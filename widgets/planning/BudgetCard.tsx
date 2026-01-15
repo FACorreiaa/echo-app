@@ -22,7 +22,8 @@ export function BudgetCard({ item, onPress }: BudgetCardProps) {
   const isOverBudget = remaining < 0;
   const isNearLimit = !isOverBudget && remaining < budgeted * 0.1; // < 10% remaining
 
-  const statusColor = isOverBudget ? "$red10" : isNearLimit ? "$orange10" : "$green10";
+  // Use hex values for icon colors (theme tokens don't work reliably)
+  const statusColor = isOverBudget ? "#ef4444" : isNearLimit ? "#f97316" : "#22c55e";
   const progressColor = isOverBudget ? "$red10" : isNearLimit ? "$orange10" : "$accentColor";
 
   return (
@@ -69,7 +70,7 @@ export function BudgetCard({ item, onPress }: BudgetCardProps) {
               </XStack>
             )}
             {!isOverBudget && isNearLimit && (
-              <Text color="$orange10" fontSize={11} fontWeight="600">
+              <Text color={"#f97316" as any} fontSize={11} fontWeight="600">
                 Near Limit
               </Text>
             )}

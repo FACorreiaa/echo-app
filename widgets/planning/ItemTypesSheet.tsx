@@ -20,6 +20,7 @@ import { Pressable, ScrollView } from "react-native";
 import { Button, H3, Sheet, Text, XStack, YStack } from "tamagui";
 
 import { GlassyCard } from "@/components/ui/GlassyCard";
+import { ITEM_TYPE_TOOLTIPS } from "@/components/ui/Tooltip";
 import {
   getBehaviorLabel,
   getTargetTabLabel,
@@ -114,25 +115,51 @@ export function ItemTypesSheet({ open, onOpenChange }: ItemTypesSheetProps) {
 }
 
 // ============================================================================
+// Helpers
+// ============================================================================
+
+const getItemTypeKey = (targetTab: string): string => {
+  switch (targetTab) {
+    case "budgets":
+      return "budget";
+    case "recurring":
+      return "recurring";
+    case "goals":
+      return "goal";
+    case "income":
+      return "income";
+    case "portfolio":
+      return "investment";
+    case "liabilities":
+      return "debt";
+    default:
+      return "budget";
+  }
+};
+
+// ============================================================================
 // Item Config Row
 // ============================================================================
 
 function ItemConfigRow({ config }: { config: ItemConfig }) {
   const icon = ICON_MAP[config.icon] || <Wallet size={18} color="white" />;
 
+  // Get description for this item type
+  const description = ITEM_TYPE_TOOLTIPS[getItemTypeKey(config.targetTab)];
+
   return (
     <XStack
       backgroundColor="rgba(255,255,255,0.05)"
       padding="$3"
       borderRadius="$3"
-      alignItems="center"
+      alignItems="flex-start"
       gap="$3"
     >
       {/* Icon */}
       <YStack
-        width={36}
-        height={36}
-        borderRadius={18}
+        width={40}
+        height={40}
+        borderRadius={20}
         backgroundColor={config.colorHex as any}
         alignItems="center"
         justifyContent="center"
@@ -141,25 +168,34 @@ function ItemConfigRow({ config }: { config: ItemConfig }) {
       </YStack>
 
       {/* Info */}
-      <YStack flex={1}>
+      <YStack flex={1} gap="$1">
         <XStack alignItems="center" gap="$2">
-          <Text color="$color" fontWeight="600">
+          <Text color="$color" fontWeight="700" fontSize={15}>
             {config.label}
           </Text>
           <YStack
             backgroundColor={config.colorHex as any}
-            paddingHorizontal="$1"
+            paddingHorizontal="$2"
             paddingVertical={2}
-            borderRadius="$1"
+            borderRadius="$2"
           >
-            <Text color="white" fontSize={10} fontWeight="600">
+            <Text color="white" fontSize={11} fontWeight="700">
               {config.shortCode}
             </Text>
           </YStack>
         </XStack>
-        <Text color="$secondaryText" fontSize={12}>
-          {getBehaviorLabel(config.behavior)} • {getTargetTabLabel(config.targetTab)}
+
+        {/* Description */}
+        <Text color="$secondaryText" fontSize={13} lineHeight={18}>
+          {description}
         </Text>
+
+        {/* Behavior & Tab info */}
+        <XStack gap="$2" marginTop="$1">
+          <Text color="$secondaryText" fontSize={11}>
+            {getBehaviorLabel(config.behavior)} • {getTargetTabLabel(config.targetTab)}
+          </Text>
+        </XStack>
       </YStack>
     </XStack>
   );

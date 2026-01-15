@@ -25,7 +25,7 @@ export interface PlanItem {
   widgetType: "input" | "slider" | "toggle" | "readonly";
   fieldType: "currency" | "percentage" | "number" | "text";
   labels: Record<string, string>;
-  itemType?: "budget" | "recurring" | "goal" | "income";
+  itemType: "budget" | "recurring" | "goal" | "income"; // Required field
   configId?: string;
 }
 
@@ -692,7 +692,7 @@ function mapPlanFromProto(proto: {
   };
 }
 
-function mapProtoItemType(proto: number): "budget" | "recurring" | "goal" | "income" | undefined {
+function mapProtoItemType(proto: number): "budget" | "recurring" | "goal" | "income" {
   switch (proto) {
     case 1:
       return "budget";
@@ -703,7 +703,7 @@ function mapProtoItemType(proto: number): "budget" | "recurring" | "goal" | "inc
     case 4:
       return "income";
     default:
-      return undefined;
+      return "budget"; // Default to budget if unspecified
   }
 }
 

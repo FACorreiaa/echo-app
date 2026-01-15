@@ -15,9 +15,10 @@ export const DailyAllowanceWidget = () => {
 
   // Determine status color based on allowance (simple heuristic)
   // > 50 good, < 20 bad
-  let statusColor = "$green10";
-  if (dailyAllowance < 20) statusColor = "$red10";
-  else if (dailyAllowance < 50) statusColor = "$orange10";
+  let statusColor = "#22c55e"; // green
+  if (dailyAllowance < 20)
+    statusColor = "#ef4444"; // red
+  else if (dailyAllowance < 50) statusColor = "#f97316"; // orange
 
   return (
     <GlassWidget marginBottom="$4" animation="bouncy">

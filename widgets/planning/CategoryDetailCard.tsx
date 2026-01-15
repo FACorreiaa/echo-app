@@ -1,6 +1,7 @@
 /**
  * CategoryDetailCard - Expandable card showing budget items within a category
  * Shows progress bar for budget consumption with drill-down capability
+ * Supports inline editing of items via long-press
  */
 
 import { ChevronDown, ChevronUp } from "@tamagui/lucide-icons";
@@ -10,12 +11,15 @@ import { Progress, Text, XStack, YStack } from "tamagui";
 
 import { GlassyCard } from "@/components/ui/GlassyCard";
 
+import { EditableItemRow } from "./EditableItemRow";
+
 // Types
 export interface BudgetItem {
   id: string;
   name: string;
   budgetedMinor: number;
   actualMinor?: number;
+  itemType?: string;
 }
 
 export interface CategoryDetailData {
@@ -31,6 +35,10 @@ interface CategoryDetailCardProps {
   category: CategoryDetailData;
   currencyCode?: string;
   onItemPress?: (item: BudgetItem) => void;
+  onItemSave?: (
+    item: BudgetItem,
+    updates: { name?: string; budgetedMinor?: number },
+  ) => Promise<void>;
 }
 
 // Format currency for display
@@ -55,6 +63,7 @@ export function CategoryDetailCard({
   category,
   currencyCode = "EUR",
   onItemPress,
+  onItemSave,
 }: CategoryDetailCardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -68,7 +77,10 @@ export function CategoryDetailCard({
   return (
     <GlassyCard>
       {/* Header - Always visible */}
-      <Pressable onPress={() => setIsExpanded(!isExpanded)}>
+      <Pressable
+        onPress={() => setIsExpanded(!isExpanded)}
+        testID={`category-header-${category.id}`}
+      >
         <YStack gap="$2" padding="$3">
           <XStack justifyContent="space-between" alignItems="center">
             <XStack gap="$2" alignItems="center">
@@ -107,11 +119,11 @@ export function CategoryDetailCard({
             </Progress>
             <XStack justifyContent="space-between">
               <Text color={progressColor as any} fontSize={11} fontWeight="500">
-                {percentage.toFixed(0)}% usado
+                {percentage.toFixed(0)}% used
               </Text>
               {category.budgetedMinor - actualTotal > 0 && (
                 <Text color="$secondaryText" fontSize={11}>
-                  {formatCurrency(category.budgetedMinor - actualTotal, currencyCode)} restante
+                  {formatCurrency(category.budgetedMinor - actualTotal, currencyCode)} remaining
                 </Text>
               )}
             </XStack>
@@ -119,7 +131,7 @@ export function CategoryDetailCard({
         </YStack>
       </Pressable>
 
-      {/* Expanded Items List */}
+      {/* Expanded Items List with Inline Editing */}
       {isExpanded && (
         <YStack
           paddingHorizontal="$3"
@@ -129,38 +141,21 @@ export function CategoryDetailCard({
           borderColor="$borderColor"
           paddingTop="$2"
         >
-          {category.items.map((item) => {
-            const itemPercentage =
-              item.budgetedMinor > 0 && item.actualMinor
-                ? (item.actualMinor / item.budgetedMinor) * 100
-                : 0;
-            const itemColor = getProgressColor(itemPercentage);
-
-            return (
-              <Pressable key={item.id} onPress={() => onItemPress?.(item)}>
-                <XStack justifyContent="space-between" alignItems="center" paddingVertical="$1">
-                  <YStack flex={1}>
-                    <Text color="$color" fontSize={13}>
-                      {item.name}
-                    </Text>
-                    {item.actualMinor !== undefined && (
-                      <XStack gap="$2">
-                        <Text color="$secondaryText" fontSize={11}>
-                          {formatCurrency(item.actualMinor, currencyCode)}
-                        </Text>
-                        <Text color={itemColor as any} fontSize={11}>
-                          ({itemPercentage.toFixed(0)}%)
-                        </Text>
-                      </XStack>
-                    )}
-                  </YStack>
-                  <Text color="$secondaryText" fontSize={13}>
-                    {formatCurrency(item.budgetedMinor, currencyCode)}
-                  </Text>
-                </XStack>
-              </Pressable>
-            );
-          })}
+          {category.items.length === 0 ? (
+            <Text color="$secondaryText" fontSize={12} textAlign="center" paddingVertical="$2">
+              No items in this category
+            </Text>
+          ) : (
+            category.items.map((item) => (
+              <EditableItemRow
+                key={item.id}
+                item={item}
+                currencyCode={currencyCode}
+                onPress={() => onItemPress?.(item)}
+                onSave={onItemSave}
+              />
+            ))
+          )}
         </YStack>
       )}
     </GlassyCard>

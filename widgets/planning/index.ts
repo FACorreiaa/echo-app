@@ -9,11 +9,14 @@ export { CategoryGroupBuilder } from "./CategoryGroupBuilder";
 export type { BuilderCategory, BuilderGroup, BuilderItem, ItemType } from "./CategoryGroupBuilder";
 export { CategoryGroupCard } from "./CategoryGroupCard";
 export { CreatePlanSheet } from "./CreatePlanSheet";
+export { EditableItemRow } from "./EditableItemRow";
 export { EditBudgetSheet } from "./EditBudgetSheet";
 export { EditPlanSheet } from "./EditPlanSheet";
 export { EditRecurringSheet } from "./EditRecurringSheet";
 export { GoalCard } from "./GoalCard";
 export { PlanCard } from "./PlanCard";
+export { PlanProgressWidget } from "./PlanProgressWidget";
+export { PlanWizardSheet } from "./PlanWizardSheet";
 export { RecurringCard } from "./RecurringCard";
 
 // Dashboard components

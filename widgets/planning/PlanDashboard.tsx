@@ -20,8 +20,9 @@ import {
   CategorySpendingChart,
   type CategorySpendingData,
 } from "./CategorySpendingChart";
-import { EditPlanSheet } from "./EditPlanSheet";
 import { IncomeSpendingChart } from "./IncomeSpendingChart";
+import { PlanProgressWidget } from "./PlanProgressWidget";
+import { PlanWizardSheet } from "./PlanWizardSheet";
 import { ReplicatePlanSheet } from "./ReplicatePlanSheet";
 
 interface PlanDashboardProps {
@@ -174,7 +175,7 @@ export function PlanDashboard({ plan, categoryGroups = [], onCategoryPress }: Pl
                 </YStack>
               </Pressable>
 
-              {/* Edit Button (Pencil) */}
+              {/* Edit Button (Pencil) - Opens Wizard */}
               <Pressable onPress={() => setIsEditSheetOpen(true)}>
                 <YStack backgroundColor="$accentColor" padding="$2.5" borderRadius="$3">
                   <Pencil size={20} color="white" />
@@ -182,6 +183,9 @@ export function PlanDashboard({ plan, categoryGroups = [], onCategoryPress }: Pl
               </Pressable>
             </XStack>
           </XStack>
+
+          {/* Progress Widget - Actual vs Budgeted */}
+          <PlanProgressWidget categoryGroups={categoryGroups} currencyCode={plan.currencyCode} />
 
           {/* Summary Bento Cards */}
           <XStack gap="$3" flexWrap="wrap">
@@ -262,8 +266,14 @@ export function PlanDashboard({ plan, categoryGroups = [], onCategoryPress }: Pl
         </YStack>
       </ScrollView>
 
-      {/* Sheets */}
-      <EditPlanSheet planId={plan.id} open={isEditSheetOpen} onOpenChange={setIsEditSheetOpen} />
+      {/* Wizard Sheet for Edit - key forces remount when opening */}
+      <PlanWizardSheet
+        key={isEditSheetOpen ? `edit-${Date.now()}` : "closed"}
+        mode="edit"
+        planId={plan.id}
+        open={isEditSheetOpen}
+        onOpenChange={setIsEditSheetOpen}
+      />
 
       <ReplicatePlanSheet
         sourcePlanId={plan.id}

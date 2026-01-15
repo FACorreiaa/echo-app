@@ -121,7 +121,7 @@ export default function LoginScreen() {
               <Subtitle>Sign in to your Echo account</Subtitle>
             </YStack>
 
-            <GlassyCard>
+            <GlassyCard forceDark>
               {error ? (
                 <ErrorBanner>
                   <ErrorText>{error}</ErrorText>

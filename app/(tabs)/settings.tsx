@@ -18,6 +18,8 @@ import { ScrollView, styled, Text, XStack, YStack } from "tamagui";
 
 import { Avatar, GlassyCard, GradientBackground, ThemeToggle } from "@/components";
 import { ListItem } from "@/components/ListItem";
+import { logout as logoutAPI } from "@/lib/api/auth";
+import { clearAllAuthState, getRefreshToken } from "@/lib/storage/token-storage";
 
 const UserName = styled(Text, {
   color: "$color",
@@ -79,17 +81,13 @@ export default function SettingsScreen() {
           console.log("[SETTINGS] User confirmed logout");
           try {
             // 1. Get refresh token BEFORE clearing state
-            // eslint-disable-next-line @typescript-eslint/no-require-imports
-            const { getRefreshToken, clearAllAuthState } = require("@/lib/storage/token-storage");
             const refreshToken = await getRefreshToken();
             console.log("[SETTINGS] Got refresh token:", !!refreshToken);
 
             // 2. Tell Go backend to delete session in Postgres
             if (refreshToken) {
               try {
-                // eslint-disable-next-line @typescript-eslint/no-require-imports
-                const { logout } = require("@/lib/api/auth");
-                await logout(refreshToken);
+                await logoutAPI(refreshToken);
                 console.log("[SETTINGS] Backend logout successful");
               } catch (backendError) {
                 // Network error is OK - we still wipe locally
@@ -105,21 +103,16 @@ export default function SettingsScreen() {
             console.log("[SETTINGS] Local state cleared");
 
             // 4. Navigate to login
-            // eslint-disable-next-line @typescript-eslint/no-require-imports
-            const { router } = require("expo-router");
             router.replace("/(auth)/login");
           } catch (error) {
             console.error("[SETTINGS] Logout error:", error);
             // Fallback: still try to clear and navigate
             try {
-              // eslint-disable-next-line @typescript-eslint/no-require-imports
-              const { clearAllAuthState } = require("@/lib/storage/token-storage");
               await clearAllAuthState();
-              // eslint-disable-next-line @typescript-eslint/no-require-imports
-              const { router } = require("expo-router");
               router.replace("/(auth)/login");
             } catch {
-              // Last resort
+              // Last resort - at least try to navigate
+              router.replace("/(auth)/login");
             }
           }
         },
@@ -171,13 +164,7 @@ export default function SettingsScreen() {
             </XStack>
 
             {/* Main Menu */}
-            <YStack
-              backgroundColor="$cardBackground"
-              borderRadius={16}
-              borderWidth={1}
-              borderColor="$borderColor"
-              overflow="hidden"
-            >
+            <GlassyCard padding="$0" overflow="hidden">
               {menuItems.main.map((item, _index) => (
                 <ListItem
                   key={item.label}
@@ -202,16 +189,10 @@ export default function SettingsScreen() {
                   onPress={() => {}}
                 />
               ))}
-            </YStack>
+            </GlassyCard>
 
             {/* Settings Menu */}
-            <YStack
-              backgroundColor="$cardBackground"
-              borderRadius={16}
-              borderWidth={1}
-              borderColor="$borderColor"
-              overflow="hidden"
-            >
+            <GlassyCard padding="$0" overflow="hidden">
               {menuItems.settings.map((item) => (
                 <ListItem
                   key={item.label}
@@ -233,16 +214,10 @@ export default function SettingsScreen() {
                   }
                 />
               ))}
-            </YStack>
+            </GlassyCard>
 
             {/* Footer Menu */}
-            <YStack
-              backgroundColor="$cardBackground"
-              borderRadius={16}
-              borderWidth={1}
-              borderColor="$borderColor"
-              overflow="hidden"
-            >
+            <GlassyCard padding="$0" overflow="hidden">
               {menuItems.footer.map((item) => (
                 <ListItem
                   key={item.label}
@@ -257,7 +232,7 @@ export default function SettingsScreen() {
                   onPress={item.route === "logout" ? handleLogout : () => {}}
                 />
               ))}
-            </YStack>
+            </GlassyCard>
 
             <Text
               color="$secondaryText"

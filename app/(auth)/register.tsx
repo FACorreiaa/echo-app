@@ -130,6 +130,7 @@ export default function RegisterScreen() {
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         style={{ flex: 1 }}
+        keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 20}
       >
         <ScrollView
           contentContainerStyle={{
@@ -137,8 +138,10 @@ export default function RegisterScreen() {
             justifyContent: "center",
             padding: 20,
             paddingTop: Math.max(insets.top, 20),
-            paddingBottom: Math.max(insets.bottom, 20),
+            paddingBottom: Math.max(insets.bottom + 40, 60),
           }}
+          keyboardShouldPersistTaps="handled"
+          showsVerticalScrollIndicator={false}
         >
           <YStack maxWidth={500} width="100%" alignSelf="center" space="$4">
             <YStack marginBottom={20}>
@@ -146,7 +149,7 @@ export default function RegisterScreen() {
               <Subtitle>Start your intelligent financial journey</Subtitle>
             </YStack>
 
-            <GlassyCard>
+            <GlassyCard forceDark>
               {error ? (
                 <ErrorBanner>
                   <ErrorText>{error}</ErrorText>
