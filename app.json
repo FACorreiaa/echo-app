@@ -1,0 +1,8 @@
+{
+  "android": {
+    "package": "com.knox316.echoapp"
+  },
+  "ios": {
+    "bundleIdentifier": "com.knox316.echoapp"
+  }
+}
