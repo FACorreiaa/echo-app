@@ -2,6 +2,7 @@
  * CreatePlanSheet - Modal for creating new plans (manual or Excel import)
  */
 
+import { StagingView, type AnalysisTreeResponse } from "@/widgets/planning/StagingView";
 import { SuggestionCard, type ImportSuggestion } from "@/widgets/staging/SuggestionCard";
 import { Check, FileSpreadsheet, Pencil, Upload, X } from "@tamagui/lucide-icons";
 import * as DocumentPicker from "expo-document-picker";
@@ -28,6 +29,7 @@ type CreateMode =
   | "analyze"
   | "select-sheet"
   | "confirm-mapping"
+  | "staging" // NEW: ML-based tree review
   | "review-suggestions";
 
 interface CreatePlanSheetProps {
@@ -61,6 +63,9 @@ export function CreatePlanSheet({
 
   // Staging Area: detected suggestions from Excel parse
   const [detectedSuggestions, setDetectedSuggestions] = useState<ImportSuggestion[]>([]);
+
+  // ML-based Analysis Tree for staging view
+  const [analysisTree, setAnalysisTree] = useState<AnalysisTreeResponse | null>(null);
 
   // Category Builder: for manual plan structure
   const [builderGroups, setBuilderGroups] = useState<BuilderGroup[]>([]);
@@ -1113,6 +1118,28 @@ export function CreatePlanSheet({
               </Button>
             </XStack>
           </YStack>
+        )}
+
+        {/* ML-Based Staging View */}
+        {mode === "staging" && analysisTree && (
+          <StagingView
+            tree={analysisTree}
+            onFinalize={(correctedTree) => {
+              // Convert corrected tree to plan and import
+              console.log("Finalized tree:", correctedTree);
+              setAnalysisTree(correctedTree);
+              // TODO: Call import API with corrected tree
+              handleClose();
+            }}
+            onBack={() => {
+              setMode("confirm-mapping");
+              setAnalysisTree(null);
+            }}
+            onLearnCorrection={(itemName, tag) => {
+              // TODO: Call LearnFromExcelCorrection API
+              console.log("Learn correction:", itemName, tag);
+            }}
+          />
         )}
 
         {/* Review Suggestions Mode */}

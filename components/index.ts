@@ -15,6 +15,7 @@ export { ThemeToggle } from "./ui/ThemeToggle";
 export { FormField, GlassInput, GlassPasswordInput, PasswordField } from "./ui/GlassInput";
 export { Input } from "./ui/Input";
 export { PasswordInput } from "./ui/PasswordInput";
+export { SocialLoginRow } from "./ui/SocialLoginRow";
 
 // Animations (now in components/animations/)
 export { GradientBackground } from "./animations/GradientBackground";

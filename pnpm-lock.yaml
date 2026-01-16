@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@buf/echo-tracker_echo.bufbuild_es':
         specifier: latest
-        version: 2.10.2-20260109155009-227553d7565c.1(@bufbuild/protobuf@2.10.2)
+        version: 2.10.2-20260116174623-bf46540f2513.1(@bufbuild/protobuf@2.10.2)
       '@bufbuild/protobuf':
         specifier: ^2.10.2
         version: 2.10.2
@@ -101,6 +101,9 @@ importers:
       expo-local-authentication:
         specifier: ^17.0.8
         version: 17.0.8(expo@54.0.30)
+      expo-localization:
+        specifier: ~17.0.8
+        version: 17.0.8(expo@54.0.30)(react@19.1.0)
       expo-notifications:
         specifier: ^0.32.15
         version: 0.32.15(expo@54.0.30)(react-native@0.81.5(@babel/core@7.28.5)(@types/react@19.1.17)(react@19.1.0))(react@19.1.0)
@@ -735,8 +738,8 @@ packages:
     peerDependencies:
       '@bufbuild/protobuf': ^2.10.2
 
-  '@buf/echo-tracker_echo.bufbuild_es@2.10.2-20260109155009-227553d7565c.1':
-    resolution: {tarball: https://buf.build/gen/npm/v1/@buf/echo-tracker_echo.bufbuild_es/-/echo-tracker_echo.bufbuild_es-2.10.2-20260109155009-227553d7565c.1.tgz}
+  '@buf/echo-tracker_echo.bufbuild_es@2.10.2-20260116174623-bf46540f2513.1':
+    resolution: {tarball: https://buf.build/gen/npm/v1/@buf/echo-tracker_echo.bufbuild_es/-/echo-tracker_echo.bufbuild_es-2.10.2-20260116174623-bf46540f2513.1.tgz}
     peerDependencies:
       '@bufbuild/protobuf': ^2.10.2
 
@@ -4241,6 +4244,12 @@ packages:
     peerDependencies:
       expo: '*'
 
+  expo-localization@17.0.8:
+    resolution: {integrity: sha512-UrdwklZBDJ+t+ZszMMiE0SXZ2eJxcquCuQcl6EvGHM9K+e6YqKVRQ+w8qE+iIB3H75v2RJy6MHAaLK+Mqeo04g==}
+    peerDependencies:
+      expo: '*'
+      react: '*'
+
   expo-modules-autolinking@3.0.23:
     resolution: {integrity: sha512-YZnaE0G+52xftjH5nsIRaWsoVBY38SQCECclpdgLisdbRY/6Mzo7ndokjauOv3mpFmzMZACHyJNu1YSAffQwTg==}
     hasBin: true
@@ -6222,6 +6231,9 @@ packages:
     engines: {node: '>=18.0.0', npm: '>=8.0.0'}
     hasBin: true
 
+  rtl-detect@1.1.2:
+    resolution: {integrity: sha512-PGMBq03+TTG/p/cRB7HCLKJ1MgDIi07+QU1faSjiYRfmY5UsAttV9Hs08jDAHVwcOwmVLcSJkpwyfXszVjWfIQ==}
+
   run-parallel@1.2.0:
     resolution: {integrity: sha512-5l4VyZR86LZ/lDxZTR6jqL8AFE2S0IFLMP26AbjsLVADxHdhB/c0GUsH+y39UfCi3dzz8OlQuPmnaJOMoDHQBA==}
 
@@ -7729,7 +7741,7 @@ snapshots:
     dependencies:
       '@bufbuild/protobuf': 2.10.2
 
-  '@buf/echo-tracker_echo.bufbuild_es@2.10.2-20260109155009-227553d7565c.1(@bufbuild/protobuf@2.10.2)':
+  '@buf/echo-tracker_echo.bufbuild_es@2.10.2-20260116174623-bf46540f2513.1(@bufbuild/protobuf@2.10.2)':
     dependencies:
       '@buf/bufbuild_protovalidate.bufbuild_es': 2.10.2-20251209175733-2a1774d88802.1(@bufbuild/protobuf@2.10.2)
       '@buf/protocolbuffers_wellknowntypes.bufbuild_es': 2.10.2-20230331140314-f17e05fe4a76.1(@bufbuild/protobuf@2.10.2)
@@ -12266,6 +12278,12 @@ snapshots:
       expo: 54.0.30(@babel/core@7.28.5)(@expo/metro-runtime@6.1.2)(expo-router@6.0.21)(react-native@0.81.5(@babel/core@7.28.5)(@types/react@19.1.17)(react@19.1.0))(react@19.1.0)
       invariant: 2.2.4
 
+  expo-localization@17.0.8(expo@54.0.30)(react@19.1.0):
+    dependencies:
+      expo: 54.0.30(@babel/core@7.28.5)(@expo/metro-runtime@6.1.2)(expo-router@6.0.21)(react-native@0.81.5(@babel/core@7.28.5)(@types/react@19.1.17)(react@19.1.0))(react@19.1.0)
+      react: 19.1.0
+      rtl-detect: 1.1.2
+
   expo-modules-autolinking@3.0.23:
     dependencies:
       '@expo/spawn-async': 1.7.2
@@ -14749,6 +14767,8 @@ snapshots:
       '@rollup/rollup-win32-x64-gnu': 4.55.1
       '@rollup/rollup-win32-x64-msvc': 4.55.1
       fsevents: 2.3.3
+
+  rtl-detect@1.1.2: {}
 
   run-parallel@1.2.0:
     dependencies:

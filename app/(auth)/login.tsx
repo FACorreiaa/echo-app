@@ -10,6 +10,7 @@ import {
   GlassyCard,
   LoginTransition as LoginSuccessAnimation,
   PasswordField,
+  SocialLoginRow,
 } from "@/components";
 import { useLogin } from "@/lib/hooks/use-auth";
 import { getFriendlyErrorMessage } from "@/lib/utils/error-messages";
@@ -162,6 +163,17 @@ export default function LoginScreen() {
                 </YStack>
               </YStack>
             </GlassyCard>
+
+            {/* Social Login Options */}
+            <YStack marginTop={24}>
+              <SocialLoginRow
+                onGooglePress={() => console.log("Google login")}
+                onApplePress={() => console.log("Apple login")}
+                onFacebookPress={() => console.log("Facebook login")}
+                onXPress={() => console.log("X login")}
+                onPhonePress={() => console.log("Phone login")}
+              />
+            </YStack>
 
             <XStack justifyContent="center" marginTop={16}>
               <Link href="/forgot-password" asChild>

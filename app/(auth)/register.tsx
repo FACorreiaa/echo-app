@@ -10,6 +10,7 @@ import {
   GlassyCard,
   LoginTransition as LoginSuccessAnimation,
   PasswordField,
+  SocialLoginRow,
 } from "@/components";
 import { useRegister } from "@/lib/hooks/use-auth";
 import { getFriendlyErrorMessage } from "@/lib/utils/error-messages";
@@ -221,6 +222,17 @@ export default function RegisterScreen() {
                 </YStack>
               </YStack>
             </GlassyCard>
+
+            {/* Social Login Options */}
+            <YStack marginTop={24}>
+              <SocialLoginRow
+                onGooglePress={() => console.log("Google signup")}
+                onApplePress={() => console.log("Apple signup")}
+                onFacebookPress={() => console.log("Facebook signup")}
+                onXPress={() => console.log("X signup")}
+                onPhonePress={() => console.log("Phone signup")}
+              />
+            </YStack>
 
             <XStack justifyContent="center" marginTop={20} marginBottom={40}>
               <Text color="rgba(255, 255, 255, 0.7)" fontSize={14} fontFamily="$body">
