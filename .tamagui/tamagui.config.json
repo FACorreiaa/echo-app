@@ -29148,6 +29148,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark"
       },
       "dark_Button": {
@@ -29296,6 +29300,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_Button"
       },
       "dark_SliderTrackActive": {
@@ -29444,6 +29452,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_SliderTrackActive"
       },
       "dark_black_Button": {
@@ -29592,6 +29604,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_black_Button"
       },
       "dark_black_SliderTrackActive": {
@@ -29740,6 +29756,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_black_SliderTrackActive"
       },
       "dark_Card": {
@@ -29888,6 +29908,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_Card"
       },
       "dark_Input": {
@@ -30036,6 +30060,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_Input"
       },
       "dark_ListItem": {
@@ -30184,6 +30212,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_ListItem"
       },
       "dark_Progress": {
@@ -30332,6 +30364,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_Progress"
       },
       "dark_SelectTrigger": {
@@ -30480,6 +30516,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_SelectTrigger"
       },
       "dark_SliderTrack": {
@@ -30628,6 +30668,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_SliderTrack"
       },
       "dark_TextArea": {
@@ -30776,6 +30820,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_TextArea"
       },
       "dark_TooltipArrow": {
@@ -30924,6 +30972,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_TooltipArrow"
       },
       "dark_black_Card": {
@@ -31072,6 +31124,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_black_Card"
       },
       "dark_black_Input": {
@@ -31220,6 +31276,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_black_Input"
       },
       "dark_black_ListItem": {
@@ -31368,6 +31428,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_black_ListItem"
       },
       "dark_black_Progress": {
@@ -31516,6 +31580,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_black_Progress"
       },
       "dark_black_SelectTrigger": {
@@ -31664,6 +31732,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_black_SelectTrigger"
       },
       "dark_black_SliderTrack": {
@@ -31812,6 +31884,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_black_SliderTrack"
       },
       "dark_black_TextArea": {
@@ -31960,6 +32036,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_black_TextArea"
       },
       "dark_black_TooltipArrow": {
@@ -32108,6 +32188,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_black_TooltipArrow"
       },
       "dark_Checkbox": {
@@ -32256,6 +32340,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_Checkbox"
       },
       "dark_RadioGroupItem": {
@@ -32404,6 +32492,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_RadioGroupItem"
       },
       "dark_Switch": {
@@ -32552,6 +32644,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_Switch"
       },
       "dark_TooltipContent": {
@@ -32700,6 +32796,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_TooltipContent"
       },
       "dark_black_Checkbox": {
@@ -32848,6 +32948,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_black_Checkbox"
       },
       "dark_black_RadioGroupItem": {
@@ -32996,6 +33100,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_black_RadioGroupItem"
       },
       "dark_black_Switch": {
@@ -33144,6 +33252,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_black_Switch"
       },
       "dark_black_TooltipContent": {
@@ -33292,6 +33404,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_black_TooltipContent"
       },
       "dark_ProgressIndicator": {
@@ -33440,6 +33556,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_ProgressIndicator"
       },
       "dark_SliderThumb": {
@@ -33588,6 +33708,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_SliderThumb"
       },
       "dark_SwitchThumb": {
@@ -33736,6 +33860,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_SwitchThumb"
       },
       "dark_Tooltip": {
@@ -33884,6 +34012,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_Tooltip"
       },
       "dark_black_ProgressIndicator": {
@@ -34032,6 +34164,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_black_ProgressIndicator"
       },
       "dark_black_SliderThumb": {
@@ -34180,6 +34316,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_black_SliderThumb"
       },
       "dark_black_SwitchThumb": {
@@ -34328,6 +34468,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_black_SwitchThumb"
       },
       "dark_black_Tooltip": {
@@ -34476,6 +34620,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_black_Tooltip"
       },
       "dark_accent": {
@@ -34624,6 +34772,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_accent"
       },
       "dark_accent_Button": {
@@ -34772,6 +34924,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_accent_Button"
       },
       "dark_accent_SliderTrackActive": {
@@ -34920,6 +35076,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_accent_SliderTrackActive"
       },
       "dark_white_Button": {
@@ -35068,6 +35228,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_white_Button"
       },
       "dark_white_SliderTrackActive": {
@@ -35216,6 +35380,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_white_SliderTrackActive"
       },
       "dark_accent_Card": {
@@ -35364,6 +35532,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_accent_Card"
       },
       "dark_accent_Input": {
@@ -35512,6 +35684,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_accent_Input"
       },
       "dark_accent_ListItem": {
@@ -35660,6 +35836,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_accent_ListItem"
       },
       "dark_accent_Progress": {
@@ -35808,6 +35988,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_accent_Progress"
       },
       "dark_accent_SelectTrigger": {
@@ -35956,6 +36140,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_accent_SelectTrigger"
       },
       "dark_accent_SliderTrack": {
@@ -36104,6 +36292,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_accent_SliderTrack"
       },
       "dark_accent_TextArea": {
@@ -36252,6 +36444,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_accent_TextArea"
       },
       "dark_accent_TooltipArrow": {
@@ -36400,6 +36596,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_accent_TooltipArrow"
       },
       "dark_white_Card": {
@@ -36548,6 +36748,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_white_Card"
       },
       "dark_white_Input": {
@@ -36696,6 +36900,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_white_Input"
       },
       "dark_white_ListItem": {
@@ -36844,6 +37052,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_white_ListItem"
       },
       "dark_white_Progress": {
@@ -36992,6 +37204,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_white_Progress"
       },
       "dark_white_SelectTrigger": {
@@ -37140,6 +37356,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_white_SelectTrigger"
       },
       "dark_white_SliderTrack": {
@@ -37288,6 +37508,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_white_SliderTrack"
       },
       "dark_white_TextArea": {
@@ -37436,6 +37660,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_white_TextArea"
       },
       "dark_white_TooltipArrow": {
@@ -37584,6 +37812,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_white_TooltipArrow"
       },
       "dark_accent_Checkbox": {
@@ -37732,6 +37964,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_accent_Checkbox"
       },
       "dark_accent_RadioGroupItem": {
@@ -37880,6 +38116,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_accent_RadioGroupItem"
       },
       "dark_accent_Switch": {
@@ -38028,6 +38268,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_accent_Switch"
       },
       "dark_accent_TooltipContent": {
@@ -38176,6 +38420,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_accent_TooltipContent"
       },
       "dark_white_Checkbox": {
@@ -38324,6 +38572,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_white_Checkbox"
       },
       "dark_white_RadioGroupItem": {
@@ -38472,6 +38724,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_white_RadioGroupItem"
       },
       "dark_white_Switch": {
@@ -38620,6 +38876,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_white_Switch"
       },
       "dark_white_TooltipContent": {
@@ -38768,6 +39028,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_white_TooltipContent"
       },
       "dark_accent_ProgressIndicator": {
@@ -38916,6 +39180,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_accent_ProgressIndicator"
       },
       "dark_accent_SliderThumb": {
@@ -39064,6 +39332,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_accent_SliderThumb"
       },
       "dark_accent_SwitchThumb": {
@@ -39212,6 +39484,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_accent_SwitchThumb"
       },
       "dark_accent_Tooltip": {
@@ -39360,6 +39636,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_accent_Tooltip"
       },
       "dark_black": {
@@ -39508,6 +39788,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_black"
       },
       "dark_blue": {
@@ -39656,6 +39940,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_blue"
       },
       "dark_blue_Button": {
@@ -39804,6 +40092,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_blue_Button"
       },
       "dark_blue_SliderTrackActive": {
@@ -39952,6 +40244,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_blue_SliderTrackActive"
       },
       "dark_blue_Card": {
@@ -40100,6 +40396,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_blue_Card"
       },
       "dark_blue_Input": {
@@ -40248,6 +40548,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_blue_Input"
       },
       "dark_blue_ListItem": {
@@ -40396,6 +40700,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_blue_ListItem"
       },
       "dark_blue_Progress": {
@@ -40544,6 +40852,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_blue_Progress"
       },
       "dark_blue_SelectTrigger": {
@@ -40692,6 +41004,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_blue_SelectTrigger"
       },
       "dark_blue_SliderTrack": {
@@ -40840,6 +41156,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_blue_SliderTrack"
       },
       "dark_blue_TextArea": {
@@ -40988,6 +41308,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_blue_TextArea"
       },
       "dark_blue_TooltipArrow": {
@@ -41136,6 +41460,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_blue_TooltipArrow"
       },
       "dark_blue_Checkbox": {
@@ -41284,6 +41612,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_blue_Checkbox"
       },
       "dark_blue_RadioGroupItem": {
@@ -41432,6 +41764,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_blue_RadioGroupItem"
       },
       "dark_blue_Switch": {
@@ -41580,6 +41916,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_blue_Switch"
       },
       "dark_blue_TooltipContent": {
@@ -41728,6 +42068,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_blue_TooltipContent"
       },
       "dark_blue_ProgressIndicator": {
@@ -41876,6 +42220,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_blue_ProgressIndicator"
       },
       "dark_blue_SliderThumb": {
@@ -42024,6 +42372,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_blue_SliderThumb"
       },
       "dark_blue_SwitchThumb": {
@@ -42172,6 +42524,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_blue_SwitchThumb"
       },
       "dark_blue_Tooltip": {
@@ -42320,6 +42676,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_blue_Tooltip"
       },
       "dark_green": {
@@ -42468,6 +42828,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_green"
       },
       "dark_green_Button": {
@@ -42616,6 +42980,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_green_Button"
       },
       "dark_green_SliderTrackActive": {
@@ -42764,6 +43132,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_green_SliderTrackActive"
       },
       "dark_green_Card": {
@@ -42912,6 +43284,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_green_Card"
       },
       "dark_green_Input": {
@@ -43060,6 +43436,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_green_Input"
       },
       "dark_green_ListItem": {
@@ -43208,6 +43588,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_green_ListItem"
       },
       "dark_green_Progress": {
@@ -43356,6 +43740,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_green_Progress"
       },
       "dark_green_SelectTrigger": {
@@ -43504,6 +43892,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_green_SelectTrigger"
       },
       "dark_green_SliderTrack": {
@@ -43652,6 +44044,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_green_SliderTrack"
       },
       "dark_green_TextArea": {
@@ -43800,6 +44196,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_green_TextArea"
       },
       "dark_green_TooltipArrow": {
@@ -43948,6 +44348,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_green_TooltipArrow"
       },
       "dark_green_Checkbox": {
@@ -44096,6 +44500,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_green_Checkbox"
       },
       "dark_green_RadioGroupItem": {
@@ -44244,6 +44652,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_green_RadioGroupItem"
       },
       "dark_green_Switch": {
@@ -44392,6 +44804,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_green_Switch"
       },
       "dark_green_TooltipContent": {
@@ -44540,6 +44956,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_green_TooltipContent"
       },
       "dark_green_ProgressIndicator": {
@@ -44688,6 +45108,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_green_ProgressIndicator"
       },
       "dark_green_SliderThumb": {
@@ -44836,6 +45260,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_green_SliderThumb"
       },
       "dark_green_SwitchThumb": {
@@ -44984,6 +45412,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_green_SwitchThumb"
       },
       "dark_green_Tooltip": {
@@ -45132,6 +45564,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_green_Tooltip"
       },
       "dark_red": {
@@ -45280,6 +45716,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_red"
       },
       "dark_red_Button": {
@@ -45428,6 +45868,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_red_Button"
       },
       "dark_red_SliderTrackActive": {
@@ -45576,6 +46020,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_red_SliderTrackActive"
       },
       "dark_red_Card": {
@@ -45724,6 +46172,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_red_Card"
       },
       "dark_red_Input": {
@@ -45872,6 +46324,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_red_Input"
       },
       "dark_red_ListItem": {
@@ -46020,6 +46476,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_red_ListItem"
       },
       "dark_red_Progress": {
@@ -46168,6 +46628,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_red_Progress"
       },
       "dark_red_SelectTrigger": {
@@ -46316,6 +46780,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_red_SelectTrigger"
       },
       "dark_red_SliderTrack": {
@@ -46464,6 +46932,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_red_SliderTrack"
       },
       "dark_red_TextArea": {
@@ -46612,6 +47084,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_red_TextArea"
       },
       "dark_red_TooltipArrow": {
@@ -46760,6 +47236,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_red_TooltipArrow"
       },
       "dark_red_Checkbox": {
@@ -46908,6 +47388,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_red_Checkbox"
       },
       "dark_red_RadioGroupItem": {
@@ -47056,6 +47540,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_red_RadioGroupItem"
       },
       "dark_red_Switch": {
@@ -47204,6 +47692,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_red_Switch"
       },
       "dark_red_TooltipContent": {
@@ -47352,6 +47844,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_red_TooltipContent"
       },
       "dark_red_ProgressIndicator": {
@@ -47500,6 +47996,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_red_ProgressIndicator"
       },
       "dark_red_SliderThumb": {
@@ -47648,6 +48148,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_red_SliderThumb"
       },
       "dark_red_SwitchThumb": {
@@ -47796,6 +48300,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_red_SwitchThumb"
       },
       "dark_red_Tooltip": {
@@ -47944,6 +48452,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_red_Tooltip"
       },
       "dark_white": {
@@ -48092,6 +48604,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_white"
       },
       "dark_white_ProgressIndicator": {
@@ -48240,6 +48756,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_white_ProgressIndicator"
       },
       "dark_white_SliderThumb": {
@@ -48388,6 +48908,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_white_SliderThumb"
       },
       "dark_white_SwitchThumb": {
@@ -48536,6 +49060,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_white_SwitchThumb"
       },
       "dark_white_Tooltip": {
@@ -48684,6 +49212,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_white_Tooltip"
       },
       "dark_yellow": {
@@ -48832,6 +49364,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_yellow"
       },
       "dark_yellow_Button": {
@@ -48980,6 +49516,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_yellow_Button"
       },
       "dark_yellow_SliderTrackActive": {
@@ -49128,6 +49668,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_yellow_SliderTrackActive"
       },
       "dark_yellow_Card": {
@@ -49276,6 +49820,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_yellow_Card"
       },
       "dark_yellow_Input": {
@@ -49424,6 +49972,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_yellow_Input"
       },
       "dark_yellow_ListItem": {
@@ -49572,6 +50124,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_yellow_ListItem"
       },
       "dark_yellow_Progress": {
@@ -49720,6 +50276,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_yellow_Progress"
       },
       "dark_yellow_SelectTrigger": {
@@ -49868,6 +50428,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_yellow_SelectTrigger"
       },
       "dark_yellow_SliderTrack": {
@@ -50016,6 +50580,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_yellow_SliderTrack"
       },
       "dark_yellow_TextArea": {
@@ -50164,6 +50732,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_yellow_TextArea"
       },
       "dark_yellow_TooltipArrow": {
@@ -50312,6 +50884,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_yellow_TooltipArrow"
       },
       "dark_yellow_Checkbox": {
@@ -50460,6 +51036,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_yellow_Checkbox"
       },
       "dark_yellow_RadioGroupItem": {
@@ -50608,6 +51188,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_yellow_RadioGroupItem"
       },
       "dark_yellow_Switch": {
@@ -50756,6 +51340,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_yellow_Switch"
       },
       "dark_yellow_TooltipContent": {
@@ -50904,6 +51492,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_yellow_TooltipContent"
       },
       "dark_yellow_ProgressIndicator": {
@@ -51052,6 +51644,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_yellow_ProgressIndicator"
       },
       "dark_yellow_SliderThumb": {
@@ -51200,6 +51796,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_yellow_SliderThumb"
       },
       "dark_yellow_SwitchThumb": {
@@ -51348,6 +51948,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_yellow_SwitchThumb"
       },
       "dark_yellow_Tooltip": {
@@ -51496,6 +52100,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(255, 255, 255, 0.05)",
+        "formInputBorder": "rgba(255, 255, 255, 0.15)",
+        "formInputPlaceholder": "#636366",
+        "formLabel": "#ffffff",
         "id": "dark_yellow_Tooltip"
       },
       "light": {
@@ -51644,6 +52252,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light"
       },
       "light_Button": {
@@ -51792,6 +52404,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_Button"
       },
       "light_SliderTrackActive": {
@@ -51940,6 +52556,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_SliderTrackActive"
       },
       "light_white_Button": {
@@ -52088,6 +52708,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_white_Button"
       },
       "light_white_SliderTrackActive": {
@@ -52236,6 +52860,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_white_SliderTrackActive"
       },
       "light_Card": {
@@ -52384,6 +53012,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_Card"
       },
       "light_Input": {
@@ -52532,6 +53164,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_Input"
       },
       "light_ListItem": {
@@ -52680,6 +53316,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_ListItem"
       },
       "light_Progress": {
@@ -52828,6 +53468,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_Progress"
       },
       "light_SelectTrigger": {
@@ -52976,6 +53620,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_SelectTrigger"
       },
       "light_SliderTrack": {
@@ -53124,6 +53772,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_SliderTrack"
       },
       "light_TextArea": {
@@ -53272,6 +53924,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_TextArea"
       },
       "light_TooltipArrow": {
@@ -53420,6 +54076,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_TooltipArrow"
       },
       "light_white_Card": {
@@ -53568,6 +54228,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_white_Card"
       },
       "light_white_Input": {
@@ -53716,6 +54380,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_white_Input"
       },
       "light_white_ListItem": {
@@ -53864,6 +54532,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_white_ListItem"
       },
       "light_white_Progress": {
@@ -54012,6 +54684,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_white_Progress"
       },
       "light_white_SelectTrigger": {
@@ -54160,6 +54836,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_white_SelectTrigger"
       },
       "light_white_SliderTrack": {
@@ -54308,6 +54988,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_white_SliderTrack"
       },
       "light_white_TextArea": {
@@ -54456,6 +55140,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_white_TextArea"
       },
       "light_white_TooltipArrow": {
@@ -54604,6 +55292,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_white_TooltipArrow"
       },
       "light_Checkbox": {
@@ -54752,6 +55444,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_Checkbox"
       },
       "light_RadioGroupItem": {
@@ -54900,6 +55596,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_RadioGroupItem"
       },
       "light_Switch": {
@@ -55048,6 +55748,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_Switch"
       },
       "light_TooltipContent": {
@@ -55196,6 +55900,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_TooltipContent"
       },
       "light_white_Checkbox": {
@@ -55344,6 +56052,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_white_Checkbox"
       },
       "light_white_RadioGroupItem": {
@@ -55492,6 +56204,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_white_RadioGroupItem"
       },
       "light_white_Switch": {
@@ -55640,6 +56356,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_white_Switch"
       },
       "light_white_TooltipContent": {
@@ -55788,6 +56508,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_white_TooltipContent"
       },
       "light_ProgressIndicator": {
@@ -55936,6 +56660,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_ProgressIndicator"
       },
       "light_SliderThumb": {
@@ -56084,6 +56812,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_SliderThumb"
       },
       "light_SwitchThumb": {
@@ -56232,6 +56964,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_SwitchThumb"
       },
       "light_Tooltip": {
@@ -56380,6 +57116,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_Tooltip"
       },
       "light_white_ProgressIndicator": {
@@ -56528,6 +57268,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_white_ProgressIndicator"
       },
       "light_white_SliderThumb": {
@@ -56676,6 +57420,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_white_SliderThumb"
       },
       "light_white_SwitchThumb": {
@@ -56824,6 +57572,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_white_SwitchThumb"
       },
       "light_white_Tooltip": {
@@ -56972,6 +57724,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_white_Tooltip"
       },
       "light_accent": {
@@ -57120,6 +57876,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_accent"
       },
       "light_accent_Button": {
@@ -57268,6 +58028,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_accent_Button"
       },
       "light_accent_SliderTrackActive": {
@@ -57416,6 +58180,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_accent_SliderTrackActive"
       },
       "light_black_Button": {
@@ -57564,6 +58332,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_black_Button"
       },
       "light_black_SliderTrackActive": {
@@ -57712,6 +58484,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_black_SliderTrackActive"
       },
       "light_accent_Card": {
@@ -57860,6 +58636,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_accent_Card"
       },
       "light_accent_Input": {
@@ -58008,6 +58788,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_accent_Input"
       },
       "light_accent_ListItem": {
@@ -58156,6 +58940,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_accent_ListItem"
       },
       "light_accent_Progress": {
@@ -58304,6 +59092,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_accent_Progress"
       },
       "light_accent_SelectTrigger": {
@@ -58452,6 +59244,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_accent_SelectTrigger"
       },
       "light_accent_SliderTrack": {
@@ -58600,6 +59396,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_accent_SliderTrack"
       },
       "light_accent_TextArea": {
@@ -58748,6 +59548,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_accent_TextArea"
       },
       "light_accent_TooltipArrow": {
@@ -58896,6 +59700,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_accent_TooltipArrow"
       },
       "light_black_Card": {
@@ -59044,6 +59852,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_black_Card"
       },
       "light_black_Input": {
@@ -59192,6 +60004,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_black_Input"
       },
       "light_black_ListItem": {
@@ -59340,6 +60156,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_black_ListItem"
       },
       "light_black_Progress": {
@@ -59488,6 +60308,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_black_Progress"
       },
       "light_black_SelectTrigger": {
@@ -59636,6 +60460,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_black_SelectTrigger"
       },
       "light_black_SliderTrack": {
@@ -59784,6 +60612,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_black_SliderTrack"
       },
       "light_black_TextArea": {
@@ -59932,6 +60764,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_black_TextArea"
       },
       "light_black_TooltipArrow": {
@@ -60080,6 +60916,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_black_TooltipArrow"
       },
       "light_accent_Checkbox": {
@@ -60228,6 +61068,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_accent_Checkbox"
       },
       "light_accent_RadioGroupItem": {
@@ -60376,6 +61220,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_accent_RadioGroupItem"
       },
       "light_accent_Switch": {
@@ -60524,6 +61372,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_accent_Switch"
       },
       "light_accent_TooltipContent": {
@@ -60672,6 +61524,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_accent_TooltipContent"
       },
       "light_black_Checkbox": {
@@ -60820,6 +61676,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_black_Checkbox"
       },
       "light_black_RadioGroupItem": {
@@ -60968,6 +61828,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_black_RadioGroupItem"
       },
       "light_black_Switch": {
@@ -61116,6 +61980,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_black_Switch"
       },
       "light_black_TooltipContent": {
@@ -61264,6 +62132,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_black_TooltipContent"
       },
       "light_accent_ProgressIndicator": {
@@ -61412,6 +62284,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_accent_ProgressIndicator"
       },
       "light_accent_SliderThumb": {
@@ -61560,6 +62436,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_accent_SliderThumb"
       },
       "light_accent_SwitchThumb": {
@@ -61708,6 +62588,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_accent_SwitchThumb"
       },
       "light_accent_Tooltip": {
@@ -61856,6 +62740,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_accent_Tooltip"
       },
       "light_black": {
@@ -62004,6 +62892,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_black"
       },
       "light_black_ProgressIndicator": {
@@ -62152,6 +63044,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_black_ProgressIndicator"
       },
       "light_black_SliderThumb": {
@@ -62300,6 +63196,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_black_SliderThumb"
       },
       "light_black_SwitchThumb": {
@@ -62448,6 +63348,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_black_SwitchThumb"
       },
       "light_black_Tooltip": {
@@ -62596,6 +63500,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_black_Tooltip"
       },
       "light_blue": {
@@ -62744,6 +63652,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_blue"
       },
       "light_blue_Button": {
@@ -62892,6 +63804,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_blue_Button"
       },
       "light_blue_SliderTrackActive": {
@@ -63040,6 +63956,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_blue_SliderTrackActive"
       },
       "light_blue_Card": {
@@ -63188,6 +64108,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_blue_Card"
       },
       "light_blue_Input": {
@@ -63336,6 +64260,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_blue_Input"
       },
       "light_blue_ListItem": {
@@ -63484,6 +64412,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_blue_ListItem"
       },
       "light_blue_Progress": {
@@ -63632,6 +64564,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_blue_Progress"
       },
       "light_blue_SelectTrigger": {
@@ -63780,6 +64716,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_blue_SelectTrigger"
       },
       "light_blue_SliderTrack": {
@@ -63928,6 +64868,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_blue_SliderTrack"
       },
       "light_blue_TextArea": {
@@ -64076,6 +65020,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_blue_TextArea"
       },
       "light_blue_TooltipArrow": {
@@ -64224,6 +65172,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_blue_TooltipArrow"
       },
       "light_blue_Checkbox": {
@@ -64372,6 +65324,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_blue_Checkbox"
       },
       "light_blue_RadioGroupItem": {
@@ -64520,6 +65476,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_blue_RadioGroupItem"
       },
       "light_blue_Switch": {
@@ -64668,6 +65628,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_blue_Switch"
       },
       "light_blue_TooltipContent": {
@@ -64816,6 +65780,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_blue_TooltipContent"
       },
       "light_blue_ProgressIndicator": {
@@ -64964,6 +65932,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_blue_ProgressIndicator"
       },
       "light_blue_SliderThumb": {
@@ -65112,6 +66084,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_blue_SliderThumb"
       },
       "light_blue_SwitchThumb": {
@@ -65260,6 +66236,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_blue_SwitchThumb"
       },
       "light_blue_Tooltip": {
@@ -65408,6 +66388,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_blue_Tooltip"
       },
       "light_green": {
@@ -65556,6 +66540,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_green"
       },
       "light_green_Button": {
@@ -65704,6 +66692,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_green_Button"
       },
       "light_green_SliderTrackActive": {
@@ -65852,6 +66844,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_green_SliderTrackActive"
       },
       "light_green_Card": {
@@ -66000,6 +66996,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_green_Card"
       },
       "light_green_Input": {
@@ -66148,6 +67148,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_green_Input"
       },
       "light_green_ListItem": {
@@ -66296,6 +67300,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_green_ListItem"
       },
       "light_green_Progress": {
@@ -66444,6 +67452,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_green_Progress"
       },
       "light_green_SelectTrigger": {
@@ -66592,6 +67604,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_green_SelectTrigger"
       },
       "light_green_SliderTrack": {
@@ -66740,6 +67756,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_green_SliderTrack"
       },
       "light_green_TextArea": {
@@ -66888,6 +67908,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_green_TextArea"
       },
       "light_green_TooltipArrow": {
@@ -67036,6 +68060,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_green_TooltipArrow"
       },
       "light_green_Checkbox": {
@@ -67184,6 +68212,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_green_Checkbox"
       },
       "light_green_RadioGroupItem": {
@@ -67332,6 +68364,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_green_RadioGroupItem"
       },
       "light_green_Switch": {
@@ -67480,6 +68516,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_green_Switch"
       },
       "light_green_TooltipContent": {
@@ -67628,6 +68668,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_green_TooltipContent"
       },
       "light_green_ProgressIndicator": {
@@ -67776,6 +68820,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_green_ProgressIndicator"
       },
       "light_green_SliderThumb": {
@@ -67924,6 +68972,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_green_SliderThumb"
       },
       "light_green_SwitchThumb": {
@@ -68072,6 +69124,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_green_SwitchThumb"
       },
       "light_green_Tooltip": {
@@ -68220,6 +69276,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_green_Tooltip"
       },
       "light_red": {
@@ -68368,6 +69428,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_red"
       },
       "light_red_Button": {
@@ -68516,6 +69580,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_red_Button"
       },
       "light_red_SliderTrackActive": {
@@ -68664,6 +69732,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_red_SliderTrackActive"
       },
       "light_red_Card": {
@@ -68812,6 +69884,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_red_Card"
       },
       "light_red_Input": {
@@ -68960,6 +70036,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_red_Input"
       },
       "light_red_ListItem": {
@@ -69108,6 +70188,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_red_ListItem"
       },
       "light_red_Progress": {
@@ -69256,6 +70340,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_red_Progress"
       },
       "light_red_SelectTrigger": {
@@ -69404,6 +70492,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_red_SelectTrigger"
       },
       "light_red_SliderTrack": {
@@ -69552,6 +70644,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_red_SliderTrack"
       },
       "light_red_TextArea": {
@@ -69700,6 +70796,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_red_TextArea"
       },
       "light_red_TooltipArrow": {
@@ -69848,6 +70948,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_red_TooltipArrow"
       },
       "light_red_Checkbox": {
@@ -69996,6 +71100,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_red_Checkbox"
       },
       "light_red_RadioGroupItem": {
@@ -70144,6 +71252,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_red_RadioGroupItem"
       },
       "light_red_Switch": {
@@ -70292,6 +71404,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_red_Switch"
       },
       "light_red_TooltipContent": {
@@ -70440,6 +71556,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_red_TooltipContent"
       },
       "light_red_ProgressIndicator": {
@@ -70588,6 +71708,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_red_ProgressIndicator"
       },
       "light_red_SliderThumb": {
@@ -70736,6 +71860,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_red_SliderThumb"
       },
       "light_red_SwitchThumb": {
@@ -70884,6 +72012,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_red_SwitchThumb"
       },
       "light_red_Tooltip": {
@@ -71032,6 +72164,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_red_Tooltip"
       },
       "light_white": {
@@ -71180,6 +72316,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_white"
       },
       "light_yellow": {
@@ -71328,6 +72468,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_yellow"
       },
       "light_yellow_Button": {
@@ -71476,6 +72620,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_yellow_Button"
       },
       "light_yellow_SliderTrackActive": {
@@ -71624,6 +72772,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_yellow_SliderTrackActive"
       },
       "light_yellow_Card": {
@@ -71772,6 +72924,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_yellow_Card"
       },
       "light_yellow_Input": {
@@ -71920,6 +73076,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_yellow_Input"
       },
       "light_yellow_ListItem": {
@@ -72068,6 +73228,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_yellow_ListItem"
       },
       "light_yellow_Progress": {
@@ -72216,6 +73380,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_yellow_Progress"
       },
       "light_yellow_SelectTrigger": {
@@ -72364,6 +73532,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_yellow_SelectTrigger"
       },
       "light_yellow_SliderTrack": {
@@ -72512,6 +73684,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_yellow_SliderTrack"
       },
       "light_yellow_TextArea": {
@@ -72660,6 +73836,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_yellow_TextArea"
       },
       "light_yellow_TooltipArrow": {
@@ -72808,6 +73988,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_yellow_TooltipArrow"
       },
       "light_yellow_Checkbox": {
@@ -72956,6 +74140,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_yellow_Checkbox"
       },
       "light_yellow_RadioGroupItem": {
@@ -73104,6 +74292,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_yellow_RadioGroupItem"
       },
       "light_yellow_Switch": {
@@ -73252,6 +74444,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_yellow_Switch"
       },
       "light_yellow_TooltipContent": {
@@ -73400,6 +74596,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_yellow_TooltipContent"
       },
       "light_yellow_ProgressIndicator": {
@@ -73548,6 +74748,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_yellow_ProgressIndicator"
       },
       "light_yellow_SliderThumb": {
@@ -73696,6 +74900,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_yellow_SliderThumb"
       },
       "light_yellow_SwitchThumb": {
@@ -73844,6 +75052,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_yellow_SwitchThumb"
       },
       "light_yellow_Tooltip": {
@@ -73992,6 +75204,10 @@
         "healthGood": "#22c55e",
         "healthWarning": "#f59e0b",
         "healthCritical": "#ef4444",
+        "formInputBackground": "rgba(0, 0, 0, 0.03)",
+        "formInputBorder": "rgba(0, 0, 0, 0.1)",
+        "formInputPlaceholder": "#8E8E93",
+        "formLabel": "#0f172a",
         "id": "light_yellow_Tooltip"
       }
     },
