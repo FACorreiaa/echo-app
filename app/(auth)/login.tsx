@@ -15,16 +15,19 @@ import { useLogin } from "@/lib/hooks/use-auth";
 import { getFriendlyErrorMessage } from "@/lib/utils/error-messages";
 
 const Title = styled(Text, {
-  color: "$color",
+  color: "white",
   fontSize: 32,
   fontWeight: "900",
   fontFamily: "$heading",
   textAlign: "center",
   marginBottom: 8,
+  textShadowColor: "rgba(0, 0, 0, 0.3)",
+  textShadowOffset: { width: 0, height: 1 },
+  textShadowRadius: 4,
 });
 
 const Subtitle = styled(Text, {
-  color: "$secondaryText",
+  color: "rgba(255, 255, 255, 0.8)",
   fontSize: 16,
   fontFamily: "$body",
   textAlign: "center",
@@ -160,8 +163,16 @@ export default function LoginScreen() {
               </YStack>
             </GlassyCard>
 
-            <XStack justifyContent="center" marginTop={20}>
-              <Text color="$secondaryText" fontSize={14} fontFamily="$body">
+            <XStack justifyContent="center" marginTop={16}>
+              <Link href="/forgot-password" asChild>
+                <Text color="rgba(255, 255, 255, 0.7)" fontSize={14} fontFamily="$body">
+                  Forgot your password?
+                </Text>
+              </Link>
+            </XStack>
+
+            <XStack justifyContent="center" marginTop={12}>
+              <Text color="rgba(255, 255, 255, 0.7)" fontSize={14} fontFamily="$body">
                 Don&apos;t have an account?{" "}
               </Text>
               <Link href="/register" asChild>

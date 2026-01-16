@@ -5,18 +5,20 @@ import { GlassyButton } from "@/components/ui/GlassyButton";
 import { GlassyCard } from "@/components/ui/GlassyCard";
 
 const Title = styled(Text, {
-  color: "$color",
+  color: "white",
   fontSize: 64,
   fontFamily: "$heading",
   textAlign: "center",
   marginBottom: 16,
   lineHeight: 72,
+  textShadowColor: "rgba(0, 0, 0, 0.2)",
+  textShadowOffset: { width: 0, height: 1 },
+  textShadowRadius: 4,
   $sm: { fontSize: 48, lineHeight: 56 },
 });
 
 const Subtitle = styled(Text, {
-  color: "$color", // Rely on opacity less, or use a specific secondary color
-  opacity: 0.85, // Increased from 0.7 for better legibility
+  color: "rgba(255, 255, 255, 0.9)",
   fontSize: 20,
   fontFamily: "$body",
   textAlign: "center",
@@ -27,24 +29,26 @@ const Subtitle = styled(Text, {
 });
 
 const SectionTitle = styled(Text, {
-  color: "$color",
+  color: "white",
   fontSize: 36,
   fontFamily: "$heading",
   textAlign: "center",
   marginBottom: 50,
   marginTop: 100,
+  textShadowColor: "rgba(0, 0, 0, 0.2)",
+  textShadowOffset: { width: 0, height: 1 },
+  textShadowRadius: 4,
 });
 
 const CardTitle = styled(Text, {
-  color: "$color",
+  color: "white",
   fontSize: 20,
   fontFamily: "$heading",
   marginBottom: 8,
 });
 
 const CardText = styled(Text, {
-  color: "$color",
-  opacity: 0.9, // Increased from 0.8 for better contrast
+  color: "rgba(255, 255, 255, 0.85)",
   fontSize: 16,
   fontFamily: "$body",
   lineHeight: 24,
@@ -109,7 +113,7 @@ export default function LandingScreen() {
                 </YStack>
               </YStack>
 
-              <Text color="$color" opacity={0.6} fontSize={12} marginTop={10}>
+              <Text color="rgba(255, 255, 255, 0.7)" fontSize={12} marginTop={10}>
                 No credit card required. 14-day free trial.
               </Text>
             </YStack>

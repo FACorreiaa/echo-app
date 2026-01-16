@@ -15,16 +15,19 @@ import { useRegister } from "@/lib/hooks/use-auth";
 import { getFriendlyErrorMessage } from "@/lib/utils/error-messages";
 
 const Title = styled(Text, {
-  color: "$color",
+  color: "white",
   fontSize: 32,
   fontWeight: "900",
   fontFamily: "$heading",
   textAlign: "center",
   marginBottom: 8,
+  textShadowColor: "rgba(0, 0, 0, 0.3)",
+  textShadowOffset: { width: 0, height: 1 },
+  textShadowRadius: 4,
 });
 
 const Subtitle = styled(Text, {
-  color: "$secondaryText",
+  color: "rgba(255, 255, 255, 0.8)",
   fontSize: 16,
   fontFamily: "$body",
   textAlign: "center",
@@ -220,7 +223,7 @@ export default function RegisterScreen() {
             </GlassyCard>
 
             <XStack justifyContent="center" marginTop={20} marginBottom={40}>
-              <Text color="$secondaryText" fontSize={14} fontFamily="$body">
+              <Text color="rgba(255, 255, 255, 0.7)" fontSize={14} fontFamily="$body">
                 Already have an account?{" "}
               </Text>
               <Link href="/login" asChild>
