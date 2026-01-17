@@ -8,8 +8,9 @@ import {
   Trash2,
 } from "@tamagui/lucide-icons";
 import { useLocalSearchParams, useRouter } from "expo-router";
-import React, { useMemo, useState } from "react";
-import { Alert, FlatList, Pressable } from "react-native";
+import React, { useCallback, useMemo, useState } from "react";
+import { Alert, Pressable } from "react-native";
+import { FlashList } from "@shopify/flash-list";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Button, H2, Input, Spinner, Text, XStack, YStack } from "tamagui";
 
@@ -93,76 +94,81 @@ export default function TransactionsScreen() {
     router.replace("/(tabs)/transactions");
   };
 
-  const renderTransaction = ({
-    item,
-  }: {
-    item: {
-      id: string;
-      description: string;
-      amount?: { amountMinor: bigint; currencyCode: string };
-      categoryId?: string;
-      postedAt?: { seconds: bigint };
-    };
-  }) => {
-    const amount = item.amount ? Number(item.amount.amountMinor) / 100 : 0;
+  const renderTransaction = useCallback(
+    ({
+      item,
+    }: {
+      item: {
+        id: string;
+        description: string;
+        amount?: { amountMinor: bigint; currencyCode: string };
+        categoryId?: string;
+        postedAt?: { seconds: bigint };
+      };
+    }) => {
+      const amount = item.amount ? Number(item.amount.amountMinor) / 100 : 0;
 
-    return (
-      <Pressable
-        onLongPress={() =>
-          setSelectedTransaction({
-            id: item.id,
-            description: item.description,
-            categoryId: item.categoryId,
-          })
-        }
-        delayLongPress={300}
-      >
-        <GlassyCard marginBottom="$3">
-          <XStack justifyContent="space-between" alignItems="center">
-            <YStack flex={1} gap="$1">
-              <Text fontWeight="600" numberOfLines={1} color="$color">
-                {item.description}
-              </Text>
-              <XStack gap="$2" alignItems="center">
-                <Calendar size={12} color="$secondaryText" />
-                <Text fontSize={12} color="$secondaryText">
-                  {formatDate(item.postedAt)}
+      return (
+        <Pressable
+          onLongPress={() =>
+            setSelectedTransaction({
+              id: item.id,
+              description: item.description,
+              categoryId: item.categoryId,
+            })
+          }
+          delayLongPress={300}
+        >
+          <GlassyCard marginBottom="$3">
+            <XStack justifyContent="space-between" alignItems="center">
+              <YStack flex={1} gap="$1">
+                <Text fontWeight="600" numberOfLines={1} color="$color">
+                  {item.description}
                 </Text>
-                {item.categoryId && (
-                  <>
-                    <Text color="$secondaryText">•</Text>
-                    <Text fontSize={12} color="$secondaryText">
-                      {item.categoryId}
-                    </Text>
-                  </>
-                )}
+                <XStack gap="$2" alignItems="center">
+                  <Calendar size={12} color="$secondaryText" />
+                  <Text fontSize={12} color="$secondaryText">
+                    {formatDate(item.postedAt)}
+                  </Text>
+                  {item.categoryId && (
+                    <>
+                      <Text color="$secondaryText">•</Text>
+                      <Text fontSize={12} color="$secondaryText">
+                        {item.categoryId}
+                      </Text>
+                    </>
+                  )}
+                </XStack>
+              </YStack>
+              <XStack alignItems="center" gap="$2">
+                <Button
+                  size="$2"
+                  circular
+                  chromeless
+                  icon={<Bookmark size={16} />}
+                  onPress={() =>
+                    setSelectedTransaction({
+                      id: item.id,
+                      description: item.description,
+                      categoryId: item.categoryId,
+                    })
+                  }
+                />
+                <Text fontWeight="700" fontSize={16} color={amount >= 0 ? "$green10" : "$red10"}>
+                  {item.amount
+                    ? formatAmount(item.amount.amountMinor, item.amount.currencyCode)
+                    : "€0.00"}
+                </Text>
               </XStack>
-            </YStack>
-            <XStack alignItems="center" gap="$2">
-              <Button
-                size="$2"
-                circular
-                chromeless
-                icon={<Bookmark size={16} />}
-                onPress={() =>
-                  setSelectedTransaction({
-                    id: item.id,
-                    description: item.description,
-                    categoryId: item.categoryId,
-                  })
-                }
-              />
-              <Text fontWeight="700" fontSize={16} color={amount >= 0 ? "$green10" : "$red10"}>
-                {item.amount
-                  ? formatAmount(item.amount.amountMinor, item.amount.currencyCode)
-                  : "€0.00"}
-              </Text>
             </XStack>
-          </XStack>
-        </GlassyCard>
-      </Pressable>
-    );
-  };
+          </GlassyCard>
+        </Pressable>
+      );
+    },
+    [setSelectedTransaction],
+  );
+
+  const keyExtractor = useCallback((item: { id: string }) => item.id, []);
 
   const handleEndReached = () => {
     if (hasNextPage && !isFetchingNextPage) {
@@ -292,10 +298,12 @@ export default function TransactionsScreen() {
           )}
         </YStack>
       ) : (
-        <FlatList
+        <FlashList
           data={filteredTransactions}
           renderItem={renderTransaction}
-          keyExtractor={(item) => item.id}
+          // @ts-ignore - estimatedItemSize is valid but types may be outdated
+          estimatedItemSize={80}
+          keyExtractor={keyExtractor}
           contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 24 }}
           showsVerticalScrollIndicator={false}
           onEndReached={handleEndReached}

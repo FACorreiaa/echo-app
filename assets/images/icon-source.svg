@@ -1,0 +1,13 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Pure black background for OLED screens -->
+  <rect width="1024" height="1024" fill="#000000" />
+  
+  <!-- Hexagon vault -->
+  <path d="M512 179L798.871 345V677L512 843L225.129 677V345L512 179Z" 
+        stroke="#2DA6FA" stroke-width="30" stroke-linejoin="round" />
+  
+  <!-- Three-bar pulse representing the "E" -->
+  <rect x="332" y="410" width="360" height="40" rx="20" fill="#FFFFFF" />
+  <rect x="332" y="492" width="230" height="40" rx="20" fill="#2DA6FA" />
+  <rect x="332" y="574" width="310" height="40" rx="20" fill="#FFFFFF" />
+</svg>

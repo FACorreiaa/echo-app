@@ -46,3 +46,6 @@ app-example
 .vscode/
 .idea/
 docs/design
+
+# Bundle exports
+.expo-export/

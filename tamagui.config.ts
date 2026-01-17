@@ -78,80 +78,120 @@ const config = createTamagui({
     ...defaultConfig.themes,
     light: {
       ...defaultConfig.themes.light,
-      background: "#F2F2F7", // Platinum for better glass contrast
-      backgroundHover: "#e8e8ed",
-      backgroundPress: "#dcdce2",
-      backgroundFocus: "#F2F2F7",
+      // Light mode: Soft futuristic background
+      background: "#f5f7fa",
+      backgroundHover: "#e8ecf4",
+      backgroundPress: "#dce2ed",
+      backgroundFocus: "#f5f7fa",
       color: "#0f172a",
-      colorHover: "#374151",
+      colorHover: "#1e293b",
       colorPress: "#0f172a",
       colorFocus: "#0f172a",
-      borderColor: "#d1d5db",
-      shadowColor: "rgba(0,0,0,0.12)",
-      // Custom semantic tokens
-      secondaryText: "#575E6A", // WCAG AA compliant on #F2F2F7
-      placeholderColor: "#8E8E93",
+      borderColor: "rgba(100, 116, 139, 0.2)",
+      shadowColor: "rgba(0,0,0,0.1)",
 
-      // Legacy & Accents
-      cardBackground: "rgba(255, 255, 255, 0.85)",
-      listItemBackground: "rgba(255, 255, 255, 0.6)",
-      accentGradientStart: "#6366f1",
-      accentGradientEnd: "#8b5cf6",
-      accentColor: "#6366f1",
+      // Semantic tokens
+      secondaryText: "#475569",
+      placeholderColor: "#94a3b8",
 
-      // Glassmorphism
-      glassBackground: "rgba(255, 255, 255, 0.5)",
-      glassBorder: "rgba(0, 0, 0, 0.1)",
-      glassShadow: "rgba(0, 0, 0, 0.08)",
-      glassWhite: "rgba(255, 255, 255, 0.95)",
-      glassHighlight: "rgba(255, 255, 255, 0.85)", // For elevated elements
+      // Futuristic accent colors
+      cardBackground: "rgba(255, 255, 255, 0.75)",
+      listItemBackground: "rgba(255, 255, 255, 0.65)",
+      accentGradientStart: "#1e88e5", // Electric blue
+      accentGradientEnd: "#8b5cf6", // Purple
+      accentColor: "#1e88e5",
 
-      // Additional color tokens
-      deepBlue: "#0b0f19",
-      electricBlue: "#2da6fa",
+      // Holographic glassmorphism
+      glassBackground: "rgba(255, 255, 255, 0.7)",
+      glassBorder: "rgba(30, 136, 229, 0.15)", // Cyan tint
+      glassShadow: "rgba(30, 136, 229, 0.08)",
+      glassWhite: "rgba(255, 255, 255, 0.85)",
+      glassHighlight: "rgba(255, 255, 255, 0.95)",
+
+      // Futuristic accent tokens
+      cyan: "#00a3cc",
+      purple: "#8b5cf6",
+      electricBlue: "#1e88e5",
+      neonCyan: "#00d9ff",
+      neonPurple: "#b47aff",
+
+      // Glow effects
+      glowCyan: "rgba(0, 163, 204, 0.3)",
+      glowPurple: "rgba(139, 92, 246, 0.3)",
+      glowBlue: "rgba(30, 136, 229, 0.3)",
+
       // Health Colors
-      healthGood: "#22c55e",
+      healthGood: "#10b981",
       healthWarning: "#f59e0b",
       healthCritical: "#ef4444",
 
-      // Form-specific tokens (WCAG AA compliant)
-      formInputBackground: "rgba(0, 0, 0, 0.03)",
-      formInputBorder: "rgba(0, 0, 0, 0.1)",
-      formInputPlaceholder: "#8E8E93",
+      // Form tokens
+      formInputBackground: "rgba(255, 255, 255, 0.6)",
+      formInputBorder: "rgba(30, 136, 229, 0.2)",
+      formInputPlaceholder: "#94a3b8",
       formLabel: "#0f172a",
+
+      // Depth layers for holographic effect
+      layer1: "rgba(255, 255, 255, 0.9)",
+      layer2: "rgba(255, 255, 255, 0.75)",
+      layer3: "rgba(255, 255, 255, 0.6)",
     },
     dark: {
       ...defaultConfig.themes.dark,
-      background: "#050505", // Deep Black for glass glow effect
+      // Dark mode: Deep navy/charcoal with futuristic accents
+      background: "#0a0e27",
+      backgroundHover: "#0f1419",
+      backgroundPress: "#050811",
+      backgroundFocus: "#0a0e27",
       color: "#ffffff",
-      placeholderColor: "#636366",
+      colorHover: "#e2e8f0",
+      colorPress: "#ffffff",
+      colorFocus: "#ffffff",
+      borderColor: "rgba(0, 217, 255, 0.15)",
+      shadowColor: "rgba(0, 217, 255, 0.2)",
+      placeholderColor: "#64748b",
 
-      // Glassmorphism - Enhanced visibility
-      glassBackground: "rgba(255, 255, 255, 0.08)",
-      glassBorder: "rgba(255, 255, 255, 0.15)",
-      glassShadow: "rgba(0, 0, 0, 0.5)",
-      glassWhite: "rgba(255, 255, 255, 0.12)",
-      glassHighlight: "rgba(255, 255, 255, 0.18)", // For elevated elements
+      // Holographic glassmorphism with cyan/purple glow
+      glassBackground: "rgba(255, 255, 255, 0.05)",
+      glassBorder: "rgba(0, 217, 255, 0.2)",
+      glassShadow: "rgba(0, 217, 255, 0.15)",
+      glassWhite: "rgba(255, 255, 255, 0.08)",
+      glassHighlight: "rgba(255, 255, 255, 0.12)",
 
-      cardBackground: "rgba(255, 255, 255, 0.08)",
-      listItemBackground: "rgba(255, 255, 255, 0.05)",
-      accentGradientStart: "#2da6fa",
-      accentGradientEnd: "#6366f1",
-      accentColor: "#2da6fa",
-      secondaryText: "#9ca3af",
-      // Additional color tokens
-      deepBlue: "#0b0f19",
+      cardBackground: "rgba(255, 255, 255, 0.06)",
+      listItemBackground: "rgba(255, 255, 255, 0.04)",
+      accentGradientStart: "#00d9ff", // Neon cyan
+      accentGradientEnd: "#b47aff", // Neon purple
+      accentColor: "#00d9ff",
+      secondaryText: "#94a3b8",
+
+      // Futuristic neon accent tokens
+      cyan: "#00d9ff",
+      purple: "#b47aff",
       electricBlue: "#2da6fa",
-      // Health Colors
-      healthGood: "#22c55e",
-      healthWarning: "#f59e0b",
-      healthCritical: "#ef4444",
+      neonCyan: "#00ffff",
+      neonPurple: "#d896ff",
 
-      // Form-specific tokens (WCAG AA compliant)
-      formInputBackground: "rgba(255, 255, 255, 0.05)",
-      formInputBorder: "rgba(255, 255, 255, 0.15)",
-      formInputPlaceholder: "#636366",
-      formLabel: "#ffffff",
+      // Glow effects for holographic depth
+      glowCyan: "rgba(0, 217, 255, 0.4)",
+      glowPurple: "rgba(180, 122, 255, 0.4)",
+      glowBlue: "rgba(45, 166, 250, 0.4)",
+
+      // Health Colors with neon glow
+      healthGood: "#10b981",
+      healthWarning: "#fbbf24",
+      healthCritical: "#f87171",
+
+      // Form tokens with futuristic glow
+      formInputBackground: "rgba(255, 255, 255, 0.04)",
+      formInputBorder: "rgba(0, 217, 255, 0.2)",
+      formInputPlaceholder: "#64748b",
+      formLabel: "#e2e8f0",
+
+      // Depth layers for holographic effect
+      layer1: "rgba(255, 255, 255, 0.12)",
+      layer2: "rgba(255, 255, 255, 0.08)",
+      layer3: "rgba(255, 255, 255, 0.05)",
     },
   },
   media: {

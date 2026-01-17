@@ -942,44 +942,60 @@ var config = createTamagui({
     ...defaultConfig.themes,
     light: {
       ...defaultConfig.themes.light,
-      background: "#ffffff",
-      backgroundHover: "#f9fafb",
-      backgroundPress: "#f3f4f6",
-      backgroundFocus: "#ffffff",
+      background: "#F2F2F7",
+      // Platinum for better glass contrast
+      backgroundHover: "#e8e8ed",
+      backgroundPress: "#dcdce2",
+      backgroundFocus: "#F2F2F7",
       color: "#0f172a",
       colorHover: "#374151",
       colorPress: "#0f172a",
       colorFocus: "#0f172a",
-      borderColor: "#e5e7eb",
-      shadowColor: "rgba(0,0,0,0.1)",
+      borderColor: "#d1d5db",
+      shadowColor: "rgba(0,0,0,0.12)",
       // Custom semantic tokens
-      glassBorder: "#e5e7eb",
-      glassWhite: "rgba(255, 255, 255, 0.9)",
-      cardBackground: "#ffffff",
-      listItemBackground: "#f9fafb",
+      secondaryText: "#575E6A",
+      // WCAG AA compliant on #F2F2F7
+      placeholderColor: "#8E8E93",
+      // Legacy & Accents
+      cardBackground: "rgba(255, 255, 255, 0.85)",
+      listItemBackground: "rgba(255, 255, 255, 0.6)",
       accentGradientStart: "#6366f1",
       accentGradientEnd: "#8b5cf6",
       accentColor: "#6366f1",
-      secondaryText: "#6b7280",
+      // Glassmorphism
+      glassBackground: "rgba(255, 255, 255, 0.5)",
+      glassBorder: "rgba(0, 0, 0, 0.1)",
+      glassShadow: "rgba(0, 0, 0, 0.08)",
+      glassWhite: "rgba(255, 255, 255, 0.95)",
+      glassHighlight: "rgba(255, 255, 255, 0.85)",
+      // For elevated elements
       // Additional color tokens
       deepBlue: "#0b0f19",
-      electricBlue: "#2da6fa"
+      electricBlue: "#2da6fa",
+      // Health Colors
+      healthGood: "#22c55e",
+      healthWarning: "#f59e0b",
+      healthCritical: "#ef4444",
+      // Form-specific tokens (WCAG AA compliant)
+      formInputBackground: "rgba(0, 0, 0, 0.03)",
+      formInputBorder: "rgba(0, 0, 0, 0.1)",
+      formInputPlaceholder: "#8E8E93",
+      formLabel: "#0f172a"
     },
     dark: {
       ...defaultConfig.themes.dark,
-      background: "#0b0f19",
-      backgroundHover: "#111827",
-      backgroundPress: "#1f2937",
-      backgroundFocus: "#0b0f19",
+      background: "#050505",
+      // Deep Black for glass glow effect
       color: "#ffffff",
-      colorHover: "#e5e7eb",
-      colorPress: "#ffffff",
-      colorFocus: "#ffffff",
-      borderColor: "rgba(255, 255, 255, 0.15)",
-      shadowColor: "rgba(0,0,0,0.5)",
-      // Custom semantic tokens
+      placeholderColor: "#636366",
+      // Glassmorphism - Enhanced visibility
+      glassBackground: "rgba(255, 255, 255, 0.08)",
       glassBorder: "rgba(255, 255, 255, 0.15)",
-      glassWhite: "rgba(255, 255, 255, 0.15)",
+      glassShadow: "rgba(0, 0, 0, 0.5)",
+      glassWhite: "rgba(255, 255, 255, 0.12)",
+      glassHighlight: "rgba(255, 255, 255, 0.18)",
+      // For elevated elements
       cardBackground: "rgba(255, 255, 255, 0.08)",
       listItemBackground: "rgba(255, 255, 255, 0.05)",
       accentGradientStart: "#2da6fa",
@@ -988,7 +1004,16 @@ var config = createTamagui({
       secondaryText: "#9ca3af",
       // Additional color tokens
       deepBlue: "#0b0f19",
-      electricBlue: "#2da6fa"
+      electricBlue: "#2da6fa",
+      // Health Colors
+      healthGood: "#22c55e",
+      healthWarning: "#f59e0b",
+      healthCritical: "#ef4444",
+      // Form-specific tokens (WCAG AA compliant)
+      formInputBackground: "rgba(255, 255, 255, 0.05)",
+      formInputBorder: "rgba(255, 255, 255, 0.15)",
+      formInputPlaceholder: "#636366",
+      formLabel: "#ffffff"
     }
   },
   media: {

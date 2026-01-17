@@ -1,3 +1,6 @@
+import React, { useMemo } from "react";
+import { StyleSheet } from "react-native";
+import { Image } from "expo-image";
 import { GetProps, styled, Text, XStack } from "tamagui";
 
 const AvatarFrame = styled(XStack, {
@@ -34,16 +37,16 @@ const InitialsText = styled(Text, {
   },
 });
 
-// Generate a consistent color from a string
+// Generate a consistent color from a string with futuristic OS theme
 const stringToColor = (str: string): string => {
   const colors = [
-    "#f97316", // orange
-    "#22c55e", // green
-    "#3b82f6", // blue
-    "#a855f7", // purple
-    "#ec4899", // pink
-    "#14b8a6", // teal
-    "#eab308", // yellow
+    "#00d9ff", // neon cyan
+    "#b47aff", // neon purple
+    "#2da6fa", // electric blue
+    "#8b5cf6", // purple
+    "#1e88e5", // blue
+    "#00a3cc", // cyan
+    "#d896ff", // light purple
   ];
   let hash = 0;
   for (let i = 0; i < str.length; i++) {
@@ -62,17 +65,34 @@ const getInitials = (name: string): string => {
 
 export type AvatarProps = GetProps<typeof AvatarFrame> & {
   name: string;
-  _imageUrl?: string;
+  imageUrl?: string;
 };
 
-export const Avatar = ({ name, _imageUrl, size = "md", ...props }: AvatarProps) => {
-  const bgColor = stringToColor(name);
-  const initials = getInitials(name);
+export const Avatar = React.memo(({ name, imageUrl, size = "md", ...props }: AvatarProps) => {
+  const bgColor = useMemo(() => stringToColor(name), [name]);
+  const initials = useMemo(() => getInitials(name), [name]);
 
-  // TODO: Add Image support when needed
+  // If image URL is provided, use optimized expo-image with caching
+  if (imageUrl) {
+    return (
+      <AvatarFrame size={size} {...props}>
+        <Image
+          source={{ uri: imageUrl }}
+          style={StyleSheet.absoluteFill}
+          cachePolicy="memory-disk"
+          priority="normal"
+          contentFit="cover"
+          transition={200}
+          placeholder={null}
+        />
+      </AvatarFrame>
+    );
+  }
+
+  // Fallback to initials with generated color
   return (
     <AvatarFrame size={size} backgroundColor={bgColor as any} {...props}>
       <InitialsText size={size}>{initials}</InitialsText>
     </AvatarFrame>
   );
-};
+});

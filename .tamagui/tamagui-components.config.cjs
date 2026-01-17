@@ -5109,7 +5109,7 @@ var require_mergeRefs = __commonJS({
     var _interopRequireWildcard = require_interopRequireWildcard().default;
     exports2.__esModule = true;
     exports2.default = mergeRefs;
-    var React79 = _interopRequireWildcard(require("react"));
+    var React77 = _interopRequireWildcard(require("react"));
     function mergeRefs() {
       for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
         args[_key] = arguments[_key];
@@ -5144,13 +5144,13 @@ var require_useMergeRefs = __commonJS({
     var _interopRequireWildcard = require_interopRequireWildcard().default;
     exports2.__esModule = true;
     exports2.default = useMergeRefs;
-    var React79 = _interopRequireWildcard(require("react"));
+    var React77 = _interopRequireWildcard(require("react"));
     var _mergeRefs = _interopRequireDefault(require_mergeRefs());
     function useMergeRefs() {
       for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
         args[_key] = arguments[_key];
       }
-      return React79.useMemo(
+      return React77.useMemo(
         () => (0, _mergeRefs.default)(...args),
         // eslint-disable-next-line
         [...args]
@@ -5168,10 +5168,10 @@ var require_useStable = __commonJS({
     var _interopRequireWildcard = require_interopRequireWildcard().default;
     exports2.__esModule = true;
     exports2.default = useStable;
-    var React79 = _interopRequireWildcard(require("react"));
+    var React77 = _interopRequireWildcard(require("react"));
     var UNINITIALIZED = typeof Symbol === "function" && typeof Symbol() === "symbol" ? Symbol() : Object.freeze({});
     function useStable(getInitialValue) {
-      var ref = React79.useRef(UNINITIALIZED);
+      var ref = React77.useRef(UNINITIALIZED);
       if (ref.current === UNINITIALIZED) {
         ref.current = getInitialValue();
       }
@@ -6087,12 +6087,12 @@ var require_useResponderEvents = __commonJS({
     var _interopRequireWildcard = require_interopRequireWildcard().default;
     exports2.__esModule = true;
     exports2.default = useResponderEvents;
-    var React79 = _interopRequireWildcard(require("react"));
+    var React77 = _interopRequireWildcard(require("react"));
     var ResponderSystem = _interopRequireWildcard(require_ResponderSystem());
     var emptyObject = {};
     var idCounter = 0;
     function useStable(getInitialValue) {
-      var ref = React79.useRef(null);
+      var ref = React77.useRef(null);
       if (ref.current == null) {
         ref.current = getInitialValue();
       }
@@ -6104,14 +6104,14 @@ var require_useResponderEvents = __commonJS({
         config = emptyObject;
       }
       var id = useStable(() => idCounter++);
-      var isAttachedRef = React79.useRef(false);
-      React79.useEffect(() => {
+      var isAttachedRef = React77.useRef(false);
+      React77.useEffect(() => {
         ResponderSystem.attachListeners();
         return () => {
           ResponderSystem.removeNode(id);
         };
       }, [id]);
-      React79.useEffect(() => {
+      React77.useEffect(() => {
         var _config = config, onMoveShouldSetResponder = _config.onMoveShouldSetResponder, onMoveShouldSetResponderCapture = _config.onMoveShouldSetResponderCapture, onScrollShouldSetResponder = _config.onScrollShouldSetResponder, onScrollShouldSetResponderCapture = _config.onScrollShouldSetResponderCapture, onSelectionChangeShouldSetResponder = _config.onSelectionChangeShouldSetResponder, onSelectionChangeShouldSetResponderCapture = _config.onSelectionChangeShouldSetResponderCapture, onStartShouldSetResponder = _config.onStartShouldSetResponder, onStartShouldSetResponderCapture = _config.onStartShouldSetResponderCapture;
         var requiresResponderSystem = onMoveShouldSetResponder != null || onMoveShouldSetResponderCapture != null || onScrollShouldSetResponder != null || onScrollShouldSetResponderCapture != null || onSelectionChangeShouldSetResponder != null || onSelectionChangeShouldSetResponderCapture != null || onStartShouldSetResponder != null || onStartShouldSetResponderCapture != null;
         var node = hostRef.current;
@@ -6123,10 +6123,10 @@ var require_useResponderEvents = __commonJS({
           isAttachedRef.current = false;
         }
       }, [config, hostRef, id]);
-      React79.useDebugValue({
+      React77.useDebugValue({
         isResponder: hostRef.current === ResponderSystem.getResponderNode()
       });
-      React79.useDebugValue(config);
+      React77.useDebugValue(config);
     }
     __name(useResponderEvents, "useResponderEvents");
     module2.exports = exports2.default;
@@ -6157,7 +6157,7 @@ var require_View = __commonJS({
     exports2.__esModule = true;
     exports2.default = void 0;
     var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require_objectWithoutPropertiesLoose());
-    var React79 = _interopRequireWildcard(require("react"));
+    var React77 = _interopRequireWildcard(require("react"));
     var _createElement = _interopRequireDefault(require_createElement());
     var forwardedProps = _interopRequireWildcard(require_forwardedProps());
     var _pick = _interopRequireDefault(require_pick());
@@ -6177,17 +6177,17 @@ var require_View = __commonJS({
       pointerEvents: true
     });
     var pickProps = /* @__PURE__ */ __name((props) => (0, _pick.default)(props, forwardPropsList), "pickProps");
-    var View13 = /* @__PURE__ */ React79.forwardRef((props, forwardedRef) => {
+    var View14 = /* @__PURE__ */ React77.forwardRef((props, forwardedRef) => {
       var hrefAttrs = props.hrefAttrs, onLayout = props.onLayout, onMoveShouldSetResponder = props.onMoveShouldSetResponder, onMoveShouldSetResponderCapture = props.onMoveShouldSetResponderCapture, onResponderEnd = props.onResponderEnd, onResponderGrant = props.onResponderGrant, onResponderMove = props.onResponderMove, onResponderReject = props.onResponderReject, onResponderRelease = props.onResponderRelease, onResponderStart = props.onResponderStart, onResponderTerminate = props.onResponderTerminate, onResponderTerminationRequest = props.onResponderTerminationRequest, onScrollShouldSetResponder = props.onScrollShouldSetResponder, onScrollShouldSetResponderCapture = props.onScrollShouldSetResponderCapture, onSelectionChangeShouldSetResponder = props.onSelectionChangeShouldSetResponder, onSelectionChangeShouldSetResponderCapture = props.onSelectionChangeShouldSetResponderCapture, onStartShouldSetResponder = props.onStartShouldSetResponder, onStartShouldSetResponderCapture = props.onStartShouldSetResponderCapture, rest = (0, _objectWithoutPropertiesLoose2.default)(props, _excluded);
       if (process.env.NODE_ENV !== "production") {
-        React79.Children.toArray(props.children).forEach((item) => {
+        React77.Children.toArray(props.children).forEach((item) => {
           if (typeof item === "string") {
             console.error("Unexpected text node: " + item + ". A text node cannot be a child of a <View>.");
           }
         });
       }
-      var hasTextAncestor = React79.useContext(_TextAncestorContext.default);
-      var hostRef = React79.useRef(null);
+      var hasTextAncestor = React77.useContext(_TextAncestorContext.default);
+      var hostRef = React77.useRef(null);
       var _useLocaleContext = (0, _useLocale.useLocaleContext)(), contextDirection = _useLocaleContext.direction;
       (0, _useElementLayout.default)(hostRef, onLayout);
       (0, _useResponderEvents.default)(hostRef, {
@@ -6237,7 +6237,7 @@ var require_View = __commonJS({
         writingDirection
       });
     });
-    View13.displayName = "View";
+    View14.displayName = "View";
     var styles = _StyleSheet.default.create({
       view$raw: {
         alignContent: "flex-start",
@@ -6262,7 +6262,7 @@ var require_View = __commonJS({
         display: "inline-flex"
       }
     });
-    var _default = exports2.default = View13;
+    var _default = exports2.default = View14;
     module2.exports = exports2.default;
   }
 });
@@ -6632,7 +6632,7 @@ var require_ScrollViewBase = __commonJS({
     exports2.default = void 0;
     var _extends2 = _interopRequireDefault(require_extends());
     var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require_objectWithoutPropertiesLoose());
-    var React79 = _interopRequireWildcard(require("react"));
+    var React77 = _interopRequireWildcard(require("react"));
     var _StyleSheet = _interopRequireDefault(require_StyleSheet());
     var _View = _interopRequireDefault(require_View());
     var _useMergeRefs = _interopRequireDefault(require_useMergeRefs());
@@ -6674,14 +6674,14 @@ var require_ScrollViewBase = __commonJS({
       return eventThrottle > 0 && timeSinceLastTick >= eventThrottle;
     }
     __name(shouldEmitScrollEvent, "shouldEmitScrollEvent");
-    var ScrollViewBase = /* @__PURE__ */ React79.forwardRef((props, forwardedRef) => {
+    var ScrollViewBase = /* @__PURE__ */ React77.forwardRef((props, forwardedRef) => {
       var onScroll = props.onScroll, onTouchMove = props.onTouchMove, onWheel = props.onWheel, _props$scrollEnabled = props.scrollEnabled, scrollEnabled = _props$scrollEnabled === void 0 ? true : _props$scrollEnabled, _props$scrollEventThr = props.scrollEventThrottle, scrollEventThrottle = _props$scrollEventThr === void 0 ? 0 : _props$scrollEventThr, showsHorizontalScrollIndicator = props.showsHorizontalScrollIndicator, showsVerticalScrollIndicator = props.showsVerticalScrollIndicator, style = props.style, rest = (0, _objectWithoutPropertiesLoose2.default)(props, _excluded);
-      var scrollState = React79.useRef({
+      var scrollState = React77.useRef({
         isScrolling: false,
         scrollLastTick: 0
       });
-      var scrollTimeout = React79.useRef(null);
-      var scrollRef = React79.useRef(null);
+      var scrollTimeout = React77.useRef(null);
+      var scrollRef = React77.useRef(null);
       function createPreventableScrollHandler(handler) {
         return (e) => {
           if (scrollEnabled) {
@@ -6732,7 +6732,7 @@ var require_ScrollViewBase = __commonJS({
       }
       __name(handleScrollEnd, "handleScrollEnd");
       var hideScrollbar = showsHorizontalScrollIndicator === false || showsVerticalScrollIndicator === false;
-      return /* @__PURE__ */ React79.createElement(_View.default, (0, _extends2.default)({}, rest, {
+      return /* @__PURE__ */ React77.createElement(_View.default, (0, _extends2.default)({}, rest, {
         onScroll: handleScroll,
         onTouchMove: createPreventableScrollHandler(onTouchMove),
         onWheel: createPreventableScrollHandler(onWheel),
@@ -8181,8 +8181,8 @@ var require_StateSafePureComponent = __commonJS({
     exports2.__esModule = true;
     exports2.default = void 0;
     var _invariant = _interopRequireDefault(require_invariant());
-    var React79 = _interopRequireWildcard(require("react"));
-    var StateSafePureComponent = class extends React79.PureComponent {
+    var React77 = _interopRequireWildcard(require("react"));
+    var StateSafePureComponent = class extends React77.PureComponent {
       static {
         __name(this, "StateSafePureComponent");
       }
@@ -8420,15 +8420,15 @@ var require_VirtualizedListContext = __commonJS({
     exports2.VirtualizedListContextResetter = VirtualizedListContextResetter;
     var _objectSpread2 = _interopRequireDefault(require_objectSpread2());
     var _react = _interopRequireWildcard(require("react"));
-    var React79 = _react;
+    var React77 = _react;
     var __DEV__ = process.env.NODE_ENV !== "production";
-    var VirtualizedListContext = exports2.VirtualizedListContext = /* @__PURE__ */ React79.createContext(null);
+    var VirtualizedListContext = exports2.VirtualizedListContext = /* @__PURE__ */ React77.createContext(null);
     if (__DEV__) {
       VirtualizedListContext.displayName = "VirtualizedListContext";
     }
     function VirtualizedListContextResetter(_ref) {
       var children = _ref.children;
-      return /* @__PURE__ */ React79.createElement(VirtualizedListContext.Provider, {
+      return /* @__PURE__ */ React77.createElement(VirtualizedListContext.Provider, {
         value: null
       }, children);
     }
@@ -8443,7 +8443,7 @@ var require_VirtualizedListContext = __commonJS({
         registerAsNestedChild: value.registerAsNestedChild,
         unregisterAsNestedChild: value.unregisterAsNestedChild
       }), [value.getScrollMetrics, value.horizontal, value.getOutermostParentListRef, value.registerAsNestedChild, value.unregisterAsNestedChild]);
-      return /* @__PURE__ */ React79.createElement(VirtualizedListContext.Provider, {
+      return /* @__PURE__ */ React77.createElement(VirtualizedListContext.Provider, {
         value: context2
       }, children);
     }
@@ -8454,7 +8454,7 @@ var require_VirtualizedListContext = __commonJS({
       var context2 = (0, _react.useMemo)(() => currContext == null ? null : (0, _objectSpread2.default)((0, _objectSpread2.default)({}, currContext), {}, {
         cellKey
       }), [currContext, cellKey]);
-      return /* @__PURE__ */ React79.createElement(VirtualizedListContext.Provider, {
+      return /* @__PURE__ */ React77.createElement(VirtualizedListContext.Provider, {
         value: context2
       }, children);
     }
@@ -8476,8 +8476,8 @@ var require_VirtualizedListCellRenderer = __commonJS({
     var _StyleSheet = _interopRequireDefault(require_StyleSheet());
     var _VirtualizedListContext = require_VirtualizedListContext();
     var _invariant = _interopRequireDefault(require_invariant());
-    var React79 = _interopRequireWildcard(require("react"));
-    var CellRenderer = class extends React79.Component {
+    var React77 = _interopRequireWildcard(require("react"));
+    var CellRenderer = class extends React77.Component {
       static {
         __name(this, "CellRenderer");
       }
@@ -8534,7 +8534,7 @@ var require_VirtualizedListCellRenderer = __commonJS({
           console.warn("VirtualizedList: Both ListItemComponent and renderItem props are present. ListItemComponent will take precedence over renderItem.");
         }
         if (ListItemComponent2) {
-          return /* @__PURE__ */ React79.createElement(ListItemComponent2, {
+          return /* @__PURE__ */ React77.createElement(ListItemComponent2, {
             item,
             index: index3,
             separators: this._separators
@@ -8552,20 +8552,20 @@ var require_VirtualizedListCellRenderer = __commonJS({
       render() {
         var _this$props4 = this.props, CellRendererComponent = _this$props4.CellRendererComponent, ItemSeparatorComponent = _this$props4.ItemSeparatorComponent, ListItemComponent2 = _this$props4.ListItemComponent, cellKey = _this$props4.cellKey, horizontal = _this$props4.horizontal, item = _this$props4.item, index3 = _this$props4.index, inversionStyle = _this$props4.inversionStyle, onCellFocusCapture = _this$props4.onCellFocusCapture, onCellLayout = _this$props4.onCellLayout, renderItem = _this$props4.renderItem;
         var element = this._renderElement(renderItem, ListItemComponent2, item, index3);
-        var itemSeparator = /* @__PURE__ */ React79.isValidElement(ItemSeparatorComponent) ? (
+        var itemSeparator = /* @__PURE__ */ React77.isValidElement(ItemSeparatorComponent) ? (
           // $FlowFixMe[incompatible-type]
           ItemSeparatorComponent
         ) : (
           // $FlowFixMe[incompatible-type]
-          ItemSeparatorComponent && /* @__PURE__ */ React79.createElement(ItemSeparatorComponent, this.state.separatorProps)
+          ItemSeparatorComponent && /* @__PURE__ */ React77.createElement(ItemSeparatorComponent, this.state.separatorProps)
         );
         var cellStyle = inversionStyle ? horizontal ? [styles.rowReverse, inversionStyle] : [styles.columnReverse, inversionStyle] : horizontal ? [styles.row, inversionStyle] : inversionStyle;
-        var result = !CellRendererComponent ? /* @__PURE__ */ React79.createElement(_View.default, (0, _extends2.default)({
+        var result = !CellRendererComponent ? /* @__PURE__ */ React77.createElement(_View.default, (0, _extends2.default)({
           style: cellStyle,
           onFocusCapture: onCellFocusCapture
         }, onCellLayout && {
           onLayout: this._onLayout
-        }), element, itemSeparator) : /* @__PURE__ */ React79.createElement(CellRendererComponent, (0, _extends2.default)({
+        }), element, itemSeparator) : /* @__PURE__ */ React77.createElement(CellRendererComponent, (0, _extends2.default)({
           cellKey,
           index: index3,
           item,
@@ -8574,7 +8574,7 @@ var require_VirtualizedListCellRenderer = __commonJS({
         }, onCellLayout && {
           onLayout: this._onLayout
         }), element, itemSeparator);
-        return /* @__PURE__ */ React79.createElement(_VirtualizedListContext.VirtualizedListCellContextProvider, {
+        return /* @__PURE__ */ React77.createElement(_VirtualizedListContext.VirtualizedListCellContextProvider, {
           cellKey: this.props.cellKey
         }, result);
       }
@@ -8770,7 +8770,7 @@ var require_VirtualizedList = __commonJS({
     var _VirtualizeUtils = require_VirtualizeUtils();
     var _invariant = _interopRequireDefault(require_invariant());
     var _nullthrows = _interopRequireDefault(require_nullthrows());
-    var React79 = _interopRequireWildcard(require("react"));
+    var React77 = _interopRequireWildcard(require("react"));
     var __DEV__ = process.env.NODE_ENV !== "production";
     var ON_EDGE_REACHED_EPSILON = 1e-3;
     var _usedIndexForKey = false;
@@ -9035,15 +9035,15 @@ var require_VirtualizedList = __commonJS({
         this._defaultRenderScrollComponent = (props) => {
           var onRefresh = props.onRefresh;
           if (this._isNestedWithSameOrientation()) {
-            return /* @__PURE__ */ React79.createElement(_View.default, props);
+            return /* @__PURE__ */ React77.createElement(_View.default, props);
           } else if (onRefresh) {
             var _props$refreshing;
             (0, _invariant.default)(typeof props.refreshing === "boolean", "`refreshing` prop must be set as a boolean in order to use `onRefresh`, but got `" + JSON.stringify((_props$refreshing = props.refreshing) !== null && _props$refreshing !== void 0 ? _props$refreshing : "undefined") + "`");
             return (
               // $FlowFixMe[prop-missing] Invalid prop usage
               // $FlowFixMe[incompatible-use]
-              /* @__PURE__ */ React79.createElement(_ScrollView.default, (0, _extends2.default)({}, props, {
-                refreshControl: props.refreshControl == null ? /* @__PURE__ */ React79.createElement(
+              /* @__PURE__ */ React77.createElement(_ScrollView.default, (0, _extends2.default)({}, props, {
+                refreshControl: props.refreshControl == null ? /* @__PURE__ */ React77.createElement(
                   _RefreshControl.default,
                   {
                     refreshing: props.refreshing,
@@ -9054,7 +9054,7 @@ var require_VirtualizedList = __commonJS({
               }))
             );
           } else {
-            return /* @__PURE__ */ React79.createElement(_ScrollView.default, props);
+            return /* @__PURE__ */ React77.createElement(_ScrollView.default, props);
           }
         };
         this._onCellLayout = (e, cellKey, index3) => {
@@ -9538,7 +9538,7 @@ var require_VirtualizedList = __commonJS({
             stickyHeaderIndices.push(cells.length);
           }
           var shouldListenForLayout = getItemLayout == null || debug || _this._fillRateHelper.enabled();
-          cells.push(/* @__PURE__ */ React79.createElement(_VirtualizedListCellRenderer.default, (0, _extends2.default)({
+          cells.push(/* @__PURE__ */ React77.createElement(_VirtualizedListCellRenderer.default, (0, _extends2.default)({
             CellRendererComponent,
             ItemSeparatorComponent: ii < end ? ItemSeparatorComponent : void 0,
             ListItemComponent: ListItemComponent2,
@@ -9603,15 +9603,15 @@ var require_VirtualizedList = __commonJS({
           if (stickyIndicesFromProps.has(0)) {
             stickyHeaderIndices.push(0);
           }
-          var _element = /* @__PURE__ */ React79.isValidElement(ListHeaderComponent) ? ListHeaderComponent : (
+          var _element = /* @__PURE__ */ React77.isValidElement(ListHeaderComponent) ? ListHeaderComponent : (
             // $FlowFixMe[not-a-component]
             // $FlowFixMe[incompatible-type-arg]
-            /* @__PURE__ */ React79.createElement(ListHeaderComponent, null)
+            /* @__PURE__ */ React77.createElement(ListHeaderComponent, null)
           );
-          cells.push(/* @__PURE__ */ React79.createElement(_VirtualizedListContext.VirtualizedListCellContextProvider, {
+          cells.push(/* @__PURE__ */ React77.createElement(_VirtualizedListContext.VirtualizedListCellContextProvider, {
             cellKey: this._getCellKey() + "-header",
             key: "$header"
-          }, /* @__PURE__ */ React79.createElement(
+          }, /* @__PURE__ */ React77.createElement(
             _View.default,
             {
               onLayout: this._onLayoutHeader,
@@ -9623,15 +9623,15 @@ var require_VirtualizedList = __commonJS({
         }
         var itemCount = this.props.getItemCount(data);
         if (itemCount === 0 && ListEmptyComponent) {
-          var _element2 = /* @__PURE__ */ React79.isValidElement(ListEmptyComponent) ? ListEmptyComponent : (
+          var _element2 = /* @__PURE__ */ React77.isValidElement(ListEmptyComponent) ? ListEmptyComponent : (
             // $FlowFixMe[not-a-component]
             // $FlowFixMe[incompatible-type-arg]
-            /* @__PURE__ */ React79.createElement(ListEmptyComponent, null)
+            /* @__PURE__ */ React77.createElement(ListEmptyComponent, null)
           );
-          cells.push(/* @__PURE__ */ React79.createElement(_VirtualizedListContext.VirtualizedListCellContextProvider, {
+          cells.push(/* @__PURE__ */ React77.createElement(_VirtualizedListContext.VirtualizedListCellContextProvider, {
             cellKey: this._getCellKey() + "-empty",
             key: "$empty"
-          }, /* @__PURE__ */ React79.cloneElement(_element2, {
+          }, /* @__PURE__ */ React77.cloneElement(_element2, {
             onLayout: /* @__PURE__ */ __name((event) => {
               this._onLayoutEmpty(event);
               if (_element2.props.onLayout) {
@@ -9659,7 +9659,7 @@ var require_VirtualizedList = __commonJS({
               var firstMetrics = this.__getFrameMetricsApprox(section.first, this.props);
               var lastMetrics = this.__getFrameMetricsApprox(last, this.props);
               var spacerSize = lastMetrics.offset + lastMetrics.length - firstMetrics.offset;
-              cells.push(/* @__PURE__ */ React79.createElement(_View.default, {
+              cells.push(/* @__PURE__ */ React77.createElement(_View.default, {
                 key: "$spacer-" + section.first,
                 style: {
                   [spacerKey]: spacerSize
@@ -9675,15 +9675,15 @@ var require_VirtualizedList = __commonJS({
           }
         }
         if (ListFooterComponent) {
-          var _element3 = /* @__PURE__ */ React79.isValidElement(ListFooterComponent) ? ListFooterComponent : (
+          var _element3 = /* @__PURE__ */ React77.isValidElement(ListFooterComponent) ? ListFooterComponent : (
             // $FlowFixMe[not-a-component]
             // $FlowFixMe[incompatible-type-arg]
-            /* @__PURE__ */ React79.createElement(ListFooterComponent, null)
+            /* @__PURE__ */ React77.createElement(ListFooterComponent, null)
           );
-          cells.push(/* @__PURE__ */ React79.createElement(_VirtualizedListContext.VirtualizedListCellContextProvider, {
+          cells.push(/* @__PURE__ */ React77.createElement(_VirtualizedListContext.VirtualizedListCellContextProvider, {
             cellKey: this._getFooterCellKey(),
             key: "$footer"
-          }, /* @__PURE__ */ React79.createElement(
+          }, /* @__PURE__ */ React77.createElement(
             _View.default,
             {
               onLayout: this._onLayoutFooter,
@@ -9708,7 +9708,7 @@ var require_VirtualizedList = __commonJS({
           style: inversionStyle ? [inversionStyle, this.props.style] : this.props.style
         });
         this._hasMore = this.state.cellsAroundViewport.last < itemCount - 1;
-        var innerRet = /* @__PURE__ */ React79.createElement(_VirtualizedListContext.VirtualizedListContextProvider, {
+        var innerRet = /* @__PURE__ */ React77.createElement(_VirtualizedListContext.VirtualizedListContextProvider, {
           value: {
             cellKey: null,
             getScrollMetrics: this._getScrollMetrics,
@@ -9717,12 +9717,12 @@ var require_VirtualizedList = __commonJS({
             registerAsNestedChild: this._registerAsNestedChild,
             unregisterAsNestedChild: this._unregisterAsNestedChild
           }
-        }, /* @__PURE__ */ React79.cloneElement((this.props.renderScrollComponent || this._defaultRenderScrollComponent)(scrollProps), {
+        }, /* @__PURE__ */ React77.cloneElement((this.props.renderScrollComponent || this._defaultRenderScrollComponent)(scrollProps), {
           ref: this._captureScrollRef
         }, cells));
         var ret = innerRet;
         if (this.props.debug) {
-          return /* @__PURE__ */ React79.createElement(_View.default, {
+          return /* @__PURE__ */ React77.createElement(_View.default, {
             style: styles.debug
           }, ret, this._renderDebugOverlay());
         } else {
@@ -9810,20 +9810,20 @@ var require_VirtualizedList = __commonJS({
         var windowLen = frameLast.offset + frameLast.length - windowTop;
         var visTop = this._scrollMetrics.offset;
         var visLen = this._scrollMetrics.visibleLength;
-        return /* @__PURE__ */ React79.createElement(_View.default, {
+        return /* @__PURE__ */ React77.createElement(_View.default, {
           style: [styles.debugOverlayBase, styles.debugOverlay]
-        }, framesInLayout.map((f, ii2) => /* @__PURE__ */ React79.createElement(_View.default, {
+        }, framesInLayout.map((f, ii2) => /* @__PURE__ */ React77.createElement(_View.default, {
           key: "f" + ii2,
           style: [styles.debugOverlayBase, styles.debugOverlayFrame, {
             top: f.offset * normalize,
             height: f.length * normalize
           }]
-        })), /* @__PURE__ */ React79.createElement(_View.default, {
+        })), /* @__PURE__ */ React77.createElement(_View.default, {
           style: [styles.debugOverlayBase, styles.debugOverlayFrameLast, {
             top: windowTop * normalize,
             height: windowLen * normalize
           }]
-        }), /* @__PURE__ */ React79.createElement(_View.default, {
+        }), /* @__PURE__ */ React77.createElement(_View.default, {
           style: [styles.debugOverlayBase, styles.debugOverlayFrameVis, {
             top: visTop * normalize,
             height: visLen * normalize
@@ -10027,7 +10027,7 @@ var require_FlatList = __commonJS({
     var _deepDiffer = _interopRequireDefault(require_deepDiffer());
     var _Platform = _interopRequireDefault(require_Platform());
     var _invariant = _interopRequireDefault(require_invariant());
-    var React79 = _interopRequireWildcard(require("react"));
+    var React77 = _interopRequireWildcard(require("react"));
     var _VirtualizedList = _interopRequireDefault(require_VirtualizedList());
     var _VirtualizeUtils = require_VirtualizeUtils();
     var _memoizeOne = _interopRequireDefault(require_memoize_one_cjs());
@@ -10044,7 +10044,7 @@ var require_FlatList = __commonJS({
       return typeof Object(data).length === "number";
     }
     __name(isArrayLike, "isArrayLike");
-    var FlatList = class extends React79.PureComponent {
+    var FlatList = class extends React77.PureComponent {
       static {
         __name(this, "FlatList");
       }
@@ -10175,7 +10175,7 @@ var require_FlatList = __commonJS({
           var cols = numColumnsOrDefault(numColumns);
           var render = /* @__PURE__ */ __name((props) => {
             if (ListItemComponent2) {
-              return /* @__PURE__ */ React79.createElement(ListItemComponent2, props);
+              return /* @__PURE__ */ React77.createElement(ListItemComponent2, props);
             } else if (renderItem) {
               return renderItem(props);
             } else {
@@ -10186,7 +10186,7 @@ var require_FlatList = __commonJS({
             if (cols > 1) {
               var _item2 = info.item, _index = info.index;
               (0, _invariant.default)(Array.isArray(_item2), "Expected array of items with numColumns > 1");
-              return /* @__PURE__ */ React79.createElement(_View.default, {
+              return /* @__PURE__ */ React77.createElement(_View.default, {
                 style: [styles.row, columnWrapperStyle]
               }, _item2.map((it, kk) => {
                 var element = render({
@@ -10195,7 +10195,7 @@ var require_FlatList = __commonJS({
                   index: _index * cols + kk,
                   separators: info.separators
                 });
-                return element != null ? /* @__PURE__ */ React79.createElement(React79.Fragment, {
+                return element != null ? /* @__PURE__ */ React77.createElement(React77.Fragment, {
                   key: kk
                 }, element) : null;
               }));
@@ -10285,7 +10285,7 @@ var require_FlatList = __commonJS({
         var renderer = strictMode ? this._memoizedRenderer : this._renderer;
         return (
           // $FlowFixMe[incompatible-exact] - `restProps` (`Props`) is inexact.
-          /* @__PURE__ */ React79.createElement(_VirtualizedList.default, (0, _extends2.default)({}, restProps, {
+          /* @__PURE__ */ React77.createElement(_VirtualizedList.default, (0, _extends2.default)({}, restProps, {
             getItem: this._getItem,
             getItemCount: this._getItemCount,
             keyExtractor: this._keyExtractor,
@@ -12265,16 +12265,16 @@ var require_createAnimatedComponent = __commonJS({
     var _useMergeRefs = _interopRequireDefault(require_useMergeRefs2());
     var _StyleSheet = _interopRequireDefault(require_StyleSheet());
     var _View = _interopRequireDefault(require_View());
-    var React79 = _interopRequireWildcard(require("react"));
+    var React77 = _interopRequireWildcard(require("react"));
     var _excluded = ["style"];
     function createAnimatedComponent(Component) {
-      return /* @__PURE__ */ React79.forwardRef((props, forwardedRef) => {
+      return /* @__PURE__ */ React77.forwardRef((props, forwardedRef) => {
         var _useAnimatedProps = (0, _useAnimatedProps2.default)(props), reducedProps = _useAnimatedProps[0], callbackRef = _useAnimatedProps[1];
         var ref = (0, _useMergeRefs.default)(callbackRef, forwardedRef);
         var passthroughAnimatedPropExplicitValues = reducedProps.passthroughAnimatedPropExplicitValues, style = reducedProps.style;
         var _ref = passthroughAnimatedPropExplicitValues !== null && passthroughAnimatedPropExplicitValues !== void 0 ? passthroughAnimatedPropExplicitValues : {}, passthroughStyle = _ref.style, passthroughProps = (0, _objectWithoutPropertiesLoose2.default)(_ref, _excluded);
         var mergedStyle = [style, passthroughStyle];
-        return /* @__PURE__ */ React79.createElement(Component, (0, _extends2.default)({}, reducedProps, passthroughProps, {
+        return /* @__PURE__ */ React77.createElement(Component, (0, _extends2.default)({}, reducedProps, passthroughProps, {
           style: mergedStyle,
           ref
         }));
@@ -12294,10 +12294,10 @@ var require_AnimatedFlatList = __commonJS({
     exports2.__esModule = true;
     exports2.default = void 0;
     var _extends2 = _interopRequireDefault(require_extends());
-    var React79 = _interopRequireWildcard(require("react"));
+    var React77 = _interopRequireWildcard(require("react"));
     var _FlatList = _interopRequireDefault(require_FlatList2());
     var _createAnimatedComponent = _interopRequireDefault(require_createAnimatedComponent());
-    var FlatListWithEventThrottle = /* @__PURE__ */ React79.forwardRef((props, ref) => /* @__PURE__ */ React79.createElement(_FlatList.default, (0, _extends2.default)({
+    var FlatListWithEventThrottle = /* @__PURE__ */ React77.forwardRef((props, ref) => /* @__PURE__ */ React77.createElement(_FlatList.default, (0, _extends2.default)({
       scrollEventThrottle: 1e-4
     }, props, {
       ref
@@ -12527,7 +12527,7 @@ var require_Image = __commonJS({
     var _objectSpread2 = _interopRequireDefault(require_objectSpread2());
     var _extends2 = _interopRequireDefault(require_extends());
     var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require_objectWithoutPropertiesLoose());
-    var React79 = _interopRequireWildcard(require("react"));
+    var React77 = _interopRequireWildcard(require("react"));
     var _createElement = _interopRequireDefault(require_createElement());
     var _AssetRegistry = require_AssetRegistry();
     var _preprocess = require_preprocess();
@@ -12545,20 +12545,20 @@ var require_Image = __commonJS({
     var _filterId = 0;
     var svgDataUriPattern = /^(data:image\/svg\+xml;utf8,)(.*)/;
     function createTintColorSVG(tintColor, id) {
-      return tintColor && id != null ? /* @__PURE__ */ React79.createElement("svg", {
+      return tintColor && id != null ? /* @__PURE__ */ React77.createElement("svg", {
         style: {
           position: "absolute",
           height: 0,
           visibility: "hidden",
           width: 0
         }
-      }, /* @__PURE__ */ React79.createElement("defs", null, /* @__PURE__ */ React79.createElement("filter", {
+      }, /* @__PURE__ */ React77.createElement("defs", null, /* @__PURE__ */ React77.createElement("filter", {
         id: "tint-" + id,
         suppressHydrationWarning: true
-      }, /* @__PURE__ */ React79.createElement("feFlood", {
+      }, /* @__PURE__ */ React77.createElement("feFlood", {
         floodColor: "" + tintColor,
         key: tintColor
-      }), /* @__PURE__ */ React79.createElement("feComposite", {
+      }), /* @__PURE__ */ React77.createElement("feComposite", {
         in2: "SourceAlpha",
         operator: "in"
       })))) : null;
@@ -12642,7 +12642,7 @@ var require_Image = __commonJS({
       return uri;
     }
     __name(resolveAssetUri, "resolveAssetUri");
-    var Image2 = /* @__PURE__ */ React79.forwardRef((props, ref) => {
+    var Image2 = /* @__PURE__ */ React77.forwardRef((props, ref) => {
       var _ariaLabel = props["aria-label"], accessibilityLabel = props.accessibilityLabel, blurRadius = props.blurRadius, defaultSource = props.defaultSource, draggable = props.draggable, onError = props.onError, onLayout = props.onLayout, onLoad = props.onLoad, onLoadEnd = props.onLoadEnd, onLoadStart = props.onLoadStart, pointerEvents = props.pointerEvents, source = props.source, style = props.style, rest = (0, _objectWithoutPropertiesLoose2.default)(props, _excluded);
       var ariaLabel = _ariaLabel || accessibilityLabel;
       if (process.env.NODE_ENV !== "production") {
@@ -12650,7 +12650,7 @@ var require_Image = __commonJS({
           throw new Error("The <Image> component cannot contain children. If you want to render content on top of the image, consider using the <ImageBackground> component or absolute positioning.");
         }
       }
-      var _React$useState = React79.useState(() => {
+      var _React$useState = React77.useState(() => {
         var uri2 = resolveAssetUri(source);
         if (uri2 != null) {
           var isLoaded = _ImageLoader.default.has(uri2);
@@ -12660,11 +12660,11 @@ var require_Image = __commonJS({
         }
         return IDLE;
       }), state = _React$useState[0], updateState = _React$useState[1];
-      var _React$useState2 = React79.useState({}), layout = _React$useState2[0], updateLayout = _React$useState2[1];
-      var hasTextAncestor = React79.useContext(_TextAncestorContext.default);
-      var hiddenImageRef = React79.useRef(null);
-      var filterRef = React79.useRef(_filterId++);
-      var requestRef = React79.useRef(null);
+      var _React$useState2 = React77.useState({}), layout = _React$useState2[0], updateLayout = _React$useState2[1];
+      var hasTextAncestor = React77.useContext(_TextAncestorContext.default);
+      var hiddenImageRef = React77.useRef(null);
+      var filterRef = React77.useRef(_filterId++);
+      var requestRef = React77.useRef(null);
       var shouldDisplaySource = state === LOADED || state === LOADING && defaultSource == null;
       var _extractNonStandardSt = extractNonStandardStyleProps(style, blurRadius, filterRef.current, props.tintColor), _resizeMode = _extractNonStandardSt[0], filter = _extractNonStandardSt[1], _tintColor = _extractNonStandardSt[2];
       var resizeMode = props.resizeMode || _resizeMode || "cover";
@@ -12703,7 +12703,7 @@ var require_Image = __commonJS({
       }
       __name(handleLayout, "handleLayout");
       var uri = resolveAssetUri(source);
-      React79.useEffect(() => {
+      React77.useEffect(() => {
         abortPendingRequest();
         if (uri != null) {
           updateState(LOADING);
@@ -12741,7 +12741,7 @@ var require_Image = __commonJS({
         __name(abortPendingRequest, "abortPendingRequest");
         return abortPendingRequest;
       }, [uri, requestRef, updateState, onError, onLoad, onLoadEnd, onLoadStart]);
-      return /* @__PURE__ */ React79.createElement(_View.default, (0, _extends2.default)({}, rest, {
+      return /* @__PURE__ */ React77.createElement(_View.default, (0, _extends2.default)({}, rest, {
         "aria-label": ariaLabel,
         onLayout: handleLayout,
         pointerEvents,
@@ -12758,7 +12758,7 @@ var require_Image = __commonJS({
             boxShadow: null
           }
         ]
-      }), /* @__PURE__ */ React79.createElement(_View.default, {
+      }), /* @__PURE__ */ React77.createElement(_View.default, {
         style: [styles.image, resizeModeStyles[resizeMode], {
           backgroundImage,
           filter
@@ -12853,7 +12853,7 @@ var require_AnimatedImage = __commonJS({
     var _interopRequireWildcard = require_interopRequireWildcard().default;
     exports2.__esModule = true;
     exports2.default = void 0;
-    var React79 = _interopRequireWildcard(require("react"));
+    var React77 = _interopRequireWildcard(require("react"));
     var _Image = _interopRequireDefault(require_Image());
     var _createAnimatedComponent = _interopRequireDefault(require_createAnimatedComponent());
     var _default = exports2.default = (0, _createAnimatedComponent.default)(_Image.default);
@@ -12870,10 +12870,10 @@ var require_AnimatedScrollView = __commonJS({
     exports2.__esModule = true;
     exports2.default = void 0;
     var _extends2 = _interopRequireDefault(require_extends());
-    var React79 = _interopRequireWildcard(require("react"));
+    var React77 = _interopRequireWildcard(require("react"));
     var _ScrollView = _interopRequireDefault(require_ScrollView());
     var _createAnimatedComponent = _interopRequireDefault(require_createAnimatedComponent());
-    var ScrollViewWithEventThrottle = /* @__PURE__ */ React79.forwardRef((props, ref) => /* @__PURE__ */ React79.createElement(_ScrollView.default, (0, _extends2.default)({
+    var ScrollViewWithEventThrottle = /* @__PURE__ */ React77.forwardRef((props, ref) => /* @__PURE__ */ React77.createElement(_ScrollView.default, (0, _extends2.default)({
       scrollEventThrottle: 1e-4
     }, props, {
       ref
@@ -12899,9 +12899,9 @@ var require_VirtualizedSectionList = __commonJS({
     var _VirtualizedList = _interopRequireDefault(require_VirtualizedList());
     var _VirtualizeUtils = require_VirtualizeUtils();
     var _invariant = _interopRequireDefault(require_invariant());
-    var React79 = _interopRequireWildcard(require("react"));
+    var React77 = _interopRequireWildcard(require("react"));
     var _excluded = ["ItemSeparatorComponent", "SectionSeparatorComponent", "renderItem", "renderSectionFooter", "renderSectionHeader", "sections", "stickySectionHeadersEnabled"];
-    var VirtualizedSectionList = class extends React79.PureComponent {
+    var VirtualizedSectionList = class extends React77.PureComponent {
       static {
         __name(this, "VirtualizedSectionList");
       }
@@ -12963,7 +12963,7 @@ var require_VirtualizedSectionList = __commonJS({
               var renderItem = info.section.renderItem || this.props.renderItem;
               var SeparatorComponent = this._getSeparatorComponent(index3, info, listItemCount);
               (0, _invariant.default)(renderItem, "no renderItem!");
-              return /* @__PURE__ */ React79.createElement(ItemWithSeparator, {
+              return /* @__PURE__ */ React77.createElement(ItemWithSeparator, {
                 SeparatorComponent,
                 LeadingSeparatorComponent: infoIndex === 0 ? this.props.SectionSeparatorComponent : void 0,
                 cellKey: info.key,
@@ -13053,7 +13053,7 @@ var require_VirtualizedSectionList = __commonJS({
           itemCount += this.props.getItemCount(section.data);
         }
         var renderItem = this._renderItem(itemCount);
-        return /* @__PURE__ */ React79.createElement(_VirtualizedList.default, (0, _extends2.default)({}, passThroughProps, {
+        return /* @__PURE__ */ React77.createElement(_VirtualizedList.default, (0, _extends2.default)({}, passThroughProps, {
           keyExtractor: this._keyExtractor,
           stickyHeaderIndices,
           renderItem,
@@ -13144,23 +13144,23 @@ var require_VirtualizedSectionList = __commonJS({
     };
     function ItemWithSeparator(props) {
       var LeadingSeparatorComponent = props.LeadingSeparatorComponent, SeparatorComponent = props.SeparatorComponent, cellKey = props.cellKey, prevCellKey = props.prevCellKey, setSelfHighlightCallback = props.setSelfHighlightCallback, updateHighlightFor = props.updateHighlightFor, setSelfUpdatePropsCallback = props.setSelfUpdatePropsCallback, updatePropsFor = props.updatePropsFor, item = props.item, index3 = props.index, section = props.section, inverted = props.inverted;
-      var _React$useState = React79.useState(false), leadingSeparatorHiglighted = _React$useState[0], setLeadingSeparatorHighlighted = _React$useState[1];
-      var _React$useState2 = React79.useState(false), separatorHighlighted = _React$useState2[0], setSeparatorHighlighted = _React$useState2[1];
-      var _React$useState3 = React79.useState({
+      var _React$useState = React77.useState(false), leadingSeparatorHiglighted = _React$useState[0], setLeadingSeparatorHighlighted = _React$useState[1];
+      var _React$useState2 = React77.useState(false), separatorHighlighted = _React$useState2[0], setSeparatorHighlighted = _React$useState2[1];
+      var _React$useState3 = React77.useState({
         leadingItem: props.leadingItem,
         leadingSection: props.leadingSection,
         section: props.section,
         trailingItem: props.item,
         trailingSection: props.trailingSection
       }), leadingSeparatorProps = _React$useState3[0], setLeadingSeparatorProps = _React$useState3[1];
-      var _React$useState4 = React79.useState({
+      var _React$useState4 = React77.useState({
         leadingItem: props.item,
         leadingSection: props.leadingSection,
         section: props.section,
         trailingItem: props.trailingItem,
         trailingSection: props.trailingSection
       }), separatorProps = _React$useState4[0], setSeparatorProps = _React$useState4[1];
-      React79.useEffect(() => {
+      React77.useEffect(() => {
         setSelfHighlightCallback(cellKey, setSeparatorHighlighted);
         setSelfUpdatePropsCallback(cellKey, setSeparatorProps);
         return () => {
@@ -13201,13 +13201,13 @@ var require_VirtualizedSectionList = __commonJS({
         section,
         separators
       });
-      var leadingSeparator = LeadingSeparatorComponent != null && /* @__PURE__ */ React79.createElement(LeadingSeparatorComponent, (0, _extends2.default)({
+      var leadingSeparator = LeadingSeparatorComponent != null && /* @__PURE__ */ React77.createElement(LeadingSeparatorComponent, (0, _extends2.default)({
         highlighted: leadingSeparatorHiglighted
       }, leadingSeparatorProps));
-      var separator = SeparatorComponent != null && /* @__PURE__ */ React79.createElement(SeparatorComponent, (0, _extends2.default)({
+      var separator = SeparatorComponent != null && /* @__PURE__ */ React77.createElement(SeparatorComponent, (0, _extends2.default)({
         highlighted: separatorHighlighted
       }, separatorProps));
-      return leadingSeparator || separator ? /* @__PURE__ */ React79.createElement(_View.default, null, inverted === false ? leadingSeparator : separator, element, inverted === false ? separator : leadingSeparator) : element;
+      return leadingSeparator || separator ? /* @__PURE__ */ React77.createElement(_View.default, null, inverted === false ? leadingSeparator : separator, element, inverted === false ? separator : leadingSeparator) : element;
     }
     __name(ItemWithSeparator, "ItemWithSeparator");
     var _default = exports2.default = VirtualizedSectionList;
@@ -13226,10 +13226,10 @@ var require_SectionList = __commonJS({
     var _extends2 = _interopRequireDefault(require_extends());
     var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require_objectWithoutPropertiesLoose());
     var _Platform = _interopRequireDefault(require_Platform());
-    var React79 = _interopRequireWildcard(require("react"));
+    var React77 = _interopRequireWildcard(require("react"));
     var _VirtualizedSectionList = _interopRequireDefault(require_VirtualizedSectionList());
     var _excluded = ["stickySectionHeadersEnabled"];
-    var SectionList = class extends React79.PureComponent {
+    var SectionList = class extends React77.PureComponent {
       static {
         __name(this, "SectionList");
       }
@@ -13290,7 +13290,7 @@ var require_SectionList = __commonJS({
       render() {
         var _this$props = this.props, _stickySectionHeadersEnabled = _this$props.stickySectionHeadersEnabled, restProps = (0, _objectWithoutPropertiesLoose2.default)(_this$props, _excluded);
         var stickySectionHeadersEnabled = _stickySectionHeadersEnabled !== null && _stickySectionHeadersEnabled !== void 0 ? _stickySectionHeadersEnabled : _Platform.default.OS === "ios";
-        return /* @__PURE__ */ React79.createElement(_VirtualizedSectionList.default, (0, _extends2.default)({}, restProps, {
+        return /* @__PURE__ */ React77.createElement(_VirtualizedSectionList.default, (0, _extends2.default)({}, restProps, {
           stickySectionHeadersEnabled,
           ref: this._captureRef,
           getItemCount: /* @__PURE__ */ __name((items) => items.length, "getItemCount"),
@@ -13326,10 +13326,10 @@ var require_AnimatedSectionList = __commonJS({
     exports2.__esModule = true;
     exports2.default = void 0;
     var _extends2 = _interopRequireDefault(require_extends());
-    var React79 = _interopRequireWildcard(require("react"));
+    var React77 = _interopRequireWildcard(require("react"));
     var _SectionList = _interopRequireDefault(require_SectionList2());
     var _createAnimatedComponent = _interopRequireDefault(require_createAnimatedComponent());
-    var SectionListWithEventThrottle = /* @__PURE__ */ React79.forwardRef((props, ref) => /* @__PURE__ */ React79.createElement(_SectionList.default, (0, _extends2.default)({
+    var SectionListWithEventThrottle = /* @__PURE__ */ React77.forwardRef((props, ref) => /* @__PURE__ */ React77.createElement(_SectionList.default, (0, _extends2.default)({
       scrollEventThrottle: 1e-4
     }, props, {
       ref
@@ -13350,7 +13350,7 @@ var require_Text = __commonJS({
     exports2.default = void 0;
     var _objectSpread2 = _interopRequireDefault(require_objectSpread2());
     var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require_objectWithoutPropertiesLoose());
-    var React79 = _interopRequireWildcard(require("react"));
+    var React77 = _interopRequireWildcard(require("react"));
     var _createElement = _interopRequireDefault(require_createElement());
     var forwardedProps = _interopRequireWildcard(require_forwardedProps());
     var _pick = _interopRequireDefault(require_pick());
@@ -13368,10 +13368,10 @@ var require_Text = __commonJS({
       pointerEvents: true
     });
     var pickProps = /* @__PURE__ */ __name((props) => (0, _pick.default)(props, forwardPropsList), "pickProps");
-    var Text6 = /* @__PURE__ */ React79.forwardRef((props, forwardedRef) => {
+    var Text7 = /* @__PURE__ */ React77.forwardRef((props, forwardedRef) => {
       var hrefAttrs = props.hrefAttrs, numberOfLines = props.numberOfLines, onClick = props.onClick, onLayout = props.onLayout, onPress = props.onPress, onMoveShouldSetResponder = props.onMoveShouldSetResponder, onMoveShouldSetResponderCapture = props.onMoveShouldSetResponderCapture, onResponderEnd = props.onResponderEnd, onResponderGrant = props.onResponderGrant, onResponderMove = props.onResponderMove, onResponderReject = props.onResponderReject, onResponderRelease = props.onResponderRelease, onResponderStart = props.onResponderStart, onResponderTerminate = props.onResponderTerminate, onResponderTerminationRequest = props.onResponderTerminationRequest, onScrollShouldSetResponder = props.onScrollShouldSetResponder, onScrollShouldSetResponderCapture = props.onScrollShouldSetResponderCapture, onSelectionChangeShouldSetResponder = props.onSelectionChangeShouldSetResponder, onSelectionChangeShouldSetResponderCapture = props.onSelectionChangeShouldSetResponderCapture, onStartShouldSetResponder = props.onStartShouldSetResponder, onStartShouldSetResponderCapture = props.onStartShouldSetResponderCapture, selectable = props.selectable, rest = (0, _objectWithoutPropertiesLoose2.default)(props, _excluded);
-      var hasTextAncestor = React79.useContext(_TextAncestorContext.default);
-      var hostRef = React79.useRef(null);
+      var hasTextAncestor = React77.useContext(_TextAncestorContext.default);
+      var hostRef = React77.useRef(null);
       var _useLocaleContext = (0, _useLocale.useLocaleContext)(), contextDirection = _useLocaleContext.direction;
       (0, _useElementLayout.default)(hostRef, onLayout);
       (0, _useResponderEvents.default)(hostRef, {
@@ -13392,7 +13392,7 @@ var require_Text = __commonJS({
         onStartShouldSetResponder,
         onStartShouldSetResponderCapture
       });
-      var handleClick = React79.useCallback((e) => {
+      var handleClick = React77.useCallback((e) => {
         if (onClick != null) {
           onClick(e);
         } else if (onPress != null) {
@@ -13436,11 +13436,11 @@ var require_Text = __commonJS({
       var element = (0, _createElement.default)(component, supportedProps, {
         writingDirection
       });
-      return hasTextAncestor ? element : /* @__PURE__ */ React79.createElement(_TextAncestorContext.default.Provider, {
+      return hasTextAncestor ? element : /* @__PURE__ */ React77.createElement(_TextAncestorContext.default.Provider, {
         value: true
       }, element);
     });
-    Text6.displayName = "Text";
+    Text7.displayName = "Text";
     var textStyle = {
       backgroundColor: "transparent",
       border: "0 solid black",
@@ -13490,7 +13490,7 @@ var require_Text = __commonJS({
         cursor: "pointer"
       }
     });
-    var _default = exports2.default = Text6;
+    var _default = exports2.default = Text7;
     module2.exports = exports2.default;
   }
 });
@@ -13503,7 +13503,7 @@ var require_AnimatedText = __commonJS({
     var _interopRequireWildcard = require_interopRequireWildcard().default;
     exports2.__esModule = true;
     exports2.default = void 0;
-    var React79 = _interopRequireWildcard(require("react"));
+    var React77 = _interopRequireWildcard(require("react"));
     var _Text = _interopRequireDefault(require_Text());
     var _createAnimatedComponent = _interopRequireDefault(require_createAnimatedComponent());
     var _default = exports2.default = (0, _createAnimatedComponent.default)(_Text.default);
@@ -13519,7 +13519,7 @@ var require_AnimatedView = __commonJS({
     var _interopRequireWildcard = require_interopRequireWildcard().default;
     exports2.__esModule = true;
     exports2.default = void 0;
-    var React79 = _interopRequireWildcard(require("react"));
+    var React77 = _interopRequireWildcard(require("react"));
     var _View = _interopRequireDefault(require_View());
     var _createAnimatedComponent = _interopRequireDefault(require_createAnimatedComponent());
     var _default = exports2.default = (0, _createAnimatedComponent.default)(_View.default);
@@ -15979,23 +15979,23 @@ var require_AppContainer = __commonJS({
     var _interopRequireWildcard = require_interopRequireWildcard().default;
     exports2.__esModule = true;
     exports2.default = void 0;
-    var React79 = _interopRequireWildcard(require("react"));
+    var React77 = _interopRequireWildcard(require("react"));
     var _StyleSheet = _interopRequireDefault(require_StyleSheet());
     var _View = _interopRequireDefault(require_View());
-    var RootTagContext = /* @__PURE__ */ React79.createContext(null);
-    var AppContainer = /* @__PURE__ */ React79.forwardRef((props, forwardedRef) => {
+    var RootTagContext = /* @__PURE__ */ React77.createContext(null);
+    var AppContainer = /* @__PURE__ */ React77.forwardRef((props, forwardedRef) => {
       var children = props.children, WrapperComponent = props.WrapperComponent;
-      var innerView = /* @__PURE__ */ React79.createElement(_View.default, {
+      var innerView = /* @__PURE__ */ React77.createElement(_View.default, {
         children,
         key: 1,
         style: styles.appContainer
       });
       if (WrapperComponent) {
-        innerView = /* @__PURE__ */ React79.createElement(WrapperComponent, null, innerView);
+        innerView = /* @__PURE__ */ React77.createElement(WrapperComponent, null, innerView);
       }
-      return /* @__PURE__ */ React79.createElement(RootTagContext.Provider, {
+      return /* @__PURE__ */ React77.createElement(RootTagContext.Provider, {
         value: props.rootTag
-      }, /* @__PURE__ */ React79.createElement(_View.default, {
+      }, /* @__PURE__ */ React77.createElement(_View.default, {
         ref: forwardedRef,
         style: styles.appContainer
       }, innerView));
@@ -17099,11 +17099,11 @@ var require_ActivityIndicator = __commonJS({
     exports2.default = void 0;
     var _extends2 = _interopRequireDefault(require_extends());
     var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require_objectWithoutPropertiesLoose());
-    var React79 = _interopRequireWildcard(require("react"));
+    var React77 = _interopRequireWildcard(require("react"));
     var _StyleSheet = _interopRequireDefault(require_StyleSheet());
     var _View = _interopRequireDefault(require_View());
     var _excluded = ["animating", "color", "hidesWhenStopped", "size", "style"];
-    var createSvgCircle = /* @__PURE__ */ __name((style) => /* @__PURE__ */ React79.createElement("circle", {
+    var createSvgCircle = /* @__PURE__ */ __name((style) => /* @__PURE__ */ React77.createElement("circle", {
       cx: "16",
       cy: "16",
       fill: "none",
@@ -17111,9 +17111,9 @@ var require_ActivityIndicator = __commonJS({
       strokeWidth: "4",
       style
     }), "createSvgCircle");
-    var ActivityIndicator2 = /* @__PURE__ */ React79.forwardRef((props, forwardedRef) => {
+    var ActivityIndicator2 = /* @__PURE__ */ React77.forwardRef((props, forwardedRef) => {
       var _props$animating = props.animating, animating = _props$animating === void 0 ? true : _props$animating, _props$color = props.color, color = _props$color === void 0 ? "#1976D2" : _props$color, _props$hidesWhenStopp = props.hidesWhenStopped, hidesWhenStopped = _props$hidesWhenStopp === void 0 ? true : _props$hidesWhenStopp, _props$size = props.size, size4 = _props$size === void 0 ? "small" : _props$size, style = props.style, other = (0, _objectWithoutPropertiesLoose2.default)(props, _excluded);
-      var svg = /* @__PURE__ */ React79.createElement("svg", {
+      var svg = /* @__PURE__ */ React77.createElement("svg", {
         height: "100%",
         viewBox: "0 0 32 32",
         width: "100%"
@@ -17125,13 +17125,13 @@ var require_ActivityIndicator = __commonJS({
         strokeDasharray: 80,
         strokeDashoffset: 60
       }));
-      return /* @__PURE__ */ React79.createElement(_View.default, (0, _extends2.default)({}, other, {
+      return /* @__PURE__ */ React77.createElement(_View.default, (0, _extends2.default)({}, other, {
         "aria-valuemax": 1,
         "aria-valuemin": 0,
         ref: forwardedRef,
         role: "progressbar",
         style: [styles.container, style]
-      }), /* @__PURE__ */ React79.createElement(_View.default, {
+      }), /* @__PURE__ */ React77.createElement(_View.default, {
         children: svg,
         style: [typeof size4 === "number" ? {
           height: size4,
@@ -17610,7 +17610,7 @@ var require_TouchableOpacity = __commonJS({
     var _extends2 = _interopRequireDefault(require_extends());
     var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require_objectWithoutPropertiesLoose());
     var _react = _interopRequireWildcard(require("react"));
-    var React79 = _react;
+    var React77 = _react;
     var _useMergeRefs = _interopRequireDefault(require_useMergeRefs());
     var _usePressEvents = _interopRequireDefault(require_usePressEvents());
     var _StyleSheet = _interopRequireDefault(require_StyleSheet());
@@ -17655,7 +17655,7 @@ var require_TouchableOpacity = __commonJS({
         }
       }), [delayLongPress, delayPressIn, delayPressOut, disabled, onLongPress, onPress, onPressIn, onPressOut, rejectResponderTermination, setOpacityActive, setOpacityInactive]);
       var pressEventHandlers = (0, _usePressEvents.default)(hostRef, pressConfig);
-      return /* @__PURE__ */ React79.createElement(_View.default, (0, _extends2.default)({}, rest, pressEventHandlers, {
+      return /* @__PURE__ */ React77.createElement(_View.default, (0, _extends2.default)({}, rest, pressEventHandlers, {
         accessibilityDisabled: disabled,
         focusable: !disabled && focusable2 !== false,
         pointerEvents: disabled ? "box-none" : void 0,
@@ -17679,7 +17679,7 @@ var require_TouchableOpacity = __commonJS({
         touchAction: "manipulation"
       }
     });
-    var MemoedTouchableOpacity = /* @__PURE__ */ React79.memo(/* @__PURE__ */ React79.forwardRef(TouchableOpacity));
+    var MemoedTouchableOpacity = /* @__PURE__ */ React77.memo(/* @__PURE__ */ React77.forwardRef(TouchableOpacity));
     MemoedTouchableOpacity.displayName = "TouchableOpacity";
     var _default = exports2.default = MemoedTouchableOpacity;
     module2.exports = exports2.default;
@@ -17694,13 +17694,13 @@ var require_Button = __commonJS({
     var _interopRequireWildcard = require_interopRequireWildcard().default;
     exports2.__esModule = true;
     exports2.default = void 0;
-    var React79 = _interopRequireWildcard(require("react"));
+    var React77 = _interopRequireWildcard(require("react"));
     var _StyleSheet = _interopRequireDefault(require_StyleSheet());
     var _TouchableOpacity = _interopRequireDefault(require_TouchableOpacity());
     var _Text = _interopRequireDefault(require_Text());
-    var Button = /* @__PURE__ */ React79.forwardRef((props, forwardedRef) => {
+    var Button = /* @__PURE__ */ React77.forwardRef((props, forwardedRef) => {
       var accessibilityLabel = props.accessibilityLabel, color = props.color, disabled = props.disabled, onPress = props.onPress, testID = props.testID, title = props.title;
-      return /* @__PURE__ */ React79.createElement(_TouchableOpacity.default, {
+      return /* @__PURE__ */ React77.createElement(_TouchableOpacity.default, {
         accessibilityLabel,
         accessibilityRole: "button",
         disabled,
@@ -17711,7 +17711,7 @@ var require_Button = __commonJS({
           backgroundColor: color
         }, disabled && styles.buttonDisabled],
         testID
-      }, /* @__PURE__ */ React79.createElement(_Text.default, {
+      }, /* @__PURE__ */ React77.createElement(_Text.default, {
         style: [styles.text, disabled && styles.textDisabled]
       }, title));
     });
@@ -17752,12 +17752,12 @@ var require_CheckBox = __commonJS({
     var _objectSpread2 = _interopRequireDefault(require_objectSpread2());
     var _extends2 = _interopRequireDefault(require_extends());
     var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require_objectWithoutPropertiesLoose());
-    var React79 = _interopRequireWildcard(require("react"));
+    var React77 = _interopRequireWildcard(require("react"));
     var _createElement = _interopRequireDefault(require_createElement());
     var _StyleSheet = _interopRequireDefault(require_StyleSheet());
     var _View = _interopRequireDefault(require_View());
     var _excluded = ["aria-readonly", "color", "disabled", "onChange", "onValueChange", "readOnly", "style", "value"];
-    var CheckBox = /* @__PURE__ */ React79.forwardRef((props, forwardedRef) => {
+    var CheckBox = /* @__PURE__ */ React77.forwardRef((props, forwardedRef) => {
       var ariaReadOnly = props["aria-readonly"], color = props.color, disabled = props.disabled, onChange = props.onChange, onValueChange = props.onValueChange, readOnly = props.readOnly, style = props.style, value = props.value, other = (0, _objectWithoutPropertiesLoose2.default)(props, _excluded);
       function handleChange(event) {
         var value2 = event.nativeEvent.target.checked;
@@ -17766,7 +17766,7 @@ var require_CheckBox = __commonJS({
         onValueChange && onValueChange(value2);
       }
       __name(handleChange, "handleChange");
-      var fakeControl = /* @__PURE__ */ React79.createElement(_View.default, {
+      var fakeControl = /* @__PURE__ */ React77.createElement(_View.default, {
         style: [
           styles.fakeControl,
           value && styles.fakeControlChecked,
@@ -17788,7 +17788,7 @@ var require_CheckBox = __commonJS({
         style: [styles.nativeControl, styles.cursorInherit],
         type: "checkbox"
       });
-      return /* @__PURE__ */ React79.createElement(_View.default, (0, _extends2.default)({}, other, {
+      return /* @__PURE__ */ React77.createElement(_View.default, (0, _extends2.default)({}, other, {
         "aria-disabled": disabled,
         "aria-readonly": ariaReadOnly,
         style: [styles.root, style, disabled && styles.cursorDefault]
@@ -17856,7 +17856,7 @@ var require_ImageBackground = __commonJS({
     var _extends2 = _interopRequireDefault(require_extends());
     var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require_objectWithoutPropertiesLoose());
     var _react = _interopRequireWildcard(require("react"));
-    var React79 = _react;
+    var React77 = _react;
     var _Image = _interopRequireDefault(require_Image());
     var _StyleSheet = _interopRequireDefault(require_StyleSheet());
     var _View = _interopRequireDefault(require_View());
@@ -17865,10 +17865,10 @@ var require_ImageBackground = __commonJS({
     var ImageBackground = /* @__PURE__ */ (0, _react.forwardRef)((props, forwardedRef) => {
       var children = props.children, _props$style = props.style, style = _props$style === void 0 ? emptyObject : _props$style, imageStyle = props.imageStyle, imageRef = props.imageRef, rest = (0, _objectWithoutPropertiesLoose2.default)(props, _excluded);
       var _StyleSheet$flatten = _StyleSheet.default.flatten(style), height = _StyleSheet$flatten.height, width = _StyleSheet$flatten.width;
-      return /* @__PURE__ */ React79.createElement(_View.default, {
+      return /* @__PURE__ */ React77.createElement(_View.default, {
         ref: forwardedRef,
         style
-      }, /* @__PURE__ */ React79.createElement(_Image.default, (0, _extends2.default)({}, rest, {
+      }, /* @__PURE__ */ React77.createElement(_Image.default, (0, _extends2.default)({}, rest, {
         ref: imageRef,
         style: [{
           // Temporary Workaround:
@@ -17901,10 +17901,10 @@ var require_KeyboardAvoidingView = __commonJS({
     exports2.default = void 0;
     var _extends2 = _interopRequireDefault(require_extends());
     var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require_objectWithoutPropertiesLoose());
-    var React79 = _interopRequireWildcard(require("react"));
+    var React77 = _interopRequireWildcard(require("react"));
     var _View = _interopRequireDefault(require_View());
     var _excluded = ["behavior", "contentContainerStyle", "keyboardVerticalOffset"];
-    var KeyboardAvoidingView = class extends React79.Component {
+    var KeyboardAvoidingView = class extends React77.Component {
       static {
         __name(this, "KeyboardAvoidingView");
       }
@@ -17927,7 +17927,7 @@ var require_KeyboardAvoidingView = __commonJS({
       }
       render() {
         var _this$props = this.props, behavior = _this$props.behavior, contentContainerStyle = _this$props.contentContainerStyle, keyboardVerticalOffset = _this$props.keyboardVerticalOffset, rest = (0, _objectWithoutPropertiesLoose2.default)(_this$props, _excluded);
-        return /* @__PURE__ */ React79.createElement(_View.default, (0, _extends2.default)({
+        return /* @__PURE__ */ React77.createElement(_View.default, (0, _extends2.default)({
           onLayout: this.onLayout
         }, rest));
       }
@@ -17945,12 +17945,12 @@ var require_ModalPortal = __commonJS({
     var _interopRequireWildcard = require_interopRequireWildcard().default;
     exports2.__esModule = true;
     exports2.default = void 0;
-    var React79 = _interopRequireWildcard(require("react"));
+    var React77 = _interopRequireWildcard(require("react"));
     var _reactDom = require("react-dom");
     var _canUseDom = _interopRequireDefault(require_canUseDom());
     function ModalPortal(props) {
       var children = props.children;
-      var elementRef = React79.useRef(null);
+      var elementRef = React77.useRef(null);
       if (_canUseDom.default && !elementRef.current) {
         var element = document.createElement("div");
         if (element && document.body) {
@@ -17958,7 +17958,7 @@ var require_ModalPortal = __commonJS({
           elementRef.current = element;
         }
       }
-      React79.useEffect(() => {
+      React77.useEffect(() => {
         if (_canUseDom.default) {
           return () => {
             if (document.body && elementRef.current) {
@@ -17984,7 +17984,7 @@ var require_ModalAnimation = __commonJS({
     var _interopRequireWildcard = require_interopRequireWildcard().default;
     exports2.__esModule = true;
     exports2.default = void 0;
-    var React79 = _interopRequireWildcard(require("react"));
+    var React77 = _interopRequireWildcard(require("react"));
     var _StyleSheet = _interopRequireDefault(require_StyleSheet());
     var _createElement = _interopRequireDefault(require_createElement());
     var ANIMATION_DURATION = 250;
@@ -18000,11 +18000,11 @@ var require_ModalAnimation = __commonJS({
     __name(getAnimationStyle, "getAnimationStyle");
     function ModalAnimation(props) {
       var animationType = props.animationType, children = props.children, onDismiss = props.onDismiss, onShow = props.onShow, visible = props.visible;
-      var _React$useState = React79.useState(false), isRendering = _React$useState[0], setIsRendering = _React$useState[1];
-      var wasVisible = React79.useRef(false);
-      var wasRendering = React79.useRef(false);
+      var _React$useState = React77.useState(false), isRendering = _React$useState[0], setIsRendering = _React$useState[1];
+      var wasVisible = React77.useRef(false);
+      var wasRendering = React77.useRef(false);
       var isAnimated = animationType && animationType !== "none";
-      var animationEndCallback = React79.useCallback((e) => {
+      var animationEndCallback = React77.useCallback((e) => {
         if (e && e.currentTarget !== e.target) {
           return;
         }
@@ -18016,13 +18016,13 @@ var require_ModalAnimation = __commonJS({
           setIsRendering(false);
         }
       }, [onShow, visible]);
-      React79.useEffect(() => {
+      React77.useEffect(() => {
         if (wasRendering.current && !isRendering && onDismiss) {
           onDismiss();
         }
         wasRendering.current = isRendering;
       }, [isRendering, onDismiss]);
-      React79.useEffect(() => {
+      React77.useEffect(() => {
         if (visible) {
           setIsRendering(true);
         }
@@ -18123,14 +18123,14 @@ var require_ModalContent = __commonJS({
     exports2.default = void 0;
     var _extends2 = _interopRequireDefault(require_extends());
     var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require_objectWithoutPropertiesLoose());
-    var React79 = _interopRequireWildcard(require("react"));
+    var React77 = _interopRequireWildcard(require("react"));
     var _View = _interopRequireDefault(require_View());
     var _StyleSheet = _interopRequireDefault(require_StyleSheet());
     var _canUseDom = _interopRequireDefault(require_canUseDom());
     var _excluded = ["active", "children", "onRequestClose", "transparent"];
-    var ModalContent = /* @__PURE__ */ React79.forwardRef((props, forwardedRef) => {
+    var ModalContent = /* @__PURE__ */ React77.forwardRef((props, forwardedRef) => {
       var active = props.active, children = props.children, onRequestClose = props.onRequestClose, transparent = props.transparent, rest = (0, _objectWithoutPropertiesLoose2.default)(props, _excluded);
-      React79.useEffect(() => {
+      React77.useEffect(() => {
         if (_canUseDom.default) {
           var closeOnEscape = /* @__PURE__ */ __name((e) => {
             if (active && e.key === "Escape") {
@@ -18144,15 +18144,15 @@ var require_ModalContent = __commonJS({
           return () => document.removeEventListener("keyup", closeOnEscape, false);
         }
       }, [active, onRequestClose]);
-      var style = React79.useMemo(() => {
+      var style = React77.useMemo(() => {
         return [styles.modal, transparent ? styles.modalTransparent : styles.modalOpaque];
       }, [transparent]);
-      return /* @__PURE__ */ React79.createElement(_View.default, (0, _extends2.default)({}, rest, {
+      return /* @__PURE__ */ React77.createElement(_View.default, (0, _extends2.default)({}, rest, {
         "aria-modal": true,
         ref: forwardedRef,
         role: active ? "dialog" : null,
         style
-      }), /* @__PURE__ */ React79.createElement(_View.default, {
+      }), /* @__PURE__ */ React77.createElement(_View.default, {
         style: styles.container
       }, children));
     });
@@ -18188,7 +18188,7 @@ var require_ModalFocusTrap = __commonJS({
     var _interopRequireWildcard = require_interopRequireWildcard().default;
     exports2.__esModule = true;
     exports2.default = void 0;
-    var React79 = _interopRequireWildcard(require("react"));
+    var React77 = _interopRequireWildcard(require("react"));
     var _View = _interopRequireDefault(require_View());
     var _createElement = _interopRequireDefault(require_createElement());
     var _StyleSheet = _interopRequireDefault(require_StyleSheet());
@@ -18234,12 +18234,12 @@ var require_ModalFocusTrap = __commonJS({
     __name(focusLastDescendant, "focusLastDescendant");
     var ModalFocusTrap = /* @__PURE__ */ __name((_ref) => {
       var active = _ref.active, children = _ref.children;
-      var trapElementRef = React79.useRef();
-      var focusRef = React79.useRef({
+      var trapElementRef = React77.useRef();
+      var focusRef = React77.useRef({
         trapFocusInProgress: false,
         lastFocusedElement: null
       });
-      React79.useEffect(() => {
+      React77.useEffect(() => {
         if (_canUseDom.default) {
           var trapFocus = /* @__PURE__ */ __name(() => {
             if (trapElementRef.current == null || focusRef.current.trapFocusInProgress || !active) {
@@ -18266,7 +18266,7 @@ var require_ModalFocusTrap = __commonJS({
           return () => document.removeEventListener("focus", trapFocus, true);
         }
       }, [active]);
-      React79.useEffect(function() {
+      React77.useEffect(function() {
         if (_canUseDom.default) {
           var lastFocusedElementOutsideTrap = document.activeElement;
           return function() {
@@ -18276,9 +18276,9 @@ var require_ModalFocusTrap = __commonJS({
           };
         }
       }, []);
-      return /* @__PURE__ */ React79.createElement(React79.Fragment, null, /* @__PURE__ */ React79.createElement(FocusBracket, null), /* @__PURE__ */ React79.createElement(_View.default, {
+      return /* @__PURE__ */ React77.createElement(React77.Fragment, null, /* @__PURE__ */ React77.createElement(FocusBracket, null), /* @__PURE__ */ React77.createElement(_View.default, {
         ref: trapElementRef
-      }, children), /* @__PURE__ */ React79.createElement(FocusBracket, null));
+      }, children), /* @__PURE__ */ React77.createElement(FocusBracket, null));
     }, "ModalFocusTrap");
     var _default = exports2.default = ModalFocusTrap;
     var styles = _StyleSheet.default.create({
@@ -18301,7 +18301,7 @@ var require_Modal = __commonJS({
     exports2.default = void 0;
     var _extends2 = _interopRequireDefault(require_extends());
     var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require_objectWithoutPropertiesLoose());
-    var React79 = _interopRequireWildcard(require("react"));
+    var React77 = _interopRequireWildcard(require("react"));
     var _ModalPortal = _interopRequireDefault(require_ModalPortal());
     var _ModalAnimation = _interopRequireDefault(require_ModalAnimation());
     var _ModalContent = _interopRequireDefault(require_ModalContent());
@@ -18341,33 +18341,33 @@ var require_Modal = __commonJS({
       notifyActiveModalListeners();
     }
     __name(addActiveModal, "addActiveModal");
-    var Modal = /* @__PURE__ */ React79.forwardRef((props, forwardedRef) => {
+    var Modal = /* @__PURE__ */ React77.forwardRef((props, forwardedRef) => {
       var animationType = props.animationType, children = props.children, onDismiss = props.onDismiss, onRequestClose = props.onRequestClose, onShow = props.onShow, transparent = props.transparent, _props$visible = props.visible, visible = _props$visible === void 0 ? true : _props$visible, rest = (0, _objectWithoutPropertiesLoose2.default)(props, _excluded);
-      var modalId = React79.useMemo(() => uniqueModalIdentifier++, []);
-      var _React$useState = React79.useState(false), isActive = _React$useState[0], setIsActive = _React$useState[1];
-      var onDismissCallback = React79.useCallback(() => {
+      var modalId = React77.useMemo(() => uniqueModalIdentifier++, []);
+      var _React$useState = React77.useState(false), isActive = _React$useState[0], setIsActive = _React$useState[1];
+      var onDismissCallback = React77.useCallback(() => {
         removeActiveModal(modalId);
         if (onDismiss) {
           onDismiss();
         }
       }, [modalId, onDismiss]);
-      var onShowCallback = React79.useCallback(() => {
+      var onShowCallback = React77.useCallback(() => {
         addActiveModal(modalId, setIsActive);
         if (onShow) {
           onShow();
         }
       }, [modalId, onShow]);
-      React79.useEffect(() => {
+      React77.useEffect(() => {
         return () => removeActiveModal(modalId);
       }, [modalId]);
-      return /* @__PURE__ */ React79.createElement(_ModalPortal.default, null, /* @__PURE__ */ React79.createElement(_ModalAnimation.default, {
+      return /* @__PURE__ */ React77.createElement(_ModalPortal.default, null, /* @__PURE__ */ React77.createElement(_ModalAnimation.default, {
         animationType,
         onDismiss: onDismissCallback,
         onShow: onShowCallback,
         visible
-      }, /* @__PURE__ */ React79.createElement(_ModalFocusTrap.default, {
+      }, /* @__PURE__ */ React77.createElement(_ModalFocusTrap.default, {
         active: isActive
-      }, /* @__PURE__ */ React79.createElement(_ModalContent.default, (0, _extends2.default)({}, rest, {
+      }, /* @__PURE__ */ React77.createElement(_ModalContent.default, (0, _extends2.default)({}, rest, {
         active: isActive,
         onRequestClose,
         ref: forwardedRef,
@@ -18415,16 +18415,16 @@ var require_Picker = __commonJS({
     exports2.default = void 0;
     var _objectSpread2 = _interopRequireDefault(require_objectSpread2());
     var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require_objectWithoutPropertiesLoose());
-    var React79 = _interopRequireWildcard(require("react"));
+    var React77 = _interopRequireWildcard(require("react"));
     var _createElement = _interopRequireDefault(require_createElement());
     var _useMergeRefs = _interopRequireDefault(require_useMergeRefs());
     var _usePlatformMethods = _interopRequireDefault(require_usePlatformMethods());
     var _PickerItem = _interopRequireDefault(require_PickerItem());
     var _StyleSheet = _interopRequireDefault(require_StyleSheet());
     var _excluded = ["children", "enabled", "onValueChange", "selectedValue", "style", "testID", "itemStyle", "mode", "prompt"];
-    var Picker = /* @__PURE__ */ React79.forwardRef((props, forwardedRef) => {
+    var Picker = /* @__PURE__ */ React77.forwardRef((props, forwardedRef) => {
       var children = props.children, enabled = props.enabled, onValueChange = props.onValueChange, selectedValue = props.selectedValue, style = props.style, testID = props.testID, itemStyle = props.itemStyle, mode = props.mode, prompt = props.prompt, other = (0, _objectWithoutPropertiesLoose2.default)(props, _excluded);
-      var hostRef = React79.useRef(null);
+      var hostRef = React77.useRef(null);
       function handleChange(e) {
         var _e$target = e.target, selectedIndex = _e$target.selectedIndex, value = _e$target.value;
         if (onValueChange) {
@@ -18885,7 +18885,7 @@ var require_Pressable = __commonJS({
     var _extends2 = _interopRequireDefault(require_extends());
     var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require_objectWithoutPropertiesLoose());
     var _react = _interopRequireWildcard(require("react"));
-    var React79 = _react;
+    var React77 = _react;
     var _useMergeRefs = _interopRequireDefault(require_useMergeRefs());
     var _useHover = _interopRequireDefault(require_useHover());
     var _usePressEvents = _interopRequireDefault(require_usePressEvents());
@@ -18925,7 +18925,7 @@ var require_Pressable = __commonJS({
         focused,
         pressed
       };
-      var blurHandler = React79.useCallback((e) => {
+      var blurHandler = React77.useCallback((e) => {
         if (e.nativeEvent.target === hostRef.current) {
           setFocused(false);
           if (onBlur != null) {
@@ -18933,7 +18933,7 @@ var require_Pressable = __commonJS({
           }
         }
       }, [hostRef, setFocused, onBlur]);
-      var focusHandler = React79.useCallback((e) => {
+      var focusHandler = React77.useCallback((e) => {
         if (e.nativeEvent.target === hostRef.current) {
           setFocused(true);
           if (onFocus != null) {
@@ -18941,7 +18941,7 @@ var require_Pressable = __commonJS({
           }
         }
       }, [hostRef, setFocused, onFocus]);
-      var contextMenuHandler = React79.useCallback((e) => {
+      var contextMenuHandler = React77.useCallback((e) => {
         if (onContextMenuPress != null) {
           onContextMenuPress(e);
         }
@@ -18949,7 +18949,7 @@ var require_Pressable = __commonJS({
           onContextMenu(e);
         }
       }, [onContextMenu, onContextMenuPress]);
-      var keyDownHandler = React79.useCallback((e) => {
+      var keyDownHandler = React77.useCallback((e) => {
         if (onKeyDownPress != null) {
           onKeyDownPress(e);
         }
@@ -18963,7 +18963,7 @@ var require_Pressable = __commonJS({
       } else {
         _tabIndex = disabled ? -1 : 0;
       }
-      return /* @__PURE__ */ React79.createElement(_View.default, (0, _extends2.default)({}, rest, pressEventHandlers, {
+      return /* @__PURE__ */ React77.createElement(_View.default, (0, _extends2.default)({}, rest, pressEventHandlers, {
         "aria-disabled": disabled,
         onBlur: blurHandler,
         onContextMenu: contextMenuHandler,
@@ -19007,15 +19007,15 @@ var require_ProgressBar = __commonJS({
     exports2.default = void 0;
     var _extends2 = _interopRequireDefault(require_extends());
     var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require_objectWithoutPropertiesLoose());
-    var React79 = _interopRequireWildcard(require("react"));
+    var React77 = _interopRequireWildcard(require("react"));
     var _StyleSheet = _interopRequireDefault(require_StyleSheet());
     var _View = _interopRequireDefault(require_View());
     var _excluded = ["color", "indeterminate", "progress", "trackColor", "style"];
-    var ProgressBar = /* @__PURE__ */ React79.forwardRef((props, ref) => {
+    var ProgressBar = /* @__PURE__ */ React77.forwardRef((props, ref) => {
       var _props$color = props.color, color = _props$color === void 0 ? "#1976D2" : _props$color, _props$indeterminate = props.indeterminate, indeterminate = _props$indeterminate === void 0 ? false : _props$indeterminate, _props$progress = props.progress, progress = _props$progress === void 0 ? 0 : _props$progress, _props$trackColor = props.trackColor, trackColor = _props$trackColor === void 0 ? "transparent" : _props$trackColor, style = props.style, other = (0, _objectWithoutPropertiesLoose2.default)(props, _excluded);
       var percentageProgress = progress * 100;
       var width = indeterminate ? "25%" : percentageProgress + "%";
-      return /* @__PURE__ */ React79.createElement(_View.default, (0, _extends2.default)({}, other, {
+      return /* @__PURE__ */ React77.createElement(_View.default, (0, _extends2.default)({}, other, {
         "aria-valuemax": 100,
         "aria-valuemin": 0,
         "aria-valuenow": indeterminate ? null : percentageProgress,
@@ -19024,7 +19024,7 @@ var require_ProgressBar = __commonJS({
         style: [styles.track, style, {
           backgroundColor: trackColor
         }]
-      }), /* @__PURE__ */ React79.createElement(_View.default, {
+      }), /* @__PURE__ */ React77.createElement(_View.default, {
         style: [{
           backgroundColor: color,
           width
@@ -19074,7 +19074,7 @@ var require_SafeAreaView = __commonJS({
     exports2.default = void 0;
     var _extends2 = _interopRequireDefault(require_extends());
     var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require_objectWithoutPropertiesLoose());
-    var React79 = _interopRequireWildcard(require("react"));
+    var React77 = _interopRequireWildcard(require("react"));
     var _StyleSheet = _interopRequireDefault(require_StyleSheet());
     var _View = _interopRequireDefault(require_View());
     var _canUseDom = _interopRequireDefault(require_canUseDom());
@@ -19085,9 +19085,9 @@ var require_SafeAreaView = __commonJS({
       }
       return "env";
     })();
-    var SafeAreaView = /* @__PURE__ */ React79.forwardRef((props, ref) => {
+    var SafeAreaView = /* @__PURE__ */ React77.forwardRef((props, ref) => {
       var style = props.style, rest = (0, _objectWithoutPropertiesLoose2.default)(props, _excluded);
-      return /* @__PURE__ */ React79.createElement(_View.default, (0, _extends2.default)({}, rest, {
+      return /* @__PURE__ */ React77.createElement(_View.default, (0, _extends2.default)({}, rest, {
         ref,
         style: [styles.root, style]
       }));
@@ -19165,7 +19165,7 @@ var require_Switch = __commonJS({
     var _objectSpread2 = _interopRequireDefault(require_objectSpread2());
     var _extends2 = _interopRequireDefault(require_extends());
     var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require_objectWithoutPropertiesLoose());
-    var React79 = _interopRequireWildcard(require("react"));
+    var React77 = _interopRequireWildcard(require("react"));
     var _createElement = _interopRequireDefault(require_createElement());
     var _multiplyStyleLengthValue = _interopRequireDefault(require_multiplyStyleLengthValue());
     var _StyleSheet = _interopRequireDefault(require_StyleSheet());
@@ -19180,9 +19180,9 @@ var require_Switch = __commonJS({
     var defaultActiveThumbColor = "#009688";
     var defaultThumbColor = "#FAFAFA";
     var defaultDisabledThumbColor = "#BDBDBD";
-    var Switch2 = /* @__PURE__ */ React79.forwardRef((props, forwardedRef) => {
+    var Switch2 = /* @__PURE__ */ React77.forwardRef((props, forwardedRef) => {
       var ariaLabel = props["aria-label"], accessibilityLabel = props.accessibilityLabel, activeThumbColor = props.activeThumbColor, activeTrackColor = props.activeTrackColor, _props$disabled = props.disabled, disabled = _props$disabled === void 0 ? false : _props$disabled, onValueChange = props.onValueChange, _props$style = props.style, style = _props$style === void 0 ? emptyObject : _props$style, thumbColor = props.thumbColor, trackColor = props.trackColor, _props$value = props.value, value = _props$value === void 0 ? false : _props$value, other = (0, _objectWithoutPropertiesLoose2.default)(props, _excluded);
-      var thumbRef = React79.useRef(null);
+      var thumbRef = React77.useRef(null);
       function handleChange(event) {
         if (onValueChange != null) {
           onValueChange(event.nativeEvent.target.checked);
@@ -19276,11 +19276,11 @@ var require_Switch = __commonJS({
         type: "checkbox",
         role: "switch"
       });
-      return /* @__PURE__ */ React79.createElement(_View.default, (0, _extends2.default)({}, other, {
+      return /* @__PURE__ */ React77.createElement(_View.default, (0, _extends2.default)({}, other, {
         style: rootStyle
-      }), /* @__PURE__ */ React79.createElement(_View.default, {
+      }), /* @__PURE__ */ React77.createElement(_View.default, {
         style: trackStyle
-      }), /* @__PURE__ */ React79.createElement(_View.default, {
+      }), /* @__PURE__ */ React77.createElement(_View.default, {
         ref: thumbRef,
         style: thumbStyle
       }), nativeControl);
@@ -19339,7 +19339,7 @@ var require_TextInput = __commonJS({
     var _interopRequireWildcard = require_interopRequireWildcard().default;
     exports2.__esModule = true;
     exports2.default = void 0;
-    var React79 = _interopRequireWildcard(require("react"));
+    var React77 = _interopRequireWildcard(require("react"));
     var _createElement = _interopRequireDefault(require_createElement());
     var forwardedProps = _interopRequireWildcard(require_forwardedProps());
     var _pick = _interopRequireDefault(require_pick());
@@ -19390,7 +19390,7 @@ var require_TextInput = __commonJS({
     }
     __name(isEventComposing, "isEventComposing");
     var focusTimeout = null;
-    var TextInput2 = /* @__PURE__ */ React79.forwardRef((props, forwardedRef) => {
+    var TextInput = /* @__PURE__ */ React77.forwardRef((props, forwardedRef) => {
       var _props$autoCapitalize = props.autoCapitalize, autoCapitalize = _props$autoCapitalize === void 0 ? "sentences" : _props$autoCapitalize, autoComplete = props.autoComplete, autoCompleteType = props.autoCompleteType, _props$autoCorrect = props.autoCorrect, autoCorrect = _props$autoCorrect === void 0 ? true : _props$autoCorrect, blurOnSubmit = props.blurOnSubmit, caretHidden = props.caretHidden, clearTextOnFocus = props.clearTextOnFocus, dir = props.dir, editable = props.editable, enterKeyHint = props.enterKeyHint, inputMode = props.inputMode, keyboardType = props.keyboardType, _props$multiline = props.multiline, multiline = _props$multiline === void 0 ? false : _props$multiline, numberOfLines = props.numberOfLines, onBlur = props.onBlur, onChange = props.onChange, onChangeText = props.onChangeText, onContentSizeChange = props.onContentSizeChange, onFocus = props.onFocus, onKeyPress = props.onKeyPress, onLayout = props.onLayout, onMoveShouldSetResponder = props.onMoveShouldSetResponder, onMoveShouldSetResponderCapture = props.onMoveShouldSetResponderCapture, onResponderEnd = props.onResponderEnd, onResponderGrant = props.onResponderGrant, onResponderMove = props.onResponderMove, onResponderReject = props.onResponderReject, onResponderRelease = props.onResponderRelease, onResponderStart = props.onResponderStart, onResponderTerminate = props.onResponderTerminate, onResponderTerminationRequest = props.onResponderTerminationRequest, onScrollShouldSetResponder = props.onScrollShouldSetResponder, onScrollShouldSetResponderCapture = props.onScrollShouldSetResponderCapture, onSelectionChange = props.onSelectionChange, onSelectionChangeShouldSetResponder = props.onSelectionChangeShouldSetResponder, onSelectionChangeShouldSetResponderCapture = props.onSelectionChangeShouldSetResponderCapture, onStartShouldSetResponder = props.onStartShouldSetResponder, onStartShouldSetResponderCapture = props.onStartShouldSetResponderCapture, onSubmitEditing = props.onSubmitEditing, placeholderTextColor = props.placeholderTextColor, _props$readOnly = props.readOnly, readOnly = _props$readOnly === void 0 ? false : _props$readOnly, returnKeyType = props.returnKeyType, rows = props.rows, _props$secureTextEntr = props.secureTextEntry, secureTextEntry = _props$secureTextEntr === void 0 ? false : _props$secureTextEntr, selection = props.selection, selectTextOnFocus = props.selectTextOnFocus, showSoftInputOnFocus = props.showSoftInputOnFocus, spellCheck = props.spellCheck;
       var type;
       var _inputMode;
@@ -19436,20 +19436,20 @@ var require_TextInput = __commonJS({
       if (secureTextEntry) {
         type = "password";
       }
-      var dimensions = React79.useRef({
+      var dimensions = React77.useRef({
         height: null,
         width: null
       });
-      var hostRef = React79.useRef(null);
-      var prevSelection = React79.useRef(null);
-      var prevSecureTextEntry = React79.useRef(false);
-      React79.useEffect(() => {
+      var hostRef = React77.useRef(null);
+      var prevSelection = React77.useRef(null);
+      var prevSecureTextEntry = React77.useRef(false);
+      React77.useEffect(() => {
         if (hostRef.current && prevSelection.current) {
           setSelection(hostRef.current, prevSelection.current);
         }
         prevSecureTextEntry.current = secureTextEntry;
       }, [secureTextEntry]);
-      var handleContentSizeChange = React79.useCallback((hostNode) => {
+      var handleContentSizeChange = React77.useCallback((hostNode) => {
         if (multiline && onContentSizeChange && hostNode != null) {
           var newHeight = hostNode.scrollHeight;
           var newWidth = hostNode.scrollWidth;
@@ -19467,7 +19467,7 @@ var require_TextInput = __commonJS({
           }
         }
       }, [multiline, onContentSizeChange]);
-      var imperativeRef = React79.useMemo(() => (hostNode) => {
+      var imperativeRef = React77.useMemo(() => (hostNode) => {
         if (hostNode != null) {
           hostNode.clear = function() {
             if (hostNode != null) {
@@ -19628,8 +19628,8 @@ var require_TextInput = __commonJS({
       });
       return element;
     });
-    TextInput2.displayName = "TextInput";
-    TextInput2.State = _TextInputState.default;
+    TextInput.displayName = "TextInput";
+    TextInput.State = _TextInputState.default;
     var styles = _StyleSheet.default.create({
       textinput$raw: {
         MozAppearance: "textfield",
@@ -19650,7 +19650,7 @@ var require_TextInput = __commonJS({
         caretColor: "transparent"
       }
     });
-    var _default = exports2.default = TextInput2;
+    var _default = exports2.default = TextInput;
     module2.exports = exports2.default;
   }
 });
@@ -20384,7 +20384,7 @@ var require_TouchableHighlight = __commonJS({
     var _extends2 = _interopRequireDefault(require_extends());
     var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require_objectWithoutPropertiesLoose());
     var _react = _interopRequireWildcard(require("react"));
-    var React79 = _react;
+    var React77 = _react;
     var _useMergeRefs = _interopRequireDefault(require_useMergeRefs());
     var _usePressEvents = _interopRequireDefault(require_usePressEvents());
     var _StyleSheet = _interopRequireDefault(require_StyleSheet());
@@ -20452,14 +20452,14 @@ var require_TouchableHighlight = __commonJS({
         }
       }), [delayLongPress, delayPressIn, delayPressOut, disabled, onLongPress, onPress, onPressIn, onPressOut, rejectResponderTermination, showUnderlay, hideUnderlay]);
       var pressEventHandlers = (0, _usePressEvents.default)(hostRef, pressConfig);
-      var child = React79.Children.only(children);
-      return /* @__PURE__ */ React79.createElement(_View.default, (0, _extends2.default)({}, rest, pressEventHandlers, {
+      var child = React77.Children.only(children);
+      return /* @__PURE__ */ React77.createElement(_View.default, (0, _extends2.default)({}, rest, pressEventHandlers, {
         accessibilityDisabled: disabled,
         focusable: !disabled && focusable2 !== false,
         pointerEvents: disabled ? "box-none" : void 0,
         ref: setRef2,
         style: [styles.root, style, !disabled && styles.actionable, extraStyles && extraStyles.underlay]
-      }), /* @__PURE__ */ React79.cloneElement(child, {
+      }), /* @__PURE__ */ React77.cloneElement(child, {
         style: [child.props.style, extraStyles && extraStyles.child]
       }));
     }
@@ -20473,7 +20473,7 @@ var require_TouchableHighlight = __commonJS({
         touchAction: "manipulation"
       }
     });
-    var MemoedTouchableHighlight = /* @__PURE__ */ React79.memo(/* @__PURE__ */ React79.forwardRef(TouchableHighlight));
+    var MemoedTouchableHighlight = /* @__PURE__ */ React77.memo(/* @__PURE__ */ React77.forwardRef(TouchableHighlight));
     MemoedTouchableHighlight.displayName = "TouchableHighlight";
     var _default = exports2.default = MemoedTouchableHighlight;
     module2.exports = exports2.default;
@@ -20532,7 +20532,7 @@ var require_TouchableWithoutFeedback = __commonJS({
     exports2.__esModule = true;
     exports2.default = void 0;
     var _react = _interopRequireWildcard(require("react"));
-    var React79 = _react;
+    var React77 = _react;
     var _pick = _interopRequireDefault(require_pick());
     var _useMergeRefs = _interopRequireDefault(require_useMergeRefs());
     var _usePressEvents = _interopRequireDefault(require_usePressEvents());
@@ -20570,17 +20570,17 @@ var require_TouchableWithoutFeedback = __commonJS({
         onPressEnd: onPressOut
       }), [disabled, delayPressIn, delayPressOut, delayLongPress, onLongPress, onPress, onPressIn, onPressOut, rejectResponderTermination]);
       var pressEventHandlers = (0, _usePressEvents.default)(hostRef, pressConfig);
-      var element = React79.Children.only(props.children);
+      var element = React77.Children.only(props.children);
       var children = [element.props.children];
       var supportedProps = pickProps(props);
       supportedProps.accessibilityDisabled = disabled;
       supportedProps.focusable = !disabled && focusable2 !== false;
       supportedProps.ref = (0, _useMergeRefs.default)(forwardedRef, hostRef, element.ref);
       var elementProps = Object.assign(supportedProps, pressEventHandlers);
-      return /* @__PURE__ */ React79.cloneElement(element, elementProps, ...children);
+      return /* @__PURE__ */ React77.cloneElement(element, elementProps, ...children);
     }
     __name(TouchableWithoutFeedback, "TouchableWithoutFeedback");
-    var MemoedTouchableWithoutFeedback = /* @__PURE__ */ React79.memo(/* @__PURE__ */ React79.forwardRef(TouchableWithoutFeedback));
+    var MemoedTouchableWithoutFeedback = /* @__PURE__ */ React77.memo(/* @__PURE__ */ React77.forwardRef(TouchableWithoutFeedback));
     MemoedTouchableWithoutFeedback.displayName = "TouchableWithoutFeedback";
     var _default = exports2.default = MemoedTouchableWithoutFeedback;
     module2.exports = exports2.default;
@@ -20664,11 +20664,11 @@ var require_useColorScheme = __commonJS({
     var _interopRequireWildcard = require_interopRequireWildcard().default;
     exports2.__esModule = true;
     exports2.default = useColorScheme;
-    var React79 = _interopRequireWildcard(require("react"));
+    var React77 = _interopRequireWildcard(require("react"));
     var _Appearance = _interopRequireDefault(require_Appearance());
     function useColorScheme() {
-      var _React$useState = React79.useState(_Appearance.default.getColorScheme()), colorScheme = _React$useState[0], setColorScheme = _React$useState[1];
-      React79.useEffect(() => {
+      var _React$useState = React77.useState(_Appearance.default.getColorScheme()), colorScheme = _React$useState[0], setColorScheme = _React$useState[1];
+      React77.useEffect(() => {
         function listener(appearance) {
           setColorScheme(appearance.colorScheme);
         }
@@ -20865,7 +20865,7 @@ var require_cjs = __commonJS({
 var require_dist = __commonJS({
   "node_modules/tabbable/dist/index.js"(exports2) {
     "use strict";
-    var candidateSelectors = ["input:not([inert])", "select:not([inert])", "textarea:not([inert])", "a[href]:not([inert])", "button:not([inert])", "[tabindex]:not(slot):not([inert])", "audio[controls]:not([inert])", "video[controls]:not([inert])", '[contenteditable]:not([contenteditable="false"]):not([inert])', "details>summary:first-of-type:not([inert])", "details:not([inert])"];
+    var candidateSelectors = ["input:not([inert]):not([inert] *)", "select:not([inert]):not([inert] *)", "textarea:not([inert]):not([inert] *)", "a[href]:not([inert]):not([inert] *)", "button:not([inert]):not([inert] *)", "[tabindex]:not(slot):not([inert]):not([inert] *)", "audio[controls]:not([inert]):not([inert] *)", "video[controls]:not([inert]):not([inert] *)", '[contenteditable]:not([contenteditable="false"]):not([inert]):not([inert] *)', "details>summary:first-of-type:not([inert]):not([inert] *)", "details:not([inert]):not([inert] *)"];
     var candidateSelector = /* @__PURE__ */ candidateSelectors.join(",");
     var NoElement = typeof Element === "undefined";
     var matches = NoElement ? function() {
@@ -20883,7 +20883,9 @@ var require_dist = __commonJS({
       }
       var inertAtt = node === null || node === void 0 ? void 0 : (_node$getAttribute = node.getAttribute) === null || _node$getAttribute === void 0 ? void 0 : _node$getAttribute.call(node, "inert");
       var inert = inertAtt === "" || inertAtt === "true";
-      var result = inert || lookUp && node && _isInert(node.parentNode);
+      var result = inert || lookUp && node && // closest does not exist on shadow roots, so we fall back to a manual
+      // lookup upward, in case it is not defined.
+      (typeof node.closest === "function" ? node.closest("[inert]") : _isInert(node.parentNode));
       return result;
     }, "isInert");
     var isContentEditable = /* @__PURE__ */ __name(function isContentEditable2(node) {
@@ -21117,10 +21119,7 @@ var require_dist = __commonJS({
       return false;
     }, "isDisabledFromFieldset");
     var isNodeMatchingSelectorFocusable = /* @__PURE__ */ __name(function isNodeMatchingSelectorFocusable2(options, node) {
-      if (node.disabled || // we must do an inert look up to filter out any elements inside an inert ancestor
-      //  because we're limited in the type of selectors we can use in JSDom (see related
-      //  note related to `candidateSelectors`)
-      _isInert(node) || isHiddenInput(node) || isHidden2(node, options) || // For a details element with a summary, the summary element gets the focus
+      if (node.disabled || isHiddenInput(node) || isHidden2(node, options) || // For a details element with a summary, the summary element gets the focus
       isDetailsWithSummary(node) || isDisabledFromFieldset(node)) {
         return false;
       }
@@ -21203,7 +21202,7 @@ var require_dist = __commonJS({
       }
       return isNodeMatchingSelectorTabbable(options, node);
     }, "isTabbable");
-    var focusableCandidateSelector = /* @__PURE__ */ candidateSelectors.concat("iframe").join(",");
+    var focusableCandidateSelector = /* @__PURE__ */ candidateSelectors.concat("iframe:not([inert]):not([inert] *)").join(",");
     var isFocusable = /* @__PURE__ */ __name(function isFocusable2(node, options) {
       options = options || {};
       if (!node) {
@@ -21309,7 +21308,6 @@ __export(esm_exports, {
   IS_FABRIC: () => IS_FABRIC,
   Image: () => Image,
   Input: () => Input,
-  InputFrame: () => InputFrame,
   Label: () => Label,
   LabelFrame: () => LabelFrame,
   ListItem: () => ListItem2,
@@ -21403,9 +21401,8 @@ __export(esm_exports, {
   Tabs: () => Tabs,
   TabsProvider: () => TabsProvider,
   TamaguiProvider: () => TamaguiProvider,
-  Text: () => Text5,
+  Text: () => Text6,
   TextArea: () => TextArea,
-  TextAreaFrame: () => TextAreaFrame,
   Theme: () => import_core61.Theme,
   ThemeableStack: () => ThemeableStack,
   Thumb: () => Thumb,
@@ -21450,7 +21447,6 @@ __export(esm_exports, {
   createTokens: () => import_core61.createTokens,
   createVariable: () => import_core61.createVariable,
   debounce: () => debounce,
-  defaultStyles: () => defaultStyles,
   fullscreenStyle: () => fullscreenStyle,
   getCSSStylesAtomic: () => import_core61.getCSSStylesAtomic,
   getConfig: () => import_core61.getConfig,
@@ -21467,6 +21463,7 @@ __export(esm_exports, {
   getVariable: () => import_core61.getVariable,
   getVariableName: () => import_core61.getVariableName,
   getVariableValue: () => import_core61.getVariableValue,
+  inputSizeVariant: () => inputSizeVariant,
   insertFont: () => import_core61.insertFont,
   isChrome: () => import_core61.isChrome,
   isClient: () => import_core61.isClient,
@@ -21505,6 +21502,7 @@ __export(esm_exports, {
   stylePropsUnitless: () => stylePropsUnitless,
   stylePropsView: () => stylePropsView,
   styled: () => import_core61.styled,
+  textAreaSizeVariant: () => textAreaSizeVariant,
   themeable: () => import_core61.themeable,
   themeableVariants: () => themeableVariants,
   tokenCategories: () => tokenCategories,
@@ -21527,7 +21525,6 @@ __export(esm_exports, {
   useGet: () => import_core61.useGet,
   useGetThemedIcon: () => useGetThemedIcon,
   useGroupItem: () => useGroupItem,
-  useInputProps: () => useInputProps,
   useIsPresent: () => useIsPresent,
   useIsTouchDevice: () => import_core61.useIsTouchDevice,
   useIsomorphicLayoutEffect: () => import_core61.useIsomorphicLayoutEffect,
@@ -26323,7 +26320,7 @@ function useButton({
   textProps,
   ...propsIn
 }, {
-  Text: Text6 = Button2.Text
+  Text: Text7 = Button2.Text
 } = {
   Text: Button2.Text
 }) {
@@ -26353,7 +26350,7 @@ function useButton({
   })) * scaleIcon, getThemedIcon = useGetThemedIcon({
     size: iconSize,
     color
-  }), [themedIcon, themedIconAfter] = [icon, iconAfter].map(getThemedIcon), spaceSize = space ?? (0, import_web12.getVariableValue)(iconSize) * scaleSpace, contents = noTextWrap ? [propsIn.children] : wrapChildrenInText(Text6, {
+  }), [themedIcon, themedIconAfter] = [icon, iconAfter].map(getThemedIcon), spaceSize = space ?? (0, import_web12.getVariableValue)(iconSize) * scaleSpace, contents = noTextWrap ? [propsIn.children] : wrapChildrenInText(Text7, {
     children: propsIn.children,
     color,
     fontFamily,
@@ -26364,7 +26361,7 @@ function useButton({
     letterSpacing,
     ellipse,
     maxFontSizeMultiplier
-  }, Text6 === ButtonText && propsActive.unstyled !== true ? {
+  }, Text7 === ButtonText && propsActive.unstyled !== true ? {
     unstyled: process.env.TAMAGUI_HEADLESS === "1",
     size: size4
   } : void 0), inner2 = (0, import_web12.spacedChildren)({
@@ -26583,7 +26580,7 @@ var CheckboxFrame = (0, import_core20.styled)(ThemeableStack, {
 });
 
 // node_modules/@tamagui/checkbox/dist/esm/createCheckbox.mjs
-var import_react34 = __toESM(require("react"), 1);
+var import_react33 = __toESM(require("react"), 1);
 
 // node_modules/@tamagui/focusable/dist/esm/registerFocusable.mjs
 var registerFocusable = /* @__PURE__ */ __name((id, input) => () => {
@@ -26591,45 +26588,9 @@ var registerFocusable = /* @__PURE__ */ __name((id, input) => () => {
 var focusFocusable = /* @__PURE__ */ __name((id) => {
 }, "focusFocusable");
 
-// node_modules/@tamagui/focusable/dist/esm/focusableInputHOC.mjs
-var import_web14 = require("@tamagui/core");
-var import_react32 = __toESM(require("react"), 1);
-function useFocusable({
-  isInput,
-  props,
-  ref
-}) {
-  const {
-    id,
-    onChangeText,
-    value,
-    defaultValue: defaultValue2
-  } = props, inputValue = import_react32.default.useRef(value || defaultValue2 || ""), unregisterFocusable = import_react32.default.useRef(void 0), focusAndSelect = import_react32.default.useCallback((input) => {
-    input.focus(), input.setSelection && typeof inputValue.current == "string" && input.setSelection(0, inputValue.current.length);
-  }, []), registerFocusableHandler = import_react32.default.useCallback((input) => {
-    !id || !input || (unregisterFocusable.current?.(), unregisterFocusable.current = registerFocusable(id, {
-      focus: input.focus,
-      ...isInput && {
-        focusAndSelect: /* @__PURE__ */ __name(() => focusAndSelect(input), "focusAndSelect")
-      }
-    }));
-  }, [id, isInput, focusAndSelect]), inputRef = import_react32.default.useCallback((input) => {
-    input && registerFocusableHandler(input);
-  }, [registerFocusableHandler]), handleChangeText = (0, import_web14.useEvent)((value2) => {
-    inputValue.current = value2, onChangeText?.(value2);
-  });
-  return import_react32.default.useEffect(() => () => {
-    unregisterFocusable.current?.();
-  }, []), {
-    ref: import_react32.default.useMemo(() => composeRefs(ref, inputRef), [ref, inputRef]),
-    onChangeText: handleChangeText
-  };
-}
-__name(useFocusable, "useFocusable");
-
 // node_modules/@tamagui/label/dist/esm/Label.mjs
-var import_web15 = require("@tamagui/core");
-var React40 = __toESM(require("react"), 1);
+var import_web14 = require("@tamagui/core");
+var React39 = __toESM(require("react"), 1);
 var import_jsx_runtime28 = require("react/jsx-runtime");
 var NAME = "Label";
 var [LabelProvider, useLabelContextImpl] = createContext7(NAME, {
@@ -26638,7 +26599,7 @@ var [LabelProvider, useLabelContextImpl] = createContext7(NAME, {
     current: null
   }
 });
-var LabelFrame = (0, import_web15.styled)(SizableText2, {
+var LabelFrame = (0, import_web14.styled)(SizableText2, {
   name: "Label",
   tag: "label",
   variants: {
@@ -26670,13 +26631,13 @@ var LabelFrame = (0, import_web15.styled)(SizableText2, {
     unstyled: process.env.TAMAGUI_HEADLESS === "1"
   }
 });
-var LabelComponent = React40.forwardRef((props, forwardedRef) => {
+var LabelComponent = React39.forwardRef((props, forwardedRef) => {
   const {
     htmlFor,
     id: idProp,
     ...labelProps
-  } = props, controlRef = React40.useRef(null), ref = React40.useRef(null), composedRefs = useComposedRefs(forwardedRef, ref), backupId = React40.useId(), id = idProp ?? backupId;
-  return isWeb && React40.useEffect(() => {
+  } = props, controlRef = React39.useRef(null), ref = React39.useRef(null), composedRefs = useComposedRefs(forwardedRef, ref), backupId = React39.useId(), id = idProp ?? backupId;
+  return isWeb && React39.useEffect(() => {
     if (htmlFor) {
       const element = document.getElementById(htmlFor);
       if (ref.current && element) {
@@ -26710,32 +26671,32 @@ var LabelComponent = React40.forwardRef((props, forwardedRef) => {
   });
 });
 LabelComponent.displayName = NAME;
-var Label = LabelFrame.extractable((0, import_web15.themeable)(LabelComponent));
+var Label = LabelFrame.extractable((0, import_web14.themeable)(LabelComponent));
 var useLabelContext = /* @__PURE__ */ __name((element) => {
   const context2 = useLabelContextImpl("LabelConsumer"), {
     controlRef
   } = context2;
-  return React40.useEffect(() => {
+  return React39.useEffect(() => {
     element && (controlRef.current = element);
   }, [element, controlRef]), context2.id;
 }, "useLabelContext");
 
 // node_modules/@tamagui/checkbox-headless/dist/esm/useCheckbox.mjs
-var import_react33 = __toESM(require("react"), 1);
+var import_react32 = __toESM(require("react"), 1);
 
 // node_modules/@tamagui/use-previous/dist/esm/index.mjs
-var React41 = __toESM(require("react"), 1);
+var React40 = __toESM(require("react"), 1);
 function usePrevious(value) {
-  const ref = React41.useRef({
+  const ref = React40.useRef({
     value,
     previous: value
   });
-  return React41.useMemo(() => (ref.current.value !== value && (ref.current.previous = ref.current.value, ref.current.value = value), ref.current.previous), [value]);
+  return React40.useMemo(() => (ref.current.value !== value && (ref.current.previous = ref.current.value, ref.current.value = value), ref.current.previous), [value]);
 }
 __name(usePrevious, "usePrevious");
 
 // node_modules/@tamagui/checkbox-headless/dist/esm/BubbleInput.mjs
-var React42 = __toESM(require("react"), 1);
+var React41 = __toESM(require("react"), 1);
 
 // node_modules/@tamagui/checkbox-headless/dist/esm/utils.mjs
 function isIndeterminate(checked) {
@@ -26756,8 +26717,8 @@ var BubbleInput = /* @__PURE__ */ __name((props) => {
     control,
     isHidden: isHidden2,
     ...inputProps
-  } = props, ref = React42.useRef(null), prevChecked = usePrevious(checked);
-  return React42.useEffect(() => {
+  } = props, ref = React41.useRef(null), prevChecked = usePrevious(checked);
+  return React41.useEffect(() => {
     const input = ref.current, inputProto = window.HTMLInputElement.prototype, setChecked = Object.getOwnPropertyDescriptor(inputProto, "checked").set;
     if (prevChecked !== checked && setChecked) {
       const event = new Event("click", {
@@ -26799,9 +26760,9 @@ function useCheckbox(props, [checked, setChecked], ref) {
     value = "on",
     onCheckedChange,
     ...checkboxProps
-  } = props, [button, setButton] = import_react33.default.useState(null), composedRefs = useComposedRefs(ref, setButton), hasConsumerStoppedPropagationRef = import_react33.default.useRef(false), isFormControl = isWeb ? button ? !!button.closest("form") : true : false, labelId = useLabelContext(button), labelledBy = ariaLabelledby || labelId, parentKeyDown = props.onKeyDown, handleKeyDown = (0, import_react33.useMemo)(() => composeEventHandlers(parentKeyDown, (event) => {
+  } = props, [button, setButton] = import_react32.default.useState(null), composedRefs = useComposedRefs(ref, setButton), hasConsumerStoppedPropagationRef = import_react32.default.useRef(false), isFormControl = isWeb ? button ? !!button.closest("form") : true : false, labelId = useLabelContext(button), labelledBy = ariaLabelledby || labelId, parentKeyDown = props.onKeyDown, handleKeyDown = (0, import_react32.useMemo)(() => composeEventHandlers(parentKeyDown, (event) => {
     event.key === "Enter" && event.preventDefault();
-  }), [parentKeyDown]), handlePress = (0, import_react33.useMemo)(() => composeEventHandlers(props.onPress, (event) => {
+  }), [parentKeyDown]), handlePress = (0, import_react32.useMemo)(() => composeEventHandlers(props.onPress, (event) => {
     setChecked((prevChecked) => isIndeterminate(prevChecked) ? true : !prevChecked), isFormControl && "isPropagationStopped" in event && (hasConsumerStoppedPropagationRef.current = event.isPropagationStopped(), hasConsumerStoppedPropagationRef.current || event.stopPropagation());
   }), [isFormControl]);
   return {
@@ -26838,7 +26799,7 @@ __name(useCheckbox, "useCheckbox");
 // node_modules/@tamagui/checkbox/dist/esm/createCheckbox.mjs
 var import_core21 = require("@tamagui/core");
 var import_jsx_runtime31 = require("react/jsx-runtime");
-var CheckboxContext = import_react34.default.createContext({
+var CheckboxContext = import_react33.default.createContext({
   checked: false,
   disabled: false
 });
@@ -26863,7 +26824,7 @@ function createCheckbox(createProps) {
       native,
       unstyled = false,
       ...props
-    } = _props, propsActive = (0, import_core21.useProps)(props), styledContext = import_react34.default.useContext(CheckboxStyledContext);
+    } = _props, propsActive = (0, import_core21.useProps)(props), styledContext = import_react33.default.useContext(CheckboxStyledContext);
     let adjustedSize = 0, size4 = 0;
     unstyled || (adjustedSize = (0, import_core21.getVariableValue)(getSize(propsActive.size ?? styledContext?.size ?? "$true", {
       shift: sizeAdjust
@@ -26895,7 +26856,7 @@ function createCheckbox(createProps) {
         // TODO: any
       }
     });
-    const memoizedContext = (0, import_react34.useMemo)(() => ({
+    const memoizedContext = (0, import_react33.useMemo)(() => ({
       checked,
       disabled: checkboxProps.disabled
     }), [checked, checkboxProps.disabled]);
@@ -26932,16 +26893,16 @@ function createCheckbox(createProps) {
       disablePassStyles,
       unstyled = false,
       ...indicatorProps
-    } = props, styledContext = import_react34.default.useContext(CheckboxStyledContext);
+    } = props, styledContext = import_react33.default.useContext(CheckboxStyledContext);
     let children = childrenProp;
     if (!unstyled) {
       const iconSize = (typeof styledContext.size == "number" ? styledContext.size * 0.65 : getFontSize(styledContext.size)) * styledContext.scaleIcon, theme = (0, import_core21.useTheme)(), getThemedIcon = useGetThemedIcon({
         size: iconSize,
         color: theme.color
       });
-      children = import_react34.default.Children.toArray(childrenProp).map((child) => disablePassStyles || !import_react34.default.isValidElement(child) ? child : getThemedIcon(child));
+      children = import_react33.default.Children.toArray(childrenProp).map((child) => disablePassStyles || !import_react33.default.isValidElement(child) ? child : getThemedIcon(child));
     }
-    const context2 = import_react34.default.useContext(CheckboxContext);
+    const context2 = import_react33.default.useContext(CheckboxContext);
     return forceMount || isIndeterminate(context2.checked) || context2.checked === true ? /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(Indicator, {
       pointerEvents: "none",
       ...indicatorProps,
@@ -27009,17 +26970,17 @@ var Form2 = withStaticProperties(FormComponent, {
 
 // node_modules/@tamagui/group/dist/esm/Group.mjs
 var import_core23 = require("@tamagui/core");
-var import_react35 = __toESM(require("react"), 1);
+var import_react34 = __toESM(require("react"), 1);
 var import_react_native_web6 = __toESM(require_cjs(), 1);
 
 // node_modules/@tamagui/group/dist/esm/useIndexedChildren.mjs
-var React45 = __toESM(require("react"), 1);
+var React44 = __toESM(require("react"), 1);
 var import_jsx_runtime33 = require("react/jsx-runtime");
-var MaxIndexContext = React45.createContext([]);
-var IndexContext = React45.createContext(null);
+var MaxIndexContext = React44.createContext([]);
+var IndexContext = React44.createContext(null);
 function useIndex() {
-  const maxIndexPath = React45.useContext(MaxIndexContext), indexPathString = React45.useContext(IndexContext);
-  return React45.useMemo(() => {
+  const maxIndexPath = React44.useContext(MaxIndexContext), indexPathString = React44.useContext(IndexContext);
+  return React44.useMemo(() => {
     if (indexPathString === null) return null;
     const indexPath = parseIndexPath(indexPathString), maxIndex = maxIndexPath[maxIndexPath.length - 1], index3 = indexPath[indexPath.length - 1];
     return {
@@ -27037,10 +26998,10 @@ function useIndex() {
 }
 __name(useIndex, "useIndex");
 function useIndexedChildren(children) {
-  const parentMaxIndexPath = React45.useContext(MaxIndexContext), indexPathString = React45.useContext(IndexContext), childrenCount = React45.Children.count(children), maxIndexPath = React45.useMemo(() => parentMaxIndexPath.concat(childrenCount - 1), [childrenCount]);
+  const parentMaxIndexPath = React44.useContext(MaxIndexContext), indexPathString = React44.useContext(IndexContext), childrenCount = React44.Children.count(children), maxIndexPath = React44.useMemo(() => parentMaxIndexPath.concat(childrenCount - 1), [childrenCount]);
   return /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(MaxIndexContext.Provider, {
     value: maxIndexPath,
-    children: React45.Children.map(children, (child, index3) => React45.isValidElement(child) ? /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(IndexContext.Provider, {
+    children: React44.Children.map(children, (child, index3) => React44.isValidElement(child) ? /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(IndexContext.Provider, {
       value: indexPathString ? `${indexPathString}.${index3.toString()}` : index3.toString(),
       children: child
     }, child.key) : child)
@@ -27094,8 +27055,8 @@ function createGroup(verticalDefault) {
       ...restProps
     } = activeProps, vertical = orientation === "vertical", [itemChildrenCount, setItemChildrenCount] = useControllableState({
       defaultProp: forceUseItem ? 1 : 0
-    }), isUsingItems = itemChildrenCount > 0, radius = borderRadius ?? (size4 ? (0, import_core23.getVariableValue)((0, import_core23.getTokens)().radius[size4]) - 1 : void 0), disablePassBorderRadius = disablePassBorderRadiusProp ?? !(radius !== void 0), childrenArray = import_react35.default.Children.toArray(childrenProp), children = isUsingItems ? import_react35.default.Children.toArray(childrenProp).filter(import_react35.default.isValidElement) : childrenArray.map((child, i) => {
-      if (!import_react35.default.isValidElement(child) || child.type === import_react35.default.Fragment) return child;
+    }), isUsingItems = itemChildrenCount > 0, radius = borderRadius ?? (size4 ? (0, import_core23.getVariableValue)((0, import_core23.getTokens)().radius[size4]) - 1 : void 0), disablePassBorderRadius = disablePassBorderRadiusProp ?? !(radius !== void 0), childrenArray = import_react34.default.Children.toArray(childrenProp), children = isUsingItems ? import_react34.default.Children.toArray(childrenProp).filter(import_react34.default.isValidElement) : childrenArray.map((child, i) => {
+      if (!import_react34.default.isValidElement(child) || child.type === import_react34.default.Fragment) return child;
       const disabled = child.props.disabled ?? disabledProp, isFirst = i === 0, isLast = i === childrenArray.length - 1, radiusStyles = disablePassBorderRadius === true ? null : getBorderRadius({
         isFirst,
         isLast,
@@ -27112,7 +27073,7 @@ function createGroup(verticalDefault) {
       separator,
       space,
       children
-    })), onItemMount = import_react35.default.useCallback(() => setItemChildrenCount((prev) => prev + 1), []), onItemUnmount = import_react35.default.useCallback(() => setItemChildrenCount((prev) => prev - 1), []);
+    })), onItemMount = import_react34.default.useCallback(() => setItemChildrenCount((prev) => prev + 1), []), onItemUnmount = import_react34.default.useCallback(() => setItemChildrenCount((prev) => prev - 1), []);
     return /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(GroupProvider, {
       disablePassBorderRadius,
       vertical: orientation === "vertical",
@@ -27138,19 +27099,19 @@ function createGroup(verticalDefault) {
   });
 }
 __name(createGroup, "createGroup");
-var GroupItem = import_react35.default.forwardRef((props, _ref) => {
+var GroupItem = import_react34.default.forwardRef((props, _ref) => {
   const {
     __scopeGroup,
     children,
     forcePlacement
   } = props, groupItemProps = useGroupItem({
-    disabled: import_react35.default.isValidElement(children) ? children.props.disabled : false
+    disabled: import_react34.default.isValidElement(children) ? children.props.disabled : false
   }, forcePlacement, __scopeGroup);
-  return !import_react35.default.isValidElement(children) || children.type === import_react35.default.Fragment ? children : import_react35.default.cloneElement(children, groupItemProps);
+  return !import_react34.default.isValidElement(children) || children.type === import_react34.default.Fragment ? children : import_react34.default.cloneElement(children, groupItemProps);
 });
 var useGroupItem = /* @__PURE__ */ __name((childrenProps, forcePlacement, __scopeGroup) => {
   const treeIndex = useIndex(), context2 = useGroupContext("GroupItem", __scopeGroup);
-  if (import_react35.default.useEffect(() => (context2.onItemMount(), () => {
+  if (import_react34.default.useEffect(() => (context2.onItemMount(), () => {
     context2.onItemUnmount();
   }), []), !treeIndex) throw Error("<Group.Item/> should only be used within a <Group/>");
   const isFirst = forcePlacement === "first" || forcePlacement !== "last" && treeIndex.index === 0, isLast = forcePlacement === "last" || forcePlacement !== "first" && treeIndex.index === treeIndex.maxIndex;
@@ -27201,7 +27162,7 @@ var getBorderRadius = /* @__PURE__ */ __name(({
   borderBottomLeftRadius: disable !== "bottom" && disable !== "start" && (vertical && isLast || !vertical && isFirst) ? radius : 0,
   borderBottomRightRadius: isLast && disable !== "bottom" && disable !== "end" ? radius : 0
 }), "getBorderRadius");
-var cloneElementWithPropOrder = /* @__PURE__ */ __name((child, props) => import_react35.default.cloneElement({
+var cloneElementWithPropOrder = /* @__PURE__ */ __name((child, props) => import_react34.default.cloneElement({
   ...child,
   props: null
 }, {
@@ -27210,14 +27171,14 @@ var cloneElementWithPropOrder = /* @__PURE__ */ __name((child, props) => import_
 }), "cloneElementWithPropOrder");
 
 // node_modules/@tamagui/react-native-media-driver/dist/esm/createMedia.mjs
-var import_web16 = require("@tamagui/core");
+var import_web15 = require("@tamagui/core");
 
 // node_modules/@tamagui/react-native-media-driver/dist/esm/matchMedia.mjs
 var matchMedia = globalThis.matchMedia;
 
 // node_modules/@tamagui/react-native-media-driver/dist/esm/createMedia.mjs
 function createMedia(media) {
-  return (0, import_web16.setupMatchMedia)(matchMedia), media;
+  return (0, import_web15.setupMatchMedia)(matchMedia), media;
 }
 __name(createMedia, "createMedia");
 
@@ -27265,10 +27226,10 @@ var Nav = (0, import_core24.styled)(import_core24.View, {
 });
 
 // node_modules/@tamagui/list-item/dist/esm/ListItem.mjs
-var import_web17 = require("@tamagui/core");
+var import_web16 = require("@tamagui/core");
 var import_jsx_runtime35 = require("react/jsx-runtime");
 var NAME2 = "ListItem";
-var ListItemFrame = (0, import_web17.styled)(ThemeableStack, {
+var ListItemFrame = (0, import_web16.styled)(ThemeableStack, {
   name: NAME2,
   tag: "li",
   variants: {
@@ -27317,7 +27278,7 @@ var ListItemFrame = (0, import_web17.styled)(ThemeableStack, {
     unstyled: process.env.TAMAGUI_HEADLESS === "1"
   }
 });
-var ListItemText = (0, import_web17.styled)(SizableText2, {
+var ListItemText = (0, import_web16.styled)(SizableText2, {
   name: "ListItemText",
   variants: {
     unstyled: {
@@ -27335,7 +27296,7 @@ var ListItemText = (0, import_web17.styled)(SizableText2, {
     unstyled: process.env.TAMAGUI_HEADLESS === "1"
   }
 });
-var ListItemSubtitle = (0, import_web17.styled)(ListItemText, {
+var ListItemSubtitle = (0, import_web16.styled)(ListItemText, {
   name: "ListItemSubtitle",
   variants: {
     unstyled: {
@@ -27359,11 +27320,11 @@ var ListItemSubtitle = (0, import_web17.styled)(ListItemText, {
     unstyled: process.env.TAMAGUI_HEADLESS === "1"
   }
 });
-var ListItemTitle = (0, import_web17.styled)(ListItemText, {
+var ListItemTitle = (0, import_web16.styled)(ListItemText, {
   name: "ListItemTitle"
 });
 var useListItem = /* @__PURE__ */ __name((propsIn, {
-  Text: Text6 = ListItemText,
+  Text: Text7 = ListItemText,
   Subtitle = ListItemSubtitle,
   Title = ListItemTitle
 } = {
@@ -27371,7 +27332,7 @@ var useListItem = /* @__PURE__ */ __name((propsIn, {
   Subtitle: ListItemSubtitle,
   Title: ListItemTitle
 }) => {
-  const props = (0, import_web17.useProps)(propsIn, {
+  const props = (0, import_web16.useProps)(propsIn, {
     resolveValues: "none"
   }), {
     children,
@@ -27407,13 +27368,13 @@ var useListItem = /* @__PURE__ */ __name((propsIn, {
   }, size4 = props.size || "$true", iconSize = getFontSize(size4) * scaleIcon, getThemedIcon = useGetThemedIcon({
     size: iconSize,
     color
-  }), [themedIcon, themedIconAfter] = [icon, iconAfter].map(getThemedIcon), sizeToken = (0, import_web17.getTokens)().space[props.space] ?? iconSize, spaceSize = (0, import_web17.getVariableValue)(sizeToken) * scaleSpace, contents = wrapChildrenInText(Text6, textProps);
+  }), [themedIcon, themedIconAfter] = [icon, iconAfter].map(getThemedIcon), sizeToken = (0, import_web16.getTokens)().space[props.space] ?? iconSize, spaceSize = (0, import_web16.getVariableValue)(sizeToken) * scaleSpace, contents = wrapChildrenInText(Text7, textProps);
   return {
     props: {
       ...rest,
       children: /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)(import_jsx_runtime35.Fragment, {
         children: [themedIcon ? /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)(import_jsx_runtime35.Fragment, {
-          children: [themedIcon, /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(import_web17.Spacer, {
+          children: [themedIcon, /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(import_web16.Spacer, {
             size: spaceSize
           })]
         }) : null, title || subTitle ? /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)(YStack, {
@@ -27433,7 +27394,7 @@ var useListItem = /* @__PURE__ */ __name((propsIn, {
             ) : subTitle
           }) : null, contents]
         }) : contents, themedIconAfter ? /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)(import_jsx_runtime35.Fragment, {
-          children: [/* @__PURE__ */ (0, import_jsx_runtime35.jsx)(import_web17.Spacer, {
+          children: [/* @__PURE__ */ (0, import_jsx_runtime35.jsx)(import_web16.Spacer, {
             size: spaceSize
           }), themedIconAfter]
         }) : null]
@@ -27457,7 +27418,7 @@ var ListItem2 = withStaticProperties(ListItemComponent, {
 });
 
 // node_modules/@tamagui/animate/dist/esm/Animate.mjs
-var import_react36 = require("react");
+var import_react35 = require("react");
 var import_jsx_runtime36 = require("react/jsx-runtime");
 function Animate({
   children,
@@ -27467,9 +27428,9 @@ function Animate({
   passThrough,
   ...props
 }) {
-  const [lazyMounted, setLazyMounted] = (0, import_react36.useState)(lazyMount ? false : present);
-  (0, import_react36.useEffect)(() => {
-    passThrough || lazyMount && present && (0, import_react36.startTransition)(() => {
+  const [lazyMounted, setLazyMounted] = (0, import_react35.useState)(lazyMount ? false : present);
+  (0, import_react35.useEffect)(() => {
+    passThrough || lazyMount && present && (0, import_react35.startTransition)(() => {
       setLazyMounted(present);
     });
   }, [lazyMount, present]);
@@ -29054,13 +29015,13 @@ var computePosition2 = /* @__PURE__ */ __name((reference, floating, options) => 
 }, "computePosition");
 
 // node_modules/@floating-ui/react-dom/dist/floating-ui.react-dom.mjs
-var React47 = __toESM(require("react"), 1);
-var import_react37 = require("react");
+var React46 = __toESM(require("react"), 1);
+var import_react36 = require("react");
 var ReactDOM2 = __toESM(require("react-dom"), 1);
 var isClient3 = typeof document !== "undefined";
 var noop = /* @__PURE__ */ __name(function noop2() {
 }, "noop");
-var index = isClient3 ? import_react37.useLayoutEffect : noop;
+var index = isClient3 ? import_react36.useLayoutEffect : noop;
 function deepEqual(a, b) {
   if (a === b) {
     return true;
@@ -29123,7 +29084,7 @@ function roundByDPR(element, value) {
 }
 __name(roundByDPR, "roundByDPR");
 function useLatestRef(value) {
-  const ref = React47.useRef(value);
+  const ref = React46.useRef(value);
   index(() => {
     ref.current = value;
   });
@@ -29147,7 +29108,7 @@ function useFloating(options) {
     whileElementsMounted,
     open
   } = options;
-  const [data, setData] = React47.useState({
+  const [data, setData] = React46.useState({
     x: 0,
     y: 0,
     strategy,
@@ -29155,19 +29116,19 @@ function useFloating(options) {
     middlewareData: {},
     isPositioned: false
   });
-  const [latestMiddleware, setLatestMiddleware] = React47.useState(middleware);
+  const [latestMiddleware, setLatestMiddleware] = React46.useState(middleware);
   if (!deepEqual(latestMiddleware, middleware)) {
     setLatestMiddleware(middleware);
   }
-  const [_reference, _setReference] = React47.useState(null);
-  const [_floating, _setFloating] = React47.useState(null);
-  const setReference = React47.useCallback((node) => {
+  const [_reference, _setReference] = React46.useState(null);
+  const [_floating, _setFloating] = React46.useState(null);
+  const setReference = React46.useCallback((node) => {
     if (node !== referenceRef.current) {
       referenceRef.current = node;
       _setReference(node);
     }
   }, []);
-  const setFloating = React47.useCallback((node) => {
+  const setFloating = React46.useCallback((node) => {
     if (node !== floatingRef.current) {
       floatingRef.current = node;
       _setFloating(node);
@@ -29175,14 +29136,14 @@ function useFloating(options) {
   }, []);
   const referenceEl = externalReference || _reference;
   const floatingEl = externalFloating || _floating;
-  const referenceRef = React47.useRef(null);
-  const floatingRef = React47.useRef(null);
-  const dataRef = React47.useRef(data);
+  const referenceRef = React46.useRef(null);
+  const floatingRef = React46.useRef(null);
+  const dataRef = React46.useRef(data);
   const hasWhileElementsMounted = whileElementsMounted != null;
   const whileElementsMountedRef = useLatestRef(whileElementsMounted);
   const platformRef = useLatestRef(platform2);
   const openRef = useLatestRef(open);
-  const update = React47.useCallback(() => {
+  const update = React46.useCallback(() => {
     if (!referenceRef.current || !floatingRef.current) {
       return;
     }
@@ -29220,7 +29181,7 @@ function useFloating(options) {
       }));
     }
   }, [open]);
-  const isMountedRef = React47.useRef(false);
+  const isMountedRef = React46.useRef(false);
   index(() => {
     isMountedRef.current = true;
     return () => {
@@ -29237,17 +29198,17 @@ function useFloating(options) {
       update();
     }
   }, [referenceEl, floatingEl, update, whileElementsMountedRef, hasWhileElementsMounted]);
-  const refs = React47.useMemo(() => ({
+  const refs = React46.useMemo(() => ({
     reference: referenceRef,
     floating: floatingRef,
     setReference,
     setFloating
   }), [setReference, setFloating]);
-  const elements = React47.useMemo(() => ({
+  const elements = React46.useMemo(() => ({
     reference: referenceEl,
     floating: floatingEl
   }), [referenceEl, floatingEl]);
-  const floatingStyles = React47.useMemo(() => {
+  const floatingStyles = React46.useMemo(() => {
     const initialStyles = {
       position: strategy,
       left: 0,
@@ -29273,7 +29234,7 @@ function useFloating(options) {
       top: y
     };
   }, [strategy, transform, elements.floating, data.x, data.y]);
-  return React47.useMemo(() => ({
+  return React46.useMemo(() => ({
     ...data,
     update,
     refs,
@@ -29336,9 +29297,9 @@ var arrow3 = /* @__PURE__ */ __name((options, deps) => ({
 }), "arrow");
 
 // node_modules/@tamagui/floating/dist/esm/useFloating.mjs
-var import_react38 = __toESM(require("react"), 1);
-var FloatingOverrideContext = import_react38.default.createContext(null);
-var useFloating2 = /* @__PURE__ */ __name((props) => (import_react38.default.useContext(FloatingOverrideContext) || useFloating)?.({
+var import_react37 = __toESM(require("react"), 1);
+var FloatingOverrideContext = import_react37.default.createContext(null);
+var useFloating2 = /* @__PURE__ */ __name((props) => (import_react37.default.useContext(FloatingOverrideContext) || useFloating)?.({
   ...props,
   middleware: [
     // @ts-ignore
@@ -29360,7 +29321,7 @@ var useFloating2 = /* @__PURE__ */ __name((props) => (import_react38.default.use
 
 // node_modules/@tamagui/popper/dist/esm/Popper.mjs
 var import_core26 = require("@tamagui/core");
-var React49 = __toESM(require("react"), 1);
+var React48 = __toESM(require("react"), 1);
 var import_jsx_runtime37 = require("react/jsx-runtime");
 var PopperContextFast = (0, import_core26.createStyledContext)(
   // since we always provide this we can avoid setting here
@@ -29434,7 +29395,7 @@ function Popper(props) {
     passThrough,
     open,
     scope
-  } = props, [arrowEl, setArrow] = React49.useState(null), [arrowSize, setArrowSize] = React49.useState(0), offsetOptions = offset4 ?? arrowSize, floatingStyle = React49.useRef({}), isOpen = passThrough ? false : open || true;
+  } = props, [arrowEl, setArrow] = React48.useState(null), [arrowSize, setArrowSize] = React48.useState(0), offsetOptions = offset4 ?? arrowSize, floatingStyle = React48.useRef({}), isOpen = passThrough ? false : open || true;
   let floating = useFloating2({
     open: isOpen,
     strategy,
@@ -29466,7 +29427,7 @@ function Popper(props) {
       ...typeof resize == "object" && resize
     }) : null].filter(Boolean)
   });
-  floating = React49.useMemo(() => {
+  floating = React48.useMemo(() => {
     const og = floating.getFloatingProps;
     return resize && og && (floating.getFloatingProps = (props2) => og({
       ...props2,
@@ -29478,7 +29439,7 @@ function Popper(props) {
   }, [floating, resize ? JSON.stringify(resize) : null]);
   const {
     middlewareData
-  } = floating, popperContext = React49.useMemo(() => ({
+  } = floating, popperContext = React48.useMemo(() => ({
     size: size4,
     arrowRef: setArrow,
     arrowStyle: middlewareData.arrow,
@@ -29497,7 +29458,7 @@ function Popper(props) {
   });
 }
 __name(Popper, "Popper");
-var PopperAnchor = YStack.extractable(React49.forwardRef(function(props, forwardedRef) {
+var PopperAnchor = YStack.extractable(React48.forwardRef(function(props, forwardedRef) {
   const {
     virtualRef,
     scope,
@@ -29506,11 +29467,11 @@ var PopperAnchor = YStack.extractable(React49.forwardRef(function(props, forward
     getReferenceProps,
     refs,
     update
-  } = context2, ref = React49.useRef(null);
-  React49.useEffect(() => {
+  } = context2, ref = React48.useRef(null);
+  React48.useEffect(() => {
     virtualRef && refs.setReference(virtualRef.current);
   }, [virtualRef]);
-  const stackProps = anchorProps, safeSetReference = React49.useCallback((node) => {
+  const stackProps = anchorProps, safeSetReference = React48.useCallback((node) => {
     startTransition(() => {
       refs.setReference(node);
     });
@@ -29561,7 +29522,7 @@ var PopperContentFrame = (0, import_core26.styled)(ThemeableStack, {
     unstyled: process.env.TAMAGUI_HEADLESS === "1"
   }
 });
-var PopperContent = React49.forwardRef(function(props, forwardedRef) {
+var PopperContent = React48.forwardRef(function(props, forwardedRef) {
   const {
     scope,
     enableAnimationForPositionChange,
@@ -29577,19 +29538,19 @@ var PopperContent = React49.forwardRef(function(props, forwardedRef) {
     getFloatingProps,
     size: size4,
     isPositioned
-  } = context2, safeSetFloating = React49.useCallback((node) => {
+  } = context2, safeSetFloating = React48.useCallback((node) => {
     startTransition(() => {
       refs.setFloating(node);
     });
-  }, [refs.setFloating]), contentRefs = useComposedRefs(safeSetFloating, forwardedRef), [needsMeasure, setNeedsMeasure] = React49.useState(enableAnimationForPositionChange);
+  }, [refs.setFloating]), contentRefs = useComposedRefs(safeSetFloating, forwardedRef), [needsMeasure, setNeedsMeasure] = React48.useState(enableAnimationForPositionChange);
   useIsomorphicLayoutEffect(() => {
     needsMeasure && x && y && setNeedsMeasure(false);
   }, [needsMeasure, enableAnimationForPositionChange, x, y]);
   const hide4 = x === 0 && y === 0, disableAnimationProp = (
     // if they want to animate also when re-positioning allow it
     enableAnimationForPositionChange === "even-when-repositioning" ? needsMeasure : !isPositioned || needsMeasure
-  ), [disableAnimation, setDisableAnimation] = React49.useState(disableAnimationProp);
-  React49.useEffect(() => {
+  ), [disableAnimation, setDisableAnimation] = React48.useState(disableAnimationProp);
+  React48.useEffect(() => {
     setDisableAnimation(disableAnimationProp);
   }, [disableAnimationProp]);
   const frameProps = {
@@ -29671,7 +29632,7 @@ var opposites = {
   bottom: "top",
   left: "right"
 };
-var PopperArrow = React49.forwardRef(function(propsIn, forwardedRef) {
+var PopperArrow = React48.forwardRef(function(propsIn, forwardedRef) {
   const {
     scope,
     ...rest
@@ -29728,17 +29689,17 @@ var PopperArrow = React49.forwardRef(function(propsIn, forwardedRef) {
 });
 
 // node_modules/@tamagui/popover/dist/esm/Popover.mjs
-var React53 = __toESM(require("react"), 1);
+var React52 = __toESM(require("react"), 1);
 
 // node_modules/@tamagui/popover/dist/esm/useFloatingContext.mjs
-var import_react40 = __toESM(require("react"), 1);
+var import_react39 = __toESM(require("react"), 1);
 
 // node_modules/@floating-ui/react/dist/floating-ui.react.mjs
-var React51 = __toESM(require("react"), 1);
+var React50 = __toESM(require("react"), 1);
 
 // node_modules/@floating-ui/react/dist/floating-ui.react.utils.mjs
-var React50 = __toESM(require("react"), 1);
-var import_react39 = require("react");
+var React49 = __toESM(require("react"), 1);
+var import_react38 = require("react");
 var import_tabbable = __toESM(require_dist(), 1);
 function getPlatform() {
   const uaData = navigator.userAgentData;
@@ -29944,12 +29905,12 @@ __name(isMouseLikePointerType, "isMouseLikePointerType");
 var isClient4 = typeof document !== "undefined";
 var noop3 = /* @__PURE__ */ __name(function noop4() {
 }, "noop");
-var index2 = isClient4 ? import_react39.useLayoutEffect : noop3;
+var index2 = isClient4 ? import_react38.useLayoutEffect : noop3;
 var SafeReact = {
-  ...React50
+  ...React49
 };
 function useLatestRef2(value) {
-  const ref = React50.useRef(value);
+  const ref = React49.useRef(value);
   index2(() => {
     ref.current = value;
   });
@@ -29959,7 +29920,7 @@ __name(useLatestRef2, "useLatestRef");
 var useInsertionEffect = SafeReact.useInsertionEffect;
 var useSafeInsertionEffect = useInsertionEffect || ((fn) => fn());
 function useEffectEvent(callback) {
-  const ref = React50.useRef(() => {
+  const ref = React49.useRef(() => {
     if (process.env.NODE_ENV !== "production") {
       throw new Error("Cannot call an event handler while rendering.");
     }
@@ -29967,7 +29928,7 @@ function useEffectEvent(callback) {
   useSafeInsertionEffect(() => {
     ref.current = callback;
   });
-  return React50.useCallback(function() {
+  return React49.useCallback(function() {
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
@@ -30282,7 +30243,7 @@ var horizontalKeys = [ARROW_LEFT2, ARROW_RIGHT2];
 var verticalKeys = [ARROW_UP2, ARROW_DOWN2];
 var allKeys = [...horizontalKeys, ...verticalKeys];
 var SafeReact2 = {
-  ...React51
+  ...React50
 };
 var serverHandoffComplete = false;
 var count = 0;
@@ -30292,13 +30253,13 @@ var genId = /* @__PURE__ */ __name(() => (
   "floating-ui-" + Math.random().toString(36).slice(2, 6) + count++
 ), "genId");
 function useFloatingId() {
-  const [id, setId] = React51.useState(() => serverHandoffComplete ? genId() : void 0);
+  const [id, setId] = React50.useState(() => serverHandoffComplete ? genId() : void 0);
   index2(() => {
     if (id == null) {
       setId(genId());
     }
   }, []);
-  React51.useEffect(() => {
+  React50.useEffect(() => {
     serverHandoffComplete = true;
   }, []);
   return id;
@@ -30356,13 +30317,13 @@ function createEventEmitter() {
   };
 }
 __name(createEventEmitter, "createEventEmitter");
-var FloatingNodeContext = /* @__PURE__ */ React51.createContext(null);
-var FloatingTreeContext = /* @__PURE__ */ React51.createContext(null);
+var FloatingNodeContext = /* @__PURE__ */ React50.createContext(null);
+var FloatingTreeContext = /* @__PURE__ */ React50.createContext(null);
 var useFloatingParentNodeId = /* @__PURE__ */ __name(() => {
   var _React$useContext;
-  return ((_React$useContext = React51.useContext(FloatingNodeContext)) == null ? void 0 : _React$useContext.id) || null;
+  return ((_React$useContext = React50.useContext(FloatingNodeContext)) == null ? void 0 : _React$useContext.id) || null;
 }, "useFloatingParentNodeId");
-var useFloatingTree = /* @__PURE__ */ __name(() => React51.useContext(FloatingTreeContext), "useFloatingTree");
+var useFloatingTree = /* @__PURE__ */ __name(() => React50.useContext(FloatingTreeContext), "useFloatingTree");
 function createAttribute(name) {
   return "data-floating-ui-" + name;
 }
@@ -30424,21 +30385,21 @@ function useHover(context2, props) {
   const delayRef = useLatestRef2(delay);
   const openRef = useLatestRef2(open);
   const restMsRef = useLatestRef2(restMs);
-  const pointerTypeRef = React51.useRef();
-  const timeoutRef = React51.useRef(-1);
-  const handlerRef = React51.useRef();
-  const restTimeoutRef = React51.useRef(-1);
-  const blockMouseMoveRef = React51.useRef(true);
-  const performedPointerEventsMutationRef = React51.useRef(false);
-  const unbindMouseMoveRef = React51.useRef(() => {
+  const pointerTypeRef = React50.useRef();
+  const timeoutRef = React50.useRef(-1);
+  const handlerRef = React50.useRef();
+  const restTimeoutRef = React50.useRef(-1);
+  const blockMouseMoveRef = React50.useRef(true);
+  const performedPointerEventsMutationRef = React50.useRef(false);
+  const unbindMouseMoveRef = React50.useRef(() => {
   });
-  const restTimeoutPendingRef = React51.useRef(false);
+  const restTimeoutPendingRef = React50.useRef(false);
   const isHoverOpen = useEffectEvent(() => {
     var _dataRef$current$open;
     const type = (_dataRef$current$open = dataRef.current.openEvent) == null ? void 0 : _dataRef$current$open.type;
     return (type == null ? void 0 : type.includes("mouse")) && type !== "mousedown";
   });
-  React51.useEffect(() => {
+  React50.useEffect(() => {
     if (!enabled) return;
     function onOpenChange2(_ref) {
       let {
@@ -30457,7 +30418,7 @@ function useHover(context2, props) {
       events.off("openchange", onOpenChange2);
     };
   }, [enabled, events]);
-  React51.useEffect(() => {
+  React50.useEffect(() => {
     if (!enabled) return;
     if (!handleCloseRef.current) return;
     if (!open) return;
@@ -30473,7 +30434,7 @@ function useHover(context2, props) {
       html.removeEventListener("mouseleave", onLeave);
     };
   }, [elements.floating, open, onOpenChange, enabled, handleCloseRef, isHoverOpen]);
-  const closeWithDelay = React51.useCallback(function(event, runElseBranch, reason) {
+  const closeWithDelay = React50.useCallback(function(event, runElseBranch, reason) {
     if (runElseBranch === void 0) {
       runElseBranch = true;
     }
@@ -30504,7 +30465,7 @@ function useHover(context2, props) {
   const isClickLikeOpenEvent = useEffectEvent(() => {
     return dataRef.current.openEvent ? ["click", "mousedown"].includes(dataRef.current.openEvent.type) : false;
   });
-  React51.useEffect(() => {
+  React50.useEffect(() => {
     if (!enabled) return;
     function onReferenceMouseEnter(event) {
       clearTimeoutIfSet(timeoutRef);
@@ -30660,7 +30621,7 @@ function useHover(context2, props) {
       clearPointerEvents();
     }
   }, [open, cleanupMouseMoveHandler, clearPointerEvents]);
-  React51.useEffect(() => {
+  React50.useEffect(() => {
     return () => {
       cleanupMouseMoveHandler();
       clearTimeoutIfSet(timeoutRef);
@@ -30668,7 +30629,7 @@ function useHover(context2, props) {
       clearPointerEvents();
     };
   }, [enabled, elements.domReference, cleanupMouseMoveHandler, clearPointerEvents]);
-  const reference = React51.useMemo(() => {
+  const reference = React50.useMemo(() => {
     function setPointerRef(event) {
       pointerTypeRef.current = event.pointerType;
     }
@@ -30705,14 +30666,14 @@ function useHover(context2, props) {
       }
     };
   }, [mouseOnly, onOpenChange, open, openRef, restMsRef]);
-  return React51.useMemo(() => enabled ? {
+  return React50.useMemo(() => enabled ? {
     reference
   } : {}, [enabled, reference]);
 }
 __name(useHover, "useHover");
 var NOOP = /* @__PURE__ */ __name(() => {
 }, "NOOP");
-var FloatingDelayGroupContext = /* @__PURE__ */ React51.createContext({
+var FloatingDelayGroupContext = /* @__PURE__ */ React50.createContext({
   delay: 0,
   initialDelay: 0,
   timeoutMs: 0,
@@ -30721,14 +30682,14 @@ var FloatingDelayGroupContext = /* @__PURE__ */ React51.createContext({
   setState: NOOP,
   isInstantPhase: false
 });
-var useDelayGroupContext = /* @__PURE__ */ __name(() => React51.useContext(FloatingDelayGroupContext), "useDelayGroupContext");
+var useDelayGroupContext = /* @__PURE__ */ __name(() => React50.useContext(FloatingDelayGroupContext), "useDelayGroupContext");
 function FloatingDelayGroup(props) {
   const {
     children,
     delay,
     timeoutMs = 0
   } = props;
-  const [state, setState] = React51.useReducer((prev, next) => ({
+  const [state, setState] = React50.useReducer((prev, next) => ({
     ...prev,
     ...next
   }), {
@@ -30738,8 +30699,8 @@ function FloatingDelayGroup(props) {
     currentId: null,
     isInstantPhase: false
   });
-  const initialCurrentIdRef = React51.useRef(null);
-  const setCurrentId = React51.useCallback((currentId) => {
+  const initialCurrentIdRef = React50.useRef(null);
+  const setCurrentId = React50.useCallback((currentId) => {
     setState({
       currentId
     });
@@ -30763,7 +30724,7 @@ function FloatingDelayGroup(props) {
     }
   }, [state.currentId, state.isInstantPhase]);
   return /* @__PURE__ */ (0, import_jsx_runtime38.jsx)(FloatingDelayGroupContext.Provider, {
-    value: React51.useMemo(() => ({
+    value: React50.useMemo(() => ({
       ...state,
       setState,
       setCurrentId
@@ -31020,8 +30981,8 @@ var HIDDEN_STYLES = {
   top: 0,
   left: 0
 };
-var FocusGuard = /* @__PURE__ */ React51.forwardRef(/* @__PURE__ */ __name(function FocusGuard2(props, ref) {
-  const [role, setRole] = React51.useState();
+var FocusGuard = /* @__PURE__ */ React50.forwardRef(/* @__PURE__ */ __name(function FocusGuard2(props, ref) {
+  const [role, setRole] = React50.useState();
   index2(() => {
     if (isSafari()) {
       setRole("button");
@@ -31041,7 +31002,7 @@ var FocusGuard = /* @__PURE__ */ React51.forwardRef(/* @__PURE__ */ __name(funct
     ...restProps
   });
 }, "FocusGuard"));
-var PortalContext = /* @__PURE__ */ React51.createContext(null);
+var PortalContext = /* @__PURE__ */ React50.createContext(null);
 var attr = /* @__PURE__ */ createAttribute("portal");
 function useFloatingPortalNode(props) {
   if (props === void 0) {
@@ -31053,8 +31014,8 @@ function useFloatingPortalNode(props) {
   } = props;
   const uniqueId = useId9();
   const portalContext = usePortalContext();
-  const [portalNode, setPortalNode] = React51.useState(null);
-  const portalNodeRef = React51.useRef(null);
+  const [portalNode, setPortalNode] = React50.useState(null);
+  const portalNodeRef = React50.useRef(null);
   index2(() => {
     return () => {
       portalNode == null || portalNode.remove();
@@ -31110,11 +31071,11 @@ function FloatingPortal(props) {
     id,
     root
   });
-  const [focusManagerState, setFocusManagerState] = React51.useState(null);
-  const beforeOutsideRef = React51.useRef(null);
-  const afterOutsideRef = React51.useRef(null);
-  const beforeInsideRef = React51.useRef(null);
-  const afterInsideRef = React51.useRef(null);
+  const [focusManagerState, setFocusManagerState] = React50.useState(null);
+  const beforeOutsideRef = React50.useRef(null);
+  const afterOutsideRef = React50.useRef(null);
+  const beforeInsideRef = React50.useRef(null);
+  const afterInsideRef = React50.useRef(null);
   const modal = focusManagerState == null ? void 0 : focusManagerState.modal;
   const open = focusManagerState == null ? void 0 : focusManagerState.open;
   const shouldRenderGuards = (
@@ -31124,7 +31085,7 @@ function FloatingPortal(props) {
     !focusManagerState.modal && // Don't render if unmount is transitioning.
     focusManagerState.open && preserveTabOrder && !!(root || portalNode)
   );
-  React51.useEffect(() => {
+  React50.useEffect(() => {
     if (!portalNode || !preserveTabOrder || modal) {
       return;
     }
@@ -31143,13 +31104,13 @@ function FloatingPortal(props) {
       portalNode.removeEventListener("focusout", onFocus, true);
     };
   }, [portalNode, preserveTabOrder, modal]);
-  React51.useEffect(() => {
+  React50.useEffect(() => {
     if (!portalNode) return;
     if (open) return;
     enableFocusInside(portalNode);
   }, [open, portalNode]);
   return /* @__PURE__ */ (0, import_jsx_runtime38.jsxs)(PortalContext.Provider, {
-    value: React51.useMemo(() => ({
+    value: React50.useMemo(() => ({
       preserveTabOrder,
       beforeOutsideRef,
       afterOutsideRef,
@@ -31192,9 +31153,9 @@ function FloatingPortal(props) {
   });
 }
 __name(FloatingPortal, "FloatingPortal");
-var usePortalContext = /* @__PURE__ */ __name(() => React51.useContext(PortalContext), "usePortalContext");
+var usePortalContext = /* @__PURE__ */ __name(() => React50.useContext(PortalContext), "usePortalContext");
 function useLiteMergeRefs(refs) {
-  return React51.useMemo(() => {
+  return React50.useMemo(() => {
     return (value) => {
       refs.forEach((ref) => {
         if (ref) {
@@ -31256,7 +31217,7 @@ function handleTabIndex(floatingFocusElement, orderRef) {
   }
 }
 __name(handleTabIndex, "handleTabIndex");
-var VisuallyHiddenDismiss = /* @__PURE__ */ React51.forwardRef(/* @__PURE__ */ __name(function VisuallyHiddenDismiss2(props, ref) {
+var VisuallyHiddenDismiss = /* @__PURE__ */ React50.forwardRef(/* @__PURE__ */ __name(function VisuallyHiddenDismiss2(props, ref) {
   return /* @__PURE__ */ (0, import_jsx_runtime38.jsx)("button", {
     ...props,
     type: "button",
@@ -31306,12 +31267,12 @@ function FloatingFocusManager(props) {
   const returnFocusRef = useLatestRef2(returnFocus);
   const tree = useFloatingTree();
   const portalContext = usePortalContext();
-  const startDismissButtonRef = React51.useRef(null);
-  const endDismissButtonRef = React51.useRef(null);
-  const preventReturnFocusRef = React51.useRef(false);
-  const isPointerDownRef = React51.useRef(false);
-  const tabbableIndexRef = React51.useRef(-1);
-  const blurTimeoutRef = React51.useRef(-1);
+  const startDismissButtonRef = React50.useRef(null);
+  const endDismissButtonRef = React50.useRef(null);
+  const preventReturnFocusRef = React50.useRef(false);
+  const isPointerDownRef = React50.useRef(false);
+  const tabbableIndexRef = React50.useRef(-1);
+  const blurTimeoutRef = React50.useRef(-1);
   const isInsidePortal = portalContext != null;
   const floatingFocusElement = getFloatingFocusElement(floating);
   const getTabbableContent = useEffectEvent(function(container) {
@@ -31332,7 +31293,7 @@ function FloatingFocusManager(props) {
       return content;
     }).filter(Boolean).flat();
   });
-  React51.useEffect(() => {
+  React50.useEffect(() => {
     if (disabled) return;
     if (!modal) return;
     function onKeyDown(event) {
@@ -31363,7 +31324,7 @@ function FloatingFocusManager(props) {
       doc.removeEventListener("keydown", onKeyDown);
     };
   }, [disabled, domReference, floatingFocusElement, modal, orderRef, isUntrappedTypeableCombobox, getTabbableContent, getTabbableElements]);
-  React51.useEffect(() => {
+  React50.useEffect(() => {
     if (disabled) return;
     if (!floating) return;
     function handleFocusIn(event) {
@@ -31380,7 +31341,7 @@ function FloatingFocusManager(props) {
       floating.removeEventListener("focusin", handleFocusIn);
     };
   }, [disabled, floating, getTabbableContent]);
-  React51.useEffect(() => {
+  React50.useEffect(() => {
     if (disabled) return;
     if (!closeOnFocusOut) return;
     function handlePointerDown() {
@@ -31455,11 +31416,11 @@ function FloatingFocusManager(props) {
       };
     }
   }, [disabled, domReference, floating, floatingFocusElement, modal, tree, portalContext, onOpenChange, closeOnFocusOut, restoreFocus, getTabbableContent, isUntrappedTypeableCombobox, getNodeId, orderRef, dataRef]);
-  const beforeGuardRef = React51.useRef(null);
-  const afterGuardRef = React51.useRef(null);
+  const beforeGuardRef = React50.useRef(null);
+  const afterGuardRef = React50.useRef(null);
   const mergedBeforeGuardRef = useLiteMergeRefs([beforeGuardRef, portalContext == null ? void 0 : portalContext.beforeInsideRef]);
   const mergedAfterGuardRef = useLiteMergeRefs([afterGuardRef, portalContext == null ? void 0 : portalContext.afterInsideRef]);
-  React51.useEffect(() => {
+  React50.useEffect(() => {
     var _portalContext$portal, _ancestors$find;
     if (disabled) return;
     if (!floating) return;
@@ -31567,7 +31528,7 @@ function FloatingFocusManager(props) {
       });
     };
   }, [disabled, floating, floatingFocusElement, returnFocusRef, dataRef, events, tree, isInsidePortal, domReference, getNodeId]);
-  React51.useEffect(() => {
+  React50.useEffect(() => {
     queueMicrotask(() => {
       preventReturnFocusRef.current = false;
     });
@@ -31696,7 +31657,7 @@ function enableScrollLock() {
 __name(enableScrollLock, "enableScrollLock");
 var cleanup = /* @__PURE__ */ __name(() => {
 }, "cleanup");
-var FloatingOverlay = /* @__PURE__ */ React51.forwardRef(/* @__PURE__ */ __name(function FloatingOverlay2(props, ref) {
+var FloatingOverlay = /* @__PURE__ */ React50.forwardRef(/* @__PURE__ */ __name(function FloatingOverlay2(props, ref) {
   const {
     lockScroll = false,
     ...rest
@@ -31760,9 +31721,9 @@ function useClick(context2, props) {
     keyboardHandlers = true,
     stickIfOpen = true
   } = props;
-  const pointerTypeRef = React51.useRef();
-  const didKeyDownRef = React51.useRef(false);
-  const reference = React51.useMemo(() => ({
+  const pointerTypeRef = React50.useRef();
+  const didKeyDownRef = React50.useRef(false);
+  const reference = React50.useMemo(() => ({
     onPointerDown(event) {
       pointerTypeRef.current = event.pointerType;
     },
@@ -31825,7 +31786,7 @@ function useClick(context2, props) {
       }
     }
   }), [dataRef, domReference, eventOption, ignoreMouse, keyboardHandlers, onOpenChange, open, stickIfOpen, toggle]);
-  return React51.useMemo(() => enabled ? {
+  return React50.useMemo(() => enabled ? {
     reference
   } : {}, [enabled, reference]);
 }
@@ -31871,7 +31832,7 @@ function useDismiss(context2, props) {
   const tree = useFloatingTree();
   const outsidePressFn = useEffectEvent(typeof unstable_outsidePress === "function" ? unstable_outsidePress : () => false);
   const outsidePress = typeof unstable_outsidePress === "function" ? outsidePressFn : unstable_outsidePress;
-  const endedOrStartedInsideRef = React51.useRef(false);
+  const endedOrStartedInsideRef = React50.useRef(false);
   const {
     escapeKey: escapeKeyBubbles,
     outsidePress: outsidePressBubbles
@@ -31880,7 +31841,7 @@ function useDismiss(context2, props) {
     escapeKey: escapeKeyCapture,
     outsidePress: outsidePressCapture
   } = normalizeProp(capture);
-  const isComposingRef = React51.useRef(false);
+  const isComposingRef = React50.useRef(false);
   const closeOnEscapeKeyDown = useEffectEvent((event) => {
     var _dataRef$current$floa;
     if (!open || !enabled || !escapeKey || event.key !== "Escape") {
@@ -31998,7 +31959,7 @@ function useDismiss(context2, props) {
     }, "callback");
     (_getTarget4 = getTarget(event)) == null || _getTarget4.addEventListener(outsidePressEvent, callback);
   });
-  React51.useEffect(() => {
+  React50.useEffect(() => {
     if (!open || !enabled) {
       return;
     }
@@ -32066,10 +32027,10 @@ function useDismiss(context2, props) {
       window.clearTimeout(compositionTimeout);
     };
   }, [dataRef, elements, escapeKey, outsidePress, outsidePressEvent, open, onOpenChange, ancestorScroll, enabled, escapeKeyBubbles, outsidePressBubbles, closeOnEscapeKeyDown, escapeKeyCapture, closeOnEscapeKeyDownCapture, closeOnPressOutside, outsidePressCapture, closeOnPressOutsideCapture]);
-  React51.useEffect(() => {
+  React50.useEffect(() => {
     dataRef.current.insideReactTree = false;
   }, [dataRef, outsidePress, outsidePressEvent]);
-  const reference = React51.useMemo(() => ({
+  const reference = React50.useMemo(() => ({
     onKeyDown: closeOnEscapeKeyDown,
     ...referencePress && {
       [bubbleHandlerKeys[referencePressEvent]]: (event) => {
@@ -32082,7 +32043,7 @@ function useDismiss(context2, props) {
       }
     }
   }), [closeOnEscapeKeyDown, onOpenChange, referencePress, referencePressEvent]);
-  const floating = React51.useMemo(() => ({
+  const floating = React50.useMemo(() => ({
     onKeyDown: closeOnEscapeKeyDown,
     onMouseDown() {
       endedOrStartedInsideRef.current = true;
@@ -32094,7 +32055,7 @@ function useDismiss(context2, props) {
       dataRef.current.insideReactTree = true;
     }
   }), [closeOnEscapeKeyDown, outsidePressEvent, dataRef]);
-  return React51.useMemo(() => enabled ? {
+  return React50.useMemo(() => enabled ? {
     reference,
     floating
   } : {}, [enabled, reference, floating]);
@@ -32107,8 +32068,8 @@ function useFloatingRootContext(options) {
     elements: elementsProp
   } = options;
   const floatingId = useId9();
-  const dataRef = React51.useRef({});
-  const [events] = React51.useState(() => createEventEmitter());
+  const dataRef = React50.useRef({});
+  const [events] = React50.useState(() => createEventEmitter());
   const nested = useFloatingParentNodeId() != null;
   if (process.env.NODE_ENV !== "production") {
     const optionDomReference = elementsProp.reference;
@@ -32116,7 +32077,7 @@ function useFloatingRootContext(options) {
       error("Cannot pass a virtual element to the `elements.reference` option,", "as it must be a real DOM element. Use `refs.setPositionReference()`", "instead.");
     }
   }
-  const [positionReference, setPositionReference] = React51.useState(elementsProp.reference);
+  const [positionReference, setPositionReference] = React50.useState(elementsProp.reference);
   const onOpenChange = useEffectEvent((open2, event, reason) => {
     dataRef.current.openEvent = open2 ? event : void 0;
     events.emit("openchange", {
@@ -32127,15 +32088,15 @@ function useFloatingRootContext(options) {
     });
     onOpenChangeProp == null || onOpenChangeProp(open2, event, reason);
   });
-  const refs = React51.useMemo(() => ({
+  const refs = React50.useMemo(() => ({
     setPositionReference
   }), []);
-  const elements = React51.useMemo(() => ({
+  const elements = React50.useMemo(() => ({
     reference: positionReference || elementsProp.reference || null,
     floating: elementsProp.floating || null,
     domReference: elementsProp.reference
   }), [positionReference, elementsProp.reference, elementsProp.floating]);
-  return React51.useMemo(() => ({
+  return React50.useMemo(() => ({
     dataRef,
     open,
     onOpenChange,
@@ -32163,11 +32124,11 @@ function useFloating3(options) {
   });
   const rootContext = options.rootContext || internalRootContext;
   const computedElements = rootContext.elements;
-  const [_domReference, setDomReference] = React51.useState(null);
-  const [positionReference, _setPositionReference] = React51.useState(null);
+  const [_domReference, setDomReference] = React50.useState(null);
+  const [positionReference, _setPositionReference] = React50.useState(null);
   const optionDomReference = computedElements == null ? void 0 : computedElements.domReference;
   const domReference = optionDomReference || _domReference;
-  const domReferenceRef = React51.useRef(null);
+  const domReferenceRef = React50.useRef(null);
   const tree = useFloatingTree();
   index2(() => {
     if (domReference) {
@@ -32183,7 +32144,7 @@ function useFloating3(options) {
       }
     }
   });
-  const setPositionReference = React51.useCallback((node) => {
+  const setPositionReference = React50.useCallback((node) => {
     const computedPositionReference = isElement(node) ? {
       getBoundingClientRect: /* @__PURE__ */ __name(() => node.getBoundingClientRect(), "getBoundingClientRect"),
       getClientRects: /* @__PURE__ */ __name(() => node.getClientRects(), "getClientRects"),
@@ -32192,7 +32153,7 @@ function useFloating3(options) {
     _setPositionReference(computedPositionReference);
     position.refs.setReference(computedPositionReference);
   }, [position.refs]);
-  const setReference = React51.useCallback((node) => {
+  const setReference = React50.useCallback((node) => {
     if (isElement(node) || node === null) {
       domReferenceRef.current = node;
       setDomReference(node);
@@ -32204,17 +32165,17 @@ function useFloating3(options) {
       position.refs.setReference(node);
     }
   }, [position.refs]);
-  const refs = React51.useMemo(() => ({
+  const refs = React50.useMemo(() => ({
     ...position.refs,
     setReference,
     setPositionReference,
     domReference: domReferenceRef
   }), [position.refs, setReference, setPositionReference]);
-  const elements = React51.useMemo(() => ({
+  const elements = React50.useMemo(() => ({
     ...position.elements,
     domReference
   }), [position.elements, domReference]);
-  const context2 = React51.useMemo(() => ({
+  const context2 = React50.useMemo(() => ({
     ...position,
     ...rootContext,
     refs,
@@ -32228,7 +32189,7 @@ function useFloating3(options) {
       node.context = context2;
     }
   });
-  return React51.useMemo(() => ({
+  return React50.useMemo(() => ({
     ...position,
     context: context2,
     refs,
@@ -32255,10 +32216,10 @@ function useFocus(context2, props) {
     enabled = true,
     visibleOnly = true
   } = props;
-  const blockFocusRef = React51.useRef(false);
-  const timeoutRef = React51.useRef(-1);
-  const keyboardModalityRef = React51.useRef(true);
-  React51.useEffect(() => {
+  const blockFocusRef = React50.useRef(false);
+  const timeoutRef = React50.useRef(-1);
+  const keyboardModalityRef = React50.useRef(true);
+  React50.useEffect(() => {
     if (!enabled) return;
     const win = getWindow(elements.domReference);
     function onBlur() {
@@ -32288,7 +32249,7 @@ function useFocus(context2, props) {
       }
     };
   }, [elements.domReference, open, enabled]);
-  React51.useEffect(() => {
+  React50.useEffect(() => {
     if (!enabled) return;
     function onOpenChange2(_ref) {
       let {
@@ -32304,12 +32265,12 @@ function useFocus(context2, props) {
       events.off("openchange", onOpenChange2);
     };
   }, [events, enabled]);
-  React51.useEffect(() => {
+  React50.useEffect(() => {
     return () => {
       clearTimeoutIfSet(timeoutRef);
     };
   }, []);
-  const reference = React51.useMemo(() => ({
+  const reference = React50.useMemo(() => ({
     onMouseLeave() {
       blockFocusRef.current = false;
     },
@@ -32343,7 +32304,7 @@ function useFocus(context2, props) {
       });
     }
   }), [dataRef, elements.domReference, onOpenChange, visibleOnly]);
-  return React51.useMemo(() => enabled ? {
+  return React50.useMemo(() => enabled ? {
     reference
   } : {}, [enabled, reference]);
 }
@@ -32412,22 +32373,22 @@ function useInteractions(propsList) {
   const referenceDeps = propsList.map((key) => key == null ? void 0 : key.reference);
   const floatingDeps = propsList.map((key) => key == null ? void 0 : key.floating);
   const itemDeps = propsList.map((key) => key == null ? void 0 : key.item);
-  const getReferenceProps = React51.useCallback(
+  const getReferenceProps = React50.useCallback(
     (userProps) => mergeProps(userProps, propsList, "reference"),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     referenceDeps
   );
-  const getFloatingProps = React51.useCallback(
+  const getFloatingProps = React50.useCallback(
     (userProps) => mergeProps(userProps, propsList, "floating"),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     floatingDeps
   );
-  const getItemProps = React51.useCallback(
+  const getItemProps = React50.useCallback(
     (userProps) => mergeProps(userProps, propsList, "item"),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     itemDeps
   );
-  return React51.useMemo(() => ({
+  return React50.useMemo(() => ({
     getReferenceProps,
     getFloatingProps,
     getItemProps
@@ -32528,21 +32489,21 @@ function useListNavigation(context2, props) {
     unstable_onNavigate(indexRef.current === -1 ? null : indexRef.current);
   });
   const typeableComboboxReference = isTypeableCombobox(elements.domReference);
-  const focusItemOnOpenRef = React51.useRef(focusItemOnOpen);
-  const indexRef = React51.useRef(selectedIndex != null ? selectedIndex : -1);
-  const keyRef = React51.useRef(null);
-  const isPointerModalityRef = React51.useRef(true);
-  const previousOnNavigateRef = React51.useRef(onNavigate);
-  const previousMountedRef = React51.useRef(!!elements.floating);
-  const previousOpenRef = React51.useRef(open);
-  const forceSyncFocusRef = React51.useRef(false);
-  const forceScrollIntoViewRef = React51.useRef(false);
+  const focusItemOnOpenRef = React50.useRef(focusItemOnOpen);
+  const indexRef = React50.useRef(selectedIndex != null ? selectedIndex : -1);
+  const keyRef = React50.useRef(null);
+  const isPointerModalityRef = React50.useRef(true);
+  const previousOnNavigateRef = React50.useRef(onNavigate);
+  const previousMountedRef = React50.useRef(!!elements.floating);
+  const previousOpenRef = React50.useRef(open);
+  const forceSyncFocusRef = React50.useRef(false);
+  const forceScrollIntoViewRef = React50.useRef(false);
   const disabledIndicesRef = useLatestRef2(disabledIndices);
   const latestOpenRef = useLatestRef2(open);
   const scrollItemIntoViewRef = useLatestRef2(scrollItemIntoView);
   const selectedIndexRef = useLatestRef2(selectedIndex);
-  const [activeId, setActiveId] = React51.useState();
-  const [virtualId, setVirtualId] = React51.useState();
+  const [activeId, setActiveId] = React50.useState();
+  const [virtualId, setVirtualId] = React50.useState();
   const focusItem = useEffectEvent(() => {
     function runFocus(item2) {
       if (virtual) {
@@ -32678,7 +32639,7 @@ function useListNavigation(context2, props) {
     }
   }, [open, focusItemOnOpen]);
   const hasActiveIndex = activeIndex != null;
-  const item = React51.useMemo(() => {
+  const item = React50.useMemo(() => {
     function syncCurrentTarget(currentTarget) {
       if (!latestOpenRef.current) return;
       const index3 = listRef.current.indexOf(currentTarget);
@@ -32738,7 +32699,7 @@ function useListNavigation(context2, props) {
     };
     return props2;
   }, [latestOpenRef, floatingFocusElementRef, focusItemOnHover, listRef, onNavigate, virtual]);
-  const getParentOrientation = React51.useCallback(() => {
+  const getParentOrientation = React50.useCallback(() => {
     var _tree$nodesRef$curren;
     return parentOrientation != null ? parentOrientation : tree == null || (_tree$nodesRef$curren = tree.nodesRef.current.find((node) => node.id === parentId)) == null || (_tree$nodesRef$curren = _tree$nodesRef$curren.context) == null || (_tree$nodesRef$curren = _tree$nodesRef$curren.dataRef) == null ? void 0 : _tree$nodesRef$curren.current.orientation;
   }, [parentId, tree, parentOrientation]);
@@ -32863,12 +32824,12 @@ function useListNavigation(context2, props) {
       onNavigate();
     }
   });
-  const ariaActiveDescendantProp = React51.useMemo(() => {
+  const ariaActiveDescendantProp = React50.useMemo(() => {
     return virtual && open && hasActiveIndex && {
       "aria-activedescendant": virtualId || activeId
     };
   }, [virtual, open, hasActiveIndex, virtualId, activeId]);
-  const floating = React51.useMemo(() => {
+  const floating = React50.useMemo(() => {
     return {
       "aria-orientation": orientation === "both" ? void 0 : orientation,
       ...!typeableComboboxReference ? ariaActiveDescendantProp : {},
@@ -32878,7 +32839,7 @@ function useListNavigation(context2, props) {
       }
     };
   }, [ariaActiveDescendantProp, commonOnKeyDown, orientation, typeableComboboxReference]);
-  const reference = React51.useMemo(() => {
+  const reference = React50.useMemo(() => {
     function checkVirtualMouse(event) {
       if (focusItemOnOpen === "auto" && isVirtualClick(event.nativeEvent)) {
         focusItemOnOpenRef.current = true;
@@ -32979,7 +32940,7 @@ function useListNavigation(context2, props) {
       onClick: checkVirtualMouse
     };
   }, [activeId, ariaActiveDescendantProp, cols, commonOnKeyDown, disabledIndicesRef, focusItemOnOpen, listRef, nested, onNavigate, onOpenChange, open, openOnArrowKeyDown, orientation, getParentOrientation, rtl, selectedIndex, tree, virtual, virtualItemRef]);
-  return React51.useMemo(() => enabled ? {
+  return React50.useMemo(() => enabled ? {
     reference,
     floating,
     item
@@ -33003,14 +32964,14 @@ function useRole(context2, props) {
   } = props;
   const defaultReferenceId = useId9();
   const referenceId = ((_elements$domReferenc = elements.domReference) == null ? void 0 : _elements$domReferenc.id) || defaultReferenceId;
-  const floatingId = React51.useMemo(() => {
+  const floatingId = React50.useMemo(() => {
     var _getFloatingFocusElem;
     return ((_getFloatingFocusElem = getFloatingFocusElement(elements.floating)) == null ? void 0 : _getFloatingFocusElem.id) || defaultFloatingId;
   }, [elements.floating, defaultFloatingId]);
   const ariaRole = (_componentRoleToAriaR = componentRoleToAriaRoleMap.get(role)) != null ? _componentRoleToAriaR : role;
   const parentId = useFloatingParentNodeId();
   const isNested = parentId != null;
-  const reference = React51.useMemo(() => {
+  const reference = React50.useMemo(() => {
     if (ariaRole === "tooltip" || role === "label") {
       return {
         ["aria-" + (role === "label" ? "labelledby" : "describedby")]: open ? floatingId : void 0
@@ -33037,7 +32998,7 @@ function useRole(context2, props) {
       }
     };
   }, [ariaRole, floatingId, isNested, open, referenceId, role]);
-  const floating = React51.useMemo(() => {
+  const floating = React50.useMemo(() => {
     const floatingProps = {
       id: floatingId,
       ...ariaRole && {
@@ -33054,7 +33015,7 @@ function useRole(context2, props) {
       }
     };
   }, [ariaRole, floatingId, referenceId, role]);
-  const item = React51.useCallback((_ref) => {
+  const item = React50.useCallback((_ref) => {
     let {
       active,
       selected
@@ -33075,7 +33036,7 @@ function useRole(context2, props) {
     }
     return {};
   }, [floatingId, role]);
-  return React51.useMemo(() => enabled ? {
+  return React50.useMemo(() => enabled ? {
     reference,
     floating,
     item
@@ -33099,10 +33060,10 @@ function useTypeahead(context2, props) {
     ignoreKeys = [],
     selectedIndex = null
   } = props;
-  const timeoutIdRef = React51.useRef(-1);
-  const stringRef = React51.useRef("");
-  const prevIndexRef = React51.useRef((_ref = selectedIndex != null ? selectedIndex : activeIndex) != null ? _ref : -1);
-  const matchIndexRef = React51.useRef(null);
+  const timeoutIdRef = React50.useRef(-1);
+  const stringRef = React50.useRef("");
+  const prevIndexRef = React50.useRef((_ref = selectedIndex != null ? selectedIndex : activeIndex) != null ? _ref : -1);
+  const matchIndexRef = React50.useRef(null);
   const onMatch = useEffectEvent(unstable_onMatch);
   const onTypingChange = useEffectEvent(unstable_onTypingChange);
   const findMatchRef = useLatestRef2(findMatch);
@@ -33181,10 +33142,10 @@ function useTypeahead(context2, props) {
       setTypingChange(false);
     }
   });
-  const reference = React51.useMemo(() => ({
+  const reference = React50.useMemo(() => ({
     onKeyDown
   }), [onKeyDown]);
-  const floating = React51.useMemo(() => {
+  const floating = React50.useMemo(() => {
     return {
       onKeyDown,
       onKeyUp(event) {
@@ -33194,7 +33155,7 @@ function useTypeahead(context2, props) {
       }
     };
   }, [onKeyDown, setTypingChange]);
-  return React51.useMemo(() => enabled ? {
+  return React50.useMemo(() => enabled ? {
     reference,
     floating
   } : {}, [enabled, reference, floating]);
@@ -33291,10 +33252,10 @@ function useInnerOffset(context2, props) {
     onChange: unstable_onChange
   } = props;
   const onChange = useEffectEvent(unstable_onChange);
-  const controlledScrollingRef = React51.useRef(false);
-  const prevScrollTopRef = React51.useRef(null);
-  const initialOverflowRef = React51.useRef(null);
-  React51.useEffect(() => {
+  const controlledScrollingRef = React50.useRef(false);
+  const prevScrollTopRef = React50.useRef(null);
+  const initialOverflowRef = React50.useRef(null);
+  React50.useEffect(() => {
     if (!enabled) return;
     function onWheel(e) {
       if (e.ctrlKey || !el || overflowRef.current == null) {
@@ -33337,7 +33298,7 @@ function useInnerOffset(context2, props) {
       };
     }
   }, [enabled, open, elements.floating, overflowRef, scrollRef, onChange]);
-  const floating = React51.useMemo(() => ({
+  const floating = React50.useMemo(() => ({
     onKeyDown() {
       controlledScrollingRef.current = true;
     },
@@ -33363,7 +33324,7 @@ function useInnerOffset(context2, props) {
       });
     }
   }), [elements.floating, onChange, overflowRef, scrollRef]);
-  return React51.useMemo(() => enabled ? {
+  return React50.useMemo(() => enabled ? {
     floating
   } : {}, [enabled, floating]);
 }
@@ -33575,7 +33536,7 @@ var useFloatingContext = /* @__PURE__ */ __name(({
   disable,
   disableFocus,
   hoverable
-}) => import_react40.default.useCallback((props) => {
+}) => import_react39.default.useCallback((props) => {
   const floating = useFloating3({
     ...props,
     open,
@@ -33621,7 +33582,7 @@ var PopoverContext = (0, import_core27.createStyledContext)(
   "Popover__"
 );
 var usePopoverContext = PopoverContext.useStyledContext;
-var PopoverAnchor = React53.forwardRef(function(props, forwardedRef) {
+var PopoverAnchor = React52.forwardRef(function(props, forwardedRef) {
   const {
     scope,
     ...rest
@@ -33629,13 +33590,13 @@ var PopoverAnchor = React53.forwardRef(function(props, forwardedRef) {
     onCustomAnchorAdd,
     onCustomAnchorRemove
   } = context2 || {};
-  return React53.useEffect(() => (onCustomAnchorAdd(), () => onCustomAnchorRemove()), [onCustomAnchorAdd, onCustomAnchorRemove]), /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(PopperAnchor, {
+  return React52.useEffect(() => (onCustomAnchorAdd(), () => onCustomAnchorRemove()), [onCustomAnchorAdd, onCustomAnchorRemove]), /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(PopperAnchor, {
     scope,
     ...rest,
     ref: forwardedRef
   });
 });
-var PopoverTrigger = React53.forwardRef(function(props, forwardedRef) {
+var PopoverTrigger = React52.forwardRef(function(props, forwardedRef) {
   const {
     scope,
     ...rest
@@ -33647,7 +33608,7 @@ var PopoverTrigger = React53.forwardRef(function(props, forwardedRef) {
     ...rest,
     ref: composedTriggerRef,
     onPress: composeEventHandlers(props.onPress, context2.onOpenToggle)
-  }), virtualRef = React53.useMemo(() => anchorTo ? {
+  }), virtualRef = React52.useMemo(() => anchorTo ? {
     current: {
       getBoundingClientRect: /* @__PURE__ */ __name(() => isWeb ? DOMRect.fromRect(anchorTo) : anchorTo, "getBoundingClientRect"),
       ...!isWeb && {
@@ -33668,15 +33629,15 @@ var PopoverTrigger = React53.forwardRef(function(props, forwardedRef) {
 var PopoverContentFrame = (0, import_core27.styled)(PopperContentFrame, {
   name: "Popover"
 });
-var PopoverContent = PopoverContentFrame.extractable(React53.forwardRef(function(props, forwardedRef) {
+var PopoverContent = PopoverContentFrame.extractable(React52.forwardRef(function(props, forwardedRef) {
   const {
     trapFocus,
     enableRemoveScroll = false,
     zIndex,
     scope,
     ...contentImplProps
-  } = props, context2 = usePopoverContext(scope), contentRef = React53.useRef(null), composedRefs = useComposedRefs(forwardedRef, contentRef), isRightClickOutsideRef = React53.useRef(false), [isFullyHidden, setIsFullyHidden] = React53.useState(!context2.open);
-  return React53.useEffect(() => {
+  } = props, context2 = usePopoverContext(scope), contentRef = React52.useRef(null), composedRefs = useComposedRefs(forwardedRef, contentRef), isRightClickOutsideRef = React52.useRef(false), [isFullyHidden, setIsFullyHidden] = React52.useState(!context2.open);
+  return React52.useEffect(() => {
     context2.open && isFullyHidden && setIsFullyHidden(false);
   }, [context2.open, isFullyHidden]), !context2.keepChildrenMounted && isFullyHidden && !context2.open ? null : /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(PopoverPortal, {
     passThrough: context2.breakpointActive,
@@ -33792,7 +33753,7 @@ function PopoverPortal({
   });
 }
 __name(PopoverPortal, "PopoverPortal");
-var PopoverContentImpl = React53.forwardRef(function(props, forwardedRef) {
+var PopoverContentImpl = React52.forwardRef(function(props, forwardedRef) {
   const {
     trapFocus,
     scope,
@@ -33814,7 +33775,7 @@ var PopoverContentImpl = React53.forwardRef(function(props, forwardedRef) {
   } = props, {
     open,
     keepChildrenMounted
-  } = context2, handleExitComplete = React53.useCallback(() => {
+  } = context2, handleExitComplete = React52.useCallback(() => {
     setIsFullyHidden?.(true);
   }, [setIsFullyHidden]);
   let contents = /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(ResetPresence, {
@@ -33858,7 +33819,7 @@ var PopoverContentImpl = React53.forwardRef(function(props, forwardedRef) {
 var dspContentsStyle = {
   display: "contents"
 };
-var PopoverClose = React53.forwardRef(function(props, forwardedRef) {
+var PopoverClose = React52.forwardRef(function(props, forwardedRef) {
   const {
     scope,
     ...rest
@@ -33882,7 +33843,7 @@ var PopoverArrow = PopperArrowFrame.styleable(function(props, forwardedRef) {
     ref: forwardedRef
   });
 });
-var PopoverScrollView = React53.forwardRef(({
+var PopoverScrollView = React52.forwardRef(({
   scope,
   ...props
 }, ref) => {
@@ -33896,11 +33857,11 @@ var PopoverScrollView = React53.forwardRef(({
   });
 });
 var DEFAULT_SCOPE = "";
-var Popover = withStaticProperties(React53.forwardRef(function({
+var Popover = withStaticProperties(React52.forwardRef(function({
   scope = DEFAULT_SCOPE,
   ...props
 }, ref) {
-  const id = React53.useId(), adaptScope = `PopoverAdapt${scope}`;
+  const id = React52.useId(), adaptScope = `PopoverAdapt${scope}`;
   return /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(AdaptParent, {
     scope: adaptScope,
     portal: true,
@@ -33923,7 +33884,7 @@ var Popover = withStaticProperties(React53.forwardRef(function({
   Sheet: Sheet.Controlled,
   FocusScope: FocusScopeControllerComponent
 });
-var PopoverInner = React53.forwardRef(function(props, forwardedRef) {
+var PopoverInner = React52.forwardRef(function(props, forwardedRef) {
   const {
     children,
     open: openProp,
@@ -33936,7 +33897,7 @@ var PopoverInner = React53.forwardRef(function(props, forwardedRef) {
     id,
     adaptScope,
     ...restProps
-  } = props, triggerRef = React53.useRef(null), [hasCustomAnchor, setHasCustomAnchor] = React53.useState(false), viaRef = React53.useRef(void 0), [keepChildrenMounted] = useControllableState({
+  } = props, triggerRef = React52.useRef(null), [hasCustomAnchor, setHasCustomAnchor] = React52.useState(false), viaRef = React52.useRef(void 0), [keepChildrenMounted] = useControllableState({
     prop: keepChildrenMountedProp,
     defaultProp: false,
     transition: keepChildrenMountedProp === "lazy"
@@ -33954,8 +33915,8 @@ var PopoverInner = React53.forwardRef(function(props, forwardedRef) {
     disable: isAdapted,
     hoverable,
     disableFocus
-  }), [anchorTo, setAnchorToRaw] = React53.useState(), setAnchorTo = (0, import_core27.useCreateShallowSetState)(setAnchorToRaw);
-  React53.useImperativeHandle(forwardedRef, () => ({
+  }), [anchorTo, setAnchorToRaw] = React52.useState(), setAnchorTo = (0, import_core27.useCreateShallowSetState)(setAnchorToRaw);
+  React52.useImperativeHandle(forwardedRef, () => ({
     anchorTo: setAnchorTo,
     toggle: /* @__PURE__ */ __name(() => setOpen((prev) => !prev), "toggle"),
     open: /* @__PURE__ */ __name(() => setOpen(true), "open"),
@@ -33966,7 +33927,7 @@ var PopoverInner = React53.forwardRef(function(props, forwardedRef) {
     popoverScope: scope,
     adaptScope,
     id,
-    contentId: React53.useId(),
+    contentId: React52.useId(),
     triggerRef,
     open,
     breakpointActive: isAdapted,
@@ -33976,10 +33937,10 @@ var PopoverInner = React53.forwardRef(function(props, forwardedRef) {
     }),
     hasCustomAnchor,
     anchorTo,
-    onCustomAnchorAdd: React53.useCallback(() => setHasCustomAnchor(true), []),
-    onCustomAnchorRemove: React53.useCallback(() => setHasCustomAnchor(false), []),
+    onCustomAnchorAdd: React52.useCallback(() => setHasCustomAnchor(true), []),
+    onCustomAnchorRemove: React52.useCallback(() => setHasCustomAnchor(false), []),
     keepChildrenMounted
-  }, memoizedChildren = React53.useMemo(() => /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(PopoverContext.Provider, {
+  }, memoizedChildren = React52.useMemo(() => /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(PopoverContext.Provider, {
     scope,
     ...popoverContext,
     children: /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(PopoverSheetController, {
@@ -34027,7 +33988,7 @@ var useShowPopoverSheet = /* @__PURE__ */ __name((context2) => {
 
 // node_modules/@tamagui/progress/dist/esm/Progress.mjs
 var import_core28 = require("@tamagui/core");
-var React54 = __toESM(require("react"), 1);
+var React53 = __toESM(require("react"), 1);
 var import_jsx_runtime40 = require("react/jsx-runtime");
 var PROGRESS_NAME = "Progress";
 var [createProgressContext, createProgressScope] = createContextScope(PROGRESS_NAME);
@@ -34124,7 +34085,7 @@ var Progress = withStaticProperties(ProgressFrame.styleable(function(props, forw
     getValueLabel = defaultGetValueLabel,
     size: size4 = "$true",
     ...progressProps
-  } = props, max2 = isValidMaxNumber(maxProp) ? maxProp : DEFAULT_MAX, value = isValidValueNumber(valueProp, max2) ? valueProp : null, valueLabel = isNumber(value) ? getValueLabel(value, max2) : void 0, [width, setWidth] = React54.useState(0);
+  } = props, max2 = isValidMaxNumber(maxProp) ? maxProp : DEFAULT_MAX, value = isValidValueNumber(valueProp, max2) ? valueProp : null, valueLabel = isNumber(value) ? getValueLabel(value, max2) : void 0, [width, setWidth] = React53.useState(0);
   return /* @__PURE__ */ (0, import_jsx_runtime40.jsx)(ProgressProvider, {
     scope: __scopeProgress,
     value,
@@ -34259,14 +34220,14 @@ var RadioGroupFrame = (0, import_core29.styled)(ThemeableStack, {
 });
 
 // node_modules/@tamagui/radio-group/dist/esm/createRadioGroup.mjs
-var import_react44 = __toESM(require("react"), 1);
+var import_react43 = __toESM(require("react"), 1);
 var import_core31 = require("@tamagui/core");
 
 // node_modules/@tamagui/radio-headless/dist/esm/useRadioGroup.mjs
-var import_react43 = require("react");
+var import_react42 = require("react");
 
 // node_modules/@tamagui/radio-headless/dist/esm/BubbleInput.mjs
-var import_react42 = __toESM(require("react"), 1);
+var import_react41 = __toESM(require("react"), 1);
 var import_jsx_runtime41 = require("react/jsx-runtime");
 var BubbleInput2 = /* @__PURE__ */ __name((props) => {
   const {
@@ -34276,8 +34237,8 @@ var BubbleInput2 = /* @__PURE__ */ __name((props) => {
     isHidden: isHidden2,
     accentColor,
     ...inputProps
-  } = props, ref = import_react42.default.useRef(null), prevChecked = usePrevious(checked);
-  return import_react42.default.useEffect(() => {
+  } = props, ref = import_react41.default.useRef(null), prevChecked = usePrevious(checked);
+  return import_react41.default.useEffect(() => {
     const input = ref.current, inputProto = window.HTMLInputElement.prototype, setChecked = Object.getOwnPropertyDescriptor(inputProto, "checked").set;
     if (prevChecked !== checked && setChecked) {
       const event = new Event("click", {
@@ -34375,8 +34336,8 @@ var useRadioGroupItem = /* @__PURE__ */ __name((params) => {
     name,
     native,
     accentColor
-  } = (0, import_react43.useContext)(radioGroupContext), [button, setButton] = (0, import_react43.useState)(null), hasConsumerStoppedPropagationRef = (0, import_react43.useRef)(false), ref = (0, import_react43.useRef)(null), composedRefs = useComposedRefs(refProp, (node) => setButton(node), ref), isArrowKeyPressedRef = (0, import_react43.useRef)(false), isFormControl = isWeb ? button ? !!button.closest("form") : true : false, checked = groupValue === value, labelId = useLabelContext(button), labelledBy = ariaLabelledby || labelId;
-  (0, import_react43.useEffect)(() => {
+  } = (0, import_react42.useContext)(radioGroupContext), [button, setButton] = (0, import_react42.useState)(null), hasConsumerStoppedPropagationRef = (0, import_react42.useRef)(false), ref = (0, import_react42.useRef)(null), composedRefs = useComposedRefs(refProp, (node) => setButton(node), ref), isArrowKeyPressedRef = (0, import_react42.useRef)(false), isFormControl = isWeb ? button ? !!button.closest("form") : true : false, checked = groupValue === value, labelId = useLabelContext(button), labelledBy = ariaLabelledby || labelId;
+  (0, import_react42.useEffect)(() => {
     if (isWeb) {
       const handleKeyDown = /* @__PURE__ */ __name((event) => {
         ARROW_KEYS.includes(event.key) && (isArrowKeyPressedRef.current = true);
@@ -34450,7 +34411,7 @@ function useRadioGroupItemIndicator(params) {
     ...rest
   } = params, {
     checked
-  } = (0, import_react43.useContext)(radioGroupItemContext);
+  } = (0, import_react42.useContext)(radioGroupItemContext);
   return {
     checked,
     "data-state": getState6(checked),
@@ -34462,14 +34423,14 @@ __name(useRadioGroupItemIndicator, "useRadioGroupItemIndicator");
 
 // node_modules/@tamagui/roving-focus/dist/esm/RovingFocusGroup.mjs
 var import_core30 = require("@tamagui/core");
-var React56 = __toESM(require("react"), 1);
+var React55 = __toESM(require("react"), 1);
 var import_jsx_runtime43 = require("react/jsx-runtime");
 var ENTRY_FOCUS = "rovingFocusGroup.onEntryFocus";
 var EVENT_OPTIONS2 = {
   bubbles: false,
   cancelable: true
 };
-var RovingFocusGroupImpl = React56.forwardRef((props, forwardedRef) => {
+var RovingFocusGroupImpl = React55.forwardRef((props, forwardedRef) => {
   const {
     __scopeRovingFocusGroup,
     orientation,
@@ -34480,12 +34441,12 @@ var RovingFocusGroupImpl = React56.forwardRef((props, forwardedRef) => {
     onCurrentTabStopIdChange,
     onEntryFocus,
     ...groupProps
-  } = props, ref = React56.useRef(null), composedRefs = useComposedRefs(forwardedRef, ref), direction = useDirection(dir), [currentTabStopId = null, setCurrentTabStopId] = useControllableState({
+  } = props, ref = React55.useRef(null), composedRefs = useComposedRefs(forwardedRef, ref), direction = useDirection(dir), [currentTabStopId = null, setCurrentTabStopId] = useControllableState({
     prop: currentTabStopIdProp,
     defaultProp: defaultCurrentTabStopId ?? null,
     onChange: onCurrentTabStopIdChange
-  }), [isTabbingBackOut, setIsTabbingBackOut] = React56.useState(false), handleEntryFocus = (0, import_core30.useEvent)(onEntryFocus), getItems = useCollection2(__scopeRovingFocusGroup || ROVING_FOCUS_GROUP_CONTEXT), isClickFocusRef = React56.useRef(false), [focusableItemsCount, setFocusableItemsCount] = React56.useState(0);
-  return React56.useEffect(() => {
+  }), [isTabbingBackOut, setIsTabbingBackOut] = React55.useState(false), handleEntryFocus = (0, import_core30.useEvent)(onEntryFocus), getItems = useCollection2(__scopeRovingFocusGroup || ROVING_FOCUS_GROUP_CONTEXT), isClickFocusRef = React55.useRef(false), [focusableItemsCount, setFocusableItemsCount] = React55.useState(0);
+  return React55.useEffect(() => {
     const node = ref.current;
     if (node) return node.addEventListener(ENTRY_FOCUS, handleEntryFocus), () => node.removeEventListener(ENTRY_FOCUS, handleEntryFocus);
   }, [handleEntryFocus]), /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(RovingFocusProvider, {
@@ -34494,10 +34455,10 @@ var RovingFocusGroupImpl = React56.forwardRef((props, forwardedRef) => {
     dir: direction,
     loop,
     currentTabStopId,
-    onItemFocus: React56.useCallback((tabStopId) => setCurrentTabStopId(tabStopId), [setCurrentTabStopId]),
-    onItemShiftTab: React56.useCallback(() => setIsTabbingBackOut(true), []),
-    onFocusableItemAdd: React56.useCallback(() => setFocusableItemsCount((prevCount) => prevCount + 1), []),
-    onFocusableItemRemove: React56.useCallback(() => setFocusableItemsCount((prevCount) => prevCount - 1), []),
+    onItemFocus: React55.useCallback((tabStopId) => setCurrentTabStopId(tabStopId), [setCurrentTabStopId]),
+    onItemShiftTab: React55.useCallback(() => setIsTabbingBackOut(true), []),
+    onFocusableItemAdd: React55.useCallback(() => setFocusableItemsCount((prevCount) => prevCount + 1), []),
+    onFocusableItemRemove: React55.useCallback(() => setFocusableItemsCount((prevCount) => prevCount - 1), []),
     children: /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(import_core30.Stack, {
       tabIndex: isTabbingBackOut || focusableItemsCount === 0 ? -1 : 0,
       "data-orientation": orientation,
@@ -34525,18 +34486,18 @@ var RovingFocusGroupImpl = React56.forwardRef((props, forwardedRef) => {
   });
 });
 var ITEM_NAME2 = "RovingFocusGroupItem";
-var RovingFocusGroupItem = React56.forwardRef((props, forwardedRef) => {
+var RovingFocusGroupItem = React55.forwardRef((props, forwardedRef) => {
   const {
     __scopeRovingFocusGroup,
     focusable: focusable2 = true,
     active = false,
     tabStopId,
     ...itemProps
-  } = props, autoId = React56.useId(), id = tabStopId || autoId, context2 = useRovingFocusContext(__scopeRovingFocusGroup), isCurrentTabStop = context2.currentTabStopId === id, getItems = useCollection2(__scopeRovingFocusGroup || ROVING_FOCUS_GROUP_CONTEXT), {
+  } = props, autoId = React55.useId(), id = tabStopId || autoId, context2 = useRovingFocusContext(__scopeRovingFocusGroup), isCurrentTabStop = context2.currentTabStopId === id, getItems = useCollection2(__scopeRovingFocusGroup || ROVING_FOCUS_GROUP_CONTEXT), {
     onFocusableItemAdd,
     onFocusableItemRemove
   } = context2;
-  return React56.useEffect(() => {
+  return React55.useEffect(() => {
     if (focusable2) return onFocusableItemAdd(), () => onFocusableItemRemove();
   }, [focusable2, onFocusableItemAdd, onFocusableItemRemove]), /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(Collection2.ItemSlot, {
     scope: __scopeRovingFocusGroup || ROVING_FOCUS_GROUP_CONTEXT,
@@ -34584,7 +34545,7 @@ var {
   useStyledContext: useRovingFocusContext
 } = (0, import_core30.createStyledContext)();
 var ROVING_FOCUS_GROUP_CONTEXT = "RovingFocusGroupContext";
-var RovingFocusGroup = withStaticProperties(React56.forwardRef((props, forwardedRef) => /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(Collection2.Provider, {
+var RovingFocusGroup = withStaticProperties(React55.forwardRef((props, forwardedRef) => /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(Collection2.Provider, {
   scope: props.__scopeRovingFocusGroup || ROVING_FOCUS_GROUP_CONTEXT,
   children: /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(Collection2.Slot, {
     scope: props.__scopeRovingFocusGroup || ROVING_FOCUS_GROUP_CONTEXT,
@@ -34631,8 +34592,8 @@ var import_jsx_runtime44 = require("react/jsx-runtime");
 var ensureContext2 = /* @__PURE__ */ __name((x) => {
   x.context || (x.context = RadioGroupContext);
 }, "ensureContext");
-var RadioGroupContext = import_react44.default.createContext({});
-var RadioGroupItemContext = import_react44.default.createContext({
+var RadioGroupContext = import_react43.default.createContext({});
+var RadioGroupItemContext = import_react43.default.createContext({
   checked: false,
   disabled: false
 });
@@ -34799,7 +34760,7 @@ var Separator = (0, import_core33.styled)(import_core33.Stack, {
 });
 
 // node_modules/@tamagui/use-debounce/dist/esm/index.mjs
-var React58 = __toESM(require("react"), 1);
+var React57 = __toESM(require("react"), 1);
 function debounce(func, wait, leading) {
   let timeout, isCancelled = false;
   function debounced() {
@@ -34819,15 +34780,15 @@ var defaultOpts = {
   leading: false
 };
 function useDebounce(fn, wait, options = defaultOpts, mountArgs = [fn]) {
-  const dbEffect = React58.useRef(null);
-  return React58.useEffect(() => () => {
+  const dbEffect = React57.useRef(null);
+  return React57.useEffect(() => () => {
     dbEffect.current?.cancel();
-  }, []), React58.useMemo(() => (dbEffect.current = debounce(fn, wait, options.leading), dbEffect.current), [options.leading, ...mountArgs]);
+  }, []), React57.useMemo(() => (dbEffect.current = debounce(fn, wait, options.leading), dbEffect.current), [options.leading, ...mountArgs]);
 }
 __name(useDebounce, "useDebounce");
 function useDebounceValue(val, amt = 0) {
-  const [state, setState] = React58.useState(val);
-  return React58.useEffect(() => {
+  const [state, setState] = React57.useState(val);
+  return React57.useEffect(() => {
     const tm = setTimeout(() => {
       setState((prev) => prev === val ? prev : val);
     }, amt);
@@ -34839,7 +34800,7 @@ function useDebounceValue(val, amt = 0) {
 __name(useDebounceValue, "useDebounceValue");
 
 // node_modules/@tamagui/select/dist/esm/Select.mjs
-var React65 = __toESM(require("react"), 1);
+var React64 = __toESM(require("react"), 1);
 
 // node_modules/@tamagui/select/dist/esm/context.mjs
 var import_core34 = require("@tamagui/core");
@@ -34869,7 +34830,7 @@ var ForwardSelectContext = /* @__PURE__ */ __name(({
 
 // node_modules/@tamagui/select/dist/esm/SelectContent.mjs
 var import_core35 = require("@tamagui/core");
-var import_react46 = __toESM(require("react"), 1);
+var import_react45 = __toESM(require("react"), 1);
 
 // node_modules/@tamagui/select/dist/esm/useSelectBreakpointActive.mjs
 var useShowSelectSheet = /* @__PURE__ */ __name((context2) => {
@@ -34889,7 +34850,7 @@ var SelectContent = /* @__PURE__ */ __name(({
     forceClassName: true,
     name: themeName,
     children
-  }), touch = (0, import_core35.useIsTouchDevice)(), overlayStyle = import_react46.default.useMemo(() => ({
+  }), touch = (0, import_core35.useIsTouchDevice)(), overlayStyle = import_react45.default.useMemo(() => ({
     zIndex,
     pointerEvents: context2.open ? "auto" : "none"
   }), [context2.open]);
@@ -34914,7 +34875,7 @@ var SelectContent = /* @__PURE__ */ __name(({
 
 // node_modules/@tamagui/select/dist/esm/SelectImpl.mjs
 var import_core36 = require("@tamagui/core");
-var React60 = __toESM(require("react"), 1);
+var React59 = __toESM(require("react"), 1);
 var import_react_dom5 = require("react-dom");
 
 // node_modules/@tamagui/select/dist/esm/constants.mjs
@@ -34936,10 +34897,10 @@ var SelectInlineImpl = /* @__PURE__ */ __name((props) => {
   } = selectContext, {
     setOpen,
     setSelectedIndex
-  } = selectItemParentContext, [scrollTop, setScrollTop] = React60.useState(0), touch = (0, import_core36.useIsTouchDevice)(), listItemsRef = React60.useRef([]), overflowRef = React60.useRef(null), upArrowRef = React60.useRef(null), downArrowRef = React60.useRef(null), allowSelectRef = React60.useRef(false), allowMouseUpRef = React60.useRef(true), selectTimeoutRef = React60.useRef(null), state = React60.useRef({
+  } = selectItemParentContext, [scrollTop, setScrollTop] = React59.useState(0), touch = (0, import_core36.useIsTouchDevice)(), listItemsRef = React59.useRef([]), overflowRef = React59.useRef(null), upArrowRef = React59.useRef(null), downArrowRef = React59.useRef(null), allowSelectRef = React59.useRef(false), allowMouseUpRef = React59.useRef(true), selectTimeoutRef = React59.useRef(null), state = React59.useRef({
     isMouseOutside: false,
     isTyping: false
-  }), [controlledScrolling, setControlledScrolling] = React60.useState(false), [fallback, setFallback] = React60.useState(false), [innerOffset, setInnerOffset] = React60.useState(0), [blockSelection, setBlockSelection] = React60.useState(false), floatingStyle = React60.useRef({});
+  }), [controlledScrolling, setControlledScrolling] = React59.useState(false), [fallback, setFallback] = React59.useState(false), [innerOffset, setInnerOffset] = React59.useState(0), [blockSelection, setBlockSelection] = React59.useState(false), floatingStyle = React59.useRef({});
   useIsomorphicLayoutEffect(() => {
     queueMicrotask(() => {
       open || (setScrollTop(0), setFallback(false), setActiveIndex(null), setControlledScrolling(false));
@@ -35020,8 +34981,8 @@ var SelectInlineImpl = /* @__PURE__ */ __name((props) => {
     }, "onTypingChange")
   })], interactions = useInteractions(
     // unfortunately these memos will just always break due to floating-ui context always changing :/
-    React60.useMemo(() => interactionsProps, interactionsProps)
-  ), interactionsContext = React60.useMemo(() => ({
+    React59.useMemo(() => interactionsProps, interactionsProps)
+  ), interactionsContext = React59.useMemo(() => ({
     ...interactions,
     getReferenceProps() {
       return interactions.getReferenceProps({
@@ -35087,11 +35048,11 @@ var SelectInlineImpl = /* @__PURE__ */ __name((props) => {
     if (open) return document.addEventListener("pointerdown", onPointerDown), () => {
       document.removeEventListener("pointerdown", onPointerDown);
     };
-  }, [open, refs, setOpen]), React60.useEffect(() => {
+  }, [open, refs, setOpen]), React59.useEffect(() => {
     open && controlledScrolling && activeIndex != null && listItemsRef.current[activeIndex]?.scrollIntoView({
       block: "nearest"
     }), setScrollTop(refs.floating.current?.scrollTop ?? 0);
-  }, [open, refs, controlledScrolling, activeIndex]), React60.useEffect(() => {
+  }, [open, refs, controlledScrolling, activeIndex]), React59.useEffect(() => {
     open && fallback && selectedIndex != null && listItemsRef.current[selectedIndex]?.scrollIntoView({
       block: "nearest"
     });
@@ -35128,7 +35089,7 @@ var SelectInlineImpl = /* @__PURE__ */ __name((props) => {
 
 // node_modules/@tamagui/select/dist/esm/SelectItem.mjs
 var import_core37 = require("@tamagui/core");
-var React61 = __toESM(require("react"), 1);
+var React60 = __toESM(require("react"), 1);
 var import_jsx_runtime48 = require("react/jsx-runtime");
 var ITEM_NAME3 = "SelectItem";
 var {
@@ -35167,13 +35128,13 @@ var SelectItem = ListItemFrame.styleable(function(props, forwardedRef) {
     size: size4,
     onActiveChange,
     initialValue: initialValue2
-  } = context2, [isSelected, setSelected] = React61.useState(initialValue2 === value);
-  React61.useEffect(() => activeIndexSubscribe((i) => {
+  } = context2, [isSelected, setSelected] = React60.useState(initialValue2 === value);
+  React60.useEffect(() => activeIndexSubscribe((i) => {
     index3 === i && (onActiveChange(value, index3), listRef?.current[index3]?.focus());
-  }), [index3]), React61.useEffect(() => valueSubscribe((val) => {
+  }), [index3]), React60.useEffect(() => valueSubscribe((val) => {
     setSelected(val === value);
   }), [value]);
-  const textId = React61.useId(), refCallback = React61.useCallback((node) => {
+  const textId = React60.useId(), refCallback = React60.useCallback((node) => {
     isWeb && node instanceof HTMLElement && listRef && (listRef.current[index3] = node);
   }, []), composedRefs = useComposedRefs(forwardedRef, refCallback);
   useIsomorphicLayoutEffect(() => {
@@ -35183,7 +35144,7 @@ var SelectItem = ListItemFrame.styleable(function(props, forwardedRef) {
     setSelectedIndex(index3), onChange(value), setOpen(false);
   }
   __name(handleSelect, "handleSelect");
-  const selectItemProps = React61.useMemo(() => interactions ? interactions.getItemProps({
+  const selectItemProps = React60.useMemo(() => interactions ? interactions.getItemProps({
     onTouchMove() {
       allowSelectRef.current = true, allowMouseUpRef.current = false;
     },
@@ -35246,7 +35207,7 @@ var SelectItem = ListItemFrame.styleable(function(props, forwardedRef) {
 
 // node_modules/@tamagui/select/dist/esm/SelectItemText.mjs
 var import_core38 = require("@tamagui/core");
-var React62 = __toESM(require("react"), 1);
+var React61 = __toESM(require("react"), 1);
 var import_jsx_runtime49 = require("react/jsx-runtime");
 var ITEM_TEXT_NAME = "SelectItemText";
 var SelectItemTextFrame = (0, import_core38.styled)(SizableText2, {
@@ -35269,7 +35230,7 @@ var SelectItemText = SelectItemTextFrame.styleable(function(props, forwardedRef)
     scope,
     className,
     ...itemTextProps
-  } = props, context2 = useSelectContext(scope), itemParentContext = useSelectItemParentContext(scope), ref = React62.useRef(null), composedRefs = useComposedRefs(forwardedRef, ref), itemContext = useSelectItemContext(scope), contents = React62.useRef(null);
+  } = props, context2 = useSelectContext(scope), itemParentContext = useSelectItemParentContext(scope), ref = React61.useRef(null), composedRefs = useComposedRefs(forwardedRef, ref), itemContext = useSelectItemContext(scope), contents = React61.useRef(null);
   return contents.current = /* @__PURE__ */ (0, import_jsx_runtime49.jsx)(SelectItemTextFrame, {
     className,
     size: itemParentContext.size,
@@ -35288,11 +35249,11 @@ var SelectItemText = SelectItemTextFrame.styleable(function(props, forwardedRef)
 });
 
 // node_modules/@tamagui/select/dist/esm/SelectScrollButton.mjs
-var React63 = __toESM(require("react"), 1);
+var React62 = __toESM(require("react"), 1);
 var import_react_dom6 = require("react-dom");
 var import_jsx_runtime50 = require("react/jsx-runtime");
 var SCROLL_UP_BUTTON_NAME = "SelectScrollUpButton";
-var SelectScrollUpButton = React63.forwardRef((props, forwardedRef) => /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(SelectScrollButtonImpl, {
+var SelectScrollUpButton = React62.forwardRef((props, forwardedRef) => /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(SelectScrollButtonImpl, {
   componentName: SCROLL_UP_BUTTON_NAME,
   ...props,
   dir: "up",
@@ -35300,14 +35261,14 @@ var SelectScrollUpButton = React63.forwardRef((props, forwardedRef) => /* @__PUR
 }));
 SelectScrollUpButton.displayName = SCROLL_UP_BUTTON_NAME;
 var SCROLL_DOWN_BUTTON_NAME = "SelectScrollDownButton";
-var SelectScrollDownButton = React63.forwardRef((props, forwardedRef) => /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(SelectScrollButtonImpl, {
+var SelectScrollDownButton = React62.forwardRef((props, forwardedRef) => /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(SelectScrollButtonImpl, {
   componentName: SCROLL_DOWN_BUTTON_NAME,
   ...props,
   dir: "down",
   ref: forwardedRef
 }));
 SelectScrollDownButton.displayName = SCROLL_DOWN_BUTTON_NAME;
-var SelectScrollButtonImpl = React63.memo(React63.forwardRef((props, forwardedRef) => {
+var SelectScrollButtonImpl = React62.memo(React62.forwardRef((props, forwardedRef) => {
   const {
     scope,
     dir,
@@ -35320,7 +35281,7 @@ var SelectScrollButtonImpl = React63.memo(React63.forwardRef((props, forwardedRe
     setScrollTop,
     setInnerOffset,
     ...context2
-  } = useSelectContext(scope), floatingRef = context2.floatingContext?.refs.floating, statusRef = React63.useRef("idle"), isVisible = context2[dir === "down" ? "canScrollDown" : "canScrollUp"], frameRef = React63.useRef(null), {
+  } = useSelectContext(scope), floatingRef = context2.floatingContext?.refs.floating, statusRef = React62.useRef("idle"), isVisible = context2[dir === "down" ? "canScrollDown" : "canScrollUp"], frameRef = React62.useRef(null), {
     x,
     y,
     refs,
@@ -35377,11 +35338,11 @@ var SelectScrollButtonImpl = React63.memo(React63.forwardRef((props, forwardedRe
 
 // node_modules/@tamagui/select/dist/esm/SelectTrigger.mjs
 var import_core39 = require("@tamagui/core");
-var React64 = __toESM(require("react"), 1);
+var React63 = __toESM(require("react"), 1);
 var import_jsx_runtime51 = require("react/jsx-runtime");
 var TRIGGER_NAME4 = "SelectTrigger";
 var isPointerCoarse = import_core39.isWeb && import_core39.isClient ? window.matchMedia("(pointer:coarse)").matches : true;
-var SelectTrigger = React64.forwardRef(function(props, forwardedRef) {
+var SelectTrigger = React63.forwardRef(function(props, forwardedRef) {
   const {
     scope,
     disabled = false,
@@ -35567,7 +35528,7 @@ var SelectValue = SelectValueFrame.styleable(function({
   });
 });
 function unwrapSelectItem(selectValueChildren) {
-  return React65.Children.map(selectValueChildren, (child) => {
+  return React64.Children.map(selectValueChildren, (child) => {
     if (child) {
       if (child.type?.staticConfig?.componentName === ITEM_TEXT_NAME) return child.props.children;
       if (child.props?.children) return unwrapSelectItem(child.props.children);
@@ -35587,7 +35548,7 @@ var SelectIcon = (0, import_core41.styled)(XStack, {
 var SelectItemIndicatorFrame = (0, import_core41.styled)(XStack, {
   name: "SelectItemIndicator"
 });
-var SelectItemIndicator = React65.forwardRef(function(props, forwardedRef) {
+var SelectItemIndicator = React64.forwardRef(function(props, forwardedRef) {
   const {
     scope,
     ...itemIndicatorProps
@@ -35645,11 +35606,11 @@ var NativeSelectFrame = (0, import_core41.styled)(ThemeableStack, {
     size: "$2"
   }
 });
-var SelectGroup = React65.forwardRef((props, forwardedRef) => {
+var SelectGroup = React64.forwardRef((props, forwardedRef) => {
   const {
     scope,
     ...groupProps
-  } = props, groupId = React65.useId(), context2 = useSelectContext(scope), itemParentContext = useSelectItemParentContext(scope), size4 = itemParentContext.size ?? "$true", nativeSelectRef = React65.useRef(null), content = itemParentContext.shouldRenderWebNative ? /* @__PURE__ */ (0, import_jsx_runtime53.jsx)(NativeSelectFrame, {
+  } = props, groupId = React64.useId(), context2 = useSelectContext(scope), itemParentContext = useSelectItemParentContext(scope), size4 = itemParentContext.size ?? "$true", nativeSelectRef = React64.useRef(null), content = itemParentContext.shouldRenderWebNative ? /* @__PURE__ */ (0, import_jsx_runtime53.jsx)(NativeSelectFrame, {
     asChild: true,
     size: size4,
     value: context2.value,
@@ -35681,7 +35642,7 @@ var SelectGroup = React65.forwardRef((props, forwardedRef) => {
 });
 SelectGroup.displayName = GROUP_NAME3;
 var LABEL_NAME = "SelectLabel";
-var SelectLabel = React65.forwardRef((props, forwardedRef) => {
+var SelectLabel = React64.forwardRef((props, forwardedRef) => {
   const {
     scope,
     ...labelProps
@@ -35743,11 +35704,11 @@ var Select = withStaticProperties(function(props) {
   FocusScope: FocusScopeControllerComponent
 });
 function useEmitter() {
-  const listeners = React65.useRef(null);
+  const listeners = React64.useRef(null);
   listeners.current || (listeners.current = /* @__PURE__ */ new Set());
   const emit = /* @__PURE__ */ __name((value) => {
     listeners.current.forEach((l) => l(value));
-  }, "emit"), subscribe3 = React65.useCallback((listener) => (listeners.current.add(listener), () => {
+  }, "emit"), subscribe3 = React64.useCallback((listener) => (listeners.current.add(listener), () => {
     listeners.current.delete(listener);
   }), []);
   return [emit, subscribe3];
@@ -35771,7 +35732,7 @@ function SelectInner(props) {
     dir,
     id,
     renderValue
-  } = props, SelectImpl = useAdaptIsActive(adaptScope) || !isWeb ? SelectSheetImpl : SelectInlineImpl, forceUpdate = React65.useReducer(() => ({}), {})[1], [selectedItem, setSelectedItem] = React65.useState(null), [open, setOpen] = useControllableState({
+  } = props, SelectImpl = useAdaptIsActive(adaptScope) || !isWeb ? SelectSheetImpl : SelectInlineImpl, forceUpdate = React64.useReducer(() => ({}), {})[1], [selectedItem, setSelectedItem] = React64.useState(null), [open, setOpen] = useControllableState({
     prop: openProp,
     defaultProp: defaultOpen || false,
     onChange: onOpenChange
@@ -35781,12 +35742,12 @@ function SelectInner(props) {
     onChange: onValueChange,
     transition: true
   });
-  React65.useEffect(() => {
+  React64.useEffect(() => {
     open && emitValue(value);
-  }, [open]), React65.useEffect(() => {
+  }, [open]), React64.useEffect(() => {
     emitValue(value);
   }, [value]);
-  const [activeIndex, setActiveIndex] = React65.useState(0), [emitValue, valueSubscribe] = useEmitter(), [emitActiveIndex, activeIndexSubscribe] = useEmitter(), selectedIndexRef = React65.useRef(null), activeIndexRef = React65.useRef(null), listContentRef = React65.useRef([]), [selectedIndex, setSelectedIndex] = React65.useState(0), [valueNode, setValueNode] = React65.useState(null);
+  const [activeIndex, setActiveIndex] = React64.useState(0), [emitValue, valueSubscribe] = useEmitter(), [emitActiveIndex, activeIndexSubscribe] = useEmitter(), selectedIndexRef = React64.useRef(null), activeIndexRef = React64.useRef(null), listContentRef = React64.useRef([]), [selectedIndex, setSelectedIndex] = React64.useState(0), [valueNode, setValueNode] = React64.useState(null);
   useIsomorphicLayoutEffect(() => {
     selectedIndexRef.current = selectedIndex, activeIndexRef.current = activeIndex;
   });
@@ -35797,20 +35758,20 @@ function SelectInner(props) {
     scopeName: scope,
     scope,
     adaptScope,
-    initialValue: React65.useMemo(() => value, [open]),
+    initialValue: React64.useMemo(() => value, [open]),
     size: sizeProp,
     activeIndexSubscribe,
     valueSubscribe,
     setOpen,
     id,
-    onChange: React65.useCallback((val) => {
+    onChange: React64.useCallback((val) => {
       setValue(val), emitValue(val);
     }, []),
     onActiveChange: (0, import_core41.useEvent)((value2, index3) => {
       onActiveChange?.(value2, index3);
     }),
     setSelectedIndex,
-    setValueAtIndex: React65.useCallback((index3, value2) => {
+    setValueAtIndex: React64.useCallback((index3, value2) => {
       listContentRef.current[index3] = value2;
     }, []),
     shouldRenderWebNative,
@@ -35854,7 +35815,7 @@ __name(SelectInner, "SelectInner");
 
 // node_modules/@tamagui/slider/dist/esm/Slider.mjs
 var import_core44 = require("@tamagui/core");
-var React67 = __toESM(require("react"), 1);
+var React66 = __toESM(require("react"), 1);
 
 // node_modules/@tamagui/slider/dist/esm/constants.mjs
 var import_core42 = require("@tamagui/core");
@@ -35909,7 +35870,7 @@ function getClosestValueIndex(values, nextValue) {
 __name(getClosestValueIndex, "getClosestValueIndex");
 function getThumbInBoundsOffset(width, left, direction) {
   const quarterWidth = width / 4, offset4 = linearScale([0, 50], [0, quarterWidth]);
-  return (quarterWidth - offset4(left) * direction) * direction;
+  return (quarterWidth - offset4(left)) * direction;
 }
 __name(getThumbInBoundsOffset, "getThumbInBoundsOffset");
 function getStepsBetweenValues(values) {
@@ -35944,7 +35905,7 @@ __name(roundValue, "roundValue");
 
 // node_modules/@tamagui/slider/dist/esm/SliderImpl.mjs
 var import_core43 = require("@tamagui/core");
-var React66 = __toESM(require("react"), 1);
+var React65 = __toESM(require("react"), 1);
 var import_jsx_runtime54 = require("react/jsx-runtime");
 var SliderFrame = (0, import_core43.styled)(YStack, {
   position: "relative",
@@ -35968,7 +35929,7 @@ var SliderFrame = (0, import_core43.styled)(YStack, {
     }, "size")
   }
 });
-var SliderImpl = React66.forwardRef((props, forwardedRef) => {
+var SliderImpl = React65.forwardRef((props, forwardedRef) => {
   const {
     __scopeSlider,
     onSlideStart,
@@ -36018,7 +35979,7 @@ isWeb && isClient && (process.env.TAMAGUI_DISABLE_SLIDER_INTERVAL || setInterval
   // really doesn't need to be super often
   1e3
 ));
-var SliderHorizontal = React67.forwardRef((props, forwardedRef) => {
+var SliderHorizontal = React66.forwardRef((props, forwardedRef) => {
   const {
     min: min2,
     max: max2,
@@ -36028,7 +35989,7 @@ var SliderHorizontal = React67.forwardRef((props, forwardedRef) => {
     onStepKeyDown,
     onSlideEnd,
     ...sliderProps
-  } = props, direction = useDirection(dir), isDirectionLTR = direction === "ltr", sliderRef = React67.useRef(null), [state, setState_] = React67.useState(() => ({
+  } = props, direction = useDirection(dir), isDirectionLTR = direction === "ltr", sliderRef = React66.useRef(null), [state, setState_] = React66.useState(() => ({
     size: 0,
     offset: 0
   })), setState = (0, import_core44.useCreateShallowSetState)(setState_);
@@ -36045,7 +36006,7 @@ var SliderHorizontal = React67.forwardRef((props, forwardedRef) => {
       });
     });
   }, "measure");
-  return isClient && (useOnDebouncedWindowResize(measure), React67.useEffect(() => {
+  return isClient && (useOnDebouncedWindowResize(measure), React66.useEffect(() => {
     const node = sliderRef.current;
     if (!node) return;
     let measureTm;
@@ -36100,7 +36061,7 @@ var SliderHorizontal = React67.forwardRef((props, forwardedRef) => {
   });
 });
 function useOnDebouncedWindowResize(callback, amt = 200) {
-  React67.useEffect(() => {
+  React66.useEffect(() => {
     let last;
     const onResize = /* @__PURE__ */ __name(() => {
       clearTimeout(last), last = setTimeout(callback, amt);
@@ -36111,7 +36072,7 @@ function useOnDebouncedWindowResize(callback, amt = 200) {
   }, []);
 }
 __name(useOnDebouncedWindowResize, "useOnDebouncedWindowResize");
-var SliderVertical = React67.forwardRef((props, forwardedRef) => {
+var SliderVertical = React66.forwardRef((props, forwardedRef) => {
   const {
     min: min2,
     max: max2,
@@ -36120,10 +36081,10 @@ var SliderVertical = React67.forwardRef((props, forwardedRef) => {
     onStepKeyDown,
     onSlideEnd,
     ...sliderProps
-  } = props, [state, setState_] = React67.useState(() => ({
+  } = props, [state, setState_] = React66.useState(() => ({
     size: 0,
     offset: 0
-  })), setState = (0, import_core44.useCreateShallowSetState)(setState_), sliderRef = React67.useRef(null);
+  })), setState = (0, import_core44.useCreateShallowSetState)(setState_), sliderRef = React66.useRef(null);
   function getValueFromPointer(pointerPosition) {
     const input = [0, state.size];
     return linearScale(input, [max2, min2])(pointerPosition);
@@ -36190,7 +36151,7 @@ var SliderTrackFrame = (0, import_core44.styled)(SliderFrame, {
     unstyled: process.env.TAMAGUI_HEADLESS === "1"
   }
 });
-var SliderTrack = React67.forwardRef((props, forwardedRef) => {
+var SliderTrack = React66.forwardRef((props, forwardedRef) => {
   const {
     __scopeSlider,
     ...trackProps
@@ -36212,11 +36173,11 @@ var SliderTrackActiveFrame = (0, import_core44.styled)(SliderFrame, {
   position: "absolute",
   pointerEvents: "box-none"
 });
-var SliderTrackActive = React67.forwardRef((props, forwardedRef) => {
+var SliderTrackActive = React66.forwardRef((props, forwardedRef) => {
   const {
     __scopeSlider,
     ...rangeProps
-  } = props, context2 = useSliderContext(__scopeSlider), orientation = useSliderOrientationContext(__scopeSlider), ref = React67.useRef(null), composedRefs = useComposedRefs(forwardedRef, ref), valuesCount = context2.values.length, percentages = context2.values.map((value) => convertValueToPercentage(value, context2.min, context2.max)), offsetStart = valuesCount > 1 ? Math.min(...percentages) : 0, offsetEnd = 100 - Math.max(...percentages);
+  } = props, context2 = useSliderContext(__scopeSlider), orientation = useSliderOrientationContext(__scopeSlider), ref = React66.useRef(null), composedRefs = useComposedRefs(forwardedRef, ref), valuesCount = context2.values.length, percentages = context2.values.map((value) => convertValueToPercentage(value, context2.min, context2.max)), offsetStart = valuesCount > 1 ? Math.min(...percentages) : 0, offsetEnd = 100 - Math.max(...percentages);
   return /* @__PURE__ */ (0, import_jsx_runtime55.jsx)(SliderTrackActiveFrame, {
     orientation: context2.orientation,
     "data-orientation": context2.orientation,
@@ -36276,14 +36237,14 @@ var SliderThumb = SliderThumbFrame.styleable(function(props, forwardedRef) {
     circular: circular2,
     size: sizeProp,
     ...thumbProps
-  } = props, context2 = useSliderContext(__scopeSlider), orientation = useSliderOrientationContext(__scopeSlider), [thumb, setThumb] = React67.useState(null), composedRefs = useComposedRefs(forwardedRef, setThumb), value = context2.values[index3], percent = value === void 0 ? 0 : convertValueToPercentage(value, context2.min, context2.max), label = getLabel(index3, context2.values.length), sizeIn = sizeProp ?? context2.size ?? "$true", [size4, setSize] = React67.useState(() => (0, import_core44.getVariableValue)(getThumbSize(sizeIn).width)), thumbInBoundsOffset = size4 ? getThumbInBoundsOffset(size4, percent, orientation.direction) : 0;
-  React67.useEffect(() => {
+  } = props, context2 = useSliderContext(__scopeSlider), orientation = useSliderOrientationContext(__scopeSlider), [thumb, setThumb] = React66.useState(null), composedRefs = useComposedRefs(forwardedRef, setThumb), value = context2.values[index3], percent = value === void 0 ? 0 : convertValueToPercentage(value, context2.min, context2.max), label = getLabel(index3, context2.values.length), sizeIn = sizeProp ?? context2.size ?? "$true", [size4, setSize] = React66.useState(() => (0, import_core44.getVariableValue)(getThumbSize(sizeIn).width)), thumbInBoundsOffset = size4 ? getThumbInBoundsOffset(size4, percent, orientation.direction) : 0;
+  React66.useEffect(() => {
     if (thumb) return context2.thumbs.set(thumb, index3), () => {
       context2.thumbs.delete(thumb);
     };
   }, [thumb, context2.thumbs, index3]);
   const positionalStyles = context2.orientation === "horizontal" ? {
-    x: thumbInBoundsOffset - size4 / 2,
+    x: (thumbInBoundsOffset - size4 / 2) * orientation.direction,
     y: -size4 / 2,
     top: "50%",
     ...size4 === 0 && {
@@ -36328,7 +36289,7 @@ var SliderThumb = SliderThumbFrame.styleable(function(props, forwardedRef) {
     memo: true
   }
 });
-var SliderComponent = React67.forwardRef((props, forwardedRef) => {
+var SliderComponent = React66.forwardRef((props, forwardedRef) => {
   const {
     name,
     min: min2 = 0,
@@ -36346,7 +36307,7 @@ var SliderComponent = React67.forwardRef((props, forwardedRef) => {
     onSlideMove,
     onSlideStart,
     ...sliderProps
-  } = props, sliderRef = React67.useRef(null), composedRefs = useComposedRefs(sliderRef, forwardedRef), thumbRefs = React67.useRef(/* @__PURE__ */ new Map()), valueIndexToChangeRef = React67.useRef(0), isHorizontal = orientation === "horizontal", [values = [], setValues] = useControllableState({
+  } = props, sliderRef = React66.useRef(null), composedRefs = useComposedRefs(sliderRef, forwardedRef), thumbRefs = React66.useRef(/* @__PURE__ */ new Map()), valueIndexToChangeRef = React66.useRef(0), isHorizontal = orientation === "horizontal", [values = [], setValues] = useControllableState({
     prop: value,
     defaultProp: defaultValue2,
     transition: true,
@@ -36354,7 +36315,7 @@ var SliderComponent = React67.forwardRef((props, forwardedRef) => {
       updateThumbFocus(valueIndexToChangeRef.current), onValueChange(value2);
     }, "onChange")
   });
-  isWeb && React67.useEffect(() => {
+  isWeb && React66.useEffect(() => {
     const node = sliderRef.current;
     if (!node) return;
     const preventDefault = /* @__PURE__ */ __name((e) => {
@@ -36440,7 +36401,7 @@ var Thumb = SliderThumb;
 var import_core47 = require("@tamagui/core");
 
 // node_modules/@tamagui/switch-headless/dist/esm/useSwitch.mjs
-var React68 = __toESM(require("react"), 1);
+var React67 = __toESM(require("react"), 1);
 var import_jsx_runtime56 = require("react/jsx-runtime");
 function getState7(checked) {
   return checked ? "checked" : "unchecked";
@@ -36452,8 +36413,8 @@ var BubbleInput3 = /* @__PURE__ */ __name((props) => {
     checked,
     bubbles = true,
     ...inputProps
-  } = props, ref = React68.useRef(null), prevChecked = usePrevious(checked);
-  return React68.useEffect(() => {
+  } = props, ref = React67.useRef(null), prevChecked = usePrevious(checked);
+  return React67.useEffect(() => {
     const input = ref.current, inputProto = window.HTMLInputElement.prototype, setChecked = Object.getOwnPropertyDescriptor(inputProto, "checked").set;
     if (prevChecked !== checked && setChecked) {
       const event = new Event("click", {
@@ -36485,7 +36446,7 @@ function useSwitch(props, [checked, setChecked], ref) {
       name,
       value,
       required
-    } = props, hasConsumerStoppedPropagationRef = React68.useRef(false), [button, setButton] = React68.useState(null), composedRefs = useComposedRefs(ref, setButton), isFormControl = isWeb ? button ? !!button.closest("form") : true : false, labelId = useLabelContext(button), ariaLabelledBy = props["aria-labelledby"] || props.labeledBy || labelId;
+    } = props, hasConsumerStoppedPropagationRef = React67.useRef(false), [button, setButton] = React67.useState(null), composedRefs = useComposedRefs(ref, setButton), isFormControl = isWeb ? button ? !!button.closest("form") : true : false, labelId = useLabelContext(button), ariaLabelledBy = props["aria-labelledby"] || props.labeledBy || labelId;
     return {
       switchProps: {
         role: "switch",
@@ -36523,7 +36484,7 @@ function useSwitch(props, [checked, setChecked], ref) {
 __name(useSwitch, "useSwitch");
 
 // node_modules/@tamagui/switch/dist/esm/createSwitch.mjs
-var React69 = __toESM(require("react"), 1);
+var React68 = __toESM(require("react"), 1);
 var import_react_native_web7 = __toESM(require_cjs(), 1);
 
 // node_modules/@tamagui/switch/dist/esm/StyledContext.mjs
@@ -36603,7 +36564,7 @@ var SwitchFrame = (0, import_core46.styled)(YStack, {
 
 // node_modules/@tamagui/switch/dist/esm/createSwitch.mjs
 var import_jsx_runtime57 = require("react/jsx-runtime");
-var SwitchContext = React69.createContext({
+var SwitchContext = React68.createContext({
   checked: false,
   disabled: false,
   frameWidth: 0
@@ -36621,14 +36582,14 @@ function createSwitch(createProps) {
       unstyled: unstyledProp,
       nativeID,
       ...thumbProps
-    } = props, context2 = React69.useContext(SwitchContext), {
+    } = props, context2 = React68.useContext(SwitchContext), {
       checked,
       disabled,
       frameWidth
     } = context2, styledContext = SwitchStyledContext.useStyledContext(), {
       unstyled: unstyledContext,
       size: sizeContext
-    } = styledContext, unstyled = process.env.TAMAGUI_HEADLESS === "1" ? true : unstyledProp ?? unstyledContext ?? false, size4 = sizeProp ?? sizeContext ?? "$true", initialChecked = React69.useRef(checked).current, initialWidth = (0, import_core47.getVariableValue)(props.width, "size"), [thumbWidth, setThumbWidth] = React69.useState(typeof initialWidth == "number" ? initialWidth : 0), distance = frameWidth - thumbWidth, x = initialChecked ? checked ? 0 : -distance : checked ? distance : 0;
+    } = styledContext, unstyled = process.env.TAMAGUI_HEADLESS === "1" ? true : unstyledProp ?? unstyledContext ?? false, size4 = sizeProp ?? sizeContext ?? "$true", initialChecked = React68.useRef(checked).current, initialWidth = (0, import_core47.getVariableValue)(props.width, "size"), [thumbWidth, setThumbWidth] = React68.useState(typeof initialWidth == "number" ? initialWidth : 0), distance = frameWidth - thumbWidth, x = initialChecked ? checked ? 0 : -distance : checked ? distance : 0;
     return /* @__PURE__ */ (0, import_jsx_runtime57.jsx)(Thumb2, {
       ref: forwardedRef,
       unstyled,
@@ -36661,14 +36622,14 @@ function createSwitch(createProps) {
       defaultProp: defaultChecked || false,
       onChange: onCheckedChange,
       transition: true
-    }), styledContext = React69.useContext(SwitchStyledContext.context);
+    }), styledContext = React68.useContext(SwitchStyledContext.context);
     let estimatedInitialWidth = 0;
     const estWidth = (0, import_core47.getVariableValue)((0, import_core47.getShorthandValue)(props, "width"), "size");
     if (estWidth) {
       const estPad = (0, import_core47.getShorthandValue)(props, "paddingHorizontal") ?? (0, import_core47.getShorthandValue)(props, "padding") ?? 0, estLeftPad = (0, import_core47.getShorthandValue)(props, "paddingLeft") ?? estPad ?? 0, estRightPad = (0, import_core47.getShorthandValue)(props, "paddingRight") ?? estPad ?? 0;
       estimatedInitialWidth = estWidth - (estLeftPad ? (0, import_core47.getVariableValue)(estLeftPad, "size") : 0) - (estRightPad ? (0, import_core47.getVariableValue)(estRightPad, "size") : 0);
     }
-    const [frameWidth, setFrameInnerWidth] = React69.useState(estimatedInitialWidth), {
+    const [frameWidth, setFrameInnerWidth] = React68.useState(estimatedInitialWidth), {
       switchProps,
       bubbleInput,
       switchRef
@@ -36684,7 +36645,7 @@ function createSwitch(createProps) {
       onValueChange: setChecked,
       ...nativeProps
     });
-    const disabled = props.disabled, value = React69.useMemo(() => ({
+    const disabled = props.disabled, value = React68.useMemo(() => ({
       checked,
       disabled,
       frameWidth
@@ -36738,8 +36699,8 @@ var Switch = createSwitch({
 });
 
 // node_modules/@tamagui/tabs/dist/esm/createTabs.mjs
-var import_web18 = require("@tamagui/core");
-var React70 = __toESM(require("react"), 1);
+var import_web17 = require("@tamagui/core");
+var React69 = __toESM(require("react"), 1);
 
 // node_modules/@tamagui/tabs/dist/esm/Tabs.mjs
 var import_core48 = require("@tamagui/core");
@@ -36805,7 +36766,7 @@ function createTabs(createProps) {
     ContentFrame = DefaultTabsContentFrame,
     TabFrame = DefaultTabsTabFrame,
     TabsFrame = DefaultTabsFrame
-  } = createProps, TABS_CONTEXT = "TabsContext", TAB_LIST_NAME = "TabsList", TabsList = React70.forwardRef((props, forwardedRef) => {
+  } = createProps, TABS_CONTEXT = "TabsContext", TAB_LIST_NAME = "TabsList", TabsList = React69.forwardRef((props, forwardedRef) => {
     const {
       __scopeTabs,
       loop = true,
@@ -36838,10 +36799,10 @@ function createTabs(createProps) {
       onInteraction,
       disableActiveTheme,
       ...triggerProps
-    } = props, context2 = useTabsContext(__scopeTabs), triggerId = makeTriggerId(context2.baseId, value), contentId = makeContentId(context2.baseId, value), isSelected = value === context2.value, [layout, setLayout] = React70.useState(null), triggerRef = React70.useRef(null), groupItemProps = useGroupItem({
+    } = props, context2 = useTabsContext(__scopeTabs), triggerId = makeTriggerId(context2.baseId, value), contentId = makeContentId(context2.baseId, value), isSelected = value === context2.value, [layout, setLayout] = React69.useState(null), triggerRef = React69.useRef(null), groupItemProps = useGroupItem({
       disabled: !!disabled
     });
-    return React70.useEffect(() => (context2.registerTrigger(), () => context2.unregisterTrigger()), []), React70.useEffect(() => {
+    return React69.useEffect(() => (context2.registerTrigger(), () => context2.unregisterTrigger()), []), React69.useEffect(() => {
       if (!triggerRef.current || !isWeb) return;
       function getTriggerSize() {
         triggerRef.current && setLayout({
@@ -36857,9 +36818,9 @@ function createTabs(createProps) {
       return observer.observe(triggerRef.current), () => {
         triggerRef.current && observer.unobserve(triggerRef.current);
       };
-    }, [context2.triggersCount]), React70.useEffect(() => {
+    }, [context2.triggersCount]), React69.useEffect(() => {
       isSelected && layout && onInteraction?.("select", layout);
-    }, [isSelected, value, layout]), /* @__PURE__ */ (0, import_jsx_runtime58.jsx)(import_web18.Theme, {
+    }, [isSelected, value, layout]), /* @__PURE__ */ (0, import_jsx_runtime58.jsx)(import_web17.Theme, {
       name: isSelected && !disableActiveTheme ? "active" : null,
       children: /* @__PURE__ */ (0, import_jsx_runtime58.jsx)(RovingFocusGroup.Item, {
         __scopeRovingFocusGroup: __scopeTabs || TABS_CONTEXT,
@@ -36950,10 +36911,10 @@ function createTabs(createProps) {
       prop: valueProp,
       onChange: onValueChange,
       defaultProp: defaultValue2 ?? ""
-    }), [triggersCount, setTriggersCount] = React70.useState(0), registerTrigger = (0, import_web18.useEvent)(() => setTriggersCount((v) => v + 1)), unregisterTrigger = (0, import_web18.useEvent)(() => setTriggersCount((v) => v - 1));
+    }), [triggersCount, setTriggersCount] = React69.useState(0), registerTrigger = (0, import_web17.useEvent)(() => setTriggersCount((v) => v + 1)), unregisterTrigger = (0, import_web17.useEvent)(() => setTriggersCount((v) => v - 1));
     return /* @__PURE__ */ (0, import_jsx_runtime58.jsx)(TabsProvider, {
       scope: __scopeTabs,
-      baseId: React70.useId(),
+      baseId: React69.useId(),
       value,
       onChange: setValue,
       orientation,
@@ -36999,7 +36960,7 @@ var Tabs = createTabs({
 });
 
 // node_modules/@tamagui/theme/dist/esm/_mutateTheme.mjs
-var import_web19 = require("@tamagui/core");
+var import_web18 = require("@tamagui/core");
 function mutateThemes({
   themes,
   batch,
@@ -37041,7 +37002,7 @@ function _mutateTheme(props) {
     process.env.NODE_ENV === "development" && console.warn("Theme mutation is not supported on server side");
     return;
   }
-  const config = (0, import_web19.getConfig)(), {
+  const config = (0, import_web18.getConfig)(), {
     name: themeName,
     theme: themeIn,
     insertCSS,
@@ -37056,8 +37017,8 @@ function _mutateTheme(props) {
     ...mutationType === "update" ? config.themes[themeName] ?? {} : {},
     ...themeIn
   };
-  for (const key in theme) (0, import_web19.ensureThemeVariable)(theme, key);
-  const themeProxied = (0, import_web19.proxyThemeToParents)(themeName, theme), response = {
+  for (const key in theme) (0, import_web18.ensureThemeVariable)(theme, key);
+  const themeProxied = (0, import_web18.proxyThemeToParents)(themeName, theme), response = {
     themeRaw: theme,
     theme: themeProxied,
     cssRules: []
@@ -37068,19 +37029,19 @@ function _mutateTheme(props) {
 }
 __name(_mutateTheme, "_mutateTheme");
 function updateThemeConfig(themeName, theme) {
-  const config = (0, import_web19.getConfig)();
-  config.themes[themeName] = theme, (0, import_web19.updateConfig)("themes", config.themes);
+  const config = (0, import_web18.getConfig)();
+  config.themes[themeName] = theme, (0, import_web18.updateConfig)("themes", config.themes);
 }
 __name(updateThemeConfig, "updateThemeConfig");
 function updateThemeStates() {
-  (0, import_web19.forceUpdateThemes)();
+  (0, import_web18.forceUpdateThemes)();
 }
 __name(updateThemeStates, "updateThemeStates");
 function insertThemeCSS(themes, batch = false) {
-  const config = (0, import_web19.getConfig)();
+  const config = (0, import_web18.getConfig)();
   let cssRules = [];
   for (const themeName in themes) {
-    const theme = themes[themeName], rules = (0, import_web19.getThemeCSSRules)({
+    const theme = themes[themeName], rules = (0, import_web18.getThemeCSSRules)({
       config,
       themeName,
       names: [themeName],
@@ -37090,7 +37051,7 @@ function insertThemeCSS(themes, batch = false) {
     cssRules = [...cssRules, ...rules], batch || updateStyle(`t_theme_style_${themeName}`, rules);
   }
   if (batch) {
-    const id = typeof batch == "string" ? batch : (0, import_web19.simpleHash)(Object.keys(themes).join(""));
+    const id = typeof batch == "string" ? batch : (0, import_web18.simpleHash)(Object.keys(themes).join(""));
     updateStyle(`t_theme_style_${id}`, cssRules);
   }
   return cssRules;
@@ -37142,18 +37103,19 @@ function replaceTheme({
 __name(replaceTheme, "replaceTheme");
 
 // node_modules/@tamagui/toggle-group/dist/esm/ToggleGroup.mjs
-var import_web21 = require("@tamagui/core");
-var import_react50 = __toESM(require("react"), 1);
+var import_web20 = require("@tamagui/core");
+var import_react49 = __toESM(require("react"), 1);
 
 // node_modules/@tamagui/toggle-group/dist/esm/Toggle.mjs
-var import_web20 = require("@tamagui/core");
-var React71 = __toESM(require("react"), 1);
+var import_web19 = require("@tamagui/core");
+var React70 = __toESM(require("react"), 1);
 var import_jsx_runtime59 = require("react/jsx-runtime");
-var context = (0, import_web20.createStyledContext)({
-  color: ""
+var context = (0, import_web19.createStyledContext)({
+  color: "",
+  toggledStyle: null
 });
 var NAME3 = "Toggle";
-var ToggleFrame = (0, import_web20.styled)(ThemeableStack, {
+var ToggleFrame = (0, import_web19.styled)(ThemeableStack, {
   name: NAME3,
   tag: "button",
   context,
@@ -37184,20 +37146,27 @@ var ToggleFrame = (0, import_web20.styled)(ThemeableStack, {
         }
       }
     },
-    color: {
-      "...color": /* @__PURE__ */ __name(() => ({}), "...color")
-    },
     active: {
-      true: {
-        zIndex: 1,
-        hoverStyle: {
-          backgroundColor: "$background"
-        },
-        focusStyle: {
-          borderColor: "$borderColor",
-          backgroundColor: "$background"
-        }
-      }
+      true: /* @__PURE__ */ __name((_, {
+        props,
+        context: context2
+      }) => {
+        const toggledStyle = context2?.toggledStyle;
+        return {
+          zIndex: 1,
+          ...!props.unstyled && !toggledStyle && {
+            backgroundColor: "$background",
+            hoverStyle: {
+              backgroundColor: "$background"
+            },
+            focusStyle: {
+              backgroundColor: "$background",
+              borderColor: "$borderColor"
+            }
+          },
+          ...toggledStyle
+        };
+      }, "true")
     },
     orientation: {
       horizontal: {
@@ -37214,7 +37183,7 @@ var ToggleFrame = (0, import_web20.styled)(ThemeableStack, {
     unstyled: process.env.TAMAGUI_HEADLESS === "1"
   }
 });
-var Toggle = React71.forwardRef(function(props, forwardedRef) {
+var Toggle = React70.forwardRef(function(props, forwardedRef) {
   const {
     pressed: pressedProp,
     defaultPressed = false,
@@ -37230,14 +37199,14 @@ var Toggle = React71.forwardRef(function(props, forwardedRef) {
       theme: pressed ? "active" : null,
       themeShallow: true
     },
-    active: props.unstyled ? void 0 : pressed,
+    active: pressed,
     "aria-pressed": pressed,
     "data-state": pressed ? "on" : "off",
     "data-disabled": props.disabled ? "" : void 0,
     ...buttonProps,
     ref: forwardedRef,
     onPress: composeEventHandlers(props.onPress ?? void 0, () => {
-      props.disabled || setPressed(!pressed);
+      props.disabled || setPressed((prev) => !prev);
     })
   });
 });
@@ -37248,29 +37217,27 @@ var TOGGLE_GROUP_NAME = "ToggleGroup";
 var TOGGLE_GROUP_ITEM_NAME = "ToggleGroupItem";
 var TOGGLE_GROUP_CONTEXT = "ToggleGroup";
 var {
-  Provider: ToggleGroupItemProvider,
-  useStyledContext: useToggleGroupItemContext
-} = (0, import_web21.createStyledContext)();
+  Provider: ToggleGroupItemProvider
+} = (0, import_web20.createStyledContext)();
 var {
   Provider: ToggleGroupContext,
   useStyledContext: useToggleGroupContext
-} = (0, import_web21.createStyledContext)();
-var ToggleGroupItem = ToggleFrame.extractable(import_react50.default.forwardRef((props, forwardedRef) => {
-  const [_, {
-    color
-  }] = (0, import_web21.usePropsAndStyle)(props), {
+} = (0, import_web20.createStyledContext)();
+var ToggleGroupItem = ToggleFrame.styleable((props, forwardedRef) => {
+  const valueContext = useToggleGroupValueContext(props.__scopeToggleGroup), context2 = useToggleGroupContext(props.__scopeToggleGroup), toggleContext = context.useStyledContext(props.__scopeToggleGroup), pressed = valueContext?.value.includes(props.value), toggledStyle = props.toggledStyle || toggleContext.toggledStyle, color = props.color || toggleContext.color, {
     disablePassStyles,
+    toggledStyle: _,
     ...rest
-  } = props, valueContext = useToggleGroupValueContext(props.__scopeToggleGroup), context2 = useToggleGroupContext(props.__scopeToggleGroup), pressed = valueContext?.value.includes(props.value), disabled = context2.disabled || props.disabled || false, groupItemProps = useGroupItem({
+  } = props, disabled = context2.disabled || props.disabled || false, groupItemProps = useGroupItem({
     disabled
   }), size4 = props.size ?? context2.size, sizeProps = props.unstyled ? {} : {
     width: void 0,
     height: void 0,
-    padding: (0, import_web21.getVariableValue)(size4) * 0.6
-  }, iconSize = (typeof size4 == "number" ? size4 * 0.7 : getFontSize(size4)) * 1.2, theme = (0, import_web21.useTheme)(), getThemedIcon = useGetThemedIcon({
+    padding: (0, import_web20.getVariableValue)(size4) * 0.6
+  }, iconSize = (typeof size4 == "number" ? size4 * 0.7 : getFontSize(size4)) * 1.2, theme = (0, import_web20.useTheme)(), toggledColor = toggledStyle?.color, getThemedIcon = useGetThemedIcon({
     size: iconSize,
-    color: color ?? theme.color
-  }), children = import_react50.default.Children.toArray(props.children).map((child) => props.disablePassStyles || !import_react50.default.isValidElement(child) ? child : import_react50.default.cloneElement(getThemedIcon(child), {
+    color: (pressed && toggledColor ? toggledColor : color) || theme.color
+  }), children = import_react49.default.Children.toArray(props.children).map((child) => props.disablePassStyles || !import_react49.default.isValidElement(child) ? child : import_react49.default.cloneElement(getThemedIcon(child), {
     active: pressed
   })), commonProps = {
     pressed,
@@ -37287,17 +37254,21 @@ var ToggleGroupItem = ToggleFrame.extractable(import_react50.default.forwardRef(
   });
   return /* @__PURE__ */ (0, import_jsx_runtime60.jsx)(ToggleGroupItemProvider, {
     scope: props.__scopeToggleGroup,
-    children: context2.rovingFocus ? /* @__PURE__ */ (0, import_jsx_runtime60.jsx)(RovingFocusGroup.Item, {
-      asChild: "except-style",
-      __scopeRovingFocusGroup: props.__scopeToggleGroup || TOGGLE_GROUP_CONTEXT,
-      focusable: !disabled,
-      active: pressed,
-      children: inner2
-    }) : inner2
+    children: /* @__PURE__ */ (0, import_jsx_runtime60.jsx)(context.Provider, {
+      color,
+      toggledStyle,
+      children: context2.rovingFocus ? /* @__PURE__ */ (0, import_jsx_runtime60.jsx)(RovingFocusGroup.Item, {
+        asChild: "except-style",
+        __scopeRovingFocusGroup: props.__scopeToggleGroup || TOGGLE_GROUP_CONTEXT,
+        focusable: !disabled,
+        active: pressed,
+        children: inner2
+      }) : inner2
+    })
   });
-}));
+});
 ToggleGroupItem.displayName = TOGGLE_GROUP_ITEM_NAME;
-var ToggleGroupItemImpl = import_react50.default.forwardRef((props, forwardedRef) => {
+var ToggleGroupItemImpl = import_react49.default.forwardRef((props, forwardedRef) => {
   const {
     __scopeToggleGroup,
     value,
@@ -37314,12 +37285,12 @@ var ToggleGroupItemImpl = import_react50.default.forwardRef((props, forwardedRef
     }, "onPressedChange")
   });
 });
-var ToggleGroup = withStaticProperties(import_react50.default.forwardRef((props, forwardedRef) => {
+var ToggleGroup = withStaticProperties(import_react49.default.forwardRef((props, forwardedRef) => {
   const {
     type,
     ...toggleGroupProps
   } = props;
-  if (isWeb || import_react50.default.useEffect(() => {
+  if (isWeb || import_react49.default.useEffect(() => {
     if (props.id) return registerFocusable(props.id, {
       // TODO: would be nice to focus on the first child later - could be done with reforest
       // for now leaving it empty
@@ -37342,8 +37313,8 @@ ToggleGroup.displayName = TOGGLE_GROUP_NAME;
 var {
   Provider: ToggleGroupValueProvider,
   useStyledContext: useToggleGroupValueContext
-} = (0, import_web21.createStyledContext)();
-var ToggleGroupImplSingle = import_react50.default.forwardRef((props, forwardedRef) => {
+} = (0, import_web20.createStyledContext)();
+var ToggleGroupImplSingle = import_react49.default.forwardRef((props, forwardedRef) => {
   const {
     value: valueProp,
     defaultValue: defaultValue2,
@@ -37362,14 +37333,14 @@ var ToggleGroupImplSingle = import_react50.default.forwardRef((props, forwardedR
     value: value ? [value] : [],
     defaultValue: value,
     onItemActivate: setValue,
-    onItemDeactivate: import_react50.default.useCallback(() => disableDeactivation ? null : setValue(""), [setValue, disableDeactivation]),
+    onItemDeactivate: import_react49.default.useCallback(() => disableDeactivation ? null : setValue(""), [setValue, disableDeactivation]),
     children: /* @__PURE__ */ (0, import_jsx_runtime60.jsx)(ToggleGroupImpl, {
       ...toggleGroupSingleProps,
       ref: forwardedRef
     })
   });
 });
-var ToggleGroupImplMultiple = import_react50.default.forwardRef((props, forwardedRef) => {
+var ToggleGroupImplMultiple = import_react49.default.forwardRef((props, forwardedRef) => {
   const {
     value: valueProp,
     defaultValue: defaultValue2,
@@ -37381,7 +37352,7 @@ var ToggleGroupImplMultiple = import_react50.default.forwardRef((props, forwarde
     prop: valueProp,
     defaultProp: defaultValue2,
     onChange: onValueChange
-  }), handleButtonActivate = import_react50.default.useCallback((itemValue) => setValue((prevValue = []) => [...prevValue, itemValue]), [setValue]), handleButtonDeactivate = import_react50.default.useCallback((itemValue) => setValue((prevValue = []) => prevValue.filter((value2) => value2 !== itemValue)), [setValue]);
+  }), handleButtonActivate = import_react49.default.useCallback((itemValue) => setValue((prevValue = []) => [...prevValue, itemValue]), [setValue]), handleButtonDeactivate = import_react49.default.useCallback((itemValue) => setValue((prevValue = []) => prevValue.filter((value2) => value2 !== itemValue)), [setValue]);
   return /* @__PURE__ */ (0, import_jsx_runtime60.jsx)(ToggleGroupValueProvider, {
     scope: props.__scopeToggleGroup,
     type: "multiple",
@@ -37396,7 +37367,7 @@ var ToggleGroupImplMultiple = import_react50.default.forwardRef((props, forwarde
   });
 });
 ToggleGroup.displayName = TOGGLE_GROUP_NAME;
-var ToggleGroupImplElementFrame = (0, import_web21.styled)(Group, {
+var ToggleGroupImplElementFrame = (0, import_web20.styled)(Group, {
   name: TOGGLE_GROUP_NAME,
   variants: {
     unstyled: {
@@ -37419,7 +37390,7 @@ var ToggleGroupImplElementFrame = (0, import_web21.styled)(Group, {
     unstyled: process.env.TAMAGUI_HEADLESS === "1"
   }
 });
-var ToggleGroupImpl = ToggleGroupImplElementFrame.extractable(import_react50.default.forwardRef((props, forwardedRef) => {
+var ToggleGroupImpl = ToggleGroupImplElementFrame.styleable((props, forwardedRef) => {
   const {
     __scopeToggleGroup,
     disabled = false,
@@ -37430,12 +37401,14 @@ var ToggleGroupImpl = ToggleGroupImplElementFrame.extractable(import_react50.def
     unstyled = false,
     size: sizeProp = "$true",
     sizeAdjust = 0,
+    toggledStyle,
+    color,
     ...toggleGroupProps
   } = props, direction = useDirection(dir), commonProps = {
     role: "group",
     dir: direction,
     ...toggleGroupProps
-  }, adjustedSize = (0, import_web21.getVariableValue)(getSize(sizeProp, {
+  }, adjustedSize = (0, import_web20.getVariableValue)(getSize(sizeProp, {
     shift: sizeAdjust
   })), size4 = Math.round(adjustedSize * 0.45);
   return /* @__PURE__ */ (0, import_jsx_runtime60.jsx)(ToggleGroupContext, {
@@ -37443,39 +37416,42 @@ var ToggleGroupImpl = ToggleGroupImplElementFrame.extractable(import_react50.def
     rovingFocus,
     disabled,
     size: size4,
-    children: rovingFocus ? /* @__PURE__ */ (0, import_jsx_runtime60.jsx)(RovingFocusGroup, {
-      asChild: "except-style",
-      __scopeRovingFocusGroup: __scopeToggleGroup || TOGGLE_GROUP_CONTEXT,
-      orientation,
-      dir: direction,
-      loop,
-      children: /* @__PURE__ */ (0, import_jsx_runtime60.jsx)(ToggleGroupImplElementFrame, {
-        "aria-orientation": orientation,
+    children: /* @__PURE__ */ (0, import_jsx_runtime60.jsx)(context.Provider, {
+      color,
+      toggledStyle,
+      children: rovingFocus ? /* @__PURE__ */ (0, import_jsx_runtime60.jsx)(RovingFocusGroup, {
+        asChild: "except-style",
+        __scopeRovingFocusGroup: __scopeToggleGroup || TOGGLE_GROUP_CONTEXT,
         orientation,
-        axis: orientation,
+        dir: direction,
+        loop,
+        children: /* @__PURE__ */ (0, import_jsx_runtime60.jsx)(ToggleGroupImplElementFrame, {
+          "aria-orientation": orientation,
+          orientation,
+          ref: forwardedRef,
+          "data-disabled": disabled ? "" : void 0,
+          unstyled,
+          ...commonProps
+        })
+      }) : /* @__PURE__ */ (0, import_jsx_runtime60.jsx)(ToggleGroupImplElementFrame, {
+        "aria-orientation": orientation,
         ref: forwardedRef,
+        orientation,
         "data-disabled": disabled ? "" : void 0,
         unstyled,
         ...commonProps
       })
-    }) : /* @__PURE__ */ (0, import_jsx_runtime60.jsx)(ToggleGroupImplElementFrame, {
-      "aria-orientation": orientation,
-      ref: forwardedRef,
-      orientation,
-      "data-disabled": disabled ? "" : void 0,
-      unstyled,
-      ...commonProps
     })
   });
-}));
+});
 
 // node_modules/@tamagui/tooltip/dist/esm/Tooltip.mjs
 var import_core50 = require("@tamagui/core");
-var React73 = __toESM(require("react"), 1);
+var React72 = __toESM(require("react"), 1);
 var import_jsx_runtime61 = require("react/jsx-runtime");
 var TOOLTIP_SCOPE = "";
-var TooltipContent = PopperContentFrame.extractable(React73.forwardRef((props, ref) => {
-  const preventAnimation = React73.useContext(PreventTooltipAnimationContext);
+var TooltipContent = PopperContentFrame.extractable(React72.forwardRef((props, ref) => {
+  const preventAnimation = React72.useContext(PreventTooltipAnimationContext);
   return /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(PopoverContent, {
     scope: props.scope || TOOLTIP_SCOPE,
     componentName: "Tooltip",
@@ -37490,13 +37466,13 @@ var TooltipContent = PopperContentFrame.extractable(React73.forwardRef((props, r
     }
   });
 }));
-var TooltipArrow = React73.forwardRef((props, ref) => /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(PopoverArrow, {
+var TooltipArrow = React72.forwardRef((props, ref) => /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(PopoverArrow, {
   scope: props.scope || TOOLTIP_SCOPE,
   componentName: "Tooltip",
   ref,
   ...props
 }));
-var PreventTooltipAnimationContext = React73.createContext(false);
+var PreventTooltipAnimationContext = React72.createContext(false);
 var TooltipGroup = /* @__PURE__ */ __name(({
   children,
   delay,
@@ -37506,7 +37482,7 @@ var TooltipGroup = /* @__PURE__ */ __name(({
   value: preventAnimation,
   children: /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(FloatingDelayGroup, {
     timeoutMs,
-    delay: React73.useMemo(() => delay, [JSON.stringify(delay)]),
+    delay: React72.useMemo(() => delay, [JSON.stringify(delay)]),
     children
   })
 }), "TooltipGroup");
@@ -37514,7 +37490,7 @@ var setOpens = /* @__PURE__ */ new Set();
 var closeOpenTooltips = /* @__PURE__ */ __name(() => {
   setOpens.forEach((x) => x(false));
 }, "closeOpenTooltips");
-var TooltipComponent = React73.forwardRef(function(props, ref) {
+var TooltipComponent = React72.forwardRef(function(props, ref) {
   const {
     children,
     delay: delayProp = 400,
@@ -37525,7 +37501,7 @@ var TooltipComponent = React73.forwardRef(function(props, ref) {
     disableAutoCloseOnScroll,
     scope = TOOLTIP_SCOPE,
     ...restProps
-  } = props, triggerRef = React73.useRef(null), [hasCustomAnchor, setHasCustomAnchor] = React73.useState(false), {
+  } = props, triggerRef = React72.useRef(null), [hasCustomAnchor, setHasCustomAnchor] = React72.useState(false), {
     delay: delayGroup,
     setCurrentId
   } = useDelayGroupContext(), delay = delayProp ?? delayGroup ?? 0, [open, setOpen] = useControllableState({
@@ -37535,7 +37511,7 @@ var TooltipComponent = React73.forwardRef(function(props, ref) {
   }), id = props.groupId, onOpenChange = (0, import_core50.useEvent)((open2) => {
     open2 && setCurrentId(id), setOpen(open2);
   });
-  React73.useEffect(() => {
+  React72.useEffect(() => {
     if (!open || disableAutoCloseOnScroll || typeof document > "u") return;
     const closeIt = /* @__PURE__ */ __name(() => {
       setOpen(false);
@@ -37568,7 +37544,7 @@ var TooltipComponent = React73.forwardRef(function(props, ref) {
       getReferenceProps,
       getFloatingProps
     };
-  }, "useFloatingFn"), useFloatingContext2 = React73.useCallback(useFloatingFn, [id, delay, open, restMs, focus2 ? JSON.stringify(focus2) : 0]), onCustomAnchorAdd = React73.useCallback(() => setHasCustomAnchor(true), []), onCustomAnchorRemove = React73.useCallback(() => setHasCustomAnchor(false), []), contentId = React73.useId(), smallerSize = props.unstyled ? null : getSize("$true", {
+  }, "useFloatingFn"), useFloatingContext2 = React72.useCallback(useFloatingFn, [id, delay, open, restMs, focus2 ? JSON.stringify(focus2) : 0]), onCustomAnchorAdd = React72.useCallback(() => setHasCustomAnchor(true), []), onCustomAnchorRemove = React72.useCallback(() => setHasCustomAnchor(false), []), contentId = React72.useId(), smallerSize = props.unstyled ? null : getSize("$true", {
     shift: -2,
     bounds: [0]
   });
@@ -37600,7 +37576,7 @@ var TooltipComponent = React73.forwardRef(function(props, ref) {
     })
   );
 });
-var TooltipTrigger = React73.forwardRef(function(props, ref) {
+var TooltipTrigger = React72.forwardRef(function(props, ref) {
   const {
     scope,
     ...rest
@@ -37611,7 +37587,7 @@ var TooltipTrigger = React73.forwardRef(function(props, ref) {
     ref
   });
 });
-var TooltipAnchor = React73.forwardRef(function(props, ref) {
+var TooltipAnchor = React72.forwardRef(function(props, ref) {
   const {
     scope,
     ...rest
@@ -37632,16 +37608,16 @@ var voidFn = /* @__PURE__ */ __name(() => {
 }, "voidFn");
 
 // node_modules/@tamagui/tooltip/dist/esm/TooltipSimple.mjs
-var React74 = __toESM(require("react"), 1);
+var React73 = __toESM(require("react"), 1);
 var import_jsx_runtime62 = require("react/jsx-runtime");
-var TooltipSimple = React74.forwardRef(({
+var TooltipSimple = React73.forwardRef(({
   label,
   children,
   contentProps,
   disabled,
   ...tooltipProps
 }, ref) => {
-  const child = React74.Children.only(children);
+  const child = React73.Children.only(children);
   return label ? /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)(Tooltip2, {
     disableRTL: true,
     offset: 15,
@@ -37656,7 +37632,7 @@ var TooltipSimple = React74.forwardRef(({
         "aria-label": label
       },
       asChild: "except-style",
-      children: ref && React74.isValidElement(child) ? React74.cloneElement(child, {
+      children: ref && React73.isValidElement(child) ? React73.cloneElement(child, {
         ref
       }) : child
     }), /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)(Tooltip2.Content, {
@@ -37694,7 +37670,7 @@ var TooltipSimple = React74.forwardRef(({
 });
 
 // node_modules/@tamagui/use-window-dimensions/dist/esm/index.mjs
-var import_react52 = __toESM(require("react"), 1);
+var import_react51 = __toESM(require("react"), 1);
 
 // node_modules/@tamagui/use-window-dimensions/dist/esm/initialValue.mjs
 var initialValue = {
@@ -37746,13 +37722,13 @@ __name(subscribe2, "subscribe");
 function useWindowDimensions({
   serverValue = initialValue
 } = {}) {
-  return import_react52.default.useSyncExternalStore(subscribe2, getWindowSize, () => isWeb ? serverValue : getWindowSize());
+  return import_react51.default.useSyncExternalStore(subscribe2, getWindowSize, () => isWeb ? serverValue : getWindowSize());
 }
 __name(useWindowDimensions, "useWindowDimensions");
 
 // node_modules/@tamagui/visually-hidden/dist/esm/VisuallyHidden.mjs
-var import_web22 = require("@tamagui/core");
-var VisuallyHidden = (0, import_web22.styled)(import_web22.Text, {
+var import_web21 = require("@tamagui/core");
+var VisuallyHidden = (0, import_web21.styled)(import_web21.Text, {
   position: "absolute",
   width: 1,
   height: 1,
@@ -37901,53 +37877,20 @@ var Fieldset = (0, import_core55.styled)(YStack, {
   }
 });
 
-// node_modules/tamagui/dist/esm/views/Input.mjs
-var import_react53 = __toESM(require("react"), 1);
-var import_core57 = require("@tamagui/core");
-var import_react_native_web9 = __toESM(require_cjs(), 1);
+// node_modules/@tamagui/input/dist/esm/Input.mjs
+var import_core58 = require("@tamagui/core");
+var import_react52 = __toESM(require("react"), 1);
 
-// node_modules/tamagui/dist/esm/helpers/inputHelpers.mjs
+// node_modules/@tamagui/input/dist/esm/shared.mjs
 var import_core56 = require("@tamagui/core");
-var inputSizeVariant = /* @__PURE__ */ __name((val = "$true", extras) => {
-  if (extras.props.multiline || extras.props.numberOfLines > 1) return textAreaSizeVariant(val, extras);
-  const buttonStyles = getButtonSized(val, extras), paddingHorizontal = getSpace(val, {
-    shift: -1,
-    bounds: [2]
-  }), fontStyle = getFontSized(val, extras);
-  return !import_core56.isWeb && fontStyle && delete fontStyle.lineHeight, {
-    ...fontStyle,
-    ...buttonStyles,
-    paddingHorizontal
-  };
-}, "inputSizeVariant");
-var textAreaSizeVariant = /* @__PURE__ */ __name((val = "$true", extras) => {
-  const {
-    props
-  } = extras, buttonStyles = getButtonSized(val, extras), fontStyle = getFontSized(val, extras), lines = props.rows ?? props.numberOfLines, height = typeof lines == "number" ? lines * (0, import_core56.getVariableValue)(fontStyle.lineHeight) : "auto", paddingVertical = getSpace(val, {
-    shift: -2,
-    bounds: [2]
-  }), paddingHorizontal = getSpace(val, {
-    shift: -1,
-    bounds: [2]
-  });
-  return {
-    ...buttonStyles,
-    ...fontStyle,
-    paddingVertical,
-    paddingHorizontal,
-    height
-  };
-}, "textAreaSizeVariant");
-
-// node_modules/tamagui/dist/esm/views/Input.mjs
-var import_jsx_runtime65 = require("react/jsx-runtime");
+var import_core57 = require("@tamagui/core");
 var defaultStyles = {
   size: "$true",
   fontFamily: "$body",
   borderWidth: 1,
   outlineWidth: 0,
   color: "$color",
-  ...isWeb ? {
+  ...import_core57.isWeb ? {
     tabIndex: 0
   } : {
     focusable: true
@@ -37968,8 +37911,47 @@ var defaultStyles = {
     outlineStyle: "solid"
   }
 };
-var InputFrame = (0, import_core57.styled)(import_react_native_web9.TextInput, {
-  name: "Input",
+var inputSizeVariant = /* @__PURE__ */ __name((val = "$true", extras) => {
+  if (extras.props.tag === "textarea" || extras.props.rows > 1 || extras.props.multiline || extras.props.numberOfLines > 1) return textAreaSizeVariant(val, extras);
+  const buttonStyles = getButtonSized(val, extras), paddingHorizontal = getSpace(val, {
+    shift: -1,
+    bounds: [2]
+  }), fontStyle = getFontSized(val, extras);
+  return !import_core57.isWeb && fontStyle && delete fontStyle.lineHeight, {
+    ...fontStyle,
+    ...buttonStyles,
+    paddingHorizontal,
+    // Android fixes: reset padding and center text vertically (skip if unstyled)
+    ...!import_core57.isWeb && !extras.props.unstyled && {
+      textAlignVertical: "center",
+      paddingVertical: 0,
+      paddingTop: 0,
+      paddingBottom: 0
+    }
+  };
+}, "inputSizeVariant");
+var textAreaSizeVariant = /* @__PURE__ */ __name((val = "$true", extras) => {
+  const {
+    props
+  } = extras, buttonStyles = getButtonSized(val, extras), fontStyle = getFontSized(val, extras), lines = props.rows ?? props.numberOfLines, height = typeof lines == "number" ? lines * (0, import_core57.getVariableValue)(fontStyle.lineHeight) : "auto", paddingVertical = getSpace(val, {
+    shift: -2,
+    bounds: [2]
+  }), paddingHorizontal = getSpace(val, {
+    shift: -1,
+    bounds: [2]
+  });
+  return {
+    ...buttonStyles,
+    ...fontStyle,
+    paddingVertical,
+    paddingHorizontal,
+    height
+  };
+}, "textAreaSizeVariant");
+var INPUT_NAME = "Input";
+var styledBody = [{
+  name: INPUT_NAME,
+  tag: "input",
   variants: {
     unstyled: {
       false: defaultStyles
@@ -37989,71 +37971,171 @@ var InputFrame = (0, import_core57.styled)(import_react_native_web9.TextInput, {
   accept: {
     placeholderTextColor: "color",
     selectionColor: "color"
-  }
-});
-var Input = InputFrame.styleable((propsIn, forwardedRef) => {
-  const ref = import_react53.default.useRef(null), composedRefs = (0, import_core57.useComposedRefs)(forwardedRef, ref), props = useInputProps(propsIn, composedRefs);
-  return /* @__PURE__ */ (0, import_jsx_runtime65.jsx)(InputFrame, {
-    ...props
-  });
-});
-function useInputProps(props, ref) {
-  const theme = (0, import_core57.useTheme)(), focusableProps = useFocusable({
-    props,
-    ref,
-    isInput: true
-  }), placeholderTextColor = import_react53.default.useMemo(() => {
-    const placeholderColorProp = props.placeholderTextColor;
-    return theme[placeholderColorProp]?.get() ?? placeholderColorProp ?? theme.placeholderColor?.get();
-  }, [props.placeholderTextColor, theme]);
-  return import_react53.default.useMemo(() => ({
-    ref: focusableProps.ref,
-    readOnly: props.disabled,
-    ...props,
-    placeholderTextColor,
-    onChangeText: focusableProps.onChangeText
-  }), [focusableProps.ref, focusableProps.onChangeText, props.disabled, props, placeholderTextColor]);
-}
-__name(useInputProps, "useInputProps");
+  },
+  validStyles: import_core56.Text.staticConfig.validStyles
+}];
 
-// node_modules/tamagui/dist/esm/views/Spinner.mjs
-var import_core58 = require("@tamagui/core");
-var React77 = __toESM(require("react"), 1);
-var import_react_native_web10 = __toESM(require_cjs(), 1);
-var import_jsx_runtime66 = require("react/jsx-runtime");
-var Spinner = YStack.extractable((0, import_core58.themeable)(React77.forwardRef((props, ref) => {
+// node_modules/@tamagui/input/dist/esm/Input.mjs
+var import_jsx_runtime65 = require("react/jsx-runtime");
+var StyledInput = (0, import_core58.styled)(import_core58.View, styledBody[0], styledBody[1]);
+var Input = StyledInput.styleable((inProps, forwardedRef) => {
   const {
-    size: size4,
-    color: colorProp,
-    ...stackProps
-  } = props, theme = (0, import_core58.useTheme)();
-  let color = colorProp;
-  return color && color[0] === "$" && (color = (0, import_core58.variableToString)(theme[color])), /* @__PURE__ */ (0, import_jsx_runtime66.jsx)(YStack, {
-    ref,
-    ...stackProps,
-    children: /* @__PURE__ */ (0, import_jsx_runtime66.jsx)(import_react_native_web10.ActivityIndicator, {
-      size: size4,
-      color
-    })
+    // some of destructed props are just to avoid passing them to ...rest because they are not in web.
+    allowFontScaling,
+    selectTextOnFocus,
+    showSoftInputOnFocus,
+    textContentType,
+    passwordRules,
+    textBreakStrategy,
+    underlineColorAndroid,
+    selection,
+    lineBreakStrategyIOS,
+    returnKeyLabel,
+    disabled,
+    onSubmitEditing,
+    caretHidden,
+    clearButtonMode,
+    clearTextOnFocus,
+    contextMenuHidden,
+    dataDetectorTypes,
+    id,
+    enablesReturnKeyAutomatically,
+    importantForAutofill,
+    inlineImageLeft,
+    inlineImagePadding,
+    inputAccessoryViewID,
+    keyboardAppearance,
+    keyboardType,
+    cursorColor,
+    disableFullscreenUI,
+    editable,
+    maxFontSizeMultiplier,
+    multiline,
+    numberOfLines,
+    onChangeText,
+    onContentSizeChange,
+    onEndEditing,
+    onScroll,
+    onSelectionChange,
+    caretColor,
+    placeholderTextColor,
+    blurOnSubmit,
+    enterKeyHint,
+    returnKeyType,
+    rejectResponderTermination,
+    scrollEnabled,
+    secureTextEntry,
+    selectionColor,
+    inputMode,
+    ...rest
+  } = inProps, ref = import_react52.default.useRef(null), theme = (0, import_core58.useTheme)(), composedRefs = (0, import_core58.useComposedRefs)(forwardedRef, ref), _onSelectionChange = (0, import_core58.useEvent)(() => {
+    const start = ref.current?.selectionStart ?? 0, end = ref.current?.selectionEnd ?? 0;
+    onSelectionChange?.({
+      nativeEvent: {
+        selection: {
+          end,
+          start
+        }
+      }
+    });
   });
-}), {
-  componentName: "Spinner"
-}));
+  import_react52.default.useEffect(() => {
+    if (onSelectionChange) return ref.current?.addEventListener("selectionchange", _onSelectionChange), () => {
+      ref.current?.removeEventListener("selectionchange", _onSelectionChange);
+    };
+  }, []), import_react52.default.useEffect(() => {
+    selection && ref.current?.setSelectionRange(selection.start || null, selection.end || null);
+  }, [selection?.start, selection?.end]);
+  const finalProps = {
+    ...rest,
+    disabled,
+    caretColor,
+    id,
+    enterKeyHint,
+    type: (() => {
+      if (rest?.type) return rest.type;
+      if (secureTextEntry) return "password";
+      switch (keyboardType) {
+        case "number-pad":
+        case "numeric":
+          return "number";
+        case "email-address":
+          return "email";
+        case "phone-pad":
+          return "tel";
+        case "url":
+          return "url";
+        default:
+          return "text";
+      }
+    })(),
+    inputMode: (() => {
+      switch (keyboardType) {
+        case "number-pad":
+        case "numeric":
+          return "numeric";
+        case "decimal-pad":
+          return "decimal";
+        case "email-address":
+          return "email";
+        case "phone-pad":
+          return "tel";
+        case "url":
+          return "url";
+        default:
+          return;
+      }
+    })(),
+    style: {
+      ...rest.style,
+      ...placeholderTextColor && {
+        "--placeholderColor": theme[placeholderTextColor]?.variable || placeholderTextColor
+      },
+      ...selectionColor && {
+        "--selectionColor": theme[selectionColor]?.variable || selectionColor
+      }
+    }
+  };
+  return import_react52.default.useEffect(() => {
+    if (id && !disabled) return registerFocusable(id, {
+      focusAndSelect: /* @__PURE__ */ __name(() => {
+        ref.current?.focus();
+      }, "focusAndSelect"),
+      focus: /* @__PURE__ */ __name(() => {
+      }, "focus")
+    });
+  }, [id, disabled]), /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)(import_jsx_runtime65.Fragment, {
+    children: [/* @__PURE__ */ (0, import_jsx_runtime65.jsx)("style", {
+      children: `
+      input::selection, textarea::selection {
+        background-color: var(--selectionBackground) !important;
+      }
+      
+      input::placeholder, textarea::placeholder {
+        color: var(--placeholderColor) !important;
+      }
+      `
+    }), /* @__PURE__ */ (0, import_jsx_runtime65.jsx)(StyledInput, {
+      ref: composedRefs,
+      ...finalProps
+    })]
+  });
+});
 
-// node_modules/tamagui/dist/esm/views/TextArea.mjs
-var import_core59 = require("@tamagui/core");
-var import_react54 = __toESM(require("react"), 1);
-var import_jsx_runtime67 = require("react/jsx-runtime");
-var TextAreaFrame = (0, import_core59.styled)(InputFrame, {
+// node_modules/@tamagui/input/dist/esm/TextArea.mjs
+var import_web22 = require("@tamagui/core");
+var TextArea = (0, import_web22.styled)(Input, {
   name: "TextArea",
-  multiline: true,
+  tag: "textarea",
   // this attribute fixes firefox newline issue
+  // @ts-ignore
   whiteSpace: "pre-wrap",
   variants: {
     unstyled: {
       false: {
         height: "auto",
-        ...defaultStyles
+        ...defaultStyles,
+        numberOfLines: 3
       }
     },
     size: {
@@ -38064,20 +38146,34 @@ var TextAreaFrame = (0, import_core59.styled)(InputFrame, {
     unstyled: process.env.TAMAGUI_HEADLESS === "1"
   }
 });
-var TextArea = TextAreaFrame.styleable((propsIn, forwardedRef) => {
-  const ref = import_react54.default.useRef(null), composedRefs = (0, import_core59.useComposedRefs)(forwardedRef, ref), props = useInputProps(propsIn, composedRefs), linesProp = {
-    // web uses rows now, but native not caught up :/
-    [isWeb ? "rows" : "numberOfLines"]: propsIn.unstyled ? void 0 : 4
-  };
-  return /* @__PURE__ */ (0, import_jsx_runtime67.jsx)(TextAreaFrame, {
-    ...linesProp,
-    ...props
+
+// node_modules/tamagui/dist/esm/views/Spinner.mjs
+var import_core59 = require("@tamagui/core");
+var React76 = __toESM(require("react"), 1);
+var import_react_native_web9 = __toESM(require_cjs(), 1);
+var import_jsx_runtime66 = require("react/jsx-runtime");
+var Spinner = YStack.extractable((0, import_core59.themeable)(React76.forwardRef((props, ref) => {
+  const {
+    size: size4,
+    color: colorProp,
+    ...stackProps
+  } = props, theme = (0, import_core59.useTheme)();
+  let color = colorProp;
+  return color && color[0] === "$" && (color = (0, import_core59.variableToString)(theme[color])), /* @__PURE__ */ (0, import_jsx_runtime66.jsx)(YStack, {
+    ref,
+    ...stackProps,
+    children: /* @__PURE__ */ (0, import_jsx_runtime66.jsx)(import_react_native_web9.ActivityIndicator, {
+      size: size4,
+      color
+    })
   });
-});
+}), {
+  componentName: "Spinner"
+}));
 
 // node_modules/tamagui/dist/esm/views/Text.mjs
 var import_core60 = require("@tamagui/core");
-var Text5 = (0, import_core60.styled)(import_core60.Text, {
+var Text6 = (0, import_core60.styled)(import_core60.Text, {
   variants: {
     unstyled: {
       false: {
@@ -38178,7 +38274,6 @@ var import_core61 = require("@tamagui/core");
   IS_FABRIC,
   Image,
   Input,
-  InputFrame,
   Label,
   LabelFrame,
   ListItem,
@@ -38274,7 +38369,6 @@ var import_core61 = require("@tamagui/core");
   TamaguiProvider,
   Text,
   TextArea,
-  TextAreaFrame,
   Theme,
   ThemeableStack,
   Thumb,
@@ -38319,7 +38413,6 @@ var import_core61 = require("@tamagui/core");
   createTokens,
   createVariable,
   debounce,
-  defaultStyles,
   fullscreenStyle,
   getCSSStylesAtomic,
   getConfig,
@@ -38336,6 +38429,7 @@ var import_core61 = require("@tamagui/core");
   getVariable,
   getVariableName,
   getVariableValue,
+  inputSizeVariant,
   insertFont,
   isChrome,
   isClient,
@@ -38374,6 +38468,7 @@ var import_core61 = require("@tamagui/core");
   stylePropsUnitless,
   stylePropsView,
   styled,
+  textAreaSizeVariant,
   themeable,
   themeableVariants,
   tokenCategories,
@@ -38396,7 +38491,6 @@ var import_core61 = require("@tamagui/core");
   useGet,
   useGetThemedIcon,
   useGroupItem,
-  useInputProps,
   useIsPresent,
   useIsTouchDevice,
   useIsomorphicLayoutEffect,
@@ -38431,7 +38525,7 @@ var import_core61 = require("@tamagui/core");
 
 tabbable/dist/index.js:
   (*!
-  * tabbable 6.3.0
+  * tabbable 6.4.0
   * @license MIT, https://github.com/focus-trap/tabbable/blob/master/LICENSE
   *)
 */

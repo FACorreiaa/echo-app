@@ -1,14 +1,11 @@
 import {
   Accessibility,
-  Bell,
   ChevronRight,
-  Eye,
   HelpCircle,
   Inbox,
   Info,
   LogOut,
   Palette,
-  Shield,
   User,
 } from "@tamagui/lucide-icons";
 import { useRouter } from "expo-router";
@@ -47,22 +44,23 @@ const UpgradeBadge = styled(XStack, {
 
 const menuItems = {
   main: [
-    { icon: HelpCircle, label: "Help", route: null },
-    { icon: User, label: "Account", route: null },
+    { icon: HelpCircle, label: "Help", route: "settings/help" },
+    { icon: User, label: "Account", route: "settings/account" },
     // v0.1: Removed to focus on Import -> Map -> Plan loop
     // { icon: FileText, label: "Documents & Statements", route: null },
     // { icon: Lightbulb, label: "Learn", route: null },
     { icon: Inbox, label: "Inbox", route: null, badge: 3 },
   ],
   settings: [
-    { icon: Shield, label: "Security", route: null },
-    { icon: Eye, label: "Privacy", route: "settings/privacy" },
-    { icon: Bell, label: "Notification Settings", route: null },
+    // v0.2: Hidden until implemented
+    // { icon: Shield, label: "Security", route: null },
+    // { icon: Eye, label: "Privacy", route: "settings/privacy" },
+    // { icon: Bell, label: "Notification Settings", route: null },
     { icon: Palette, label: "Appearance", route: null, hasToggle: true },
-    { icon: Accessibility, label: "Accessibility", route: null },
+    { icon: Accessibility, label: "Accessibility", route: "settings/accessibility" },
   ],
   footer: [
-    { icon: Info, label: "About Echo", route: null },
+    { icon: Info, label: "About Echo", route: "settings/about" },
     { icon: LogOut, label: "Log Out", route: "logout", isDestructive: true },
   ],
 };

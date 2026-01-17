@@ -53,7 +53,9 @@ export function useTransactions(filters?: TransactionFilters) {
     },
     initialPageParam: "",
     getNextPageParam: (lastPage) => lastPage.nextPageToken || undefined,
-    staleTime: 30_000, // 30 seconds
+    staleTime: 5 * 60 * 1000, // 5 minutes - transactions don't change frequently
+    gcTime: 10 * 60 * 1000, // 10 minutes - keep in cache longer
+    refetchOnMount: false, // Don't refetch if data is fresh
   });
 }
 
@@ -153,6 +155,8 @@ export function useRecentTransactions(limit = 5) {
         };
       });
     },
-    staleTime: 30_000, // 30 seconds
+    staleTime: 2 * 60 * 1000, // 2 minutes - recent data can be slightly stale
+    gcTime: 5 * 60 * 1000, // 5 minutes cache
+    refetchOnMount: false, // Don't refetch if data is fresh
   });
 }

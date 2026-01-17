@@ -1,12 +1,12 @@
-import { FileSpreadsheet, Upload } from "@tamagui/lucide-icons";
+import { Upload } from "@tamagui/lucide-icons";
 import * as DocumentPicker from "expo-document-picker";
 import { useFocusEffect, useRouter } from "expo-router";
 import React, { useCallback, useState } from "react";
-import { ScrollView } from "react-native";
+import { Image, ScrollView } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Button, H2, Text, XStack, YStack } from "tamagui";
 
-import { GlassyButton, GlassyCard, Input } from "@/components";
+import { GlassyButton, GlassyCard, GradientBackground, Input } from "@/components";
 import {
   analyzeFileLocally,
   useAnalyzeCsvFile,
@@ -255,178 +255,179 @@ export default function ImportScreen() {
   };
 
   return (
-    <YStack flex={1} backgroundColor="$background" paddingTop={insets.top}>
-      <ScrollView contentContainerStyle={{ flexGrow: 1, padding: 20 }}>
-        {/* Header */}
-        <XStack alignItems="center" marginBottom="$6" gap="$3">
-          <Button
-            size="$3"
-            circular
-            icon={FileSpreadsheet}
-            backgroundColor="$accentColor"
-            color="white"
-            unstyled
-          />
-          <YStack>
-            <H2 color="$color" fontSize={24}>
-              Import Transactions
-            </H2>
-            <Text color="$secondaryText">Add your bank data manually</Text>
-          </YStack>
-        </XStack>
+    <GradientBackground>
+      <YStack flex={1} paddingTop={insets.top}>
+        <ScrollView contentContainerStyle={{ flexGrow: 1, padding: 20 }}>
+          {/* Header with EchoOS logo */}
+          <XStack alignItems="center" marginBottom="$6" gap="$3">
+            <YStack width={48} height={48} alignItems="center" justifyContent="center">
+              <Image
+                source={require("@/assets/images/echo-logo.png")}
+                style={{ width: 48, height: 48 }}
+                resizeMode="contain"
+              />
+            </YStack>
+            <YStack>
+              <H2 color="$color" fontSize={24}>
+                Import Transactions
+              </H2>
+              <Text color="$secondaryText">Add your bank data manually</Text>
+            </YStack>
+          </XStack>
 
-        {/* content based on step */}
-        <YStack gap="$6" flex={1}>
-          {step === "upload" && (
-            <YStack gap="$4">
-              <GlassyCard>
-                <YStack alignItems="center" gap="$4" paddingVertical="$8">
-                  <YStack
-                    backgroundColor="$backgroundHover"
-                    padding="$5"
-                    borderRadius={999}
-                    borderColor="$borderColor"
-                    borderWidth={1}
-                  >
-                    <Upload size={32} color="$accentColor" />
-                  </YStack>
-                  <YStack alignItems="center" gap="$1">
-                    <Text color="$color" fontSize={18} fontWeight="bold">
-                      Upload CSV, TSV, or Excel
-                    </Text>
-                    <Text color="$secondaryText" textAlign="center">
-                      Select a bank statement or budget file.
-                    </Text>
-                  </YStack>
-                  <GlassyButton onPress={handleSelectFile} marginTop="$2">
-                    Select File
-                  </GlassyButton>
-                </YStack>
-              </GlassyCard>
-
-              {/* Supported formats info */}
-              <YStack paddingHorizontal="$4" gap="$2">
-                <Text
-                  color="$secondaryText"
-                  fontSize={12}
-                  textTransform="uppercase"
-                  fontWeight="bold"
-                >
-                  Supported Banks
-                </Text>
-                <XStack flexWrap="wrap" gap="$2">
-                  {["Revolut", "Caixa Geral", "Santander", "Millennium", "ActivoBank"].map(
-                    (bank) => (
-                      <Text
-                        key={bank}
-                        backgroundColor="$backgroundHover"
-                        color="$secondaryText"
-                        paddingHorizontal="$3"
-                        paddingVertical="$1.5"
-                        borderRadius="$4"
-                        fontSize={12}
-                      >
-                        {bank}
+          {/* content based on step */}
+          <YStack gap="$6" flex={1}>
+            {step === "upload" && (
+              <YStack gap="$4">
+                <GlassyCard>
+                  <YStack alignItems="center" gap="$4" paddingVertical="$8">
+                    <YStack
+                      backgroundColor="$backgroundHover"
+                      padding="$5"
+                      borderRadius={999}
+                      borderColor="$borderColor"
+                      borderWidth={1}
+                    >
+                      <Upload size={32} color="$accentColor" />
+                    </YStack>
+                    <YStack alignItems="center" gap="$1">
+                      <Text color="$color" fontSize={18} fontWeight="bold">
+                        Upload CSV, TSV, or Excel
                       </Text>
-                    ),
-                  )}
-                </XStack>
-              </YStack>
-            </YStack>
-          )}
+                      <Text color="$secondaryText" textAlign="center">
+                        Select a bank statement or budget file.
+                      </Text>
+                    </YStack>
+                    <GlassyButton onPress={handleSelectFile} marginTop="$2">
+                      Select File
+                    </GlassyButton>
+                  </YStack>
+                </GlassyCard>
 
-          {/* Analyzing state with IngestionPulse */}
-          {step === "analyzing" && (
-            <YStack flex={1} minHeight={300}>
-              <IngestionPulse />
-            </YStack>
-          )}
-
-          {step === "mapping" && analysis && (
-            <YStack gap="$4">
-              {/* Bank name selection */}
-              <GlassyCard>
-                <YStack gap="$2">
-                  <Text color="$color" fontWeight="bold">
-                    Bank / Institution
+                {/* Supported formats info */}
+                <YStack paddingHorizontal="$4" gap="$2">
+                  <Text
+                    color="$secondaryText"
+                    fontSize={12}
+                    textTransform="uppercase"
+                    fontWeight="bold"
+                  >
+                    Supported Banks
                   </Text>
-                  <Text color="$secondaryText" fontSize={12}>
-                    Select or enter the bank name for this import
-                  </Text>
-                  <XStack flexWrap="wrap" gap="$2" marginTop="$2">
-                    {[
-                      "Revolut",
-                      "CGD",
-                      "Santander",
-                      "Millennium",
-                      "ActivoBank",
-                      "Moey",
-                      "Other",
-                    ].map((bank) => (
-                      <Button
-                        key={bank}
-                        size="$2"
-                        backgroundColor={bankName === bank ? "$accentColor" : "$backgroundHover"}
-                        color={bankName === bank ? "white" : "$secondaryText"}
-                        onPress={() => setBankName(bank === "Other" ? "" : bank)}
-                        borderRadius="$4"
-                      >
-                        {bank}
-                      </Button>
-                    ))}
+                  <XStack flexWrap="wrap" gap="$2">
+                    {["Revolut", "Caixa Geral", "Santander", "Millennium", "ActivoBank"].map(
+                      (bank) => (
+                        <Text
+                          key={bank}
+                          backgroundColor="$backgroundHover"
+                          color="$secondaryText"
+                          paddingHorizontal="$3"
+                          paddingVertical="$1.5"
+                          borderRadius="$4"
+                          fontSize={12}
+                        >
+                          {bank}
+                        </Text>
+                      ),
+                    )}
                   </XStack>
-                  {bankName === "" && (
-                    <Input
-                      placeholder="Enter bank name..."
-                      value={bankName}
-                      onChangeText={setBankName}
-                      marginTop="$2"
-                    />
-                  )}
                 </YStack>
-              </GlassyCard>
+              </YStack>
+            )}
 
-              <MappingWizard
-                analysis={analysis}
-                onComplete={handleMappingComplete}
-                onCancel={handleCancel}
-                isLoading={importMutation.isPending}
-              />
-            </YStack>
-          )}
+            {/* Analyzing state with IngestionPulse */}
+            {step === "analyzing" && (
+              <YStack flex={1} minHeight={300}>
+                <IngestionPulse />
+              </YStack>
+            )}
 
-          {/* Combined Importing / Result view */}
-          {step === "importing" && (
-            <YStack gap="$4">
-              <ImportProgress
-                status="importing"
-                rowsTotal={importStats.total || (analysis?.sampleRows.length ?? 0) + 12}
-                rowsImported={importStats.imported}
-                rowsFailed={importStats.failed}
-              />
-            </YStack>
-          )}
+            {step === "mapping" && analysis && (
+              <YStack gap="$4">
+                {/* Bank name selection */}
+                <GlassyCard>
+                  <YStack gap="$2">
+                    <Text color="$color" fontWeight="bold">
+                      Bank / Institution
+                    </Text>
+                    <Text color="$secondaryText" fontSize={12}>
+                      Select or enter the bank name for this import
+                    </Text>
+                    <XStack flexWrap="wrap" gap="$2" marginTop="$2">
+                      {[
+                        "Revolut",
+                        "CGD",
+                        "Santander",
+                        "Millennium",
+                        "ActivoBank",
+                        "Moey",
+                        "Other",
+                      ].map((bank) => (
+                        <Button
+                          key={bank}
+                          size="$2"
+                          backgroundColor={bankName === bank ? "$accentColor" : "$backgroundHover"}
+                          color={bankName === bank ? "white" : "$secondaryText"}
+                          onPress={() => setBankName(bank === "Other" ? "" : bank)}
+                          borderRadius="$4"
+                        >
+                          {bank}
+                        </Button>
+                      ))}
+                    </XStack>
+                    {bankName === "" && (
+                      <Input
+                        placeholder="Enter bank name..."
+                        value={bankName}
+                        onChangeText={setBankName}
+                        marginTop="$2"
+                      />
+                    )}
+                  </YStack>
+                </GlassyCard>
 
-          {/* Success view with ImportSuccessSummary */}
-          {step === "result" && (
-            <>
-              {importStats.error ? (
-                <YStack gap="$4">
-                  <ImportProgress status="error" errorMessage={importStats.error} />
-                  <GlassyButton onPress={handleCancel}>Try Again</GlassyButton>
-                </YStack>
-              ) : (
-                <ImportSuccessSummary
-                  count={importStats.imported}
-                  totalMinor={0} // TODO: Calculate from actual transactions
-                  duplicates={importStats.duplicates}
-                  onDone={handleDone}
+                <MappingWizard
+                  analysis={analysis}
+                  onComplete={handleMappingComplete}
+                  onCancel={handleCancel}
+                  isLoading={importMutation.isPending}
                 />
-              )}
-            </>
-          )}
-        </YStack>
-      </ScrollView>
-    </YStack>
+              </YStack>
+            )}
+
+            {/* Combined Importing / Result view */}
+            {step === "importing" && (
+              <YStack gap="$4">
+                <ImportProgress
+                  status="importing"
+                  rowsTotal={importStats.total || (analysis?.sampleRows.length ?? 0) + 12}
+                  rowsImported={importStats.imported}
+                  rowsFailed={importStats.failed}
+                />
+              </YStack>
+            )}
+
+            {/* Success view with ImportSuccessSummary */}
+            {step === "result" && (
+              <>
+                {importStats.error ? (
+                  <YStack gap="$4">
+                    <ImportProgress status="error" errorMessage={importStats.error} />
+                    <GlassyButton onPress={handleCancel}>Try Again</GlassyButton>
+                  </YStack>
+                ) : (
+                  <ImportSuccessSummary
+                    count={importStats.imported}
+                    totalMinor={0} // TODO: Calculate from actual transactions
+                    duplicates={importStats.duplicates}
+                    onDone={handleDone}
+                  />
+                )}
+              </>
+            )}
+          </YStack>
+        </ScrollView>
+      </YStack>
+    </GradientBackground>
   );
 }

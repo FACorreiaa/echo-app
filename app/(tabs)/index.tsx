@@ -1,27 +1,54 @@
 import { CreditCard, Plus, Settings, Sparkles, TrendingUp } from "@tamagui/lucide-icons";
 import { useRouter } from "expo-router";
-import React, { useState } from "react";
+import React, { lazy, Suspense, useCallback, useMemo, useState } from "react";
 import { ActivityIndicator, Modal, ScrollView } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { Button, Text, XStack, YStack } from "tamagui";
+import { Button, Spinner, Text, XStack, YStack } from "tamagui";
 
-import { AlertBell, Avatar, BalanceHistoryChart, GlassyCard, NetWorthCard } from "@/components";
-import { DailyAllowanceWidget } from "@/widgets/insights/DailyAllowanceWidget";
-import { InsightSummaryCard } from "@/widgets/insights/InsightSummaryCard";
-import { PacingMeter } from "@/widgets/insights/PacingMeter";
-import { SystemHealthScoreCard } from "@/widgets/insights/SystemHealthScoreCard";
-
+import { AlertBell, Avatar, GlassyCard } from "@/components";
 import { QuickCapture } from "@/components";
-import { useAccounts } from "@/lib/hooks/use-accounts";
 import { useSetOpeningBalance } from "@/lib/hooks/use-balance";
-import {
-  useDashboardBlocks,
-  useSpendingPulse as useSpendingPulseHook,
-} from "@/lib/hooks/use-insights"; // Retaining for Bento/Blocks if needed
+import { useDashboardBlocks } from "@/lib/hooks/use-insights";
 import { useSystemHealth } from "@/lib/hooks/use-system-health";
 import { useRecentTransactions } from "@/lib/hooks/use-transactions";
 import { useAuthStore } from "@/lib/stores/auth-store";
-import { BentoCard, HookCard, WhatIfSlider } from "@/widgets/bento";
+
+// Lazy load heavy widgets for better initial load time
+const SystemHealthScoreCard = lazy(() =>
+  import("@/widgets/insights/SystemHealthScoreCard").then((m) => ({
+    default: m.SystemHealthScoreCard,
+  })),
+);
+
+const DailyAllowanceWidget = lazy(() =>
+  import("@/widgets/insights/DailyAllowanceWidget").then((m) => ({
+    default: m.DailyAllowanceWidget,
+  })),
+);
+
+const PacingMeter = lazy(() =>
+  import("@/widgets/insights/PacingMeter").then((m) => ({ default: m.PacingMeter })),
+);
+
+const InsightSummaryCard = lazy(() =>
+  import("@/widgets/insights/InsightSummaryCard").then((m) => ({
+    default: m.InsightSummaryCard,
+  })),
+);
+
+const BalanceHistoryChart = lazy(() =>
+  import("@/components").then((m) => ({ default: m.BalanceHistoryChart })),
+);
+
+const NetWorthCard = lazy(() => import("@/components").then((m) => ({ default: m.NetWorthCard })));
+
+const BentoCard = lazy(() => import("@/widgets/bento").then((m) => ({ default: m.BentoCard })));
+
+const HookCard = lazy(() => import("@/widgets/bento").then((m) => ({ default: m.HookCard })));
+
+const WhatIfSlider = lazy(() =>
+  import("@/widgets/bento").then((m) => ({ default: m.WhatIfSlider })),
+);
 
 // Format currency helper
 const formatCurrency = (amount: number) => {
@@ -57,18 +84,8 @@ export default function HomeScreen() {
   const user = useAuthStore((s) => s.user);
 
   // Data Hooks
-  const {
-    totalBudgeted,
-    totalSpent,
-    daysElapsed,
-    daysTotal,
-    isLoading: _healthLoading,
-  } = useSystemHealth();
-
-  const { data: _accounts = [], isLoading: _accountsLoading } = useAccounts();
+  const { totalBudgeted, totalSpent, daysElapsed, daysTotal } = useSystemHealth();
   const { data: recentActivity = [], isLoading: activityLoading } = useRecentTransactions(5);
-  // Optional: Pulse data for Bento if we want to keep it driven by real transaction insights
-  const { data: _pulse } = useSpendingPulseHook();
   const { data: dashboardBlocks } = useDashboardBlocks();
 
   // Local State
@@ -76,6 +93,21 @@ export default function HomeScreen() {
   const [showNetWorthSheet, setShowNetWorthSheet] = useState(false);
   const [netWorthAmount, setNetWorthAmount] = useState("");
   const setOpeningBalance = useSetOpeningBalance();
+
+  // Memoized handlers for quick actions
+  const handleNetWorth = useCallback(() => setShowNetWorthSheet(true), []);
+  const handleQuickCapture = useCallback(() => setShowQuickCapture(true), []);
+  const handleWrapped = useCallback(() => router.push("/(tabs)/wrapped"), [router]);
+
+  const quickActions = useMemo(
+    () => [
+      { icon: TrendingUp, label: "Net Worth", onPress: handleNetWorth },
+      { icon: Plus, label: "Add", onPress: handleQuickCapture },
+      { icon: CreditCard, label: "Card", onPress: () => {} },
+      { icon: Sparkles, label: "Wrappd", onPress: handleWrapped },
+    ],
+    [handleNetWorth, handleQuickCapture, handleWrapped],
+  );
 
   return (
     <YStack flex={1} backgroundColor="$background" paddingTop={insets.top}>
@@ -103,25 +135,57 @@ export default function HomeScreen() {
         </XStack>
 
         {/* COMMAND CENTER - HERO AREA */}
-        <SystemHealthScoreCard />
+        <Suspense
+          fallback={
+            <YStack padding="$4" alignItems="center">
+              <Spinner size="large" color="$accentColor" />
+            </YStack>
+          }
+        >
+          <SystemHealthScoreCard />
+        </Suspense>
 
         <XStack gap="$3" marginBottom="$4">
           {/* Left Column: Daily Allowance */}
           <YStack flex={1}>
-            <DailyAllowanceWidget />
+            <Suspense
+              fallback={
+                <YStack padding="$4" alignItems="center">
+                  <Spinner size="small" color="$accentColor" />
+                </YStack>
+              }
+            >
+              <DailyAllowanceWidget />
+            </Suspense>
           </YStack>
         </XStack>
 
         {/* PACING & INSIGHTS */}
         <YStack gap="$4" marginBottom="$6">
-          <PacingMeter
-            monthlyBudget={totalBudgeted}
-            currentSpend={totalSpent}
-            daysElapsed={daysElapsed}
-            daysTotal={daysTotal}
-          />
+          <Suspense
+            fallback={
+              <YStack padding="$4" alignItems="center">
+                <Spinner size="small" color="$accentColor" />
+              </YStack>
+            }
+          >
+            <PacingMeter
+              monthlyBudget={totalBudgeted}
+              currentSpend={totalSpent}
+              daysElapsed={daysElapsed}
+              daysTotal={daysTotal}
+            />
+          </Suspense>
 
-          <InsightSummaryCard />
+          <Suspense
+            fallback={
+              <YStack padding="$4" alignItems="center">
+                <Spinner size="small" color="$accentColor" />
+              </YStack>
+            }
+          >
+            <InsightSummaryCard />
+          </Suspense>
         </YStack>
 
         {/* BENTO GRID (Keep relevant quick actions?) */}
@@ -129,12 +193,7 @@ export default function HomeScreen() {
           Quick Actions
         </Text>
         <XStack justifyContent="space-around" marginBottom="$6">
-          {[
-            { icon: TrendingUp, label: "Net Worth", onPress: () => setShowNetWorthSheet(true) },
-            { icon: Plus, label: "Add", onPress: () => setShowQuickCapture(true) },
-            { icon: CreditCard, label: "Card", onPress: () => {} },
-            { icon: Sparkles, label: "Wrappd", onPress: () => router.push("/(tabs)/wrapped") },
-          ].map((action) => (
+          {quickActions.map((action) => (
             <YStack key={action.label} alignItems="center" gap="$2">
               <Button
                 size="$4"
@@ -154,28 +213,52 @@ export default function HomeScreen() {
         <Text color="$color" fontSize={18} fontWeight="bold" marginBottom="$3">
           Financial Overview
         </Text>
-        <NetWorthCard />
+        <Suspense
+          fallback={
+            <YStack padding="$4" alignItems="center">
+              <Spinner size="small" color="$accentColor" />
+            </YStack>
+          }
+        >
+          <NetWorthCard />
+        </Suspense>
 
         {/* Use existing BentoCards if useful */}
-        <XStack gap="$3" marginTop="$4" marginBottom="$6" flexWrap="wrap">
-          <BentoCard size="small" flex={1} minWidth={150}>
-            <WhatIfSlider currentMonthlySpend={totalSpent || 1000} />
-          </BentoCard>
-          <BentoCard size="small" flex={1} minWidth={150}>
-            {/* Reuse pulse data if available for HookCard */}
-            <HookCard
-              merchantName={dashboardBlocks?.[0]?.title ?? "Top Spot"}
-              visitCount={5}
-              totalSpent={totalSpent * 0.15}
-            />
-          </BentoCard>
-        </XStack>
+        <Suspense
+          fallback={
+            <YStack padding="$4" alignItems="center">
+              <Spinner size="small" color="$accentColor" />
+            </YStack>
+          }
+        >
+          <XStack gap="$3" marginTop="$4" marginBottom="$6" flexWrap="wrap">
+            <BentoCard size="small" flex={1} minWidth={150}>
+              <WhatIfSlider currentMonthlySpend={totalSpent || 1000} />
+            </BentoCard>
+            <BentoCard size="small" flex={1} minWidth={150}>
+              {/* Reuse pulse data if available for HookCard */}
+              <HookCard
+                merchantName={dashboardBlocks?.[0]?.title ?? "Top Spot"}
+                visitCount={5}
+                totalSpent={totalSpent * 0.15}
+              />
+            </BentoCard>
+          </XStack>
+        </Suspense>
 
         {/* BALANCE HISTORY */}
         <Text color="$color" fontSize={18} fontWeight="bold" marginBottom="$3">
           Balance Trend
         </Text>
-        <BalanceHistoryChart days={30} />
+        <Suspense
+          fallback={
+            <YStack padding="$4" alignItems="center">
+              <Spinner size="small" color="$accentColor" />
+            </YStack>
+          }
+        >
+          <BalanceHistoryChart days={30} />
+        </Suspense>
 
         {/* RECENT ACTIVITY */}
         <XStack justifyContent="space-between" alignItems="center" marginBottom="$3" marginTop="$6">
@@ -231,127 +314,131 @@ export default function HomeScreen() {
         </GlassyCard>
       </ScrollView>
 
-      {/* MODALS */}
-      <Modal
-        visible={showQuickCapture}
-        transparent
-        animationType="slide"
-        onRequestClose={() => setShowQuickCapture(false)}
-      >
-        <YStack flex={1} backgroundColor="rgba(0,0,0,0.5)" justifyContent="center" padding="$4">
-          <QuickCapture
-            onSuccess={() => setShowQuickCapture(false)}
-            onClose={() => setShowQuickCapture(false)}
-          />
-        </YStack>
-      </Modal>
-
-      <Modal
-        visible={showNetWorthSheet}
-        transparent
-        animationType="slide"
-        onRequestClose={() => setShowNetWorthSheet(false)}
-      >
-        <YStack flex={1} backgroundColor="rgba(0,0,0,0.5)" justifyContent="flex-end">
-          <YStack
-            backgroundColor="$background"
-            padding="$5"
-            borderTopLeftRadius={24}
-            borderTopRightRadius={24}
-            gap="$4"
-          >
-            <XStack justifyContent="space-between" alignItems="center">
-              <Text color="$color" fontSize={20} fontWeight="bold">
-                📈 Add to Net Worth
-              </Text>
-              <Button size="$3" circular chromeless onPress={() => setShowNetWorthSheet(false)}>
-                ✕
-              </Button>
-            </XStack>
-            <Text color="$secondaryText" fontSize={14}>
-              Enter the amount to add to your tracked net worth
-            </Text>
-            <XStack alignItems="center" gap="$2">
-              <Text color="$color" fontSize={32} fontWeight="bold">
-                €
-              </Text>
-              <YStack flex={1}>
-                <Text color="$secondaryText" fontSize={12}>
-                  Amount
-                </Text>
-                <XStack
-                  backgroundColor="$backgroundHover"
-                  borderRadius="$4"
-                  padding="$3"
-                  alignItems="center"
-                >
-                  <Text
-                    color={netWorthAmount ? "$color" : "$secondaryText"}
-                    fontSize={24}
-                    fontWeight="bold"
-                    flex={1}
-                  >
-                    {netWorthAmount || "0"}
-                  </Text>
-                </XStack>
-              </YStack>
-            </XStack>
-            <YStack gap="$2">
-              {[
-                ["1", "2", "3"],
-                ["4", "5", "6"],
-                ["7", "8", "9"],
-                [".", "0", "⌫"],
-              ].map((row, i) => (
-                <XStack key={i} gap="$2" justifyContent="center">
-                  {row.map((key) => (
-                    <Button
-                      key={key}
-                      size="$5"
-                      flex={1}
-                      backgroundColor="$backgroundHover"
-                      onPress={() => {
-                        if (key === "⌫") setNetWorthAmount((prev) => prev.slice(0, -1));
-                        else if (key === "." && netWorthAmount.includes(".")) {
-                        } else setNetWorthAmount((prev) => prev + key);
-                      }}
-                    >
-                      <Text color="$color" fontSize={20}>
-                        {key}
-                      </Text>
-                    </Button>
-                  ))}
-                </XStack>
-              ))}
-            </YStack>
-            <Button
-              size="$5"
-              backgroundColor={setOpeningBalance.isPending ? "$backgroundHover" : "#22c55e"}
-              color="white"
-              fontWeight="bold"
-              onPress={() => {
-                const amountInCents = Math.round(parseFloat(netWorthAmount) * 100);
-                setOpeningBalance.mutate(
-                  { amountMinor: amountInCents },
-                  {
-                    onSuccess: () => {
-                      setShowNetWorthSheet(false);
-                      setNetWorthAmount("");
-                    },
-                  },
-                );
-              }}
-              disabled={
-                !netWorthAmount || parseFloat(netWorthAmount) <= 0 || setOpeningBalance.isPending
-              }
-            >
-              {setOpeningBalance.isPending
-                ? "Adding..."
-                : `Add €${netWorthAmount || "0"} to Net Worth`}
-            </Button>
+      {/* MODALS - Conditionally mounted for better memory management */}
+      {showQuickCapture && (
+        <Modal
+          visible
+          transparent
+          animationType="slide"
+          onRequestClose={() => setShowQuickCapture(false)}
+        >
+          <YStack flex={1} backgroundColor="rgba(0,0,0,0.5)" justifyContent="center" padding="$4">
+            <QuickCapture
+              onSuccess={() => setShowQuickCapture(false)}
+              onClose={() => setShowQuickCapture(false)}
+            />
           </YStack>
-        </YStack>
-      </Modal>
+        </Modal>
+      )}
+
+      {showNetWorthSheet && (
+        <Modal
+          visible
+          transparent
+          animationType="slide"
+          onRequestClose={() => setShowNetWorthSheet(false)}
+        >
+          <YStack flex={1} backgroundColor="rgba(0,0,0,0.5)" justifyContent="flex-end">
+            <YStack
+              backgroundColor="$background"
+              padding="$5"
+              borderTopLeftRadius={24}
+              borderTopRightRadius={24}
+              gap="$4"
+            >
+              <XStack justifyContent="space-between" alignItems="center">
+                <Text color="$color" fontSize={20} fontWeight="bold">
+                  📈 Add to Net Worth
+                </Text>
+                <Button size="$3" circular chromeless onPress={() => setShowNetWorthSheet(false)}>
+                  ✕
+                </Button>
+              </XStack>
+              <Text color="$secondaryText" fontSize={14}>
+                Enter the amount to add to your tracked net worth
+              </Text>
+              <XStack alignItems="center" gap="$2">
+                <Text color="$color" fontSize={32} fontWeight="bold">
+                  €
+                </Text>
+                <YStack flex={1}>
+                  <Text color="$secondaryText" fontSize={12}>
+                    Amount
+                  </Text>
+                  <XStack
+                    backgroundColor="$backgroundHover"
+                    borderRadius="$4"
+                    padding="$3"
+                    alignItems="center"
+                  >
+                    <Text
+                      color={netWorthAmount ? "$color" : "$secondaryText"}
+                      fontSize={24}
+                      fontWeight="bold"
+                      flex={1}
+                    >
+                      {netWorthAmount || "0"}
+                    </Text>
+                  </XStack>
+                </YStack>
+              </XStack>
+              <YStack gap="$2">
+                {[
+                  ["1", "2", "3"],
+                  ["4", "5", "6"],
+                  ["7", "8", "9"],
+                  [".", "0", "⌫"],
+                ].map((row, i) => (
+                  <XStack key={i} gap="$2" justifyContent="center">
+                    {row.map((key) => (
+                      <Button
+                        key={key}
+                        size="$5"
+                        flex={1}
+                        backgroundColor="$backgroundHover"
+                        onPress={() => {
+                          if (key === "⌫") setNetWorthAmount((prev) => prev.slice(0, -1));
+                          else if (key === "." && netWorthAmount.includes(".")) {
+                          } else setNetWorthAmount((prev) => prev + key);
+                        }}
+                      >
+                        <Text color="$color" fontSize={20}>
+                          {key}
+                        </Text>
+                      </Button>
+                    ))}
+                  </XStack>
+                ))}
+              </YStack>
+              <Button
+                size="$5"
+                backgroundColor={setOpeningBalance.isPending ? "$backgroundHover" : "#22c55e"}
+                color="white"
+                fontWeight="bold"
+                onPress={() => {
+                  const amountInCents = Math.round(parseFloat(netWorthAmount) * 100);
+                  setOpeningBalance.mutate(
+                    { amountMinor: amountInCents },
+                    {
+                      onSuccess: () => {
+                        setShowNetWorthSheet(false);
+                        setNetWorthAmount("");
+                      },
+                    },
+                  );
+                }}
+                disabled={
+                  !netWorthAmount || parseFloat(netWorthAmount) <= 0 || setOpeningBalance.isPending
+                }
+              >
+                {setOpeningBalance.isPending
+                  ? "Adding..."
+                  : `Add €${netWorthAmount || "0"} to Net Worth`}
+              </Button>
+            </YStack>
+          </YStack>
+        </Modal>
+      )}
     </YStack>
   );
 }
