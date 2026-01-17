@@ -54,9 +54,9 @@ export default function AboutScreen() {
             <Heading>Our Vision: An Alive System</Heading>
             <Paragraph>
               Echo is designed to feel alive. It doesn&apos;t just show you data; it turns that data
-              into clear next actions. It catches anomalies before they become habits. It celebrates
-              your wins with &quot;Money Wrapped&quot; stories that make finance feel less like a
-              chore and more like a game you can win.
+              into actions. It catches anomalies before they become habits. It celebrates your wins
+              with &quot;Money Wrapped&quot; stories that make finance feel less like a chore and
+              more like a game you can win.
             </Paragraph>
 
             <Heading>Privacy & Trust</Heading>

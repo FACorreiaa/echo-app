@@ -85,9 +85,7 @@ export default function LandingScreen() {
           {/* HERO SECTION */}
           <FadeInView>
             <Title>Echo</Title>
-            <Subtitle>
-              The Alive Money OS that turns your transaction data into clear next actions.
-            </Subtitle>
+            <Subtitle>The Alive Money OS that turns your transaction data into actions.</Subtitle>
 
             <YStack space="$4" alignItems="center" width="100%" marginTop={10}>
               <YStack
