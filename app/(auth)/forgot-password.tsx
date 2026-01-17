@@ -144,6 +144,7 @@ export default function ForgotPasswordScreen() {
                   keyboardType="email-address"
                   editable={!isLoading}
                   error={emailError}
+                  forceDark
                 />
 
                 <YStack marginTop={10}>

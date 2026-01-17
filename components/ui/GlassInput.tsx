@@ -1,28 +1,43 @@
 /**
  * GlassInput - Theme-aware input component for auth forms
  * Uses Tamagui theme tokens for WCAG AA compliant contrast in both light and dark modes
+ * Supports forceDark prop for consistent styling on dark backgrounds
  */
 
+import { useTheme as useTamaguiTheme } from "@/contexts/ThemeContext";
 import { Eye, EyeOff } from "@tamagui/lucide-icons";
 import { useState } from "react";
 import { Pressable, StyleSheet, TextInput } from "react-native";
-import { Input, Label, styled, Text, useTheme, XStack, YStack } from "tamagui";
+import { Input, Label, styled, Text, XStack, YStack } from "tamagui";
+
+// Dark mode color constants
+const DARK_COLORS = {
+  background: "rgba(255, 255, 255, 0.08)",
+  border: "rgba(255, 255, 255, 0.15)",
+  text: "#ffffff",
+  placeholder: "rgba(255, 255, 255, 0.5)",
+  label: "rgba(255, 255, 255, 0.9)",
+};
+
+// Light mode color constants
+const LIGHT_COLORS = {
+  background: "rgba(0, 0, 0, 0.04)",
+  border: "rgba(0, 0, 0, 0.12)",
+  text: "#1a1a1a",
+  placeholder: "rgba(0, 0, 0, 0.4)",
+  label: "#1a1a1a",
+};
 
 // Styled Input that uses theme tokens for proper contrast
 const BaseGlassInput = styled(Input, {
-  backgroundColor: "$formInputBackground",
-  borderColor: "$formInputBorder",
   borderWidth: 1,
   borderRadius: 12,
-  color: "$color",
   height: 50,
   paddingHorizontal: 16,
-  placeholderTextColor: "$formInputPlaceholder",
 
   focusStyle: {
     borderColor: "$accentColor",
     borderWidth: 2,
-    backgroundColor: "transparent",
   },
 
   variants: {
@@ -42,12 +57,25 @@ const BaseGlassInput = styled(Input, {
 export type GlassInputProps = React.ComponentProps<typeof BaseGlassInput> & {
   error?: boolean;
   errorMessage?: string;
+  /** Force dark styling regardless of theme */
+  forceDark?: boolean;
 };
 
-export const GlassInput = ({ error, errorMessage, ...props }: GlassInputProps) => {
+export const GlassInput = ({ error, errorMessage, forceDark, ...props }: GlassInputProps) => {
+  const { isDark } = useTamaguiTheme();
+  const useDarkStyle = isDark || forceDark;
+  const colors = useDarkStyle ? DARK_COLORS : LIGHT_COLORS;
+
   return (
     <YStack>
-      <BaseGlassInput hasError={error} {...props} />
+      <BaseGlassInput
+        hasError={error}
+        backgroundColor={colors.background as any}
+        borderColor={(error ? "#ef4444" : colors.border) as any}
+        color={colors.text as any}
+        placeholderTextColor={colors.placeholder as any}
+        {...props}
+      />
       {error && errorMessage && (
         <Text color="#ef4444" fontSize={12} marginTop={4} marginLeft={4} fontFamily="$body">
           {errorMessage}
@@ -62,14 +90,20 @@ interface FormFieldProps extends GlassInputProps {
   label: string;
 }
 
-export const FormField = ({ label, ...props }: FormFieldProps) => (
-  <YStack gap="$2">
-    <Label fontSize={14} fontWeight="700" color="$formLabel">
-      {label}
-    </Label>
-    <GlassInput {...props} />
-  </YStack>
-);
+export const FormField = ({ label, forceDark, ...props }: FormFieldProps) => {
+  const { isDark } = useTamaguiTheme();
+  const useDarkStyle = isDark || forceDark;
+  const colors = useDarkStyle ? DARK_COLORS : LIGHT_COLORS;
+
+  return (
+    <YStack gap="$2">
+      <Label fontSize={14} fontWeight="700" color={colors.label as any}>
+        {label}
+      </Label>
+      <GlassInput forceDark={forceDark} {...props} />
+    </YStack>
+  );
+};
 
 // Password input with visibility toggle
 interface GlassPasswordInputProps {
@@ -79,6 +113,8 @@ interface GlassPasswordInputProps {
   error?: boolean;
   errorMessage?: string;
   editable?: boolean;
+  /** Force dark styling regardless of theme */
+  forceDark?: boolean;
 }
 
 export const GlassPasswordInput = ({
@@ -88,22 +124,19 @@ export const GlassPasswordInput = ({
   error,
   errorMessage,
   editable = true,
+  forceDark,
 }: GlassPasswordInputProps) => {
   const [showPassword, setShowPassword] = useState(false);
-  const theme = useTheme();
+  const { isDark } = useTamaguiTheme();
+  const useDarkStyle = isDark || forceDark;
+  const colors = useDarkStyle ? DARK_COLORS : LIGHT_COLORS;
 
   const toggleVisibility = () => {
     setShowPassword(!showPassword);
   };
 
-  // Use theme tokens for proper contrast
-  const backgroundColor = error
-    ? "rgba(239, 68, 68, 0.05)"
-    : theme.formInputBackground?.val || "rgba(255, 255, 255, 0.05)";
-  const borderColor = error ? "#ef4444" : theme.formInputBorder?.val || "rgba(255, 255, 255, 0.15)";
-  const textColor = theme.color?.val || "#fff";
-  const placeholderColor = theme.formInputPlaceholder?.val || "#636366";
-  const iconColor = theme.color?.val || "#fff";
+  const backgroundColor = error ? "rgba(239, 68, 68, 0.05)" : colors.background;
+  const borderColor = error ? "#ef4444" : colors.border;
 
   return (
     <YStack>
@@ -114,13 +147,13 @@ export const GlassPasswordInput = ({
             {
               backgroundColor,
               borderColor,
-              color: textColor,
+              color: colors.text,
             },
           ]}
           value={value}
           onChangeText={onChangeText}
           placeholder={placeholder}
-          placeholderTextColor={placeholderColor}
+          placeholderTextColor={colors.placeholder}
           secureTextEntry={!showPassword}
           editable={editable}
           autoCapitalize="none"
@@ -128,9 +161,9 @@ export const GlassPasswordInput = ({
         />
         <Pressable onPress={toggleVisibility} style={styles.toggleButton}>
           {showPassword ? (
-            <EyeOff size={20} color={iconColor as any} />
+            <EyeOff size={20} color={colors.text} />
           ) : (
-            <Eye size={20} color={iconColor as any} />
+            <Eye size={20} color={colors.text} />
           )}
         </Pressable>
       </XStack>
@@ -148,14 +181,20 @@ interface PasswordFieldProps extends GlassPasswordInputProps {
   label: string;
 }
 
-export const PasswordField = ({ label, ...props }: PasswordFieldProps) => (
-  <YStack gap="$2">
-    <Label fontSize={14} fontWeight="700" color="$formLabel">
-      {label}
-    </Label>
-    <GlassPasswordInput {...props} />
-  </YStack>
-);
+export const PasswordField = ({ label, forceDark, ...props }: PasswordFieldProps) => {
+  const { isDark } = useTamaguiTheme();
+  const useDarkStyle = isDark || forceDark;
+  const colors = useDarkStyle ? DARK_COLORS : LIGHT_COLORS;
+
+  return (
+    <YStack gap="$2">
+      <Label fontSize={14} fontWeight="700" color={colors.label as any}>
+        {label}
+      </Label>
+      <GlassPasswordInput forceDark={forceDark} {...props} />
+    </YStack>
+  );
+};
 
 const styles = StyleSheet.create({
   input: {

@@ -136,6 +136,7 @@ export default function LoginScreen() {
                   keyboardType="email-address"
                   editable={!isLoading}
                   error={emailError}
+                  forceDark
                 />
 
                 <PasswordField
@@ -148,6 +149,7 @@ export default function LoginScreen() {
                   }}
                   editable={!isLoading}
                   error={passwordError}
+                  forceDark
                 />
 
                 <YStack marginTop={10}>

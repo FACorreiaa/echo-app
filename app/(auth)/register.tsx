@@ -165,6 +165,7 @@ export default function RegisterScreen() {
                   keyboardType="email-address"
                   editable={!isLoading}
                   error={emailError}
+                  forceDark
                 />
 
                 <FormField
@@ -177,6 +178,7 @@ export default function RegisterScreen() {
                   }}
                   autoCapitalize="none"
                   editable={!isLoading}
+                  forceDark
                 />
 
                 <PasswordField
@@ -194,6 +196,7 @@ export default function RegisterScreen() {
                       ? "Must be at least 8 characters"
                       : undefined
                   }
+                  forceDark
                 />
 
                 <PasswordField
@@ -207,6 +210,7 @@ export default function RegisterScreen() {
                   editable={!isLoading}
                   error={confirmPasswordError}
                   errorMessage={confirmPasswordError ? "Passwords don't match" : undefined}
+                  forceDark
                 />
 
                 <YStack marginTop={10}>
