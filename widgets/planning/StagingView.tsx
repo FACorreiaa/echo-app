@@ -1,4 +1,12 @@
-import { ChevronDown, ChevronUp, Edit3, GripVertical, Trash2 } from "@tamagui/lucide-icons";
+import {
+  AlertCircle,
+  Check,
+  CheckCircle,
+  ChevronDown,
+  ChevronUp,
+  GripVertical,
+  Trash2,
+} from "@tamagui/lucide-icons";
 import { useState } from "react";
 import { Pressable } from "react-native";
 import { Button, ScrollView, Text, XStack, YStack } from "tamagui";
@@ -20,6 +28,8 @@ export interface AnalysisNode {
   type: NodeType;
   tag: ItemTag;
   confidence: number;
+  needsReview: boolean; // confidence < 0.80
+  isAutoApproved: boolean; // confidence >= 0.80
   excelCell: string;
   excelRow: number;
   formula?: string;
@@ -32,6 +42,8 @@ export interface AnalysisTreeResponse {
   totalGroups: number;
   totalItems: number;
   overallConfidence: number;
+  itemsNeedingReview: number; // Count of items with confidence < 0.80
+  autoApprovedItems: number; // Count of items with confidence >= 0.80
 }
 
 // ============================================================================
@@ -81,19 +93,17 @@ const StagingItem = ({
   // Void usage to satisfy linter - onChangeTag is passed to children
   void onChangeTag;
 
-  // Color-code based on ML confidence
-  const borderColor =
-    node.confidence < 0.7
-      ? "#ef4444" // red - low confidence
-      : node.confidence < 0.85
-        ? "#f59e0b" // amber - medium confidence
-        : "rgba(255, 255, 255, 0.15)"; // default
-
-  const isLowConfidence = node.confidence < 0.7;
+  // Use API-provided review status instead of local calculation
+  // Colors match theme's healthWarning (#f59e0b) and healthGood (#22c55e)
+  const borderColor = node.needsReview
+    ? "#f59e0b" // Needs review - orange (healthWarning)
+    : node.isAutoApproved
+      ? "#22c55e" // Auto-approved - green (healthGood)
+      : undefined; // Default
 
   return (
     <YStack marginVertical={4}>
-      <GlassyCard padding={12} borderColor={borderColor} borderWidth={isLowConfidence ? 2 : 1}>
+      <GlassyCard padding={12} borderColor={borderColor} borderWidth={node.needsReview ? 2 : 1}>
         <XStack alignItems="center" gap="$2">
           {/* Drag handle */}
           <GripVertical size={18} color="rgba(255,255,255,0.4)" />
@@ -132,10 +142,34 @@ const StagingItem = ({
               <Text fontSize={11} color="rgba(255,255,255,0.5)">
                 {node.excelCell} • {isGroup ? "GROUP" : "ITEM"}
               </Text>
-              {isLowConfidence && (
-                <Text fontSize={10} color="#ef4444" fontWeight="700">
-                  LOW CONFIDENCE
-                </Text>
+              {/* Auto-approved badge */}
+              {node.isAutoApproved && (
+                <XStack
+                  backgroundColor="rgba(34, 197, 94, 0.15)"
+                  paddingHorizontal={6}
+                  paddingVertical={2}
+                  borderRadius={4}
+                  alignItems="center"
+                  gap={4}
+                >
+                  <Check size={10} color="#22c55e" />
+                  <Text fontSize={9} color="#22c55e" fontWeight="600">
+                    AUTO
+                  </Text>
+                </XStack>
+              )}
+              {/* Needs review badge */}
+              {node.needsReview && (
+                <XStack
+                  backgroundColor="rgba(245, 158, 11, 0.15)"
+                  paddingHorizontal={6}
+                  paddingVertical={2}
+                  borderRadius={4}
+                >
+                  <Text fontSize={9} color="#f59e0b" fontWeight="600">
+                    REVIEW
+                  </Text>
+                </XStack>
               )}
             </XStack>
           </YStack>
@@ -297,6 +331,47 @@ export const StagingView = ({ tree, onFinalize, onBack, onLearnCorrection }: Sta
   const totalGroups = nodes.length;
   const totalItems = nodes.reduce((sum, g) => sum + (g.children?.length || 0), 0);
 
+  // Calculate review counts from current nodes state
+  const currentItemsNeedingReview = nodes.reduce(
+    (sum, g) => sum + (g.children?.filter((c) => c.needsReview).length || 0),
+    0,
+  );
+  const currentAutoApprovedItems = nodes.reduce(
+    (sum, g) => sum + (g.children?.filter((c) => c.isAutoApproved).length || 0),
+    0,
+  );
+
+  // Batch approve all high-confidence items
+  const handleApproveAllHighConfidence = () => {
+    // Get all auto-approved items for immediate finalization
+    const autoApprovedTree: AnalysisTreeResponse = {
+      ...tree,
+      nodes: nodes
+        .map((group) => ({
+          ...group,
+          children: group.children?.filter((c) => c.isAutoApproved) || [],
+        }))
+        .filter((g) => g.children && g.children.length > 0),
+      totalGroups: nodes.filter((g) => g.children?.some((c) => c.isAutoApproved)).length,
+      totalItems: currentAutoApprovedItems,
+      itemsNeedingReview: 0,
+      autoApprovedItems: currentAutoApprovedItems,
+    };
+
+    // Keep only items needing review in the staging view
+    setNodes((prev) =>
+      prev
+        .map((group) => ({
+          ...group,
+          children: group.children?.filter((c) => c.needsReview) || [],
+        }))
+        .filter((g) => g.children && g.children.length > 0),
+    );
+
+    // Finalize auto-approved items
+    onFinalize(autoApprovedTree);
+  };
+
   const handleFinalize = () => {
     onFinalize({
       ...tree,
@@ -316,7 +391,8 @@ export const StagingView = ({ tree, onFinalize, onBack, onLearnCorrection }: Sta
         <Text fontSize={14} color="rgba(255,255,255,0.7)" marginTop={4}>
           {totalGroups} groups • {totalItems} items • {tree.sheetName}
         </Text>
-        {tree.overallConfidence < 0.8 && (
+        {/* Review summary banner */}
+        {currentItemsNeedingReview > 0 && (
           <XStack
             backgroundColor="rgba(245, 158, 11, 0.15)"
             padding={12}
@@ -325,11 +401,41 @@ export const StagingView = ({ tree, onFinalize, onBack, onLearnCorrection }: Sta
             alignItems="center"
             gap={8}
           >
-            <Edit3 size={16} color="#f59e0b" />
+            <AlertCircle size={16} color="#f59e0b" />
             <Text fontSize={12} color="#f59e0b" flex={1}>
-              Some items have low confidence. Tap to review and correct.
+              {currentItemsNeedingReview} item{currentItemsNeedingReview !== 1 ? "s" : ""} need
+              review
             </Text>
           </XStack>
+        )}
+
+        {/* All approved banner */}
+        {currentAutoApprovedItems > 0 && currentItemsNeedingReview === 0 && (
+          <XStack
+            backgroundColor="rgba(34, 197, 94, 0.15)"
+            padding={12}
+            borderRadius={8}
+            marginTop={12}
+            alignItems="center"
+            gap={8}
+          >
+            <CheckCircle size={16} color="#22c55e" />
+            <Text fontSize={12} color="#22c55e" flex={1}>
+              All {currentAutoApprovedItems} items auto-approved ✓
+            </Text>
+          </XStack>
+        )}
+
+        {/* Batch approval button */}
+        {currentAutoApprovedItems > 0 && currentItemsNeedingReview > 0 && (
+          <GlassyButton variant="outline" onPress={handleApproveAllHighConfidence} marginTop={12}>
+            <XStack alignItems="center" gap={8}>
+              <CheckCircle size={16} color="#22c55e" />
+              <Text color="white" fontWeight="600">
+                Approve all {currentAutoApprovedItems} high-confidence items
+              </Text>
+            </XStack>
+          </GlassyButton>
         )}
       </YStack>
 

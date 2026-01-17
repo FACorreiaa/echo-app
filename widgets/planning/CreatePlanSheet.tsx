@@ -15,6 +15,7 @@ import {
   useAnalyzeExcel,
   useCreatePlan,
   useImportFromExcel,
+  useLearnFromExcelCorrection,
   type ExcelSheetInfo,
 } from "@/lib/hooks/use-plans";
 import { CategoryGroupBuilder, type BuilderGroup } from "./CategoryGroupBuilder";
@@ -81,6 +82,7 @@ export function CreatePlanSheet({
   const createPlan = useCreatePlan();
   const analyzeExcel = useAnalyzeExcel();
   const importFromExcel = useImportFromExcel();
+  const learnCorrection = useLearnFromExcelCorrection();
 
   const resetForm = () => {
     setMode("select");
@@ -1135,9 +1137,14 @@ export function CreatePlanSheet({
               setMode("confirm-mapping");
               setAnalysisTree(null);
             }}
-            onLearnCorrection={(itemName, tag) => {
-              // TODO: Call LearnFromExcelCorrection API
-              console.log("Learn correction:", itemName, tag);
+            onLearnCorrection={async (itemName, tag) => {
+              // Call LearnFromExcelCorrection API to teach the ML model
+              try {
+                await learnCorrection.mutateAsync({ itemName, correctTag: tag });
+                console.log("ML correction saved:", itemName, "->", tag);
+              } catch (error) {
+                console.error("Failed to save ML correction:", error);
+              }
             }}
           />
         )}

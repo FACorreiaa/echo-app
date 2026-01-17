@@ -764,3 +764,43 @@ function mapItemTypeToProto(type?: string): number {
       return 0;
   }
 }
+
+// ============================================================================
+// ML Corrections
+// ============================================================================
+
+/**
+ * Map frontend tag to proto enum value
+ */
+export function mapTagToProto(tag: string): number {
+  switch (tag) {
+    case "B":
+      return 1; // ANALYSIS_ITEM_TAG_BUDGET
+    case "R":
+      return 2; // ANALYSIS_ITEM_TAG_RECURRING
+    case "S":
+      return 3; // ANALYSIS_ITEM_TAG_SAVINGS
+    case "IN":
+      return 4; // ANALYSIS_ITEM_TAG_INCOME
+    case "D":
+      return 5; // ANALYSIS_ITEM_TAG_DEBT
+    default:
+      return 0; // UNSPECIFIED
+  }
+}
+
+/**
+ * Teach the ML model from user corrections in the staging view
+ * Saves correction to user_ml_corrections table and updates in-memory model
+ */
+export function useLearnFromExcelCorrection() {
+  return useMutation({
+    mutationFn: async (input: { itemName: string; correctTag: string }) => {
+      const response = await planClient.learnFromExcelCorrection({
+        itemName: input.itemName,
+        correctTag: mapTagToProto(input.correctTag),
+      });
+      return response.success;
+    },
+  });
+}
