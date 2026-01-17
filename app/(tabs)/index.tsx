@@ -5,7 +5,7 @@ import { ActivityIndicator, Modal, ScrollView } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Button, Spinner, Text, XStack, YStack } from "tamagui";
 
-import { AlertBell, Avatar, GlassyCard } from "@/components";
+import { AlertBell, Avatar, HUDCard, ScanLine, GridBackground } from "@/components";
 import { QuickCapture } from "@/components";
 import { useSetOpeningBalance } from "@/lib/hooks/use-balance";
 import { useDashboardBlocks } from "@/lib/hooks/use-insights";
@@ -110,16 +110,19 @@ export default function HomeScreen() {
   );
 
   return (
-    <YStack flex={1} backgroundColor="$background" paddingTop={insets.top}>
+    <YStack flex={1} backgroundColor="$hudFoundation" paddingTop={insets.top}>
+      <GridBackground gridSize={20} opacity={0.08} />
+      <ScanLine height={1200} duration={6000} opacity={0.06} />
+
       <ScrollView contentContainerStyle={{ flexGrow: 1, padding: 20, paddingBottom: 100 }}>
-        {/* HEADER */}
+        {/* HEADER - TACTICAL OS STYLE */}
         <XStack justifyContent="space-between" alignItems="center" marginBottom="$4">
           <YStack>
-            <Text color="$secondaryText" fontSize={14}>
-              {getGreeting()}
+            <Text color="$hudActive" fontSize={10} fontWeight="bold" letterSpacing={1.5}>
+              {getGreeting().toUpperCase()}
             </Text>
-            <Text color="$color" fontSize={24} fontWeight="bold">
-              {user?.displayName || user?.username || "Welcome"}
+            <Text color="$color" fontSize={24} fontWeight="bold" letterSpacing={0.5}>
+              {user?.displayName || user?.username || "COMMANDER"}
             </Text>
           </YStack>
           <XStack gap="$2">
@@ -127,8 +130,10 @@ export default function HomeScreen() {
             <Button
               size="$3"
               circular
-              backgroundColor="$backgroundHover"
-              icon={<Settings size={20} color="$color" />}
+              backgroundColor="$hudDepth"
+              borderWidth={1}
+              borderColor="$hudBorder"
+              icon={<Settings size={20} color="$hudActive" />}
               onPress={() => router.push("/(tabs)/settings")}
             />
           </XStack>
@@ -260,20 +265,22 @@ export default function HomeScreen() {
           <BalanceHistoryChart days={30} />
         </Suspense>
 
-        {/* RECENT ACTIVITY */}
+        {/* RECENT ACTIVITY - TACTICAL DATA LOG */}
         <XStack justifyContent="space-between" alignItems="center" marginBottom="$3" marginTop="$6">
-          <Text color="$color" fontSize={18} fontWeight="bold">
-            Recent Activity
+          <Text color="$color" fontSize={16} fontWeight="bold" letterSpacing={0.5}>
+            DATA LOG
           </Text>
           <Text
-            color="$accentColor"
-            fontSize={14}
+            color="$hudActive"
+            fontSize={12}
+            fontWeight="bold"
+            letterSpacing={0.5}
             onPress={() => router.push("/(tabs)/transactions")}
           >
-            See All
+            VIEW ALL
           </Text>
         </XStack>
-        <GlassyCard>
+        <HUDCard>
           <YStack>
             {activityLoading ? (
               <XStack padding="$4" justifyContent="center">
@@ -282,7 +289,9 @@ export default function HomeScreen() {
             ) : recentActivity.length === 0 ? (
               <YStack padding="$4" alignItems="center">
                 <Text fontSize={24}>📋</Text>
-                <Text color="$secondaryText">No recent transactions</Text>
+                <Text color="$secondaryText" letterSpacing={0.5}>
+                  NO DATA ENTRIES
+                </Text>
               </YStack>
             ) : (
               recentActivity.map((tx, index) => (
@@ -292,18 +301,23 @@ export default function HomeScreen() {
                   alignItems="center"
                   gap="$3"
                   borderBottomWidth={index < recentActivity.length - 1 ? 1 : 0}
-                  borderBottomColor="$borderColor"
+                  borderBottomColor="$hudBorder"
                 >
                   <Avatar name={tx.name} size="md" />
                   <YStack flex={1}>
-                    <Text color="$color" fontWeight="600">
-                      {tx.name}
+                    <Text color="$color" fontWeight="600" fontSize={14}>
+                      {tx.name.toUpperCase()}
                     </Text>
-                    <Text color="$secondaryText" fontSize={12}>
-                      {formatRelativeDate(tx.date)}
+                    <Text color="$secondaryText" fontSize={11} letterSpacing={0.5}>
+                      {formatRelativeDate(tx.date)?.toUpperCase()}
                     </Text>
                   </YStack>
-                  <Text color={tx.amount < 0 ? "$color" : "#22c55e"} fontSize={16} fontWeight="600">
+                  <Text
+                    color={tx.amount < 0 ? "$hudActive" : "$healthGood"}
+                    fontSize={15}
+                    fontWeight="700"
+                    letterSpacing={0.5}
+                  >
                     {tx.amount < 0 ? "-" : "+"}
                     {formatCurrency(Math.abs(tx.amount) / 100)}
                   </Text>
@@ -311,7 +325,7 @@ export default function HomeScreen() {
               ))
             )}
           </YStack>
-        </GlassyCard>
+        </HUDCard>
       </ScrollView>
 
       {/* MODALS - Conditionally mounted for better memory management */}

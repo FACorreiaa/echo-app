@@ -5,50 +5,59 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ScrollView, styled, Text, XStack, YStack } from "tamagui";
 
 import {
-  FormField,
-  GlassyButton,
-  GlassyCard,
+  GridBackground,
+  HUDButton,
+  HUDCard,
+  HUDInput,
   LoginTransition as LoginSuccessAnimation,
-  PasswordField,
+  ScanLine,
   SocialLoginRow,
 } from "@/components";
 import { useLogin } from "@/lib/hooks/use-auth";
 import { getFriendlyErrorMessage } from "@/lib/utils/error-messages";
 
 const Title = styled(Text, {
-  color: "white",
+  color: "$hudActive",
   fontSize: 32,
   fontWeight: "900",
   fontFamily: "$heading",
   textAlign: "center",
   marginBottom: 8,
-  textShadowColor: "rgba(0, 0, 0, 0.3)",
-  textShadowOffset: { width: 0, height: 1 },
-  textShadowRadius: 4,
+  letterSpacing: 1,
+  textShadowColor: "rgba(45, 166, 250, 0.5)",
+  textShadowOffset: { width: 0, height: 0 },
+  textShadowRadius: 10,
 });
 
 const Subtitle = styled(Text, {
-  color: "rgba(255, 255, 255, 0.8)",
-  fontSize: 16,
+  color: "rgba(255, 255, 255, 0.6)",
+  fontSize: 14,
   fontFamily: "$body",
   textAlign: "center",
   marginBottom: 32,
+  letterSpacing: 2,
+  textTransform: "uppercase",
 });
 
 const ErrorBanner = styled(YStack, {
-  backgroundColor: "rgba(239, 68, 68, 0.1)",
-  borderRadius: 12,
+  backgroundColor: "rgba(255, 45, 85, 0.1)",
+  borderRadius: 4,
   padding: 16,
   borderWidth: 1,
-  borderColor: "rgba(239, 68, 68, 0.3)",
+  borderColor: "$hudWarning",
   marginBottom: 16,
+  shadowColor: "$hudWarning",
+  shadowOffset: { width: 0, height: 0 },
+  shadowOpacity: 0.2,
+  shadowRadius: 10,
 });
 
 const ErrorText = styled(Text, {
-  color: "#ef4444",
-  fontSize: 14,
+  color: "$hudWarning",
+  fontSize: 13,
   textAlign: "center",
   fontFamily: "$body",
+  letterSpacing: 0.5,
 });
 
 export default function LoginScreen() {
@@ -99,8 +108,11 @@ export default function LoginScreen() {
     <>
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
-        style={{ flex: 1 }}
+        style={{ flex: 1, backgroundColor: "#020203" }}
       >
+        <GridBackground gridSize={20} opacity={0.08} />
+        <ScanLine height={800} duration={5000} opacity={0.08} />
+
         <ScrollView
           contentContainerStyle={{
             flexGrow: 1,
@@ -112,11 +124,11 @@ export default function LoginScreen() {
         >
           <YStack maxWidth={500} width="100%" alignSelf="center" space="$4">
             <YStack marginBottom={20}>
-              <Title>Welcome Back</Title>
-              <Subtitle>Sign in to your Echo account</Subtitle>
+              <Title>Login</Title>
+              <Subtitle>Welcome back to Echo</Subtitle>
             </YStack>
 
-            <GlassyCard forceDark>
+            <HUDCard>
               {error ? (
                 <ErrorBanner>
                   <ErrorText>{error}</ErrorText>
@@ -124,7 +136,7 @@ export default function LoginScreen() {
               ) : null}
 
               <YStack space="$4">
-                <FormField
+                <HUDInput
                   label="Email"
                   placeholder="you@example.com"
                   value={email}
@@ -136,10 +148,9 @@ export default function LoginScreen() {
                   keyboardType="email-address"
                   editable={!isLoading}
                   error={emailError}
-                  forceDark
                 />
 
-                <PasswordField
+                <HUDInput
                   label="Password"
                   placeholder="••••••••"
                   value={password}
@@ -147,24 +158,18 @@ export default function LoginScreen() {
                     setPassword(text);
                     if (error) setError("");
                   }}
+                  secureTextEntry
                   editable={!isLoading}
                   error={passwordError}
-                  forceDark
                 />
 
                 <YStack marginTop={10}>
-                  <GlassyButton
-                    onPress={handleLogin}
-                    disabled={isLoading}
-                    opacity={isLoading ? 0.7 : 1}
-                  >
-                    <Text color="white" fontWeight="700">
-                      {isLoading ? "Signing in..." : "Sign In"}
-                    </Text>
-                  </GlassyButton>
+                  <HUDButton onPress={handleLogin} disabled={isLoading} variant="primary" fullWidth>
+                    {isLoading ? "Signing in..." : "Login"}
+                  </HUDButton>
                 </YStack>
               </YStack>
-            </GlassyCard>
+            </HUDCard>
 
             {/* Social Login Options */}
             <YStack marginTop={24}>
@@ -179,19 +184,35 @@ export default function LoginScreen() {
 
             <XStack justifyContent="center" marginTop={16}>
               <Link href="/forgot-password" asChild>
-                <Text color="rgba(255, 255, 255, 0.7)" fontSize={14} fontFamily="$body">
-                  Forgot your password?
+                <Text
+                  color="rgba(255, 255, 255, 0.5)"
+                  fontSize={12}
+                  fontFamily="$body"
+                  letterSpacing={0.5}
+                >
+                  Forgot password?
                 </Text>
               </Link>
             </XStack>
 
             <XStack justifyContent="center" marginTop={12}>
-              <Text color="rgba(255, 255, 255, 0.7)" fontSize={14} fontFamily="$body">
-                Don&apos;t have an account?{" "}
+              <Text
+                color="rgba(255, 255, 255, 0.5)"
+                fontSize={12}
+                fontFamily="$body"
+                letterSpacing={0.5}
+              >
+                New to Echo?{" "}
               </Text>
               <Link href="/register" asChild>
-                <Text color="$accentColor" fontSize={14} fontWeight="600" fontFamily="$body">
-                  Sign Up
+                <Text
+                  color="$hudActive"
+                  fontSize={12}
+                  fontWeight="700"
+                  fontFamily="$body"
+                  letterSpacing={0.5}
+                >
+                  Register
                 </Text>
               </Link>
             </XStack>

@@ -1,5 +1,5 @@
-import React, { useMemo } from "react";
 import { LinearGradient } from "expo-linear-gradient";
+import React, { useMemo } from "react";
 import { StyleSheet } from "react-native";
 import { YStack } from "tamagui";
 
@@ -8,14 +8,14 @@ import { useTheme } from "@/contexts/ThemeContext";
 export const GradientBackground = React.memo(({ children }: { children?: React.ReactNode }) => {
   const { isLight } = useTheme();
 
-  // Static gradient background with futuristic finance OS aesthetic
+  // Static gradient background with adaptive theming
   const gradientColors = useMemo(() => {
     if (isLight) {
-      // Light mode: Soft futuristic gradient with subtle blue tint
+      // Light mode: Clean, bright, minimal
       return [
-        "#f5f7fa", // Top: soft gray-blue
-        "#e8ecf4", // Middle: lighter blue-gray
-        "#dce2ed", // Bottom: deeper blue-gray
+        "#f8fafc", // Top: almost white
+        "#f1f5f9", // Middle: light gray
+        "#e2e8f0", // Bottom: soft gray
       ] as const;
     } else {
       // Dark mode: Deep navy/charcoal with holographic depth

@@ -5,50 +5,59 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ScrollView, styled, Text, XStack, YStack } from "tamagui";
 
 import {
-  FormField,
-  GlassyButton,
-  GlassyCard,
+  GridBackground,
+  HUDButton,
+  HUDCard,
+  HUDInput,
   LoginTransition as LoginSuccessAnimation,
-  PasswordField,
+  ScanLine,
   SocialLoginRow,
 } from "@/components";
 import { useRegister } from "@/lib/hooks/use-auth";
 import { getFriendlyErrorMessage } from "@/lib/utils/error-messages";
 
 const Title = styled(Text, {
-  color: "white",
+  color: "$hudActive",
   fontSize: 32,
   fontWeight: "900",
   fontFamily: "$heading",
   textAlign: "center",
   marginBottom: 8,
-  textShadowColor: "rgba(0, 0, 0, 0.3)",
-  textShadowOffset: { width: 0, height: 1 },
-  textShadowRadius: 4,
+  letterSpacing: 1,
+  textShadowColor: "rgba(45, 166, 250, 0.5)",
+  textShadowOffset: { width: 0, height: 0 },
+  textShadowRadius: 10,
 });
 
 const Subtitle = styled(Text, {
-  color: "rgba(255, 255, 255, 0.8)",
-  fontSize: 16,
+  color: "rgba(255, 255, 255, 0.6)",
+  fontSize: 14,
   fontFamily: "$body",
   textAlign: "center",
   marginBottom: 32,
+  letterSpacing: 2,
+  textTransform: "uppercase",
 });
 
 const ErrorBanner = styled(YStack, {
-  backgroundColor: "rgba(239, 68, 68, 0.1)",
-  borderRadius: 12,
+  backgroundColor: "rgba(255, 45, 85, 0.1)",
+  borderRadius: 4,
   padding: 16,
   borderWidth: 1,
-  borderColor: "rgba(239, 68, 68, 0.3)",
+  borderColor: "$hudWarning",
   marginBottom: 16,
+  shadowColor: "$hudWarning",
+  shadowOffset: { width: 0, height: 0 },
+  shadowOpacity: 0.2,
+  shadowRadius: 10,
 });
 
 const ErrorText = styled(Text, {
-  color: "#ef4444",
-  fontSize: 14,
+  color: "$hudWarning",
+  fontSize: 13,
   textAlign: "center",
   fontFamily: "$body",
+  letterSpacing: 0.5,
 });
 
 export default function RegisterScreen() {
@@ -125,9 +134,12 @@ export default function RegisterScreen() {
     <>
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
-        style={{ flex: 1 }}
+        style={{ flex: 1, backgroundColor: "#020203" }}
         keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 20}
       >
+        <GridBackground gridSize={20} opacity={0.08} />
+        <ScanLine height={1000} duration={5000} opacity={0.08} />
+
         <ScrollView
           contentContainerStyle={{
             flexGrow: 1,
@@ -141,11 +153,11 @@ export default function RegisterScreen() {
         >
           <YStack maxWidth={500} width="100%" alignSelf="center" space="$4">
             <YStack marginBottom={20}>
-              <Title>Join Echo</Title>
-              <Subtitle>Start your intelligent financial journey</Subtitle>
+              <Title>Register</Title>
+              <Subtitle>Create your Echo account</Subtitle>
             </YStack>
 
-            <GlassyCard forceDark>
+            <HUDCard>
               {error ? (
                 <ErrorBanner>
                   <ErrorText>{error}</ErrorText>
@@ -153,7 +165,7 @@ export default function RegisterScreen() {
               ) : null}
 
               <YStack space="$4">
-                <FormField
+                <HUDInput
                   label="Email"
                   placeholder="you@example.com"
                   value={email}
@@ -165,10 +177,9 @@ export default function RegisterScreen() {
                   keyboardType="email-address"
                   editable={!isLoading}
                   error={emailError}
-                  forceDark
                 />
 
-                <FormField
+                <HUDInput
                   label="Username (Optional)"
                   placeholder="johndoe"
                   value={username}
@@ -178,10 +189,9 @@ export default function RegisterScreen() {
                   }}
                   autoCapitalize="none"
                   editable={!isLoading}
-                  forceDark
                 />
 
-                <PasswordField
+                <HUDInput
                   label="Password"
                   placeholder="Min. 8 characters"
                   value={password}
@@ -189,17 +199,17 @@ export default function RegisterScreen() {
                     setPassword(text);
                     clearError();
                   }}
+                  secureTextEntry
                   editable={!isLoading}
                   error={passwordError}
-                  errorMessage={
+                  helperText={
                     hasSubmitted && password && password.length < 8
                       ? "Must be at least 8 characters"
                       : undefined
                   }
-                  forceDark
                 />
 
-                <PasswordField
+                <HUDInput
                   label="Confirm Password"
                   placeholder="••••••••"
                   value={confirmPassword}
@@ -207,25 +217,24 @@ export default function RegisterScreen() {
                     setConfirmPassword(text);
                     clearError();
                   }}
+                  secureTextEntry
                   editable={!isLoading}
                   error={confirmPasswordError}
-                  errorMessage={confirmPasswordError ? "Passwords don't match" : undefined}
-                  forceDark
+                  helperText={confirmPasswordError ? "Passwords don't match" : undefined}
                 />
 
                 <YStack marginTop={10}>
-                  <GlassyButton
+                  <HUDButton
                     onPress={handleRegister}
                     disabled={isLoading}
-                    opacity={isLoading ? 0.7 : 1}
+                    variant="primary"
+                    fullWidth
                   >
-                    <Text color="white" fontWeight="700">
-                      {isLoading ? "Creating Account..." : "Create Account"}
-                    </Text>
-                  </GlassyButton>
+                    {isLoading ? "Creating account..." : "Register"}
+                  </HUDButton>
                 </YStack>
               </YStack>
-            </GlassyCard>
+            </HUDCard>
 
             {/* Social Login Options */}
             <YStack marginTop={24}>
@@ -239,12 +248,23 @@ export default function RegisterScreen() {
             </YStack>
 
             <XStack justifyContent="center" marginTop={20} marginBottom={40}>
-              <Text color="rgba(255, 255, 255, 0.7)" fontSize={14} fontFamily="$body">
+              <Text
+                color="rgba(255, 255, 255, 0.5)"
+                fontSize={12}
+                fontFamily="$body"
+                letterSpacing={0.5}
+              >
                 Already have an account?{" "}
               </Text>
               <Link href="/login" asChild>
-                <Text color="$accentColor" fontSize={14} fontWeight="600" fontFamily="$body">
-                  Sign In
+                <Text
+                  color="$hudActive"
+                  fontSize={12}
+                  fontWeight="700"
+                  fontFamily="$body"
+                  letterSpacing={0.5}
+                >
+                  Login
                 </Text>
               </Link>
             </XStack>

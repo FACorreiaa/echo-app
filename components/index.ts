@@ -38,3 +38,6 @@ export * from "@/widgets/ingestion";
 
 // Plan - Re-export
 export * from "@/widgets/planning";
+
+// HUD - Tactical OS Components
+export * from "./hud";
