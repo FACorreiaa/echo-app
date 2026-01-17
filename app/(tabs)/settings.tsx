@@ -184,7 +184,9 @@ export default function SettingsScreen() {
                       <ChevronRight size={20} color="$secondaryText" />
                     )
                   }
-                  onPress={() => {}}
+                  onPress={() => {
+                    if (item.route) router.push(`/${item.route}` as any);
+                  }}
                 />
               ))}
             </GlassyCard>
@@ -227,7 +229,13 @@ export default function SettingsScreen() {
                     />
                   }
                   right={<ChevronRight size={20} color="$secondaryText" />}
-                  onPress={item.route === "logout" ? handleLogout : () => {}}
+                  onPress={
+                    item.route === "logout"
+                      ? handleLogout
+                      : () => {
+                          if (item.route) router.push(`/${item.route}` as any);
+                        }
+                  }
                 />
               ))}
             </GlassyCard>
