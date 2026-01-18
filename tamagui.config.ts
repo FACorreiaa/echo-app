@@ -78,120 +78,138 @@ const config = createTamagui({
     ...defaultConfig.themes,
     light: {
       ...defaultConfig.themes.light,
-      // Light mode: Soft futuristic background
-      background: "#f5f7fa",
-      backgroundHover: "#e8ecf4",
-      backgroundPress: "#dce2ed",
-      backgroundFocus: "#f5f7fa",
+      // Light mode: Clean, bright, minimal aesthetic
+      background: "#f8fafc",
+      backgroundHover: "#f1f5f9",
+      backgroundPress: "#e2e8f0",
+      backgroundFocus: "#f8fafc",
       color: "#0f172a",
       colorHover: "#1e293b",
       colorPress: "#0f172a",
       colorFocus: "#0f172a",
-      borderColor: "rgba(100, 116, 139, 0.2)",
-      shadowColor: "rgba(0,0,0,0.1)",
+      borderColor: "rgba(15, 23, 42, 0.1)",
+      shadowColor: "rgba(0, 0, 0, 0.08)",
 
       // Semantic tokens
-      secondaryText: "#475569",
+      secondaryText: "#64748b",
       placeholderColor: "#94a3b8",
 
-      // Futuristic accent colors
-      cardBackground: "rgba(255, 255, 255, 0.75)",
-      listItemBackground: "rgba(255, 255, 255, 0.65)",
-      accentGradientStart: "#1e88e5", // Electric blue
-      accentGradientEnd: "#8b5cf6", // Purple
-      accentColor: "#1e88e5",
+      // Card backgrounds for light mode - clean, subtle shadows
+      cardBackground: "#ffffff",
+      listItemBackground: "#ffffff",
+      accentGradientStart: "#0284c7", // Sky blue
+      accentGradientEnd: "#7c3aed", // Violet
+      accentColor: "#0284c7",
 
-      // Holographic glassmorphism
-      glassBackground: "rgba(255, 255, 255, 0.7)",
-      glassBorder: "rgba(30, 136, 229, 0.15)", // Cyan tint
-      glassShadow: "rgba(30, 136, 229, 0.08)",
-      glassWhite: "rgba(255, 255, 255, 0.85)",
-      glassHighlight: "rgba(255, 255, 255, 0.95)",
+      // Light glassmorphism - subtle, clean
+      glassBackground: "rgba(255, 255, 255, 0.9)",
+      glassBorder: "rgba(15, 23, 42, 0.08)",
+      glassShadow: "rgba(0, 0, 0, 0.06)",
+      glassWhite: "#ffffff",
+      glassHighlight: "#ffffff",
 
-      // Futuristic accent tokens
-      cyan: "#00a3cc",
-      purple: "#8b5cf6",
-      electricBlue: "#1e88e5",
-      neonCyan: "#00d9ff",
-      neonPurple: "#b47aff",
+      // Accent tokens
+      cyan: "#0284c7",
+      purple: "#7c3aed",
+      electricBlue: "#0284c7",
+      neonCyan: "#0ea5e9",
+      neonPurple: "#8b5cf6",
 
-      // Glow effects
-      glowCyan: "rgba(0, 163, 204, 0.3)",
-      glowPurple: "rgba(139, 92, 246, 0.3)",
-      glowBlue: "rgba(30, 136, 229, 0.3)",
+      // Glow effects - subtle in light mode
+      glowCyan: "rgba(2, 132, 199, 0.15)",
+      glowPurple: "rgba(124, 58, 237, 0.15)",
+      glowBlue: "rgba(2, 132, 199, 0.15)",
 
       // Health Colors
-      healthGood: "#10b981",
-      healthWarning: "#f59e0b",
-      healthCritical: "#ef4444",
+      healthGood: "#059669",
+      healthWarning: "#d97706",
+      healthCritical: "#dc2626",
 
-      // Form tokens
-      formInputBackground: "rgba(255, 255, 255, 0.6)",
-      formInputBorder: "rgba(30, 136, 229, 0.2)",
+      // Form tokens - clean inputs
+      formInputBackground: "#ffffff",
+      formInputBorder: "rgba(15, 23, 42, 0.12)",
       formInputPlaceholder: "#94a3b8",
       formLabel: "#0f172a",
 
-      // Depth layers for holographic effect
-      layer1: "rgba(255, 255, 255, 0.9)",
-      layer2: "rgba(255, 255, 255, 0.75)",
-      layer3: "rgba(255, 255, 255, 0.6)",
+      // Depth layers
+      layer1: "#ffffff",
+      layer2: "#f8fafc",
+      layer3: "#f1f5f9",
+
+      // Light mode HUD/Nav tokens - inverted for light mode
+      hudFoundation: "#f8fafc",
+      hudGrid: "rgba(2, 132, 199, 0.05)",
+      hudActive: "#0284c7",
+      hudWarning: "#dc2626",
+      hudDepth: "rgba(255, 255, 255, 0.95)",
+      hudBorder: "rgba(15, 23, 42, 0.1)",
+      hudGlow: "#0284c7",
     },
     dark: {
       ...defaultConfig.themes.dark,
-      // Dark mode: Deep navy/charcoal with futuristic accents
-      background: "#0a0e27",
-      backgroundHover: "#0f1419",
-      backgroundPress: "#050811",
-      backgroundFocus: "#0a0e27",
+      // Dark mode: Pure Obsidian with Neon accents - TACTICAL HUD
+      background: "#020203",
+      backgroundHover: "#0a0a0f",
+      backgroundPress: "#000000",
+      backgroundFocus: "#020203",
       color: "#ffffff",
       colorHover: "#e2e8f0",
       colorPress: "#ffffff",
       colorFocus: "#ffffff",
-      borderColor: "rgba(0, 217, 255, 0.15)",
-      shadowColor: "rgba(0, 217, 255, 0.2)",
-      placeholderColor: "#64748b",
+      borderColor: "rgba(45, 166, 250, 0.2)",
+      shadowColor: "rgba(45, 166, 250, 0.2)",
+      placeholderColor: "#636366",
 
-      // Holographic glassmorphism with cyan/purple glow
-      glassBackground: "rgba(255, 255, 255, 0.05)",
-      glassBorder: "rgba(0, 217, 255, 0.2)",
-      glassShadow: "rgba(0, 217, 255, 0.15)",
+      // HUD Tactical Cards - Solid enough for contrast, thin enough for depth
+      glassBackground: "rgba(10, 10, 15, 0.9)",
+      glassBorder: "rgba(45, 166, 250, 0.2)",
+      glassShadow: "rgba(45, 166, 250, 0.15)",
       glassWhite: "rgba(255, 255, 255, 0.08)",
       glassHighlight: "rgba(255, 255, 255, 0.12)",
 
-      cardBackground: "rgba(255, 255, 255, 0.06)",
-      listItemBackground: "rgba(255, 255, 255, 0.04)",
-      accentGradientStart: "#00d9ff", // Neon cyan
-      accentGradientEnd: "#b47aff", // Neon purple
-      accentColor: "#00d9ff",
+      cardBackground: "rgba(10, 10, 15, 0.9)",
+      listItemBackground: "rgba(10, 10, 15, 0.75)",
+      accentGradientStart: "#2DA6FA", // Tactical Cyan
+      accentGradientEnd: "#2DA6FA", // Keep uniform for OS feel
+      accentColor: "#2DA6FA",
       secondaryText: "#94a3b8",
 
-      // Futuristic neon accent tokens
-      cyan: "#00d9ff",
+      // Tactical OS accent tokens
+      cyan: "#2DA6FA",
       purple: "#b47aff",
-      electricBlue: "#2da6fa",
-      neonCyan: "#00ffff",
+      electricBlue: "#2DA6FA",
+      neonCyan: "#2DA6FA",
       neonPurple: "#d896ff",
 
-      // Glow effects for holographic depth
-      glowCyan: "rgba(0, 217, 255, 0.4)",
-      glowPurple: "rgba(180, 122, 255, 0.4)",
-      glowBlue: "rgba(45, 166, 250, 0.4)",
+      // Tactical glow effects
+      glowCyan: "rgba(45, 166, 250, 0.3)",
+      glowPurple: "rgba(180, 122, 255, 0.3)",
+      glowBlue: "rgba(45, 166, 250, 0.3)",
 
-      // Health Colors with neon glow
+      // System status colors
       healthGood: "#10b981",
       healthWarning: "#fbbf24",
-      healthCritical: "#f87171",
+      healthCritical: "#FF2D55",
 
-      // Form tokens with futuristic glow
-      formInputBackground: "rgba(255, 255, 255, 0.04)",
-      formInputBorder: "rgba(0, 217, 255, 0.2)",
-      formInputPlaceholder: "#64748b",
+      // Form tokens with tactical glow
+      formInputBackground: "rgba(10, 10, 15, 0.9)",
+      formInputBorder: "rgba(45, 166, 250, 0.2)",
+      formInputPlaceholder: "#636366",
       formLabel: "#e2e8f0",
 
-      // Depth layers for holographic effect
-      layer1: "rgba(255, 255, 255, 0.12)",
-      layer2: "rgba(255, 255, 255, 0.08)",
-      layer3: "rgba(255, 255, 255, 0.05)",
+      // HUD depth layers
+      layer1: "rgba(10, 10, 15, 0.95)",
+      layer2: "rgba(10, 10, 15, 0.85)",
+      layer3: "rgba(10, 10, 15, 0.75)",
+
+      // Tactical HUD OS tokens
+      hudFoundation: "#020203",
+      hudGrid: "rgba(45, 166, 250, 0.05)",
+      hudActive: "#2DA6FA",
+      hudWarning: "#FF2D55",
+      hudDepth: "rgba(10, 10, 15, 0.9)",
+      hudBorder: "rgba(45, 166, 250, 0.2)",
+      hudGlow: "#2DA6FA",
     },
   },
   media: {

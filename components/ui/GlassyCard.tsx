@@ -1,22 +1,23 @@
 import React from "react";
-import { useTheme } from "@/contexts/ThemeContext";
-import { BlurView } from "expo-blur";
-import { StyleSheet } from "react-native";
 import { GetProps, styled, YStack } from "tamagui";
 
-// Create a configured YStack for the card container with holographic glass styling
+/**
+ * GlassyCard - Now using Tactical HUD styling
+ *
+ * Updated to use the Tactical HUD aesthetic instead of glassmorphism.
+ * This provides better performance on mobile and a more distinctive OS feel.
+ */
 const CardFrame = styled(YStack, {
-  borderRadius: 24,
-  borderWidth: 1.5,
-  borderColor: "$glassBorder",
-  padding: 24,
-  overflow: "hidden",
-  backgroundColor: "$glassWhite",
-  // Holographic glow shadow
-  shadowColor: "$glassShadow",
-  shadowOffset: { width: 0, height: 8 },
-  shadowOpacity: 1,
-  shadowRadius: 24,
+  borderRadius: 4, // Sharp tactical corners
+  borderWidth: 1,
+  borderColor: "$hudBorder",
+  padding: 20,
+  backgroundColor: "$hudDepth",
+  // Tactical glow shadow
+  shadowColor: "$hudGlow",
+  shadowOffset: { width: 0, height: 0 },
+  shadowOpacity: 0.15,
+  shadowRadius: 15,
   elevation: 8,
 });
 
@@ -26,45 +27,46 @@ export type GlassyCardProps = GetProps<typeof CardFrame> & {
   forceDark?: boolean;
   /** Enhanced holographic glow effect */
   holographic?: boolean;
+  /** Variant for different HUD states */
+  variant?: "default" | "active" | "warning";
 };
 
 export const GlassyCard = React.memo((props: GlassyCardProps) => {
-  const { isDark } = useTheme();
-  const { holographic = true, ...restProps } = props;
+  const { holographic: _holographic = false, variant = "default", ...restProps } = props;
 
-  // Use dark styling if either system is dark mode OR forceDark is true
-  const useDarkStyle = isDark || props.forceDark;
+  // Determine border and shadow colors based on variant
+  const getBorderColor = () => {
+    switch (variant) {
+      case "active":
+        return "$hudActive";
+      case "warning":
+        return "$hudWarning";
+      default:
+        return "$hudBorder";
+    }
+  };
+
+  const getShadowColor = () => {
+    switch (variant) {
+      case "active":
+        return "$hudActive";
+      case "warning":
+        return "$hudWarning";
+      default:
+        return "$hudGlow";
+    }
+  };
 
   return (
     <CardFrame
       {...restProps}
       position="relative"
-      backgroundColor={useDarkStyle ? "$glassWhite" : "$glassBackground"}
-      borderColor={useDarkStyle ? "$glassBorder" : "$glassBorder"}
-      // Enhanced shadow for holographic depth
-      shadowColor={holographic ? (useDarkStyle ? "$glowCyan" : "$glowBlue") : "$glassShadow"}
-      shadowOpacity={holographic ? (useDarkStyle ? 0.6 : 0.3) : 1}
-      shadowRadius={holographic ? 32 : 24}
+      backgroundColor="$hudDepth"
+      borderColor={getBorderColor()}
+      shadowColor={getShadowColor()}
+      shadowOpacity={variant === "default" ? 0.15 : 0.25}
     >
-      <BlurView
-        intensity={props.intensity ?? (useDarkStyle ? 40 : 60)}
-        style={StyleSheet.absoluteFill}
-        tint={useDarkStyle ? "dark" : "light"}
-      />
-      {/* Holographic highlight overlay for layered depth */}
-      {holographic && (
-        <YStack
-          position="absolute"
-          top={0}
-          left={0}
-          right={0}
-          height="40%"
-          backgroundColor={useDarkStyle ? "$glowCyan" : "$glowBlue"}
-          opacity={useDarkStyle ? 0.08 : 0.05}
-          pointerEvents="none"
-        />
-      )}
-      {/* Content sits on top of the blur and effects */}
+      {/* Content */}
       <YStack zIndex={1} space>
         {props.children}
       </YStack>
