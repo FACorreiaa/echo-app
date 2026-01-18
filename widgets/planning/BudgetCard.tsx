@@ -1,9 +1,11 @@
 import { AlertTriangle } from "@tamagui/lucide-icons";
+import { MotiView } from "moti";
 import React from "react";
 import { Pressable } from "react-native";
-import { Progress, Separator, Text, XStack, YStack } from "tamagui";
+import { Separator, Text, XStack, YStack } from "tamagui";
 
 import { GlassyCard } from "@/components/ui/GlassyCard";
+import { getCategoryConfig } from "@/lib/constants/categories";
 import type { PlanItemWithConfig } from "@/lib/hooks/use-plan-items-by-tab";
 import { formatMoney } from "@/lib/hooks/use-plan-items-by-tab";
 
@@ -22,9 +24,12 @@ export function BudgetCard({ item, onPress }: BudgetCardProps) {
   const isOverBudget = remaining < 0;
   const isNearLimit = !isOverBudget && remaining < budgeted * 0.1; // < 10% remaining
 
-  // Use hex values for icon colors (theme tokens don't work reliably)
-  const statusColor = isOverBudget ? "#ef4444" : isNearLimit ? "#f97316" : "#22c55e";
-  const progressColor = isOverBudget ? "$red10" : isNearLimit ? "$orange10" : "$accentColor";
+  // Get category config for colors and icon
+  const categoryConfig = getCategoryConfig(item.name);
+
+  // Use category color for progress, override for warnings
+  const progressColor = isOverBudget ? "#ef4444" : isNearLimit ? "#f97316" : categoryConfig.color;
+  const statusColor = isOverBudget ? "#ef4444" : isNearLimit ? "#f97316" : categoryConfig.color;
 
   return (
     <Pressable onPress={onPress}>
@@ -34,22 +39,21 @@ export function BudgetCard({ item, onPress }: BudgetCardProps) {
           <XStack justifyContent="space-between" alignItems="center">
             <XStack alignItems="center" gap="$3">
               <XStack
-                width={36}
-                height={36}
-                borderRadius="$4"
-                backgroundColor="$backgroundHover"
+                width={40}
+                height={40}
+                borderRadius="$3"
+                backgroundColor={categoryConfig.bgColor as any}
                 alignItems="center"
                 justifyContent="center"
               >
-                {/* Category Emoji Placeholder - ideally passed in or mapped */}
-                <Text fontSize={18}>🏷️</Text>
+                <Text fontSize={20}>{categoryConfig.icon}</Text>
               </XStack>
-              <YStack>
-                <Text color="$color" fontSize={16} fontWeight="700">
-                  {item.name}
+              <YStack flex={1}>
+                <Text color="$color" fontSize={14} fontWeight="700" letterSpacing={0.3}>
+                  {item.name.toUpperCase()}
                 </Text>
-                <Text color="$secondaryText" fontSize={11}>
-                  Budget: {formatMoney(item.budgetedMinor)}
+                <Text color="$secondaryText" fontSize={10} letterSpacing={0.5}>
+                  BUDGET: {formatMoney(item.budgetedMinor)}
                 </Text>
               </YStack>
             </XStack>
@@ -78,28 +82,51 @@ export function BudgetCard({ item, onPress }: BudgetCardProps) {
 
           <Separator borderColor="$borderColor" opacity={0.5} />
 
-          {/* Progress Section */}
-          <YStack gap="$2">
+          {/* Progress Section - Enhanced with colored bars */}
+          <YStack gap="$3">
             <XStack justifyContent="space-between" alignItems="flex-end">
-              <Text color="$secondaryText" fontSize={11} fontWeight="500">
-                Spent
-              </Text>
-              <Text color="$color" fontWeight="700" fontSize={14}>
-                {formatMoney(item.actualMinor)}
-              </Text>
+              <YStack gap={2}>
+                <Text color="$secondaryText" fontSize={10} fontWeight="600" letterSpacing={0.5}>
+                  SPENT
+                </Text>
+                <Text color="$color" fontWeight="700" fontSize={16} letterSpacing={0.3}>
+                  {formatMoney(item.actualMinor)}
+                </Text>
+              </YStack>
+              <YStack alignItems="flex-end" gap={2}>
+                <Text color="$secondaryText" fontSize={10} fontWeight="600" letterSpacing={0.5}>
+                  {progress.toFixed(0)}% USED
+                </Text>
+                <Text color={statusColor as any} fontSize={12} fontWeight="700" letterSpacing={0.3}>
+                  {isOverBudget
+                    ? `${formatMoney(BigInt(Math.abs(remaining)))} over`
+                    : `${formatMoney(BigInt(remaining))} left`}
+                </Text>
+              </YStack>
             </XStack>
 
-            <Progress value={Math.min(progress, 100)} size="$2" backgroundColor="$backgroundHover">
-              <Progress.Indicator animation="bouncy" backgroundColor={progressColor as any} />
-            </Progress>
-
-            <XStack justifyContent="flex-end">
-              <Text color={statusColor as any} fontSize={11} fontWeight="600">
-                {isOverBudget
-                  ? `${formatMoney(BigInt(Math.abs(remaining)))} over`
-                  : `${formatMoney(BigInt(remaining))} left`}
-              </Text>
-            </XStack>
+            {/* Enhanced Progress Bar with Glow */}
+            <YStack
+              height={8}
+              backgroundColor="$backgroundHover"
+              borderRadius="$2"
+              overflow="hidden"
+            >
+              <MotiView
+                from={{ width: "0%" }}
+                animate={{ width: `${Math.min(progress, 100)}%` }}
+                transition={{ type: "spring", duration: 1000 }}
+                style={{
+                  height: "100%",
+                  backgroundColor: progressColor,
+                  borderRadius: 4,
+                  shadowColor: progressColor,
+                  shadowOffset: { width: 0, height: 0 },
+                  shadowOpacity: 0.5,
+                  shadowRadius: 6,
+                }}
+              />
+            </YStack>
           </YStack>
         </YStack>
       </GlassyCard>

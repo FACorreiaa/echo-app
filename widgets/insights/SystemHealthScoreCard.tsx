@@ -1,8 +1,9 @@
-import { GlassWidget } from "@/components/GlassWidget";
+import { HUDCardWithBracket } from "@/components/hud";
 import { useSystemHealth } from "@/lib/hooks/use-system-health";
 import { Activity, AlertTriangle, CheckCircle, TrendingUp } from "@tamagui/lucide-icons";
+import { MotiView } from "moti";
 import React from "react";
-import { H2, H4, Paragraph, SizableText, View, XStack, YStack, useTheme } from "tamagui";
+import { H2, H4, Paragraph, SizableText, XStack, YStack, useTheme } from "tamagui";
 
 export const SystemHealthScoreCard = () => {
   const { score, status, isLoading } = useSystemHealth();
@@ -29,8 +30,11 @@ export const SystemHealthScoreCard = () => {
   }
 
   return (
-    <GlassWidget marginBottom="$4" animation="bouncy">
-      <YStack space="$3" alignItems="center">
+    <HUDCardWithBracket
+      variant={status === "CRITICAL" ? "warning" : status === "WARNING" ? "active" : "default"}
+      marginBottom="$4"
+    >
+      <YStack space="$3" alignItems="center" padding="$4">
         {/* Header */}
         <XStack alignItems="center" space="$2">
           <TrendingUp size={14} color="$secondaryText" />
@@ -40,19 +44,17 @@ export const SystemHealthScoreCard = () => {
         </XStack>
 
         {/* Score Ring with Pulse */}
-        <View
+        <MotiView
           from={{ opacity: 0.6, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={
-            {
-              type: "timing",
-              duration: 2000,
-              loop: true,
-            } as any
-          }
+          transition={{
+            type: "timing",
+            duration: 2000,
+            loop: true,
+          }}
           style={{
             position: "absolute",
-            top: 40,
+            top: 60,
             width: 120,
             height: 120,
             borderRadius: 60,
@@ -90,6 +92,6 @@ export const SystemHealthScoreCard = () => {
           </Paragraph>
         </YStack>
       </YStack>
-    </GlassWidget>
+    </HUDCardWithBracket>
   );
 };

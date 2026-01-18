@@ -14,6 +14,7 @@ import { FlashList } from "@shopify/flash-list";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Button, H2, Input, Spinner, Text, XStack, YStack } from "tamagui";
 
+import { CategoryPill } from "@/components/ui";
 import { GlassyCard } from "@/components";
 import { RememberThisModal } from "@/components/RememberThisModal";
 import { useDeleteImportBatch, useFlatTransactions } from "@/lib/hooks/use-transactions";
@@ -119,33 +120,39 @@ export default function TransactionsScreen() {
           }
           delayLongPress={300}
         >
-          <GlassyCard marginBottom="$3">
-            <XStack justifyContent="space-between" alignItems="center">
-              <YStack flex={1} gap="$1">
-                <Text fontWeight="600" numberOfLines={1} color="$color">
+          <GlassyCard marginBottom="$2" paddingVertical="$3">
+            <XStack justifyContent="space-between" alignItems="flex-start" gap="$3">
+              <YStack flex={1} gap="$2">
+                <Text
+                  fontWeight="600"
+                  numberOfLines={1}
+                  color="$color"
+                  fontSize={14}
+                  letterSpacing={0.2}
+                >
                   {item.description}
                 </Text>
-                <XStack gap="$2" alignItems="center">
-                  <Calendar size={12} color="$secondaryText" />
-                  <Text fontSize={12} color="$secondaryText">
-                    {formatDate(item.postedAt)}
+                <XStack gap="$2" alignItems="center" flexWrap="wrap">
+                  <Calendar size={11} color="$secondaryText" />
+                  <Text fontSize={11} color="$secondaryText" letterSpacing={0.5}>
+                    {formatDate(item.postedAt)?.toUpperCase()}
                   </Text>
                   {item.categoryId && (
                     <>
-                      <Text color="$secondaryText">•</Text>
-                      <Text fontSize={12} color="$secondaryText">
-                        {item.categoryId}
+                      <Text color="$secondaryText" fontSize={10}>
+                        •
                       </Text>
+                      <CategoryPill category={item.categoryId} size="sm" />
                     </>
                   )}
                 </XStack>
               </YStack>
-              <XStack alignItems="center" gap="$2">
+              <XStack alignItems="center" gap="$3">
                 <Button
                   size="$2"
                   circular
                   chromeless
-                  icon={<Bookmark size={16} />}
+                  icon={<Bookmark size={14} />}
                   onPress={() =>
                     setSelectedTransaction({
                       id: item.id,
@@ -154,7 +161,12 @@ export default function TransactionsScreen() {
                     })
                   }
                 />
-                <Text fontWeight="700" fontSize={16} color={amount >= 0 ? "$green10" : "$red10"}>
+                <Text
+                  fontWeight="700"
+                  fontSize={15}
+                  color={amount >= 0 ? "#10b981" : "#ef4444"}
+                  letterSpacing={0.3}
+                >
                   {item.amount
                     ? formatAmount(item.amount.amountMinor, item.amount.currencyCode)
                     : "€0.00"}

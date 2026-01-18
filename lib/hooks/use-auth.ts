@@ -63,13 +63,10 @@ export function useLogin() {
       await loginSuccess(user, tokens);
       // Invalidate user query to refetch
       queryClient.invalidateQueries({ queryKey: queryKeys.auth.user() });
-      // Check if onboarding completed - existing users go to tabs, new users to onboarding
-      const hasCompletedOnboarding = useAuthStore.getState().hasCompletedOnboarding;
-      if (hasCompletedOnboarding) {
-        router.replace("/(tabs)");
-      } else {
-        router.replace("/(onboarding)");
-      }
+      // Existing users (login) have already completed onboarding
+      // Only new users (register) need to go through onboarding
+      useAuthStore.getState().setHasCompletedOnboarding(true);
+      router.replace("/(tabs)");
     },
   });
 }

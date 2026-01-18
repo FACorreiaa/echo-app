@@ -161,9 +161,9 @@ export const GlassPasswordInput = ({
         />
         <Pressable onPress={toggleVisibility} style={styles.toggleButton}>
           {showPassword ? (
-            <EyeOff size={20} color={colors.text} />
+            <EyeOff size={20} color={colors.text as any} />
           ) : (
-            <Eye size={20} color={colors.text} />
+            <Eye size={20} color={colors.text as any} />
           )}
         </Pressable>
       </XStack>

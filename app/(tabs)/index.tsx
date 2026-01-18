@@ -1,7 +1,7 @@
 import { CreditCard, Plus, Settings, Sparkles, TrendingUp } from "@tamagui/lucide-icons";
 import { useRouter } from "expo-router";
 import React, { lazy, Suspense, useCallback, useMemo, useState } from "react";
-import { ActivityIndicator, Modal, ScrollView } from "react-native";
+import { ActivityIndicator, Modal, Pressable, ScrollView } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Button, Spinner, Text, XStack, YStack } from "tamagui";
 
@@ -116,24 +116,24 @@ export default function HomeScreen() {
 
       <ScrollView contentContainerStyle={{ flexGrow: 1, padding: 20, paddingBottom: 100 }}>
         {/* HEADER - TACTICAL OS STYLE */}
-        <XStack justifyContent="space-between" alignItems="center" marginBottom="$4">
-          <YStack>
-            <Text color="$hudActive" fontSize={10} fontWeight="bold" letterSpacing={1.5}>
+        <XStack justifyContent="space-between" alignItems="center" marginBottom="$5">
+          <YStack gap={4}>
+            <Text color="$hudActive" fontSize={10} fontWeight="bold" letterSpacing={1.8}>
               {getGreeting().toUpperCase()}
             </Text>
-            <Text color="$color" fontSize={24} fontWeight="bold" letterSpacing={0.5}>
-              {user?.displayName || user?.username || "COMMANDER"}
+            <Text color="$color" fontSize={26} fontWeight="700" letterSpacing={0.5}>
+              {user?.displayName?.toUpperCase() || user?.username?.toUpperCase() || "COMMANDER"}
             </Text>
           </YStack>
-          <XStack gap="$2">
-            <AlertBell size={20} />
+          <XStack gap="$3" alignItems="center">
+            <AlertBell size={18} />
             <Button
               size="$3"
               circular
               backgroundColor="$hudDepth"
               borderWidth={1}
               borderColor="$hudBorder"
-              icon={<Settings size={20} color="$hudActive" />}
+              icon={<Settings size={18} color="$hudActive" />}
               onPress={() => router.push("/(tabs)/settings")}
             />
           </XStack>
@@ -194,8 +194,8 @@ export default function HomeScreen() {
         </YStack>
 
         {/* BENTO GRID (Keep relevant quick actions?) */}
-        <Text color="$color" fontSize={18} fontWeight="bold" marginBottom="$3">
-          Quick Actions
+        <Text color="$color" fontSize={14} fontWeight="700" marginBottom="$3" letterSpacing={1}>
+          QUICK ACTIONS
         </Text>
         <XStack justifyContent="space-around" marginBottom="$6">
           {quickActions.map((action) => (
@@ -207,16 +207,16 @@ export default function HomeScreen() {
                 icon={<action.icon size={22} color="$color" />}
                 onPress={action.onPress}
               />
-              <Text color="$secondaryText" fontSize={12}>
-                {action.label}
+              <Text color="$secondaryText" fontSize={10} fontWeight="600" letterSpacing={0.5}>
+                {action.label.toUpperCase()}
               </Text>
             </YStack>
           ))}
         </XStack>
 
         {/* NET WORTH & TRENDS */}
-        <Text color="$color" fontSize={18} fontWeight="bold" marginBottom="$3">
-          Financial Overview
+        <Text color="$color" fontSize={14} fontWeight="700" marginBottom="$3" letterSpacing={1}>
+          FINANCIAL OVERVIEW
         </Text>
         <Suspense
           fallback={
@@ -252,8 +252,8 @@ export default function HomeScreen() {
         </Suspense>
 
         {/* BALANCE HISTORY */}
-        <Text color="$color" fontSize={18} fontWeight="bold" marginBottom="$3">
-          Balance Trend
+        <Text color="$color" fontSize={14} fontWeight="700" marginBottom="$3" letterSpacing={1}>
+          BALANCE TREND
         </Text>
         <Suspense
           fallback={
@@ -267,18 +267,14 @@ export default function HomeScreen() {
 
         {/* RECENT ACTIVITY - TACTICAL DATA LOG */}
         <XStack justifyContent="space-between" alignItems="center" marginBottom="$3" marginTop="$6">
-          <Text color="$color" fontSize={16} fontWeight="bold" letterSpacing={0.5}>
-            DATA LOG
+          <Text color="$color" fontSize={13} fontWeight="700" letterSpacing={1.2}>
+            RECENT TRANSACTIONS
           </Text>
-          <Text
-            color="$hudActive"
-            fontSize={12}
-            fontWeight="bold"
-            letterSpacing={0.5}
-            onPress={() => router.push("/(tabs)/transactions")}
-          >
-            VIEW ALL
-          </Text>
+          <Pressable onPress={() => router.push("/(tabs)/transactions")}>
+            <Text color="$hudActive" fontSize={11} fontWeight="700" letterSpacing={0.8}>
+              VIEW ALL →
+            </Text>
+          </Pressable>
         </XStack>
         <HUDCard>
           <YStack>

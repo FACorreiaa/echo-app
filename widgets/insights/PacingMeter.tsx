@@ -1,10 +1,11 @@
 /**
  * PacingMeter - Visual spending pace comparison component
- * Enhanced with Ghost Time Indicator to show spending vs time.
+ * Enhanced with Ghost Time Indicator and multi-colored chart like Copilot Money.
  */
 
 import { GlassWidget } from "@/components/GlassWidget";
 import { formatBalance } from "@/lib/hooks/use-balance";
+import { StatusBadge } from "@/components/ui/StatusBadge";
 import { TrendingDown, TrendingUp } from "@tamagui/lucide-icons";
 import { MotiView } from "moti";
 import React from "react";
@@ -41,10 +42,17 @@ export function PacingMeter({
   const isOverPacing = spendingProgress > timeProgress;
   const burnRate = timeProgress > 0 ? spendingProgress / timeProgress : 0;
 
-  // Colors
+  // Colors - Multi-segment like Copilot
+  const getBarColor = () => {
+    if (spendingProgress >= 100) return "#ef4444"; // Red (over budget)
+    if (spendingProgress >= 90) return "#f59e0b"; // Yellow (warning)
+    if (spendingProgress >= timeProgress + 10) return "#fbbf24"; // Amber (ahead of pace)
+    return "#10b981"; // Green (on track or under)
+  };
+
+  const barColor = getBarColor();
   const overPaceColor = "$red10";
   const underPaceColor = "$green10";
-  const barColor = isOverPacing ? overPaceColor : underPaceColor;
 
   // Message
   const getMessage = () => {
@@ -64,9 +72,16 @@ export function PacingMeter({
           </SizableText>
         </XStack>
         <XStack justifyContent="space-between" alignItems="center">
-          <Text color="$secondaryText" fontSize={12}>
-            Day {daysElapsed} / {daysTotal}
+          <Text color="$secondaryText" fontSize={11} letterSpacing={0.5}>
+            DAY {daysElapsed} / {daysTotal}
           </Text>
+          <StatusBadge
+            value={(monthlyBudget - currentSpend) / 100}
+            type={isOverPacing ? "over" : "under"}
+            currency={currencyCode}
+            size="sm"
+            showLabel={false}
+          />
         </XStack>
 
         {/* Stats */}
@@ -106,8 +121,13 @@ export function PacingMeter({
               transition={{ type: "timing", duration: 800 }}
               style={{
                 height: "100%",
-                backgroundColor: (theme[barColor as any] as any)?.val || "#22c55e",
+                backgroundColor: barColor,
                 borderRadius: 6,
+                // Add subtle glow effect
+                shadowColor: barColor,
+                shadowOffset: { width: 0, height: 0 },
+                shadowOpacity: 0.4,
+                shadowRadius: 8,
               }}
             />
           </YStack>

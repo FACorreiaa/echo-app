@@ -9,6 +9,7 @@ import {
   HUDButton,
   HUDCard,
   HUDInput,
+  HUDPasswordInput,
   LoginTransition as LoginSuccessAnimation,
   ScanLine,
   SocialLoginRow,
@@ -191,7 +192,7 @@ export default function RegisterScreen() {
                   editable={!isLoading}
                 />
 
-                <HUDInput
+                <HUDPasswordInput
                   label="Password"
                   placeholder="Min. 8 characters"
                   value={password}
@@ -199,7 +200,6 @@ export default function RegisterScreen() {
                     setPassword(text);
                     clearError();
                   }}
-                  secureTextEntry
                   editable={!isLoading}
                   error={passwordError}
                   helperText={
@@ -209,7 +209,7 @@ export default function RegisterScreen() {
                   }
                 />
 
-                <HUDInput
+                <HUDPasswordInput
                   label="Confirm Password"
                   placeholder="••••••••"
                   value={confirmPassword}
@@ -217,7 +217,6 @@ export default function RegisterScreen() {
                     setConfirmPassword(text);
                     clearError();
                   }}
-                  secureTextEntry
                   editable={!isLoading}
                   error={confirmPasswordError}
                   helperText={confirmPasswordError ? "Passwords don't match" : undefined}

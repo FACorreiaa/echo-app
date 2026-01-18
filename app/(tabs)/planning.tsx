@@ -5,6 +5,7 @@ import { ActivityIndicator, Alert, Pressable, ScrollView } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Button, H2, Progress, Text, XStack, YStack } from "tamagui";
 
+import { CircularBudgetGrid } from "@/components/ui";
 import { GlassyCard } from "@/components";
 import { calcProgress, formatMoney, usePlanItemsByTab } from "@/lib/hooks/use-plan-items-by-tab";
 import {
@@ -252,22 +253,44 @@ export default function PlanningScreen() {
 
   const renderBudgets = () => (
     <YStack gap="$4">
+      {/* Circular Budget Overview - Like Copilot mobile */}
+      {activePlanData && budgetData?.items && budgetData.items.length > 0 && (
+        <>
+          <Text color="$color" fontSize={12} fontWeight="700" letterSpacing={1} marginBottom="$2">
+            BUDGET CATEGORIES
+          </Text>
+          <CircularBudgetGrid
+            budgets={budgetData.items.slice(0, 8).map((item) => ({
+              category: item.name,
+              spent: Number(item.actualMinor) / 100,
+              budgeted: Number(item.budgetedMinor) / 100,
+            }))}
+            columns={4}
+            size={70}
+          />
+        </>
+      )}
+
       {/* Global Progress Header */}
       {activePlanData && (
-        <GlassyCard>
+        <GlassyCard marginTop="$4">
           <YStack padding="$4" gap="$2">
-            <Text color="$color" fontWeight="600">
-              Total Budget
+            <Text color="$color" fontWeight="700" fontSize={14} letterSpacing={0.5}>
+              TOTAL BUDGET
             </Text>
             <XStack justifyContent="space-between">
-              <Text color="$secondaryText">Budgeted</Text>
-              <Text color="$color" fontWeight="bold">
+              <Text color="$secondaryText" fontSize={11} letterSpacing={0.5}>
+                BUDGETED
+              </Text>
+              <Text color="$color" fontWeight="bold" letterSpacing={0.3}>
                 {formatMoney(budgetData?.totalBudgetedMinor ?? BigInt(0))}
               </Text>
             </XStack>
             <XStack justifyContent="space-between">
-              <Text color="$secondaryText">Spent</Text>
-              <Text color="$color" fontWeight="bold">
+              <Text color="$secondaryText" fontSize={11} letterSpacing={0.5}>
+                SPENT
+              </Text>
+              <Text color="$color" fontWeight="bold" letterSpacing={0.3}>
                 {formatMoney(budgetData?.totalActualMinor ?? BigInt(0))}
               </Text>
             </XStack>
@@ -289,20 +312,20 @@ export default function PlanningScreen() {
               />
             </Progress>
             <XStack justifyContent="flex-end">
-              <Text color="$secondaryText" fontSize={12}>
+              <Text color="$secondaryText" fontSize={11} letterSpacing={0.5}>
                 {formatMoney(
                   (budgetData?.totalBudgetedMinor ?? BigInt(0)) -
                     (budgetData?.totalActualMinor ?? BigInt(0)),
                 )}{" "}
-                remaining
+                REMAINING
               </Text>
             </XStack>
           </YStack>
         </GlassyCard>
       )}
 
-      <Text color="$color" fontSize={18} fontWeight="bold">
-        Monthly Budgets
+      <Text color="$color" fontSize={13} fontWeight="700" letterSpacing={1} marginTop="$4">
+        MONTHLY BUDGETS
       </Text>
       {budgetItemsLoading ? (
         <YStack alignItems="center" padding="$6">

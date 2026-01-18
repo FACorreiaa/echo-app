@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { Input as TamaguiInput, YStack, Text, InputProps } from "tamagui";
-import { NativeSyntheticEvent, TextInputFocusEventData } from "react-native";
+import { NativeSyntheticEvent, Platform, TextInputFocusEventData } from "react-native";
+import { InputProps, Input as TamaguiInput, Text, YStack } from "tamagui";
 
 /**
  * HUDInput - Tactical form input with focus glow effect
+ * Includes web-specific handling for email and other keyboard types
  */
 interface HUDInputProps extends Omit<InputProps, "ref"> {
   label?: string;
@@ -11,8 +12,37 @@ interface HUDInputProps extends Omit<InputProps, "ref"> {
   helperText?: string;
 }
 
+// Map React Native keyboardType to web inputMode
+const getWebInputMode = (keyboardType?: string): string | undefined => {
+  switch (keyboardType) {
+    case "email-address":
+      return "email";
+    case "numeric":
+    case "number-pad":
+      return "numeric";
+    case "decimal-pad":
+      return "decimal";
+    case "phone-pad":
+      return "tel";
+    case "url":
+      return "url";
+    default:
+      return undefined;
+  }
+};
+
 export const HUDInput: React.FC<HUDInputProps> = ({ label, error, helperText, ...props }) => {
   const [isFocused, setIsFocused] = useState(false);
+
+  // Build web-specific props
+  const webProps =
+    Platform.OS === "web"
+      ? {
+          inputMode: getWebInputMode(props.keyboardType as string),
+          // Ensure autocomplete works properly on web
+          autoComplete: props.keyboardType === "email-address" ? "email" : undefined,
+        }
+      : {};
 
   return (
     <YStack width="100%">
@@ -51,6 +81,7 @@ export const HUDInput: React.FC<HUDInputProps> = ({ label, error, helperText, ..
           setIsFocused(false);
           props.onBlur?.(e as any);
         }}
+        {...webProps}
         {...props}
       />
 

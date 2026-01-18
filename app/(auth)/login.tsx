@@ -9,6 +9,7 @@ import {
   HUDButton,
   HUDCard,
   HUDInput,
+  HUDPasswordInput,
   LoginTransition as LoginSuccessAnimation,
   ScanLine,
   SocialLoginRow,
@@ -150,7 +151,7 @@ export default function LoginScreen() {
                   error={emailError}
                 />
 
-                <HUDInput
+                <HUDPasswordInput
                   label="Password"
                   placeholder="••••••••"
                   value={password}
@@ -158,7 +159,6 @@ export default function LoginScreen() {
                     setPassword(text);
                     if (error) setError("");
                   }}
-                  secureTextEntry
                   editable={!isLoading}
                   error={passwordError}
                 />
